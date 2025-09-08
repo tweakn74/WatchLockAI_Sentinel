@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GET /assets Response",
+  "description": "JSON schema for GET /assets endpoint response",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array"
+    },
+    "total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "page": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "limit": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "required": [
+    "items"
+  ],
+  "additionalProperties": true
+}

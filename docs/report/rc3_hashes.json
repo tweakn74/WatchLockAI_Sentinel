@@ -1,0 +1,10 @@
+{
+  "DOCS/mitre/rules/rc3_baseline.yaml": "fedff6d308f98f1e926a74476c3563078687a60bf00bcd7e0ec4e83ed818f761",
+  "detection/__init__.py": "3d3e93fec3b564b61d24db301be69ac2dbe2412c9bc89a739877bca2707a95e5",
+  "detection/attack_matrix.py": "4a82c48da25365c6b2f3ab1dcefbc61a7a7ab08e376ff15213e9e0c5a1e9bca8",
+  "detection/behavioral_engine.py": "d98fd75fb218b37422e8d678958205e0e276bfb2aec0448af76610d834c15c98",
+  "detection/ml_scoring.py": "7665a87b7ab14f68a3f4b4ebf67f6816d17d65f5638b502680146d0ef979d72e",
+  "detection/rule_dsl.py": "afbf684de344774ba22386711752516de6f2bc46cfee62988af52049c5b7a9c4",
+  "detection/rules_engine.py": "896274c4b4e8eed5fa9a8a5e6aac3406576ee7a8378c25df98f4bb624a3cc2c7",
+  "detection/threat_intel_db.py": "89d22af66e3962b2a6b71d12e47dad93ad81acc5d84e6583b02e05e78af492e0"
+}

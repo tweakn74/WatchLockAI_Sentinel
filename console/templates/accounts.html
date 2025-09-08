@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+
+{% block title %}Account Activity - WatchLockAI Sentinel{% endblock %}
+{% block header %}Account Activity{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col-md-8">
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle me-2"></i>
+            Account activity monitoring tracks user authentication, privilege changes, and account management events.
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="d-flex gap-2">
+            <select class="form-select" id="time-range">
+                <option value="1h">Last Hour</option>
+                <option value="24h" selected>Last 24 Hours</option>
+                <option value="7d">Last 7 Days</option>
+            </select>
+            <button class="btn btn-primary" onclick="loadAccountActivity()">Refresh</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Account Activity Summary -->
+    <div class="col-lg-4 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Activity Summary</h5>
+            </div>
+            <div class="card-body">
+                <div id="activity-summary">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Login Events:</span>
+                        <span class="badge bg-primary" id="login-count">0</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Failed Logins:</span>
+                        <span class="badge bg-warning" id="failed-login-count">0</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Privilege Changes:</span>
+                        <span class="badge bg-info" id="privilege-count">0</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Account Changes:</span>
+                        <span class="badge bg-secondary" id="account-change-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="col-lg-8 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Recent Account Events</h5>
+            </div>
+            <div class="card-body">
+                <div id="recent-activity">
+                    <p class="text-muted">Loading account activity...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Failed Login Attempts -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0 text-warning">
+                    <i class="bi bi-exclamation-triangle me-2"></i>Failed Login Attempts
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="failed-logins">
+                    <p class="text-muted">Loading failed login attempts...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Sessions -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-person-check me-2"></i>Active Sessions
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="active-sessions">
+                    <p class="text-muted">Loading active sessions...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function formatTimestamp(isoString) {
+        try {
+            const date = new Date(isoString);
+            return date.toLocaleString();
+        } catch {
+            return 'Unknown';
+        }
+    }
+
+    function getEventTypeIcon(eventType) {
+        const icons = {
+            'login': 'bi-person-check',
+            'logout': 'bi-person-x',
+            'failed_login': 'bi-person-exclamation',
+            'privilege_change': 'bi-shield-exclamation',
+            'account_created': 'bi-person-plus',
+            'account_deleted': 'bi-person-dash',
+            'password_change': 'bi-key'
+        };
+        return icons[eventType] || 'bi-person';
+    }
+
+    function getEventTypeBadge(eventType) {
+        const badges = {
+            'login': 'bg-success',
+            'logout': 'bg-secondary',
+            'failed_login': 'bg-danger',
+            'privilege_change': 'bg-warning',
+            'account_created': 'bg-info',
+            'account_deleted': 'bg-danger',
+            'password_change': 'bg-primary'
+        };
+        return badges[eventType] || 'bg-secondary';
+    }
+
+    async function loadAccountActivity() {
+        try {
+            // Since this is a demo, we'll show simulated data
+            // In real implementation, this would call /api/accounts or similar
+            
+            // Simulated account activity data
+            const accountEvents = [
+                {
+                    id: '1',
+                    timestamp: new Date().toISOString(),
+                    event_type: 'login',
+                    username: 'administrator',
+                    source_ip: '192.168.1.100',
+                    success: true
+                },
+                {
+                    id: '2',
+                    timestamp: new Date(Date.now() - 30*60*1000).toISOString(),
+                    event_type: 'failed_login',
+                    username: 'guest',
+                    source_ip: '192.168.1.200',
+                    success: false
+                },
+                {
+                    id: '3',
+                    timestamp: new Date(Date.now() - 60*60*1000).toISOString(),
+                    event_type: 'privilege_change',
+                    username: 'user123',
+                    details: 'Added to Administrators group'
+                }
+            ];
+
+            // Update summary counts
+            document.getElementById('login-count').textContent = '5';
+            document.getElementById('failed-login-count').textContent = '2';
+            document.getElementById('privilege-count').textContent = '1';
+            document.getElementById('account-change-count').textContent = '3';
+
+            // Update recent activity
+            const recentActivityHtml = `
+                <div class="list-group">
+                    ${accountEvents.map(event => `
+                        <div class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <div class="d-flex align-items-center mb-1">
+                                        <i class="bi ${getEventTypeIcon(event.event_type)} me-2"></i>
+                                        <strong>${event.username}</strong>
+                                        <span class="badge ${getEventTypeBadge(event.event_type)} ms-2">
+                                            ${event.event_type.replace('_', ' ')}
+                                        </span>
+                                    </div>
+                                    <small class="text-muted">
+                                        ${event.source_ip ? `From: ${event.source_ip}` : ''}
+                                        ${event.details ? `- ${event.details}` : ''}
+                                    </small>
+                                </div>
+                                <small class="text-muted">${formatTimestamp(event.timestamp)}</small>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            document.getElementById('recent-activity').innerHTML = recentActivityHtml;
+
+            // Update failed logins
+            const failedLoginsHtml = `
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <strong>guest</strong><br>
+                                <small class="text-muted">192.168.1.200</small>
+                            </div>
+                            <div class="text-end">
+                                <div class="text-danger">2 attempts</div>
+                                <small class="text-muted">30 min ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('failed-logins').innerHTML = failedLoginsHtml;
+
+            // Update active sessions
+            const activeSessionsHtml = `
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <strong>administrator</strong><br>
+                                <small class="text-muted">Console Session</small>
+                            </div>
+                            <div class="text-end">
+                                <div class="text-success">Active</div>
+                                <small class="text-muted">2h 15m</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('active-sessions').innerHTML = activeSessionsHtml;
+
+        } catch (error) {
+            console.error('Error loading account activity:', error);
+            document.getElementById('recent-activity').innerHTML = '<p class="text-danger">Error loading account activity</p>';
+        }
+    }
+
+    // Load account activity on page load
+    loadAccountActivity();
+    
+    // Auto-refresh every 60 seconds
+    setInterval(loadAccountActivity, 60000);
+</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+
+{
+  "tool_strategies": {
+    ".docx": [
+      {
+        "name": "Ultimate Reader DOCX",
+        "tool": "read_any_file.py",
+        "command": "python {script_path} --path \"{file_path}\" --json"
+      },
+      {
+        "name": "Simple DOCX Reader",
+        "tool": "read_docx_text.py",
+        "command": "python {script_path} {file_path}"
+      }
+    ],
+    ".pdf": [
+      {
+        "name": "Ultimate Reader PDF with OCR",
+        "tool": "read_any_file.py",
+        "command": "python {script_path} --path \"{file_path}\" --enable-ocr --json"
+      },
+      {
+        "name": "PDF to Text Converter",
+        "tool": "convert_single_pdf.py",
+        "command": "python {script_path} {file_path} {output_path}"
+      }
+    ],
+    "default": [
+      {
+        "name": "Default Text Reader",
+        "tool": "read_any_file.py",
+        "command": "python {script_path} --path \"{file_path}\" --json"
+      }
+    ]
+  }
+}

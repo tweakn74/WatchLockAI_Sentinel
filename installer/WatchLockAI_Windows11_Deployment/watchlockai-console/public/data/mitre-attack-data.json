@@ -1,0 +1,249 @@
+{
+  "tactics": [
+    {
+      "id": "TA0001",
+      "name": "Initial Access",
+      "description": "The adversary is trying to get into your network",
+      "color": "#ff6b6b",
+      "techniques_count": 9
+    },
+    {
+      "id": "TA0002",
+      "name": "Execution",
+      "description": "The adversary is trying to run malicious code",
+      "color": "#feca57",
+      "techniques_count": 13
+    },
+    {
+      "id": "TA0003",
+      "name": "Persistence",
+      "description": "The adversary is trying to maintain their foothold",
+      "color": "#48dbfb",
+      "techniques_count": 19
+    },
+    {
+      "id": "TA0004",
+      "name": "Privilege Escalation",
+      "description": "The adversary is trying to gain higher-level permissions",
+      "color": "#ff9ff3",
+      "techniques_count": 13
+    },
+    {
+      "id": "TA0005",
+      "name": "Defense Evasion",
+      "description": "The adversary is trying to avoid being detected",
+      "color": "#54a0ff",
+      "techniques_count": 43
+    },
+    {
+      "id": "TA0006",
+      "name": "Credential Access",
+      "description": "The adversary is trying to steal account names and passwords",
+      "color": "#5f27cd",
+      "techniques_count": 15
+    },
+    {
+      "id": "TA0007",
+      "name": "Discovery",
+      "description": "The adversary is trying to figure out your environment",
+      "color": "#00d2d3",
+      "techniques_count": 30
+    },
+    {
+      "id": "TA0008",
+      "name": "Lateral Movement",
+      "description": "The adversary is trying to move through your environment",
+      "color": "#ff6348",
+      "techniques_count": 9
+    },
+    {
+      "id": "TA0009",
+      "name": "Collection",
+      "description": "The adversary is trying to gather data of interest",
+      "color": "#2ed573",
+      "techniques_count": 17
+    },
+    {
+      "id": "TA0011",
+      "name": "Command and Control",
+      "description": "The adversary is trying to communicate with compromised systems",
+      "color": "#a4b0be",
+      "techniques_count": 16
+    },
+    {
+      "id": "TA0010",
+      "name": "Exfiltration",
+      "description": "The adversary is trying to steal data",
+      "color": "#ffa502",
+      "techniques_count": 9
+    },
+    {
+      "id": "TA0040",
+      "name": "Impact",
+      "description": "The adversary is trying to manipulate, interrupt, or destroy systems and data",
+      "color": "#ff3838",
+      "techniques_count": 13
+    }
+  ],
+  "techniques": [
+    {
+      "id": "T1059.001",
+      "name": "Command and Scripting Interpreter: PowerShell",
+      "tactic": "Execution",
+      "description": "Adversaries may abuse PowerShell commands and scripts for execution",
+      "platforms": ["Windows"],
+      "data_sources": ["Process", "PowerShell Logs"],
+      "mitigations": ["M1049", "M1038", "M1026"],
+      "detection_difficulty": "Medium",
+      "prevalence": "High"
+    },
+    {
+      "id": "T1105",
+      "name": "Ingress Tool Transfer",
+      "tactic": "Command and Control",
+      "description": "Adversaries may transfer tools or other files from an external system",
+      "platforms": ["Linux", "Windows", "macOS"],
+      "data_sources": ["Network Traffic", "File"],
+      "mitigations": ["M1031", "M1037"],
+      "detection_difficulty": "Medium",
+      "prevalence": "High"
+    },
+    {
+      "id": "T1140",
+      "name": "Deobfuscate/Decode Files or Information",
+      "tactic": "Defense Evasion",
+      "description": "Adversaries may use obfuscated files or information to hide artifacts",
+      "platforms": ["Linux", "Windows", "macOS"],
+      "data_sources": ["Process", "File"],
+      "mitigations": ["M1049"],
+      "detection_difficulty": "High",
+      "prevalence": "Medium"
+    },
+    {
+      "id": "T1486",
+      "name": "Data Encrypted for Impact",
+      "tactic": "Impact",
+      "description": "Adversaries may encrypt data on target systems to interrupt availability",
+      "platforms": ["Linux", "Windows", "macOS"],
+      "data_sources": ["File", "Process"],
+      "mitigations": ["M1040", "M1053"],
+      "detection_difficulty": "Low",
+      "prevalence": "Medium"
+    },
+    {
+      "id": "T1027",
+      "name": "Obfuscated Files or Information",
+      "tactic": "Defense Evasion",
+      "description": "Adversaries may attempt to make an executable or file difficult to discover",
+      "platforms": ["Linux", "Windows", "macOS"],
+      "data_sources": ["File", "Process"],
+      "mitigations": ["M1049"],
+      "detection_difficulty": "High",
+      "prevalence": "High"
+    },
+    {
+      "id": "T1083",
+      "name": "File and Directory Discovery",
+      "tactic": "Discovery",
+      "description": "Adversaries may enumerate files and directories",
+      "platforms": ["Linux", "Windows", "macOS"],
+      "data_sources": ["Process", "Command"],
+      "mitigations": [],
+      "detection_difficulty": "Medium",
+      "prevalence": "High"
+    },
+    {
+      "id": "T1003.001",
+      "name": "OS Credential Dumping: LSASS Memory",
+      "tactic": "Credential Access",
+      "description": "Adversaries may attempt to access credential material stored in LSASS",
+      "platforms": ["Windows"],
+      "data_sources": ["Process", "Driver"],
+      "mitigations": ["M1028", "M1043", "M1025"],
+      "detection_difficulty": "Medium",
+      "prevalence": "High"
+    },
+    {
+      "id": "T1055",
+      "name": "Process Injection",
+      "tactic": "Defense Evasion",
+      "description": "Adversaries may inject code into processes to evade detection",
+      "platforms": ["Linux", "Windows", "macOS"],
+      "data_sources": ["Process", "Windows Registry"],
+      "mitigations": ["M1040", "M1026"],
+      "detection_difficulty": "High",
+      "prevalence": "High"
+    },
+    {
+      "id": "T1071.001",
+      "name": "Application Layer Protocol: Web Protocols",
+      "tactic": "Command and Control",
+      "description": "Adversaries may communicate using application layer protocols",
+      "platforms": ["Linux", "Windows", "macOS"],
+      "data_sources": ["Network Traffic"],
+      "mitigations": ["M1031", "M1020"],
+      "detection_difficulty": "Medium",
+      "prevalence": "High"
+    },
+    {
+      "id": "T1573",
+      "name": "Encrypted Channel",
+      "tactic": "Command and Control",
+      "description": "Adversaries may employ a known encryption algorithm to conceal C2 communications",
+      "platforms": ["Linux", "Windows", "macOS"],
+      "data_sources": ["Network Traffic"],
+      "mitigations": ["M1031", "M1020"],
+      "detection_difficulty": "High",
+      "prevalence": "Medium"
+    },
+    {
+      "id": "T1218.011",
+      "name": "System Binary Proxy Execution: Rundll32",
+      "tactic": "Defense Evasion",
+      "description": "Adversaries may abuse rundll32.exe to proxy execution of malicious code",
+      "platforms": ["Windows"],
+      "data_sources": ["Process", "Command"],
+      "mitigations": ["M1038"],
+      "detection_difficulty": "Medium",
+      "prevalence": "Medium"
+    },
+    {
+      "id": "T1218",
+      "name": "System Binary Proxy Execution",
+      "tactic": "Defense Evasion",
+      "description": "Adversaries may bypass process restrictions by proxying execution",
+      "platforms": ["Linux", "Windows", "macOS"],
+      "data_sources": ["Process", "Command"],
+      "mitigations": ["M1038", "M1042"],
+      "detection_difficulty": "Medium",
+      "prevalence": "High"
+    }
+  ],
+  "kill_chain_mapping": {
+    "reconnaissance": ["T1595", "T1592", "T1589"],
+    "weaponization": ["T1027", "T1587", "T1588"],
+    "delivery": ["T1566", "T1091", "T1195"],
+    "exploitation": ["T1203", "T1190", "T1210"],
+    "installation": ["T1547", "T1543", "T1053"],
+    "command_and_control": ["T1071", "T1573", "T1008"],
+    "actions_on_objectives": ["T1486", "T1005", "T1041"]
+  },
+  "threat_groups": [
+    {
+      "id": "G0016",
+      "name": "APT29",
+      "aliases": ["Cozy Bear", "The Dukes"],
+      "description": "Russian state-sponsored threat group",
+      "techniques": ["T1059.001", "T1105", "T1140"],
+      "industries_targeted": ["Government", "Healthcare", "Technology"]
+    },
+    {
+      "id": "G0019",
+      "name": "APT28",
+      "aliases": ["Fancy Bear", "Sofacy"],
+      "description": "Russian military intelligence threat group",
+      "techniques": ["T1071.001", "T1573", "T1055"],
+      "industries_targeted": ["Government", "Military", "Aerospace"]
+    }
+  ]
+}

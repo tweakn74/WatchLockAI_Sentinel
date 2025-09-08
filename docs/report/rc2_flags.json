@@ -1,0 +1,7 @@
+{
+  "MITRE_MATRIX_ENABLED": "0",
+  "MITRE_API_ENABLED": "0",
+  "MITRE_REACTIVE_ENABLED": "0",
+  "MITRE_PROFILE": "baseline",
+  "MITRE_RULES_PATH": "DOCS/mitre/rules/baseline.yaml"
+}

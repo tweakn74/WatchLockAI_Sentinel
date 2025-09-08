@@ -1,0 +1,29 @@
+components:
+  fs_monitor:
+    key_logic: "fs_monitor.md"
+    references: ["schemas.md"]
+  proc_monitor:
+    key_logic: "process_monitor.md"
+    references: ["schemas.md"]
+  reg_monitor:
+    key_logic: "registry_monitor.md"
+    references: ["schemas.md"]
+  net_monitor:
+    key_logic: "net_monitor.md"
+    references: ["schemas.md"]
+  health_monitor:
+    key_logic: "health_monitor.md"
+    references: ["schemas.md"]
+  rules_engine:
+    key_logic: "rules_engine_spec.md"
+    references: ["schemas.md"]
+  ml_scoring:
+    key_logic: "ml_scoring.md"
+  alerts:
+    key_logic: "alerts.md"
+  actions:
+    key_logic: "actions.md"
+  tests:
+    key_logic: "test_e2e.md"
+pack_notes:
+  provenance_policy: "All alerts must include file + line range of rule source."

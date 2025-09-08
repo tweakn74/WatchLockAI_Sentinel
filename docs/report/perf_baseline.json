@@ -1,0 +1,32 @@
+{
+  "detailed_results": {
+    "async": {
+      "async_mode": true,
+      "events_per_second": 1318498.69,
+      "events_processed": 1000,
+      "mean_latency_ms": 0.000758,
+      "total_time_seconds": 0.000758
+    },
+    "sync": {
+      "async_mode": false,
+      "events_per_second": 3773831.37,
+      "events_processed": 1000,
+      "mean_latency_ms": 0.000265,
+      "total_time_seconds": 0.000265
+    }
+  },
+  "performance": {
+    "events_per_second": 3773831.37,
+    "mean_latency_ms": 0.000265,
+    "mode": "sync",
+    "total_time_seconds": 0.000265
+  },
+  "platform": "Linux-5.10.134-18.al8.x86_64-x86_64-with-glibc2.36",
+  "python_version": "3.12.5",
+  "status": "completed",
+  "test_config": {
+    "event_bus_type": "InlineEventBus",
+    "n_events": 1000
+  },
+  "timestamp_utc": "2025-09-04T20:55:41Z"
+}

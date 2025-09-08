@@ -1,0 +1,30 @@
+{
+  "ai_brain_url": "http://localhost:9999",
+  "protection_enabled": {
+    "process_protection": true,
+    "service_protection": true,
+    "file_integrity": true,
+    "anti_debugging": true,
+    "registry_protection": true,
+    "watchdog_service": true
+  },
+  "response_actions": {
+    "restart_on_kill": true,
+    "terminate_debuggers": true,
+    "alert_on_tampering": true,
+    "auto_recovery": true
+  },
+  "monitoring_intervals": {
+    "process_check": 5,
+    "service_check": 30,
+    "file_check": 30,
+    "debugger_check": 15,
+    "registry_check": 60,
+    "health_check": 60
+  },
+  "thresholds": {
+    "max_restart_attempts": 5,
+    "alert_cooldown": 300,
+    "critical_file_changes": 3
+  }
+}

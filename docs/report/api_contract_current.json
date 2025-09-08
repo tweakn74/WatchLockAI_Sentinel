@@ -1,0 +1,10 @@
+{
+  "endpoints": {},
+  "generated_at": "2025-09-06T15:53:41.150801",
+  "summary": {
+    "auth_required_count": 0,
+    "feature_flagged_count": 0,
+    "total_endpoints": 0
+  },
+  "version": "1.0"
+}

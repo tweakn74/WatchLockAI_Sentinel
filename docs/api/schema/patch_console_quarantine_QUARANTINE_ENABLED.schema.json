@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PATCH console.quarantine.QUARANTINE_ENABLED Response",
+  "description": "Web page response - may be HTML or JSON",
+  "type": [
+    "object",
+    "string"
+  ],
+  "additionalProperties": true
+}

@@ -1,0 +1,35 @@
+{
+  "ai_brain_url": "http://localhost:9999",
+  "monitoring_enabled": {
+    "file_system": true,
+    "processes": true,
+    "network": true,
+    "registry": true,
+    "browser": true,
+    "memory": false
+  },
+  "reporting_interval": 300,
+  "log_level": "INFO",
+  "monitored_paths": [
+    "C:\\Windows\\System32",
+    "C:\\Program Files",
+    "C:\\Program Files (x86)",
+    "C:\\Users"
+  ],
+  "ignored_processes": [
+    "System",
+    "Idle",
+    "Registry",
+    "smss.exe",
+    "csrss.exe",
+    "wininit.exe",
+    "winlogon.exe",
+    "services.exe",
+    "lsass.exe"
+  ],
+  "alert_thresholds": {
+    "process_creation_rate": 10,
+    "network_connections_rate": 20,
+    "file_modifications_rate": 50
+  }
+}

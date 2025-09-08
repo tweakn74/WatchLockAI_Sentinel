@@ -1,0 +1,20 @@
+{
+  "generated_at": "2025-09-03T07:28:35.000000+00:00",
+  "implementation": "P1-001 Event Bus Error Handling",
+  "files_modified": ["app_core/bus.py"],
+  "ruff": {
+    "status": "UNAVAILABLE",
+    "count": null,
+    "sha256": null
+  },
+  "pyright": {
+    "status": "UNAVAILABLE", 
+    "count": null,
+    "sha256": null
+  },
+  "pytest": {
+    "status": "UNAVAILABLE",
+    "summary": null,
+    "sha256": null
+  }
+}

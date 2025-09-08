@@ -1,0 +1,524 @@
+{
+  "DOCS/INDEX.md": [
+    {
+      "text": "architecture.md",
+      "path": "architecture.md",
+      "resolved_path": "DOCS/architecture.md",
+      "exists": true
+    },
+    {
+      "text": "arch/import_graph.mmd",
+      "path": "arch/import_graph.mmd",
+      "resolved_path": "DOCS/arch/import_graph.mmd",
+      "exists": true
+    },
+    {
+      "text": "workspace_overview.md",
+      "path": "workspace_overview.md",
+      "resolved_path": "DOCS/workspace_overview.md",
+      "exists": true
+    },
+    {
+      "text": "development_rails.md",
+      "path": "development_rails.md",
+      "resolved_path": "DOCS/development_rails.md",
+      "exists": true
+    },
+    {
+      "text": "session_startup.md",
+      "path": "session_startup.md",
+      "resolved_path": "DOCS/session_startup.md",
+      "exists": true
+    },
+    {
+      "text": "coding_standards.md",
+      "path": "coding_standards.md",
+      "resolved_path": "DOCS/coding_standards.md",
+      "exists": true
+    },
+    {
+      "text": "testing_strategy.md",
+      "path": "testing_strategy.md",
+      "resolved_path": "DOCS/testing_strategy.md",
+      "exists": true
+    },
+    {
+      "text": "release_checklist.md",
+      "path": "release_checklist.md",
+      "resolved_path": "DOCS/release_checklist.md",
+      "exists": true
+    },
+    {
+      "text": "events/contracts.md",
+      "path": "events/contracts.md",
+      "resolved_path": "DOCS/events/contracts.md",
+      "exists": true
+    },
+    {
+      "text": "events/schema.json",
+      "path": "events/schema.json",
+      "resolved_path": "DOCS/events/schema.json",
+      "exists": true
+    },
+    {
+      "text": "api/routes.md",
+      "path": "api/routes.md",
+      "resolved_path": "DOCS/api/routes.md",
+      "exists": true
+    },
+    {
+      "text": "config/keys.md",
+      "path": "config/keys.md",
+      "resolved_path": "DOCS/config/keys.md",
+      "exists": true
+    },
+    {
+      "text": "config/index.json",
+      "path": "config/index.json",
+      "resolved_path": "DOCS/config/index.json",
+      "exists": true
+    },
+    {
+      "text": "platform/guards.md",
+      "path": "platform/guards.md",
+      "resolved_path": "DOCS/platform/guards.md",
+      "exists": true
+    },
+    {
+      "text": "glossary.md",
+      "path": "glossary.md",
+      "resolved_path": "DOCS/glossary.md",
+      "exists": true
+    },
+    {
+      "text": "assumptions.md",
+      "path": "assumptions.md",
+      "resolved_path": "DOCS/assumptions.md",
+      "exists": true
+    },
+    {
+      "text": "master_todo.json",
+      "path": "master_todo.json",
+      "resolved_path": "DOCS/master_todo.json",
+      "exists": true
+    },
+    {
+      "text": "master_todo.md",
+      "path": "master_todo.md",
+      "resolved_path": "DOCS/master_todo.md",
+      "exists": true
+    },
+    {
+      "text": "todo/todo.json",
+      "path": "todo/todo.json",
+      "resolved_path": "DOCS/todo/todo.json",
+      "exists": true
+    },
+    {
+      "text": "decisions/ADR-0001-template.md",
+      "path": "decisions/ADR-0001-template.md",
+      "resolved_path": "DOCS/decisions/ADR-0001-template.md",
+      "exists": true
+    },
+    {
+      "text": "decisions/ADR-0002-operational-mode.md",
+      "path": "decisions/ADR-0002-operational-mode.md",
+      "resolved_path": "DOCS/decisions/ADR-0002-operational-mode.md",
+      "exists": true
+    },
+    {
+      "text": "runbooks/README.md",
+      "path": "runbooks/README.md",
+      "resolved_path": "DOCS/runbooks/README.md",
+      "exists": true
+    },
+    {
+      "text": "baselines.txt",
+      "path": "baselines.txt",
+      "resolved_path": "DOCS/baselines.txt",
+      "exists": true
+    },
+    {
+      "text": "context/index.json",
+      "path": "context/index.json",
+      "resolved_path": "DOCS/context/index.json",
+      "exists": true
+    }
+  ],
+  "DOCS/master_todo.md": [
+    {
+      "text": "DOCS/todo/todo.json",
+      "path": "todo/todo.json",
+      "resolved_path": "DOCS/todo/todo.json",
+      "exists": true
+    },
+    {
+      "text": "P0-001",
+      "path": "#p0-001",
+      "resolved_path": "DOCS/#p0-001",
+      "exists": false
+    },
+    {
+      "text": "collectors/reg_monitor.py",
+      "path": "../collectors/reg_monitor.py",
+      "resolved_path": "collectors/reg_monitor.py",
+      "exists": true
+    },
+    {
+      "text": "P0-002",
+      "path": "#p0-002",
+      "resolved_path": "DOCS/#p0-002",
+      "exists": false
+    },
+    {
+      "text": "service/service_wrapper.py",
+      "path": "../service/service_wrapper.py",
+      "resolved_path": "service/service_wrapper.py",
+      "exists": true
+    },
+    {
+      "text": "P0-003",
+      "path": "#p0-003",
+      "resolved_path": "DOCS/#p0-003",
+      "exists": false
+    },
+    {
+      "text": "response/actions.py",
+      "path": "../response/actions.py",
+      "resolved_path": "response/actions.py",
+      "exists": true
+    },
+    {
+      "text": "P0-004",
+      "path": "#p0-004",
+      "resolved_path": "DOCS/#p0-004",
+      "exists": false
+    },
+    {
+      "text": "console/web_api.py",
+      "path": "../console/web_api.py",
+      "resolved_path": "console/web_api.py",
+      "exists": true
+    },
+    {
+      "text": "service/service_wrapper.py",
+      "path": "../service/service_wrapper.py",
+      "resolved_path": "service/service_wrapper.py",
+      "exists": true
+    },
+    {
+      "text": "P0-005",
+      "path": "#p0-005",
+      "resolved_path": "DOCS/#p0-005",
+      "exists": false
+    },
+    {
+      "text": "app_core/schemas.py",
+      "path": "../app_core/schemas.py",
+      "resolved_path": "app_core/schemas.py",
+      "exists": true
+    },
+    {
+      "text": "P1-001",
+      "path": "#p1-001",
+      "resolved_path": "DOCS/#p1-001",
+      "exists": false
+    },
+    {
+      "text": "app_core/bus.py",
+      "path": "../app_core/bus.py",
+      "resolved_path": "app_core/bus.py",
+      "exists": true
+    },
+    {
+      "text": "P1-002",
+      "path": "#p1-002",
+      "resolved_path": "DOCS/#p1-002",
+      "exists": false
+    },
+    {
+      "text": "app_core/config.py",
+      "path": "../app_core/config.py",
+      "resolved_path": "app_core/config.py",
+      "exists": true
+    },
+    {
+      "text": "P1-003",
+      "path": "#p1-003",
+      "resolved_path": "DOCS/#p1-003",
+      "exists": false
+    },
+    {
+      "text": "console/web_api.py",
+      "path": "../console/web_api.py",
+      "resolved_path": "console/web_api.py",
+      "exists": true
+    },
+    {
+      "text": "console/api/operational_mode.py",
+      "path": "../console/api/operational_mode.py",
+      "resolved_path": "console/api/operational_mode.py",
+      "exists": true
+    },
+    {
+      "text": "P1-004",
+      "path": "#p1-004",
+      "resolved_path": "DOCS/#p1-004",
+      "exists": false
+    },
+    {
+      "text": "app_core/bus.py",
+      "path": "../app_core/bus.py",
+      "resolved_path": "app_core/bus.py",
+      "exists": true
+    },
+    {
+      "text": "P1-005",
+      "path": "#p1-005",
+      "resolved_path": "DOCS/#p1-005",
+      "exists": false
+    },
+    {
+      "text": "detection/threat_intel_db.py",
+      "path": "../detection/threat_intel_db.py",
+      "resolved_path": "detection/threat_intel_db.py",
+      "exists": true
+    },
+    {
+      "text": "P2-001",
+      "path": "#p2-001",
+      "resolved_path": "DOCS/#p2-001",
+      "exists": false
+    },
+    {
+      "text": "detection/behavioral_engine.py",
+      "path": "../detection/behavioral_engine.py",
+      "resolved_path": "detection/behavioral_engine.py",
+      "exists": true
+    },
+    {
+      "text": "P2-002",
+      "path": "#p2-002",
+      "resolved_path": "DOCS/#p2-002",
+      "exists": false
+    },
+    {
+      "text": "response/actions.py",
+      "path": "../response/actions.py",
+      "resolved_path": "response/actions.py",
+      "exists": true
+    },
+    {
+      "text": "P2-003",
+      "path": "#p2-003",
+      "resolved_path": "DOCS/#p2-003",
+      "exists": false
+    },
+    {
+      "text": "console/web_api.py",
+      "path": "../console/web_api.py",
+      "resolved_path": "console/web_api.py",
+      "exists": true
+    },
+    {
+      "text": "P2-004",
+      "path": "#p2-004",
+      "resolved_path": "DOCS/#p2-004",
+      "exists": false
+    },
+    {
+      "text": "console/web_api.py",
+      "path": "../console/web_api.py",
+      "resolved_path": "console/web_api.py",
+      "exists": true
+    },
+    {
+      "text": "P2-005",
+      "path": "#p2-005",
+      "resolved_path": "DOCS/#p2-005",
+      "exists": false
+    },
+    {
+      "text": "tests/",
+      "path": "../tests/",
+      "resolved_path": "tests",
+      "exists": true
+    },
+    {
+      "text": "P2-006",
+      "path": "#p2-006",
+      "resolved_path": "DOCS/#p2-006",
+      "exists": false
+    },
+    {
+      "text": "app_core/config.py",
+      "path": "../app_core/config.py",
+      "resolved_path": "app_core/config.py",
+      "exists": true
+    },
+    {
+      "text": "P2-007",
+      "path": "#p2-007",
+      "resolved_path": "DOCS/#p2-007",
+      "exists": false
+    },
+    {
+      "text": "collectors/proc_monitor.py",
+      "path": "../collectors/proc_monitor.py",
+      "resolved_path": "collectors/proc_monitor.py",
+      "exists": true
+    },
+    {
+      "text": "detection/behavioral_engine.py",
+      "path": "../detection/behavioral_engine.py",
+      "resolved_path": "detection/behavioral_engine.py",
+      "exists": true
+    },
+    {
+      "text": "P2-008",
+      "path": "#p2-008",
+      "resolved_path": "DOCS/#p2-008",
+      "exists": false
+    },
+    {
+      "text": "detection/",
+      "path": "../detection/",
+      "resolved_path": "detection",
+      "exists": true
+    },
+    {
+      "text": "collectors/reg_monitor.py",
+      "path": "../collectors/reg_monitor.py",
+      "resolved_path": "collectors/reg_monitor.py",
+      "exists": true
+    },
+    {
+      "text": "service/service_wrapper.py",
+      "path": "../service/service_wrapper.py",
+      "resolved_path": "service/service_wrapper.py",
+      "exists": true
+    },
+    {
+      "text": "response/actions.py",
+      "path": "../response/actions.py",
+      "resolved_path": "response/actions.py",
+      "exists": true
+    },
+    {
+      "text": "console/web_api.py",
+      "path": "../console/web_api.py",
+      "resolved_path": "console/web_api.py",
+      "exists": true
+    },
+    {
+      "text": "service/service_wrapper.py",
+      "path": "../service/service_wrapper.py",
+      "resolved_path": "service/service_wrapper.py",
+      "exists": true
+    },
+    {
+      "text": "app_core/schemas.py",
+      "path": "../app_core/schemas.py",
+      "resolved_path": "app_core/schemas.py",
+      "exists": true
+    }
+  ],
+  "DOCS/runbooks/README.md": [
+    {
+      "text": "Session Startup Guide",
+      "path": "../session_startup.md",
+      "resolved_path": "DOCS/session_startup.md",
+      "exists": true
+    },
+    {
+      "text": "Development Rails",
+      "path": "../development_rails.md",
+      "resolved_path": "DOCS/development_rails.md",
+      "exists": true
+    },
+    {
+      "text": "Testing Strategy",
+      "path": "../testing_strategy.md",
+      "resolved_path": "DOCS/testing_strategy.md",
+      "exists": true
+    },
+    {
+      "text": "Release Checklist",
+      "path": "../release_checklist.md",
+      "resolved_path": "DOCS/release_checklist.md",
+      "exists": true
+    },
+    {
+      "text": "Architecture Overview",
+      "path": "../architecture.md",
+      "resolved_path": "DOCS/architecture.md",
+      "exists": true
+    },
+    {
+      "text": "Master Task List",
+      "path": "../master_todo.md",
+      "resolved_path": "DOCS/master_todo.md",
+      "exists": true
+    },
+    {
+      "text": "Session Startup",
+      "path": "../session_startup.md",
+      "resolved_path": "DOCS/session_startup.md",
+      "exists": true
+    },
+    {
+      "text": "Smoke Tests",
+      "path": "../testing_strategy.md#smoke-test-recipe",
+      "resolved_path": "DOCS/testing_strategy.md#smoke-test-recipe",
+      "exists": false
+    },
+    {
+      "text": "Baseline Validation",
+      "path": "../development_rails.md#definition-of-done",
+      "resolved_path": "DOCS/development_rails.md#definition-of-done",
+      "exists": false
+    },
+    {
+      "text": "Release Validation",
+      "path": "../release_checklist.md",
+      "resolved_path": "DOCS/release_checklist.md",
+      "exists": true
+    },
+    {
+      "text": "Session Startup - Platform Guard Notes",
+      "path": "../session_startup.md#platform-guard-notes",
+      "resolved_path": "DOCS/session_startup.md#platform-guard-notes",
+      "exists": false
+    },
+    {
+      "text": "Session Startup - Troubleshooting",
+      "path": "../session_startup.md#troubleshooting-table",
+      "resolved_path": "DOCS/session_startup.md#troubleshooting-table",
+      "exists": false
+    },
+    {
+      "text": "Development Rails",
+      "path": "../development_rails.md#platform-guards-and-type-safety",
+      "resolved_path": "DOCS/development_rails.md#platform-guards-and-type-safety",
+      "exists": false
+    },
+    {
+      "text": "Development Rails - Small-Batch Refactor",
+      "path": "../development_rails.md#small-batch-refactor-playbook",
+      "resolved_path": "DOCS/development_rails.md#small-batch-refactor-playbook",
+      "exists": false
+    },
+    {
+      "text": "Testing Strategy - CI Invariants",
+      "path": "../testing_strategy.md#ci-invariants",
+      "resolved_path": "DOCS/testing_strategy.md#ci-invariants",
+      "exists": false
+    },
+    {
+      "text": "Development Rails - Emergency Procedures",
+      "path": "../development_rails.md#emergency-procedures",
+      "resolved_path": "DOCS/development_rails.md#emergency-procedures",
+      "exists": false
+    }
+  ]
+}

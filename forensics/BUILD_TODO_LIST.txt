@@ -1,0 +1,215 @@
+WatchLock Forensics Build TODO List
+===================================
+
+Core Scanning Modules
+---------------------
+[ ] Registry Persistence Scanner
+  [ ] Implement Run/RunOnce key scanning
+  [ ] Implement Services scanning
+  [ ] Implement AppInit_DLLs scanning
+  [ ] Implement Winlogon entries scanning
+  [ ] Implement Image File Execution Options scanning
+  [ ] Implement Browser Helper Objects scanning
+  [ ] Implement Shell extensions scanning
+  [ ] Implement Scheduled Tasks registry scanning
+
+[ ] AppData Artifact Scanner
+  [ ] Implement Roaming AppData scanning
+  [ ] Implement Local AppData scanning
+  [ ] Implement hidden file detection
+  [ ] Implement recent file analysis
+  [ ] Implement temp directory scanning within AppData
+  [ ] Implement executable file detection
+
+[ ] Windows Firewall Configuration Analyzer
+  [ ] Implement inbound rule analysis
+  [ ] Implement outbound rule analysis
+  [ ] Implement firewall exception examination
+  [ ] Implement backdoor configuration detection
+
+[ ] Scheduled Tasks Scanner
+  [ ] Implement task enumeration
+  [ ] Implement task trigger analysis
+  [ ] Implement task action analysis
+  [ ] Implement hidden task detection
+
+[ ] WMI Persistence Detector
+  [ ] Implement WMI event subscription analysis
+  [ ] Implement WMI filter examination
+  [ ] Implement WMI consumer examination
+  [ ] Implement WMI script detection
+
+[ ] Startup Folder Scanner
+  [ ] Implement common startup directory scanning
+  [ ] Implement user-specific startup folder scanning
+  [ ] Implement ProgramData startup location scanning
+
+[ ] Temp Directory Scanner
+  [ ] Implement user temp directory scanning (%TEMP% and %TMP%)
+  [ ] Implement Windows\Temp directory scanning
+  [ ] Implement user profile temp location scanning
+  [ ] Implement browser temp/cache directory scanning
+
+[ ] COM Hijacking Detector
+  [ ] Implement CLSID entry analysis
+  [ ] Implement InprocServer32 modification detection
+  [ ] Implement TypeLib alteration detection
+  [ ] Implement unauthorized COM interface detection
+
+[ ] Prefetch and ShimCache Analyzer
+  [ ] Implement Prefetch file analysis
+  [ ] Implement ShimCache examination
+  [ ] Implement AmCache analysis
+  [ ] Implement recent execution analysis
+
+[ ] Network Artifacts Scanner
+  [ ] Implement proxy modification analysis
+  [ ] Implement hosts file alteration detection
+  [ ] Implement network adapter setting examination
+  [ ] Implement unusual configuration detection
+
+[ ] Browser Artifact Scanner
+  [ ] Implement browser extension analysis
+  [ ] Implement startup page examination
+  [ ] Implement browser history analysis
+  [ ] Implement browser persistence mechanism detection
+
+WatchLockAI Security Platform Modules (Phase 5 Implementation)
+-------------------------------------------------------------
+[ ] EDR Cognitive Engine
+  [ ] Implement cognitive threat reasoning
+  [ ] Implement Pulselet-based security fragment processing
+  [ ] Implement dopamine-driven learning from threat prevention
+  [ ] Implement rhythmic activation for sub-second threat response
+  [ ] Implement fragment entanglement for cross-system correlation
+
+[ ] Active Attack Detector
+  [ ] Implement real-time behavioral analysis during attacks
+  [ ] Implement intent-based attack classification
+  [ ] Implement multi-stage attack progression prediction
+  [ ] Implement LOLBAS technique behavioral modeling
+  [ ] Implement zero-day attack detection via behavioral deviation
+  [ ] Implement attack vector correlation across endpoints
+  [ ] Implement predictive attack path modeling
+  [ ] Implement context-aware threat severity scoring
+
+[ ] Ransomware Prevention Engine
+  [ ] Implement file system behavior analysis before encryption
+  [ ] Implement backup and shadow copy monitoring
+  [ ] Implement encryption process detection
+  [ ] Implement ransom note detection and communication blocking
+  [ ] Implement file extension change pattern analysis
+  [ ] Implement mass file access anomaly detection
+  [ ] Implement network communication pattern analysis for C2
+  [ ] Implement cryptocurrency wallet detection and blocking
+
+[ ] Defensive Nervous System
+  [ ] Implement agentic AI Brain with local LLM integration
+  [ ] Implement real-time MITRE ATT&CK framework mapping
+  [ ] Implement behavioral baselining engine
+  [ ] Implement threat DAG & correlation engine
+  [ ] Implement Account Sentinel Module
+  [ ] Implement retrograde forensics layer
+  [ ] Implement attack narrative engine with LLM
+  [ ] Implement timeline builder for event reconstruction
+  [ ] Implement smart agentic response layer
+  [ ] Implement event sensor matrix
+  [ ] Implement fileless malware detection
+  [ ] Implement LOLBAS technique detection
+
+[ ] Account Takeover Detector
+  [ ] Implement credential theft detection (LSASS, SAM, registry)
+  [ ] Implement privilege escalation behavior analysis
+  [ ] Implement lateral movement detection
+  [ ] Implement Azure AD/Entra ID anomalous login detection
+  [ ] Implement AWS IAM role abuse detection
+  [ ] Implement GCP service account compromise detection
+  [ ] Implement cloud console access anomaly monitoring
+  [ ] Implement cross-cloud identity correlation
+  [ ] Implement service account behavior baseline
+  [ ] Implement token theft and replay attack detection
+
+[ ] Scripting Attack Intelligence Engine
+  [ ] Implement PowerShell command intent analysis
+  [ ] Implement WMI query behavior analysis
+  [ ] Implement JavaScript/VBScript behavior classification
+  [ ] Implement macro execution context analysis
+  [ ] Implement command-line obfuscation pattern recognition
+  [ ] Implement script injection detection
+  [ ] Implement reflective DLL loading detection
+  [ ] Implement memory-only script execution monitoring
+  [ ] Implement cross-script communication tracking
+
+[ ] Web & Perimeter Defense
+  [ ] Implement SQL injection detection with context awareness
+  [ ] Implement XSS behavioral analysis
+  [ ] Implement CSRF attack pattern recognition
+  [ ] Implement API abuse detection with rate limiting
+  [ ] Implement web shell detection and monitoring
+  [ ] Implement DNS tunneling and exfiltration detection
+  [ ] Implement SSL/TLS certificate anomaly analysis
+  [ ] Implement DDoS attack pattern recognition
+  [ ] Implement network traffic behavioral analysis for APT
+
+[ ] Logging Intelligence Engine
+  [ ] Implement Windows Event Log cognitive analysis
+  [ ] Implement Sysmon behavioral pattern recognition
+  [ ] Implement Linux auditd log parsing and threat extraction
+  [ ] Implement cloud trail analysis (Azure, AWS, GCP)
+  [ ] Implement application log correlation
+  [ ] Implement network device log integration
+  [ ] Implement security tool log orchestration
+  [ ] Implement log volume optimization
+  [ ] Implement real-time log stream processing
+  [ ] Implement cross-platform log normalization
+
+[ ] Tamperproof Self-Protection System
+  [ ] Implement SYSTEM-level service with PID masking
+  [ ] Implement real-time anti-debugging mechanisms
+  [ ] Implement integrity hash baseline with self-repair
+  [ ] Implement nested anti-kill watchdogs
+  [ ] Implement AI-defeat detection for poisoning attempts
+  [ ] Implement WMI self-monitor agent
+  [ ] Implement kernel hook avoidance
+  [ ] Implement fog-of-war phased RAM usage
+
+[ ] OS Control & Response Integration
+  [ ] Implement Windows Firewall API-level rule injection
+  [ ] Implement PowerShell policy override
+  [ ] Implement Microsoft Defender integration
+  [ ] Implement SmartScreen and ASR control
+  [ ] Implement third-party EDR API integration
+  [ ] Implement proxy/web filter override
+  [ ] Implement active COM monitoring
+  [ ] Implement memory scanner for reflective modules
+
+Advanced Features
+-----------------
+[ ] Cross-script correlation engine
+[ ] Temporal analysis capabilities
+[ ] Reporting and visualization module
+[ ] Integration with existing Mimikatz scanner
+[ ] Command-line interface with options
+[ ] Logging and audit trail functionality
+[ ] Performance optimization for large scans
+[ ] Memory-efficient scanning algorithms
+[ ] Progress indicators for long-running scans
+
+Quality Assurance
+-----------------
+[ ] Unit tests for each scanner module
+[ ] Integration tests for cross-module functionality
+[ ] Code quality validation (Pylance/Ruff compliance)
+[ ] Documentation for each scanner
+[ ] Usage examples and help text
+[ ] Error handling and edge case testing
+[ ] Performance benchmarking
+[ ] Security review of scanning techniques
+
+Deployment
+----------
+[ ] Packaging script for distribution
+[ ] Installation documentation
+[ ] Requirements.txt file
+[ ] Version control and release management
+[ ] Compatibility testing across Windows versions

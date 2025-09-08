@@ -1,0 +1,200 @@
+# RC-3 Per-Stage MITRE rules with sequence logic (default OFF via flags)
+# Tactics mapped to stages: initial_access, execution, persistence, privilege_escalation, lateral_movement, exfiltration, impact
+# Events referenced by class name; engine should match by event.__class__.__name__
+
+# === RANSOMWARE ===
+- id: ATTK-RANSOM-IA-DRIVEBY
+  name: Ransomware Initial Access (drive-by)
+  tactic: Initial Access
+  technique: T1189
+  stage: initial_access
+  event: WebEvent
+  where: { referrer_suspicious: true, download_executable: true }
+  threshold: 3
+  window_s: 120
+  group_by: src_ip
+  severity: medium
+
+- id: ATTK-RANSOM-EXEC-PREENC
+  name: Ransomware mass file ops (pre-encryption)
+  tactic: Execution
+  technique: T1059
+  stage: execution
+  event: FileEvent
+  where: { op: in [create, rename, delete] }
+  threshold: 100
+  window_s: 30
+  group_by: process
+  severity: high
+  response: isolate_host
+
+- id: ATTK-RANSOM-PERSIST-SERVICE
+  name: Startup service created after suspicious process
+  tactic: Persistence
+  technique: T1543
+  stage: persistence
+  event: ServiceEvent
+  where: { created: true, binary_signed: false }
+  threshold: 1
+  window_s: 300
+  group_by: host
+  severity: high
+
+- id: ATTK-RANSOM-PRIV-TOKEN
+  name: Token theft indicator after file storm
+  tactic: Privilege Escalation
+  technique: T1134
+  stage: privilege_escalation
+  event: SecurityEvent
+  where: { token_theft_suspected: true }
+  threshold: 1
+  window_s: 300
+  group_by: process
+  severity: high
+
+- id: ATTK-RANSOM-LATERAL-SMB
+  name: SMB pivot after suspicious activity
+  tactic: Lateral Movement
+  technique: T1021.002
+  stage: lateral_movement
+  event: NetworkEvent
+  where: { proto: "SMB", auth_fail_anomaly: true }
+  threshold: 3
+  window_s: 180
+  group_by: src_host
+  severity: medium
+
+- id: ATTK-RANSOM-EXFIL-BULK
+  name: Bulk exfil anomaly
+  tactic: Exfiltration
+  technique: T1041
+  stage: exfiltration
+  event: NetworkEvent
+  where: { bytes_out: ">=50000000", dst_asn_rare: true }
+  threshold: 1
+  window_s: 60
+  group_by: host
+  severity: high
+
+- id: ATTK-RANSOM-SEQUENCE-CHAIN
+  name: Ransomware chain (preenc -> exfil)
+  tactic: Impact
+  technique: T1486
+  stage: impact
+  sequence:
+    within_s: 180
+    steps:
+      - match: { event: FileEvent, where: { op: in [create, rename, delete], process: "{p}" }, count: ">=100" }
+      - match: { event: NetworkEvent, where: { process: "{p}", bytes_out: ">=50000000" } }
+  severity: critical
+  response: isolate_host
+
+# === BRUTE-FORCE / LOGIN ===
+- id: ATTK-BRUTE-LOGIN-FAIL-STORM
+  name: Multiple failed logins per user/ip
+  tactic: Credential Access
+  technique: T1110
+  stage: initial_access
+  event: AuthEvent
+  where: { success: false }
+  threshold: 10
+  window_s: 60
+  group_by: "{username}:{src_ip}"
+  severity: medium
+
+- id: ATTK-BRUTE-LOGIN-ADMIN-ADD
+  name: Admin group add after successful login
+  tactic: Privilege Escalation
+  technique: T1098
+  stage: privilege_escalation
+  event: SecurityEvent
+  where: { group_change: "Administrators", action: "add" }
+  threshold: 1
+  window_s: 300
+  group_by: username
+  severity: high
+
+- id: ATTK-BRUTE-LOGIN-RDP-PIVOT
+  name: RDP pivot after success
+  tactic: Lateral Movement
+  technique: T1021.001
+  stage: lateral_movement
+  event: NetworkEvent
+  where: { proto: "RDP", auth_recent_success: true }
+  threshold: 1
+  window_s: 300
+  group_by: src_ip
+  severity: high
+
+- id: ATTK-BRUTE-SEQUENCE
+  name: Brute force followed by success (same user/ip)
+  tactic: Credential Access
+  technique: T1110
+  stage: execution
+  sequence:
+    within_s: 120
+    steps:
+      - match: { event: AuthEvent, where: { username: "{u}", src_ip: "{ip}", success: false }, count: ">=5" }
+      - match: { event: AuthEvent, where: { username: "{u}", src_ip: "{ip}", success: true } }
+  severity: high
+
+# === PHISHING / ATTACHMENT ===
+- id: ATTK-PHISH-ATTACH
+  name: Suspicious email attachment delivered
+  tactic: Initial Access
+  technique: T1566.001
+  stage: initial_access
+  event: EmailEvent
+  where: { has_attachment: true, file_type: in [docm, xlsm, zip, js, vbs] }
+  threshold: 3
+  window_s: 300
+  group_by: recipient
+  severity: medium
+
+- id: ATTK-PHISH-OFFICE-CHILDPROC
+  name: Office app spawns script
+  tactic: Execution
+  technique: T1204
+  stage: execution
+  event: ProcEvent
+  where: { parent_process: in [winword.exe, excel.exe, outlook.exe], child_process: in [wscript.exe, cscript.exe, powershell.exe] }
+  threshold: 1
+  window_s: 300
+  group_by: host
+  severity: high
+
+- id: ATTK-PHISH-PERSIST-SCHED
+  name: Scheduled task created post-mail click
+  tactic: Persistence
+  technique: T1053
+  stage: persistence
+  event: TaskEvent
+  where: { created: true, binary_signed: false }
+  threshold: 1
+  window_s: 600
+  group_by: host
+  severity: medium
+
+- id: ATTK-PHISH-EXFIL-ENCODED
+  name: Encoded HTTP exfil
+  tactic: Exfiltration
+  technique: T1041
+  stage: exfiltration
+  event: NetworkEvent
+  where: { http_encoded_payload: true }
+  threshold: 1
+  window_s: 300
+  group_by: host
+  severity: high
+
+- id: ATTK-PHISH-SEQUENCE
+  name: Attachment -> Office child proc
+  tactic: Initial Access
+  technique: T1566.001
+  stage: execution
+  sequence:
+    within_s: 300
+    steps:
+      - match: { event: EmailEvent, where: { recipient: "{r}", has_attachment: true } }
+      - match: { event: ProcEvent,  where: { user: "{r}", parent_process: in [winword.exe, excel.exe, outlook.exe] } }
+  severity: high

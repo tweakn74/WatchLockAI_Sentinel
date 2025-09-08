@@ -1,0 +1,4 @@
+2025-07-12 21:19:25,163 - WatchLockAI-Tamperproof - INFO - Attempted to restart WatchLockAI agent
+2025-07-12 21:19:25,165 - WatchLockAI-Tamperproof - CRITICAL - FILE TAMPERING DETECTED: /tmp/tmpypw7alep.py
+2025-07-12 21:19:36,011 - WatchLockAI-Tamperproof - INFO - Attempted to restart WatchLockAI agent
+2025-07-12 21:19:36,013 - WatchLockAI-Tamperproof - CRITICAL - FILE TAMPERING DETECTED: /tmp/tmpce4rmywb.py

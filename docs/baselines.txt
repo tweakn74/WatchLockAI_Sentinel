@@ -1,0 +1,29 @@
+CANONICAL BASELINES - WatchLockAI_Sentinel
+==========================================
+
+Timestamp (UTC): 2025-09-03T07:28:35.000000+00:00
+
+POST P1-001 Implementation: Event Bus Error Handling
+
+Exact Commands (verbatim):
+- ruff check . --output-format=json > /tmp/ruff.json || true
+- pyright --project . --outputjson > /tmp/pyright.json || true  
+- pytest -q > /tmp/pytest.txt || true
+
+Tool Status:
+- Ruff: UNAVAILABLE
+- Pyright: UNAVAILABLE
+- Pytest: UNAVAILABLE
+
+Canonical Counts:
+- Ruff issues: n/a
+- Pyright issues: n/a
+- Pytest summary: n/a
+
+SHA256 Hashes (stability proof):
+- /tmp/ruff.json: n/a
+- /tmp/pyright.json: n/a
+- /tmp/pytest.txt: n/a
+
+Files Modified:
+- app_core/bus.py (P1-001 implementation)

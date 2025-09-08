@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}Detections - WatchLockAI Sentinel{% endblock %}
+{% block header %}Detections{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col-md-6">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search detections..." id="search-input">
+            <button class="btn btn-outline-secondary" type="button" onclick="searchDetections()">Search</button>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="d-flex gap-2">
+            <select class="form-select" id="severity-filter">
+                <option value="">All Severities</option>
+                <option value="critical">Critical</option>
+                <option value="warning">Warning</option>
+                <option value="info">Info</option>
+            </select>
+            <button class="btn btn-primary" onclick="loadDetections()">Refresh</button>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Detection Events</h5>
+        <span class="badge bg-secondary" id="detection-count">0</span>
+    </div>
+    <div class="card-body">
+        <div id="detections-table">
+            <p class="text-muted">Loading detections...</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function formatTimestamp(isoString) {
+        try {
+            const date = new Date(isoString);
+            return date.toLocaleString();
+        } catch {
+            return 'Unknown';
+        }
+    }
+
+    function getSeverityBadge(severity) {
+        const badges = {
+            critical: 'bg-danger',
+            warning: 'bg-warning',
+            info: 'bg-info',
+            low: 'bg-secondary'
+        };
+        return badges[severity] || 'bg-secondary';
+    }
+
+    async function loadDetections() {
+        try {
+            const severityFilter = document.getElementById('severity-filter').value;
+            const params = new URLSearchParams();
+            if (severityFilter) params.append('severity', severityFilter);
+            
+            const detections = await fetchAPI(`/detections?${params.toString()}`);
+            
+            document.getElementById('detection-count').textContent = detections.total_detections;
+            
+            if (detections.detections.length === 0) {
+                document.getElementById('detections-table').innerHTML = '<p class="text-muted">No detections found</p>';
+                return;
+            }
+
+            const tableHtml = `
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Severity</th>
+                                <th>Tag</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${detections.detections.map(detection => `
+                                <tr>
+                                    <td><small>${formatTimestamp(detection.timestamp)}</small></td>
+                                    <td><span class="badge ${getSeverityBadge(detection.severity)}">${detection.severity}</span></td>
+                                    <td><code>${detection.tag || 'unknown'}</code></td>
+                                    <td>${detection.description || 'No description available'}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary" onclick="viewDetails('${detection.id}')">
+                                            <i class="bi bi-eye"></i> Details
+                                        </button>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            document.getElementById('detections-table').innerHTML = tableHtml;
+        } catch (error) {
+            document.getElementById('detections-table').innerHTML = '<p class="text-danger">Error loading detections</p>';
+            console.error('Error loading detections:', error);
+        }
+    }
+
+    function searchDetections() {
+        // Implement search functionality
+        loadDetections();
+    }
+
+    function viewDetails(detectionId) {
+        // Implement detection details modal
+        alert(`View details for detection: ${detectionId}`);
+    }
+
+    // Load detections on page load
+    loadDetections();
+    
+    // Auto-refresh every 30 seconds
+    setInterval(loadDetections, 30000);
+</script>
+{% endblock %}

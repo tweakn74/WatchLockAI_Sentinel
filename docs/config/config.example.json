@@ -1,0 +1,257 @@
+{
+  "_comment": "WatchLockAI Sentinel JSON Configuration Template",
+  "_version": "0.8.0",
+  "_last_updated": "2025-09-06",
+  "_documentation": "See DOCS/operations_runbook.md for detailed configuration guide",
+  
+  "system": {
+    "_comment": "Basic system configuration",
+    "web_api": {
+      "host": "127.0.0.1",
+      "port": 8080,
+      "enabled": true
+    },
+    "logging": {
+      "level": "INFO",
+      "format": "json",
+      "max_bytes": 1048576,
+      "backup_count": 5,
+      "redact_secrets": true
+    },
+    "resource_limits": {
+      "max_memory_mb": 512,
+      "max_cpu_percent": 50,
+      "max_disk_gb": 10
+    }
+  },
+  
+  "features": {
+    "_comment": "Feature flags - ALL DEFAULT OFF for non-breaking deployment",
+    
+    "core": {
+      "health_endpoint_enabled": true,
+      "metrics_debug_enabled": false,
+      "config_hot_reload_enabled": false,
+      "config_hot_reload_debounce_ms": 750,
+      "mitre_api_enabled": false
+    },
+    
+    "security": {
+      "admin_auth_enabled": false,
+      "admin_token": "",
+      "console_auth_enabled": false,
+      "console_auth_session_key": "",
+      "console_auth_rate_limit": 10,
+      "rate_limit_enabled": false
+    },
+    
+    "monitoring": {
+      "anomaly_enabled": false,
+      "anomaly_sklearn_enabled": false,
+      "stream_enabled": false,
+      "stream_type": "sse",
+      "stream_health_interval_ms": 1000,
+      "stream_require_auth": false,
+      "quarantine_enabled": false
+    },
+    
+    "operations": {
+      "service_enabled": false,
+      "plugins_enabled": false,
+      "export_enabled": false,
+      "backup_enabled": false,
+      "backup_dir": "data/backups",
+      "rotate_enabled": false,
+      "chaos_enabled": false,
+      "console_ui_enabled": false
+    },
+    
+    "p5_release_candidate": {
+      "retention_enabled": false,
+      "retention_days": 14,
+      "perf_probe_enabled": false
+    }
+  },
+  
+  "security_config": {
+    "_comment": "Security configuration - review carefully",
+    "authentication": {
+      "session_timeout_minutes": 60,
+      "max_login_attempts": 5,
+      "lockout_duration_minutes": 15,
+      "require_strong_passwords": true,
+      "password_min_length": 12
+    },
+    "authorization": {
+      "rbac_enabled": false,
+      "default_role": "viewer",
+      "admin_roles": ["admin", "security_admin"],
+      "audit_all_actions": true
+    },
+    "encryption": {
+      "ssl_enabled": false,
+      "ssl_cert_path": "",
+      "ssl_key_path": "",
+      "enforce_https": false
+    },
+    "secrets": {
+      "auto_rotate_days": 90,
+      "require_token_rotation": false,
+      "secret_length": 32,
+      "use_strong_entropy": true
+    }
+  },
+  
+  "data_management": {
+    "_comment": "Data retention and cleanup policies",
+    "retention": {
+      "enabled": false,
+      "default_days": 14,
+      "quarantine_days": 30,
+      "export_days": 7,
+      "log_days": 14,
+      "anomaly_state_days": 30
+    },
+    "backup": {
+      "enabled": false,
+      "schedule": "daily",
+      "retention_count": 7,
+      "compression": true,
+      "verify_integrity": true
+    },
+    "storage": {
+      "base_directory": "data",
+      "quarantine_directory": "data/quarantine", 
+      "export_directory": "data/export",
+      "backup_directory": "data/backups",
+      "logs_directory": "logs"
+    }
+  },
+  
+  "monitoring_config": {
+    "_comment": "Monitoring and alerting configuration",
+    "anomaly_detection": {
+      "enabled": false,
+      "threshold": 0.8,
+      "algorithm": "isolation_forest",
+      "model_update_interval_hours": 24,
+      "require_sklearn": true
+    },
+    "streaming": {
+      "enabled": false,
+      "type": "sse",
+      "interval_ms": 1000,
+      "max_clients": 10,
+      "require_auth": false
+    },
+    "metrics": {
+      "debug_enabled": false,
+      "export_prometheus": false,
+      "structured_logging": true,
+      "include_performance": false
+    }
+  },
+  
+  "integrations": {
+    "_comment": "External service integrations", 
+    "webhooks": {
+      "enabled": false,
+      "url": "",
+      "timeout_seconds": 30,
+      "retry_attempts": 3
+    },
+    "slack": {
+      "enabled": false,
+      "token": "",
+      "channel": "#security-alerts",
+      "mention_users": []
+    },
+    "teams": {
+      "enabled": false,
+      "webhook_url": "",
+      "card_format": "adaptive"
+    },
+    "siem": {
+      "enabled": false,
+      "endpoint": "",
+      "format": "cef",
+      "api_key": ""
+    }
+  },
+  
+  "development": {
+    "_comment": "Development and testing configuration",
+    "dev_mode": false,
+    "test_mode": false,
+    "test_data_dir": "test_data",
+    "mock_external_apis": false,
+    "debug_level": "INFO",
+    "profiling_enabled": false
+  },
+  
+  "deployment": {
+    "_comment": "Deployment-specific configuration",
+    "environment": "production",
+    "version": "0.8.0",
+    "deployment_date": "2025-09-06",
+    "config_version": 1,
+    "health_check_url": "/api/metrics/health",
+    "startup_timeout_seconds": 60
+  },
+  
+  "_security_notes": [
+    "All features are DEFAULT OFF for security",
+    "Enable features gradually based on requirements", 
+    "Use RBAC (admin_auth_enabled) for production",
+    "Generate strong random tokens for authentication",
+    "Configure SSL/TLS for production deployments",
+    "Monitor resource usage when enabling features",
+    "Test configuration changes in staging first",
+    "Review threat model before enabling features",
+    "Backup configuration before making changes",
+    "Audit all configuration changes"
+  ],
+  
+  "_feature_dependencies": {
+    "anomaly_sklearn_enabled": "requires sklearn package",
+    "service_enabled": "requires Windows Service capability",
+    "console_auth_enabled": "requires session key configuration",
+    "ssl_enabled": "requires SSL certificate files",
+    "chaos_enabled": "requires admin authentication",
+    "backup_enabled": "requires admin authentication",
+    "export_enabled": "requires admin authentication",
+    "retention_enabled": "requires admin authentication"
+  },
+  
+  "_endpoints_by_feature": {
+    "console_auth_enabled": [
+      "POST /api/auth/login",
+      "POST /api/auth/logout",
+      "GET /api/auth/me"
+    ],
+    "stream_enabled": [
+      "GET /api/stream/health",
+      "GET /api/stream/events"
+    ],
+    "anomaly_enabled": [
+      "GET /api/anomaly/score",
+      "POST /api/admin/anomaly/train"
+    ],
+    "quarantine_enabled": [
+      "POST /api/admin/quarantine",
+      "POST /api/admin/quarantine/restore"
+    ],
+    "backup_enabled": [
+      "POST /api/admin/backup",
+      "POST /api/admin/restore"
+    ],
+    "retention_enabled": [
+      "POST /api/admin/retention/run",
+      "GET /api/admin/retention/stats"
+    ],
+    "console_ui_enabled": [
+      "GET /console/",
+      "GET /console/info"
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "detection/rule_dsl.py": "1d4349607450795e29fb1459a46def2f430e6ca910b0b1d62e2effdc662d42f4",
+  "detection/attack_matrix.py": "dc15f46798ede9a884e7bcea758c2f6418cc9736123b0bad58a7861770a6c6aa",
+  "DOCS/mitre/rules/baseline.yaml": "52ae909827236a20bca8dd99fdc95cd72e4bbe6e74ee92b27444f318820b0cec"
+}

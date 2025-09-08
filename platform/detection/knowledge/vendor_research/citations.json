@@ -1,0 +1,42 @@
+{
+  "sources": [
+    {
+      "title": "What is EDR? Endpoint Detection & Response Defined",
+      "url": "https://www.crowdstrike.com/en-us/cybersecurity-101/endpoint-security/endpoint-detection-and-response-edr/",
+      "publisher": "CrowdStrike",
+      "access_date": "2025-09-01",
+      "type": "official_documentation",
+      "concepts_extracted": [
+        "EDR definition and core functions",
+        "Endpoint security terminology",
+        "Threat detection and response concepts",
+        "Behavioral protection principles"
+      ]
+    },
+    {
+      "title": "CrowdStrike Glossary of Terms",
+      "url": "https://www.crowdstrike.com/wp-content/uploads/2024/07/GlossaryOFTerms.pdf",
+      "publisher": "CrowdStrike",
+      "access_date": "2025-09-01",
+      "type": "official_glossary",
+      "concepts_extracted": [
+        "Security terminology definitions",
+        "EDR-specific terminology"
+      ]
+    },
+    {
+      "title": "CrowdStrike Developer Center",
+      "url": "https://developer.crowdstrike.com/",
+      "publisher": "CrowdStrike",
+      "access_date": "2025-09-01",
+      "type": "developer_documentation",
+      "concepts_extracted": [
+        "API platform concepts",
+        "Developer integration terminology"
+      ]
+    }
+  ],
+  "research_date": "2025-09-01",
+  "purpose": "Extract industry-standard EDR terminology for WatchLockAI UI design and user experience grounding",
+  "usage_note": "Terminology used for inspiration only - building original visual language and concepts"
+}

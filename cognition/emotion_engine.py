@@ -1,0 +1,5 @@
+# __version__ = "1.0.0"
+# __author__ = "CG & AI assistant"
+# __creation_date__ = "2025-08-08"
+# __modification_date__ = "2025-08-29"
+# __purpose__ = "Utility script: emotion_engine.py"

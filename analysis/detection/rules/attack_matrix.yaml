@@ -1,0 +1,60 @@
+rules:
+  - id: "T1110.001"
+    name: "Brute Force Login"
+    tactic: "Credential Access"
+    technique: "T1110.001 - Password Guessing"
+    event: "AuthEvent"
+    window_s: 60
+    threshold: 10
+    key: "username"
+    severity: "high"
+    response: "disable_account"
+    description: "Detects multiple failed login attempts for the same username"
+
+  - id: "T1486.001"
+    name: "Ransomware Pre-Encryption"
+    tactic: "Impact"
+    technique: "T1486 - Data Encrypted for Impact"
+    event: "FileEvent"
+    window_s: 30
+    threshold: 100
+    key: "process_name"
+    severity: "crit"
+    response: "kill_process"
+    description: "Detects rapid file creation/rename operations indicating ransomware"
+
+  - id: "T1021.002"
+    name: "Malicious SMB Pivot"
+    tactic: "Lateral Movement"
+    technique: "T1021.002 - SMB/Windows Admin Shares"
+    event: "NetworkEvent"
+    window_s: 300
+    threshold: 5
+    key: "src_ip"
+    severity: "high"
+    response: "isolate_host"
+    description: "Detects lateral movement via SMB to multiple targets from new host"
+
+  - id: "T1547.001"
+    name: "Suspicious Registry Persistence"
+    tactic: "Persistence"
+    technique: "T1547.001 - Registry Run Keys"
+    event: "RegistryEvent"
+    window_s: 60
+    threshold: 3
+    key: "process_name"
+    severity: "med"
+    response: "disable_account"
+    description: "Detects registry persistence via Run/RunOnce keys by unsigned processes"
+
+  - id: "T1053.005"
+    name: "Scheduled Task Persistence"
+    tactic: "Persistence"
+    technique: "T1053.005 - Scheduled Task"
+    event: "ProcessEvent"
+    window_s: 300
+    threshold: 2
+    key: "username"
+    severity: "med"
+    response: "disable_account"
+    description: "Detects scheduled task creation from user context via schtasks/at"

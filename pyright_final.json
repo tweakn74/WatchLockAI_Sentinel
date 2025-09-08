@@ -1,0 +1,5 @@
+Unexpected option --outputformat.
+pyright --help for usage
+WARNING: there is a new pyright version available (v1.1.377 -> v1.1.404).
+Please install the new version or set PYRIGHT_PYTHON_FORCE_VERSION to `latest`
+

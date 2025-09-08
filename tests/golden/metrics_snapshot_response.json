@@ -1,0 +1,21 @@
+{
+  "timestamp": "2025-01-01T00:00:00Z",
+  "uptime_s": 3600,
+  "metrics": {
+    "event_bus": {
+      "delivery_success_count": 0,
+      "delivery_failure_count": 0,
+      "total_events_processed": 0,
+      "queue_depth": 0
+    },
+    "service": {
+      "running": true,
+      "uptime_seconds": 3600,
+      "collectors": {},
+      "rules_engine": {},
+      "event_bus": {}
+    }
+  },
+  "system_health": "good",
+  "alerts_count": 0
+}

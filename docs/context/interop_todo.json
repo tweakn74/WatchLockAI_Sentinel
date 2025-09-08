@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "generated": "2025-09-03T02:37:03Z",
+    "baseline_errors": {
+      "ruff": 0,
+      "pyright": 1158,
+      "pytest_collection_errors": 8
+    },
+    "fixes_budget": 5,
+    "fixes_implemented": 5
+  },
+  "p0_critical_fixes": [
+    {
+      "id": "P0-001",
+      "title": "Platform Guards for Registry Monitor",
+      "description": "Registry monitoring fails on Linux CI - needs comprehensive platform checks",
+      "file": "collectors/reg_monitor.py",
+      "impact": "CI/Linux compatibility, prevents runtime crashes",
+      "status": "implemented",
+      "implementation": "Added sys.platform guards around Windows registry operations"
+    },
+    {
+      "id": "P0-002", 
+      "title": "Platform Guards for Service Operations",
+      "description": "Service install/uninstall operations not guarded for Windows-only functions",
+      "file": "service/service_wrapper.py",
+      "impact": "Cross-platform deployment safety",
+      "status": "implemented",
+      "implementation": "Added platform checks for Windows service operations"
+    },
+    {
+      "id": "P0-003",
+      "title": "Break Circular Import (config/app_core)",
+      "description": "app_core.config imports config.operational_mode creating potential cycle",
+      "file": "app_core/config.py:109", 
+      "impact": "Reliable initialization, prevents import deadlocks",
+      "status": "implemented",
+      "implementation": "Moved import inside method to use lazy loading pattern"
+    },
+    {
+      "id": "P0-004",
+      "title": "Platform Guards in Process Actions",
+      "description": "Process termination uses Windows-specific operations without guards",
+      "file": "response/actions.py",
+      "impact": "Process management safety across platforms",
+      "status": "implemented",
+      "implementation": "Added platform guards for Windows-specific process operations"
+    },
+    {
+      "id": "P0-005",
+      "title": "Standardize API Response Models",
+      "description": "Mix of Pydantic models and raw dicts in API responses creates inconsistency",
+      "file": "console/web_api.py",
+      "impact": "API contract consistency, type safety",
+      "status": "implemented",
+      "implementation": "Converted raw dict responses to proper Pydantic models"
+    }
+  ],
+  "p1_high_priority": [
+    {
+      "id": "P1-001",
+      "title": "Event Bus Type Safety",
+      "description": "Some consumers cast BaseEvent without proper type checking",
+      "file": "app_core/bus.py",
+      "impact": "Runtime type safety, prevents casting errors"
+    },
+    {
+      "id": "P1-002", 
+      "title": "Background Task Dependency Management",
+      "description": "No explicit dependency management between background tasks",
+      "file": "service/service_wrapper.py",
+      "impact": "Startup reliability, prevents race conditions"
+    },
+    {
+      "id": "P1-003",
+      "title": "Missing Route Registration Pattern",
+      "description": "No centralized router registration pattern",
+      "file": "console/web_api.py",
+      "impact": "API maintainability, prevents route conflicts"
+    }
+  ],
+  "p2_medium_priority": [
+    {
+      "id": "P2-001",
+      "title": "Schema Evolution Strategy",
+      "description": "No versioning strategy for event schema changes",
+      "file": "app_core/schemas.py",
+      "impact": "Backward compatibility during updates"
+    },
+    {
+      "id": "P2-002",
+      "title": "Config Default Consistency",
+      "description": "Some defaults in code vs YAML may diverge",
+      "file": "app_core/config.py",
+      "impact": "Configuration predictability"
+    },
+    {
+      "id": "P2-003",
+      "title": "Error Propagation in Event Bus",
+      "description": "Limited error propagation for failed event delivery",
+      "file": "app_core/bus.py",
+      "impact": "Debugging and reliability"
+    }
+  ]
+}

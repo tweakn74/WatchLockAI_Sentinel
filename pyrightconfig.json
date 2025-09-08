@@ -1,0 +1,12 @@
+{
+  "include": ["app.py","app_core","collectors","detection","response","ui","service","console"],
+  "exclude": ["**/__pycache__","**/.pytest_cache","**/build","**/dist","tests"],
+  "typeCheckingMode": "strict",
+  "reportUnknownParameterType": true,
+  "reportUnknownArgumentType": true,
+  "reportUnknownVariableType": true,
+  "strictListInference": true,
+  "strictDictionaryInference": true,
+  "strictSetInference": true,
+  "strictParameterNoneValue": true
+}

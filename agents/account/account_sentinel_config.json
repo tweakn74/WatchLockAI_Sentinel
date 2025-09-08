@@ -1,0 +1,42 @@
+{
+  "ai_brain_url": "http://localhost:9999",
+  "monitoring_enabled": {
+    "account_discovery": true,
+    "behavior_analysis": true,
+    "privilege_monitoring": true,
+    "login_monitoring": true,
+    "identity_correlation": true
+  },
+  "discovery_intervals": {
+    "account_scan": 3600,
+    "behavior_check": 300,
+    "privilege_check": 600,
+    "identity_sync": 1800
+  },
+  "anomaly_thresholds": {
+    "behavior_score": 0.5,
+    "privilege_escalation": 0.8,
+    "login_anomaly": 0.6,
+    "hidden_account": 0.7
+  },
+  "behavior_baselines": {
+    "login_time_variance": 4,
+    "location_variance": 3,
+    "process_variance": 10
+  },
+  "privilege_monitoring": {
+    "high_value_privileges": [
+      "SeDebugPrivilege",
+      "SeTcbPrivilege",
+      "SeBackupPrivilege",
+      "SeRestorePrivilege",
+      "SeTakeOwnershipPrivilege"
+    ],
+    "admin_groups": [
+      "Administrators",
+      "Domain Admins",
+      "Enterprise Admins",
+      "Schema Admins"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+# =====================================================================
+# DevAgentZero Preflight Capability Manifest
+# Version: 14.3.1 (Append-Only Ledger)
+# Rule: This file is APPEND-ONLY. Never remove entries; mark duplicates
+# or planned items with appropriate tags (ACTIVE, PLANNED, DEPRECATED?).
+# =====================================================================
+
+[CORE DIAGNOSTICS]
+- Full project backup with rollback metadata (ACTIVE)
+- Python venv creation and dependency bootstrap from requirements.txt (ACTIVE)
+- Rust/pip fallback handling for optional dependencies (ACTIVE)
+- Manifest.json validation and auto-heal regeneration (ACTIVE)
+- Index.txt audit enforcing OVERVIEW, FILES, CROSS-REFERENCES, MANDATORY POINTERS (ACTIVE)
+- Cross-reference checks between manifest and index canonical names (ACTIVE)
+- Pointer index validation; baseline pointer creation if missing (ACTIVE)
+- Import compliance scan for non-namespaced imports (ACTIVE)
+- Interactive import fixer with agent_core. prefix and .bak backups (ACTIVE)
+- LLM health validation (Ollama endpoint check) (ACTIVE)
+- Sentinel daemon health validation (ACTIVE)
+- **Root-wide scanning of all directories (root, agent_core, Blueprints, memory_store) excluding venv, __pycache__, logs, backups (ACTIVE)**
+- Unified compliance audit covering all modules/subsystems (ACTIVE)
+
+[MEMORY & TASK SYSTEM]
+- Memory archiver for session logs with pointer-link rehydration (ACTIVE)
+- Pointer-based memory recall for chat contextual restoration (ACTIVE)
+- Task retry engine for deferred tasks (ACTIVE)
+
+[TELEMETRY & REPORTING]
+- Sentinel telemetry logging with timestamps, module, severity, correlation_id (ACTIVE)
+- Weighted compliance scoring (manifest, indexes, pointer, LLM, sentinel) (ACTIVE)
+- Cockpit dashboard rendering with compliance bars and overall health (ACTIVE)
+- Preflight report generation: human-readable (TXT) and structured (JSON) (ACTIVE)
+- Recommended actions engine mapping issues to actionable fixes (ACTIVE)
+
+[IMPORT VERIFICATION & MANIFEST CHECK]
+- Append-only manifest enforcement (ACTIVE)
+- Auto-detect and append new capabilities found in code but missing in manifest (ACTIVE)
+- Flag duplicates as potential deprecation (POTENTIAL DEPRECATION)
+- Critical issue flag if manifest capability missing from code (ACTIVE)
+- Cross-validation of manifest capabilities against codebase root (ACTIVE)
+
+[CHAT & MODES]
+- Post-diagnostics chat launch (chat_mode.py) unless --silent flag (ACTIVE)
+- Silent mode support (skip chat, log-only) (ACTIVE)
+- Fast mode support (skip manifest inventory for speed) (ACTIVE)
+
+[FUTURE EXPANSIONS]
+- Hooks prepared for AURA agent evolution (PLANNED)
+- Hooks prepared for WatchLockAI defensive system integration (PLANNED)
+- Hooks prepared for ElectricHulk offensive testing system (PLANNED)
+- Support for future hybrid LLM orchestration across cloud + local (PLANNED)
+- Manifest-driven self-audit (preflight checks manifest validity itself) (PLANNED)
+- Auto-restoration of missing capabilities from backup if flagged critical (PLANNED)

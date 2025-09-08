@@ -1,0 +1,177 @@
+{
+  "window_data": [
+    {
+      "timestamp": 1756944762.6630187,
+      "features": {
+        "hour_of_day": 8,
+        "day_of_week": 3,
+        "cpu_usage_pct": 0.0,
+        "memory_usage_pct": 0.0,
+        "disk_io_rate": 0.0,
+        "network_io_rate": 0.0,
+        "event_count": 0.0,
+        "error_count": 0.0,
+        "unique_sources": 0.0,
+        "time_since_last_activity": 1.0013580322265625e-05
+      }
+    },
+    {
+      "timestamp": 1756945336.3524742,
+      "features": {
+        "hour_of_day": 8,
+        "day_of_week": 3,
+        "cpu_usage_pct": 0.0,
+        "memory_usage_pct": 0.0,
+        "disk_io_rate": 0.0,
+        "network_io_rate": 0.0,
+        "event_count": 0.0,
+        "error_count": 0.0,
+        "unique_sources": 0.0,
+        "time_since_last_activity": 573.6894500255585
+      }
+    },
+    {
+      "timestamp": 1756947064.8421865,
+      "features": {
+        "hour_of_day": 8,
+        "day_of_week": 3,
+        "cpu_usage_pct": 0.0,
+        "memory_usage_pct": 0.0,
+        "disk_io_rate": 0.0,
+        "network_io_rate": 0.0,
+        "event_count": 0.0,
+        "error_count": 0.0,
+        "unique_sources": 0.0,
+        "time_since_last_activity": 1728.489706993103
+      }
+    },
+    {
+      "timestamp": 1756956326.3475122,
+      "features": {
+        "hour_of_day": 11,
+        "day_of_week": 3,
+        "cpu_usage_pct": 0.0,
+        "memory_usage_pct": 0.0,
+        "disk_io_rate": 0.0,
+        "network_io_rate": 0.0,
+        "event_count": 0.0,
+        "error_count": 0.0,
+        "unique_sources": 0.0,
+        "time_since_last_activity": 9261.505320310593
+      }
+    },
+    {
+      "timestamp": 1756956647.1105926,
+      "features": {
+        "hour_of_day": 11,
+        "day_of_week": 3,
+        "cpu_usage_pct": 0.0,
+        "memory_usage_pct": 0.0,
+        "disk_io_rate": 0.0,
+        "network_io_rate": 0.0,
+        "event_count": 0.0,
+        "error_count": 0.0,
+        "unique_sources": 0.0,
+        "time_since_last_activity": 320.76307487487793
+      }
+    },
+    {
+      "timestamp": 1757088372.953303,
+      "features": {
+        "hour_of_day": 0,
+        "day_of_week": 5,
+        "cpu_usage_pct": 0.0,
+        "memory_usage_pct": 0.0,
+        "disk_io_rate": 0.0,
+        "network_io_rate": 0.0,
+        "event_count": 0.0,
+        "error_count": 0.0,
+        "unique_sources": 0.0,
+        "time_since_last_activity": 131725.84270119667
+      }
+    },
+    {
+      "timestamp": 1757090440.0719807,
+      "features": {
+        "hour_of_day": 0,
+        "day_of_week": 5,
+        "cpu_usage_pct": 0.0,
+        "memory_usage_pct": 0.0,
+        "disk_io_rate": 0.0,
+        "network_io_rate": 0.0,
+        "event_count": 0.0,
+        "error_count": 0.0,
+        "unique_sources": 0.0,
+        "time_since_last_activity": 2067.118671655655
+      }
+    },
+    {
+      "timestamp": 1757096580.294126,
+      "features": {
+        "hour_of_day": 2,
+        "day_of_week": 5,
+        "cpu_usage_pct": 0.0,
+        "memory_usage_pct": 0.0,
+        "disk_io_rate": 0.0,
+        "network_io_rate": 0.0,
+        "event_count": 0.0,
+        "error_count": 0.0,
+        "unique_sources": 0.0,
+        "time_since_last_activity": 6140.222138643265
+      }
+    }
+  ],
+  "feature_stats": {
+    "hour_of_day": {
+      "mean": 6.0,
+      "std": 1.777839780664806,
+      "count": 8
+    },
+    "day_of_week": {
+      "mean": 3.75,
+      "std": 1.0479571965086578,
+      "count": 8
+    },
+    "cpu_usage_pct": {
+      "mean": 0.0,
+      "std": 0.9354143466934853,
+      "count": 8
+    },
+    "memory_usage_pct": {
+      "mean": 0.0,
+      "std": 0.9354143466934853,
+      "count": 8
+    },
+    "disk_io_rate": {
+      "mean": 0.0,
+      "std": 0.9354143466934853,
+      "count": 8
+    },
+    "network_io_rate": {
+      "mean": 0.0,
+      "std": 0.9354143466934853,
+      "count": 8
+    },
+    "event_count": {
+      "mean": 0.0,
+      "std": 0.9354143466934853,
+      "count": 8
+    },
+    "error_count": {
+      "mean": 0.0,
+      "std": 0.9354143466934853,
+      "count": 8
+    },
+    "unique_sources": {
+      "mean": 0.0,
+      "std": 0.9354143466934853,
+      "count": 8
+    },
+    "time_since_last_activity": {
+      "mean": 18977.203884214163,
+      "std": 4851.923130664206,
+      "count": 8
+    }
+  },
+  "last_updated": 1757096580.294126
+}

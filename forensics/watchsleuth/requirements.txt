@@ -1,0 +1,25 @@
+# WatchSleuth Forensic Engine Requirements
+sqlite3  # Built-in with Python
+json  # Built-in with Python
+datetime  # Built-in with Python
+hashlib  # Built-in with Python
+zipfile  # Built-in with Python
+mimetypes  # Built-in with Python
+tempfile  # Built-in with Python
+shutil  # Built-in with Python
+subprocess  # Built-in with Python
+re  # Built-in with Python
+struct  # Built-in with Python
+pathlib  # Built-in with Python
+logging  # Built-in with Python
+
+# Optional dependencies for enhanced functionality
+matplotlib>=3.7.0  # Timeline visualization
+pandas>=2.0.0  # Data analysis
+numpy>=1.24.0  # Numerical operations
+
+# For real implementations (not included in this demo)
+# python-registry>=1.4.0  # Windows registry parsing
+# pypff>=0.20210502  # PST file parsing
+# python-evtx>=0.8.1  # Windows Event Log parsing
+# pytsk3>=20230125  # The Sleuth Kit Python bindings

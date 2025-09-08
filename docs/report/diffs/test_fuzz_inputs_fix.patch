@@ -1,0 +1,7 @@
+--- a/tests/test_fuzz_inputs.py
++++ b/tests/test_fuzz_inputs.py
+@@ -182,2 +182,2 @@
+-            '{key: "\invalid"}','
+-            '{key: "\xgg"}','
++            '{key: "\\invalid"}','
++            r'{"key": "\xgg"}','

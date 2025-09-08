@@ -1,0 +1,23 @@
+{
+  "DOCS/mitre/rules/baseline.yaml": "cf5eef10d653f64316b69a80df5d83bcef9b42a382a6b9652cdc811627733eb2",
+  "DOCS/report/perf_baseline.json": "c7d7a868039bafb55986a4fd8a6cacbdd16dd2e5da5d9875b94328e576b44f9a",
+  "DOCS/report/rc1_flags.json": "99a10d57aaa22c148b33999adc895e9f5332c5d22e983d7b434c387ff4d65b16",
+  "DOCS/report/rc1_proofs.jsonl": "f9f5b3a31ba960b2eab7182fc2e1a55ef99f2ebb4dc018307913e52b3d4a3d7f",
+  "DOCS/security/threat_model.md": "82f27ffbf346df6b4f56e42290342a2dbc95ee2a37c8ad5d93659d828bd898cf",
+  "console/backup_restore.py": "8677fa84dd01114b46ba593e04a30d586c38c70876c6d9f5fb39ab5f1deabc85",
+  "console/chaos_probes.py": "d2441da2ab96b0111cff8a1bc524b63ae1614958208b1936b81585abb0abf077",
+  "console/web_api.py": "cdfa6d8b8c95c4bdf751f528eecf18d34d6e4a18f0943634dc76c2d583f930c2",
+  "detection/attack_matrix.py": "dc15f46798ede9a884e7bcea758c2f6418cc9736123b0bad58a7861770a6c6aa",
+  "detection/rule_dsl.py": "1d4349607450795e29fb1459a46def2f430e6ca910b0b1d62e2effdc662d42f4",
+  "detection/rules/attack_matrix.yaml": "55191600337917d478ba7dea8296302b33b2cadb65796271fedc7489ee9ed7d2",
+  "response/playbooks.py": "f614a0869f786bf8de5099af4373db17a63e36afc1c44bc4168567d32307fcc2",
+  "service/service_wrapper.py": "fcc40204b0f2792d2a7ba661008b44226863d08dabfe51942381cc038826dca0",
+  "tests/test_attack_matrix_smoke.py": "d5c481475890d02287ed748bd5f5633e731d44793ad1a5ea4e2e0e16245019aa",
+  "tests/test_health_endpoint.py": "75370b0a0521fc1276623b5149c0cafac14c19cecbe796f5e60645fe604927a0",
+  "tools/perf_baseline.py": "1492a696e84c15c784dbab14b8f28393be83eb46c95ce734ad1723d79094efbf",
+  "tools/rotate_secrets.py": "5618da624f747279400889bf2e0b7879526b7837c6990436706bb768428fab32",
+  "tools/self_check.py": "8c4b45d51046dc014301d82704f1ea6ceeda092111bc0dd85cd4881017fd3973",
+  "tools/verify_minimax_claims.py": "14a518fc8390349131f8f2517ccf6d5b3d97074c8bfe016b807571344bbc3947",
+  "verification_evidence.md": "MISSING",
+  "work_manifest.json": "MISSING"
+}

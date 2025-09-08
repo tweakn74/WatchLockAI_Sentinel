@@ -1,0 +1,143 @@
+{
+  "created": "2025-09-06 16:27:01 UTC",
+  "version": "4.0",
+  "generator": "Credits Overdrive v4.0 Repro Pack Builder",
+  "files": [
+    {
+      "path": "repro/config/repro_config.json",
+      "description": "Deterministic base configuration",
+      "sha256": "5eb182b31180ad770b806a1ab8a36aacb7af6c202314ba2cdfa112fac25e4f1f",
+      "size_bytes": 1114
+    },
+    {
+      "path": "repro/config/repro_env.json",
+      "description": "Environment variables for reproducible execution",
+      "sha256": "1c27edc39e92e5a897d6bcc64aba59521a40f33add8de34c77b576b83758e10b",
+      "size_bytes": 199
+    },
+    {
+      "path": "repro/config/seeded_config.yaml",
+      "description": "Seeded Main application config",
+      "sha256": "1a709d4bfad22352b1136fff4061c3c29313e02d06113c18da16c94551a9d62c",
+      "size_bytes": 19
+    },
+    {
+      "path": "repro/config/seeded_pyrightconfig.json",
+      "description": "Seeded TypeScript/Python config",
+      "sha256": "a1c21c36338732f7429a1200efe3b20b416e3e61e0a91c59ef3f65858a5906d5",
+      "size_bytes": 599
+    },
+    {
+      "path": "repro/config/seeded_config.example.json",
+      "description": "Seeded Example configuration",
+      "sha256": "538f2daa24fa7e073ecac683d0c62e02699546542f74c8f2361415c08c8ce027",
+      "size_bytes": 6802
+    },
+    {
+      "path": "repro/payloads/golden/event_bus_response.json",
+      "description": "Golden payload: event_bus_response.json",
+      "sha256": "388cd0867b74109ee9f53b9c67b988fcc5037295236e904bd0a80360ac7b0afe",
+      "size_bytes": 325
+    },
+    {
+      "path": "repro/payloads/golden/metrics_snapshot_response.json",
+      "description": "Golden payload: metrics_snapshot_response.json",
+      "sha256": "c4b476098b50dbd31c8958f435e79cf2231375eaf014cfc49f739573cf5d0fad",
+      "size_bytes": 431
+    },
+    {
+      "path": "repro/payloads/golden/anomaly_score_response.json",
+      "description": "Golden payload: anomaly_score_response.json",
+      "sha256": "d21d633531a83cbe56c38cc30d55b88479319199b1149f2209190e3b3e270c22",
+      "size_bytes": 313
+    },
+    {
+      "path": "repro/payloads/golden/health_response.json",
+      "description": "Golden payload: health_response.json",
+      "sha256": "3eca02f0630c282c0217eb6d45b7c9760208187e60693a080b6b5504fcb2fbcb",
+      "size_bytes": 284
+    },
+    {
+      "path": "repro/payloads/api/auth_login.json",
+      "description": "Seeded API payload: auth_login.json",
+      "sha256": "e64186f730a049d0c44ef47339725952580ec6d8de8321693aeed2f15e37202d",
+      "size_bytes": 105
+    },
+    {
+      "path": "repro/payloads/api/admin_config.json",
+      "description": "Seeded API payload: admin_config.json",
+      "sha256": "89b58225812abb114e687472ce89b86599055e6f05f0bcd2cbd6949622ae3e82",
+      "size_bytes": 116
+    },
+    {
+      "path": "repro/payloads/api/quarantine_request.json",
+      "description": "Seeded API payload: quarantine_request.json",
+      "sha256": "8b0094279c66ba5b69d454c49f59c5ea9d229526eeef05082672fd8d0716ccb8",
+      "size_bytes": 121
+    },
+    {
+      "path": "repro/microbench/perf_baseline.json",
+      "description": "Performance baseline: perf_baseline.json",
+      "sha256": "9abaf0c0af1ab7d28e9be889c3ca5bda57b1d75713a59a571196f94edf01ab85",
+      "size_bytes": 812
+    },
+    {
+      "path": "repro/microbench/perf_microbench.json",
+      "description": "Performance baseline: perf_microbench.json",
+      "sha256": "96dddfc960ecdab7ead7b9d2d00e0b8079ef008bfce47040c2d0ced2d9ed6649",
+      "size_bytes": 4670
+    },
+    {
+      "path": "repro/microbench/bench_config.json",
+      "description": "Microbenchmark configuration",
+      "sha256": "8eec222deac4973ca40b7f4d202c8ff993a1f0743bad9b24ea986a192bdd277e",
+      "size_bytes": 453
+    },
+    {
+      "path": "repro/run_all.ps1",
+      "description": "PowerShell execution script (Windows)",
+      "sha256": "5454cdf54d0a7283ead2e70c4fbcc2eaeed91393ef45722591c5ead47d6f1e86",
+      "size_bytes": 4448
+    },
+    {
+      "path": "repro/run_all.sh",
+      "description": "Bash execution script (Linux/Mac)",
+      "sha256": "85b37e621c3e48b946bd413b538f4abbbe804dfde827733cdfece79b3fbc015d",
+      "size_bytes": 3581
+    }
+  ],
+  "execution_order": [
+    "Set environment variables from repro/config/repro_env.json",
+    "Run compile checks on all Python files",
+    "Execute verification suite (tools/verify_minimax_claims.py)",
+    "Run scenario replayer on test categories",
+    "Execute contract tests (tests/test_contracts.py)",
+    "Run property test generator",
+    "Generate execution summary"
+  ],
+  "environment": {
+    "python_version": "3.12.5 (main, Sep  5 2024, 00:16:34) [GCC 12.2.0]",
+    "platform": "Linux-5.10.134-18.al8.x86_64-x86_64-with-glibc2.36",
+    "architecture": [
+      "64bit",
+      "ELF"
+    ],
+    "processor": "",
+    "hostname": "matrix-agent-server-uapm-86db459fd-9vhpl",
+    "python_executable": "/tmp/.venv/bin/python",
+    "python_path": [
+      "/workspace/WatchLockAI_Sentinel/tools",
+      "/workspace",
+      "/app",
+      "/usr/local/lib/python312.zip",
+      "/usr/local/lib/python3.12"
+    ]
+  },
+  "statistics": {
+    "total_files": 17,
+    "total_size_bytes": 24392,
+    "config_files": 7,
+    "payload_files": 7,
+    "script_files": 2
+  }
+}

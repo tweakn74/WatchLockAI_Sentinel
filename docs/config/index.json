@@ -1,0 +1,329 @@
+{
+  "version": {
+    "path": "version",
+    "owner": "app_core.config",
+    "type": "int",
+    "default": 1,
+    "description": "Configuration schema version",
+    "readers": ["config loading"],
+    "writers": ["config generation"]
+  },
+  "monitoring.file_system.enabled": {
+    "path": "monitoring.file_system.enabled",
+    "owner": "collectors.fs_monitor",
+    "type": "bool",
+    "default": true,
+    "description": "Enable file system monitoring",
+    "readers": ["fs_monitor.init"],
+    "writers": ["config.update", "web_api.policies"]
+  },
+  "monitoring.file_system.paths": {
+    "path": "monitoring.file_system.paths",
+    "owner": "collectors.fs_monitor",
+    "type": "list[str]",
+    "default": ["%USERPROFILE%\\Documents"],
+    "description": "Paths to monitor for file changes",
+    "readers": ["fs_monitor.setup"],
+    "writers": ["config.update"]
+  },
+  "monitoring.file_system.exclude_globs": {
+    "path": "monitoring.file_system.exclude_globs",
+    "owner": "collectors.fs_monitor",
+    "type": "list[str]",
+    "default": ["**\\Temp\\**"],
+    "description": "Glob patterns for excluded paths",
+    "readers": ["fs_monitor.filtering"],
+    "writers": ["config.update"]
+  },
+  "monitoring.file_system.method": {
+    "path": "monitoring.file_system.method",
+    "owner": "collectors.fs_monitor",
+    "type": "str",
+    "default": "watchdog",
+    "constraints": ["watchdog", "polling"],
+    "description": "Monitoring method",
+    "readers": ["fs_monitor.init"],
+    "writers": ["config.update"]
+  },
+  "monitoring.file_system.compute_entropy": {
+    "path": "monitoring.file_system.compute_entropy",
+    "owner": "collectors.fs_monitor", 
+    "type": "bool",
+    "default": false,
+    "description": "Calculate Shannon entropy for files",
+    "readers": ["fs_monitor.processing"],
+    "writers": ["config.update"]
+  },
+  "monitoring.file_system.compute_hash_small_files": {
+    "path": "monitoring.file_system.compute_hash_small_files",
+    "owner": "collectors.fs_monitor",
+    "type": "bool",
+    "default": false,
+    "description": "Hash files under threshold",
+    "readers": ["fs_monitor.processing"],
+    "writers": ["config.update"]
+  },
+  "monitoring.file_system.small_file_threshold_bytes": {
+    "path": "monitoring.file_system.small_file_threshold_bytes",
+    "owner": "collectors.fs_monitor",
+    "type": "int",
+    "default": 1048576,
+    "description": "Threshold for small file hashing (1MB)",
+    "readers": ["fs_monitor.processing"],
+    "writers": ["config.update"]
+  },
+  "monitoring.file_system.burst_window_sec": {
+    "path": "monitoring.file_system.burst_window_sec",
+    "owner": "collectors.fs_monitor",
+    "type": "int", 
+    "default": 10,
+    "description": "Time window for burst event detection",
+    "readers": ["fs_monitor.processing"],
+    "writers": ["config.update"]
+  },
+  "monitoring.processes.enabled": {
+    "path": "monitoring.processes.enabled",
+    "owner": "collectors.proc_monitor",
+    "type": "bool",
+    "default": true,
+    "description": "Enable process monitoring",
+    "readers": ["proc_monitor.init"],
+    "writers": ["config.update", "web_api.policies"]
+  },
+  "monitoring.processes.poll_interval_ms": {
+    "path": "monitoring.processes.poll_interval_ms",
+    "owner": "collectors.proc_monitor",
+    "type": "int",
+    "default": 1000,
+    "description": "Process polling interval in milliseconds",
+    "readers": ["proc_monitor.loop"],
+    "writers": ["config.update"]
+  },
+  "monitoring.processes.capture_hash": {
+    "path": "monitoring.processes.capture_hash",
+    "owner": "collectors.proc_monitor",
+    "type": "bool",
+    "default": false,
+    "description": "Capture SHA256 hash of process executables",
+    "readers": ["proc_monitor.processing"],
+    "writers": ["config.update"]
+  },
+  "monitoring.registry.enabled": {
+    "path": "monitoring.registry.enabled",
+    "owner": "collectors.reg_monitor",
+    "type": "bool", 
+    "default": true,
+    "description": "Enable registry monitoring (Windows only)",
+    "platform": "Windows",
+    "readers": ["reg_monitor.init"],
+    "writers": ["config.update", "web_api.policies"]
+  },
+  "monitoring.registry.watch_keys": {
+    "path": "monitoring.registry.watch_keys",
+    "owner": "collectors.reg_monitor",
+    "type": "list[str]",
+    "default": [
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+      "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce", 
+      "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce"
+    ],
+    "description": "Registry keys to monitor",
+    "platform": "Windows",
+    "readers": ["reg_monitor.setup"],
+    "writers": ["config.update"]
+  },
+  "monitoring.registry.method": {
+    "path": "monitoring.registry.method",
+    "owner": "collectors.reg_monitor",
+    "type": "str",
+    "default": "notify",
+    "constraints": ["notify", "polling"],
+    "description": "Registry monitoring method",
+    "platform": "Windows",
+    "readers": ["reg_monitor.init"],
+    "writers": ["config.update"]
+  },
+  "monitoring.network.enabled": {
+    "path": "monitoring.network.enabled",
+    "owner": "collectors.net_monitor",
+    "type": "bool",
+    "default": true,
+    "description": "Enable network monitoring",
+    "readers": ["net_monitor.init"],
+    "writers": ["config.update", "web_api.policies"]
+  },
+  "monitoring.network.track_process_association": {
+    "path": "monitoring.network.track_process_association",
+    "owner": "collectors.net_monitor",
+    "type": "bool",
+    "default": true,
+    "description": "Associate network connections with processes",
+    "readers": ["net_monitor.processing"],
+    "writers": ["config.update"]
+  },
+  "monitoring.network.poll_interval_ms": {
+    "path": "monitoring.network.poll_interval_ms",
+    "owner": "collectors.net_monitor",
+    "type": "int",
+    "default": 1000,
+    "description": "Network polling interval in milliseconds",
+    "readers": ["net_monitor.loop"],
+    "writers": ["config.update"]
+  },
+  "monitoring.network.include_udp": {
+    "path": "monitoring.network.include_udp",
+    "owner": "collectors.net_monitor",
+    "type": "bool",
+    "default": true,
+    "description": "Include UDP connections in monitoring",
+    "readers": ["net_monitor.processing"],
+    "writers": ["config.update"]
+  },
+  "health.enabled": {
+    "path": "health.enabled",
+    "owner": "collectors.health_monitor",
+    "type": "bool",
+    "default": true,
+    "description": "Enable system health monitoring",
+    "readers": ["health_monitor.init"],
+    "writers": ["config.update"]
+  },
+  "health.cpu_warn": {
+    "path": "health.cpu_warn",
+    "owner": "collectors.health_monitor",
+    "type": "int",
+    "default": 90,
+    "constraints": {"min": 0, "max": 100},
+    "description": "CPU usage warning threshold (%)",
+    "readers": ["health_monitor.alerts"],
+    "writers": ["config.update"]
+  },
+  "health.ram_warn": {
+    "path": "health.ram_warn",
+    "owner": "collectors.health_monitor",
+    "type": "int",
+    "default": 90,
+    "constraints": {"min": 0, "max": 100},
+    "description": "Memory usage warning threshold (%)",
+    "readers": ["health_monitor.alerts"],
+    "writers": ["config.update"]
+  },
+  "health.disk_warn_pct_free": {
+    "path": "health.disk_warn_pct_free",
+    "owner": "collectors.health_monitor",
+    "type": "int", 
+    "default": 5,
+    "constraints": {"min": 0, "max": 100},
+    "description": "Disk free space warning threshold (%)",
+    "readers": ["health_monitor.alerts"],
+    "writers": ["config.update"]
+  },
+  "health.temp_warn_c": {
+    "path": "health.temp_warn_c",
+    "owner": "collectors.health_monitor",
+    "type": "float|null",
+    "default": null,
+    "description": "Temperature warning threshold (Celsius)",
+    "readers": ["health_monitor.alerts"],
+    "writers": ["config.update"]
+  },
+  "operational.mode": {
+    "path": "operational.mode",
+    "owner": "config.operational_mode",
+    "type": "str",
+    "default": "observe",
+    "constraints": ["observe", "alert", "contain", "quarantine", "offline"],
+    "description": "DEPRECATED - Use operational_mode.json",
+    "deprecated": true,
+    "readers": ["fallback only"],
+    "writers": ["config migration"]
+  },
+  "rag.index_dir": {
+    "path": "rag.index_dir",
+    "owner": "detection.knowledge.loader",
+    "type": "str",
+    "default": "detection/knowledge/index",
+    "description": "Directory for RAG knowledge index",
+    "readers": ["knowledge_loader.init"],
+    "writers": ["config.update"]
+  },
+  "rag.mode": {
+    "path": "rag.mode",
+    "owner": "detection.knowledge.loader",
+    "type": "str",
+    "default": "embeddings",
+    "constraints": ["embeddings", "fts"],
+    "description": "RAG search mode",
+    "readers": ["knowledge_loader.init"],
+    "writers": ["config.update"]
+  },
+  "alerts.toast_notifications": {
+    "path": "alerts.toast_notifications",
+    "owner": "response.alert_manager",
+    "type": "bool",
+    "default": true,
+    "description": "Enable desktop toast notifications",
+    "readers": ["alert_manager.notify"],
+    "writers": ["config.update"]
+  },
+  "alerts.log_jsonl": {
+    "path": "alerts.log_jsonl",
+    "owner": "response.alert_manager",
+    "type": "str",
+    "default": "logs/alerts.jsonl",
+    "description": "JSONL log file for alerts",
+    "readers": ["alert_manager.logging"],
+    "writers": ["config.update"]
+  },
+  "responses.allow_destructive_actions": {
+    "path": "responses.allow_destructive_actions",
+    "owner": "response.actions",
+    "type": "bool",
+    "default": false,
+    "description": "Allow destructive response actions",
+    "readers": ["actions_manager.authorize"],
+    "writers": ["policy.update", "web_api.policies"]
+  },
+  "service.install_on_setup": {
+    "path": "service.install_on_setup",
+    "owner": "service.service_wrapper",
+    "type": "bool",
+    "default": true,
+    "description": "Install as Windows service on setup",
+    "platform": "Windows",
+    "readers": ["service_installer.setup"],
+    "writers": ["config.update"]
+  },
+  "privacy.outbound_disabled_by_default": {
+    "path": "privacy.outbound_disabled_by_default",
+    "owner": "app_core.config",
+    "type": "bool",
+    "default": true,
+    "description": "Disable outbound connections by default",
+    "readers": ["network_policies.check"],
+    "writers": ["config.update"]
+  },
+  "operational_mode.mode": {
+    "path": "config/operational_mode.json:mode",
+    "owner": "config.operational_mode",
+    "type": "str",
+    "default": "observe",
+    "constraints": ["observe", "alert", "contain", "quarantine", "offline"],
+    "description": "Current operational mode (persistent)",
+    "readers": ["operational_mode.get_mode"],
+    "writers": ["operational_mode.set_mode", "web_api.operational_mode"],
+    "persistence": "atomic_json"
+  },
+  "operational_mode.last_updated": {
+    "path": "config/operational_mode.json:last_updated",
+    "owner": "config.operational_mode",
+    "type": "str",
+    "default": "auto-generated",
+    "format": "ISO-8601",
+    "description": "Last mode change timestamp",
+    "readers": ["operational_mode.get_mode"],
+    "writers": ["operational_mode.set_mode"],
+    "persistence": "atomic_json"
+  }
+}

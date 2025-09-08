@@ -1,0 +1,152 @@
+{
+  "computed_metrics": {
+    "routes": 12,
+    "route_details": [
+      {
+        "path": "console.anomaly.ANOMALY_SKLEARN_ENABLED",
+        "method": "PATCH",
+        "file": "tests/test_anomaly.py",
+        "type": "python_ast"
+      },
+      {
+        "path": "os.name",
+        "method": "PATCH",
+        "file": "tests/test_quarantine.py",
+        "type": "python_ast"
+      },
+      {
+        "path": "subprocess.run",
+        "method": "PATCH",
+        "file": "tests/test_quarantine.py",
+        "type": "python_ast"
+      },
+      {
+        "path": "console.quarantine.QUARANTINE_ENABLED",
+        "method": "PATCH",
+        "file": "tests/test_quarantine.py",
+        "type": "python_ast"
+      },
+      {
+        "path": "/api/metrics/health",
+        "method": "GET",
+        "file": "console/web_api.py",
+        "type": "python_ast"
+      },
+      {
+        "path": "/api/mitre/coverage",
+        "method": "GET",
+        "file": "console/web_api.py",
+        "type": "python_ast"
+      },
+      {
+        "path": "/api/admin/config/reload",
+        "method": "POST",
+        "file": "console/web_api.py",
+        "type": "python_ast"
+      },
+      {
+        "path": "/api/admin/config/schema",
+        "method": "GET",
+        "file": "console/web_api.py",
+        "type": "python_ast"
+      },
+      {
+        "path": "/api/anomaly/score",
+        "method": "GET",
+        "file": "console/web_api.py",
+        "type": "python_ast"
+      },
+      {
+        "path": "/api/admin/anomaly/train",
+        "method": "POST",
+        "file": "console/web_api.py",
+        "type": "python_ast"
+      },
+      {
+        "path": "/api/admin/quarantine",
+        "method": "POST",
+        "file": "console/web_api.py",
+        "type": "python_ast"
+      },
+      {
+        "path": "/api/admin/quarantine/restore",
+        "method": "POST",
+        "file": "console/web_api.py",
+        "type": "python_ast"
+      }
+    ],
+    "schemas": 48,
+    "schema_samples": 0,
+    "scenarios": 5000,
+    "fuzz_vectors": 1,
+    "adrs": 0,
+    "sdk_files": 0,
+    "taint_flows": 12,
+    "dead_code_patches": 0,
+    "tool_files": 27,
+    "test_files": 46,
+    "computed_at": "2025-09-07T18:49:50.215014Z",
+    "computed_by": "tools/numeric_ledger.py",
+    "workspace": "/workspace/WatchLockAI_Sentinel"
+  },
+  "claimed_metrics": {},
+  "comparison": {
+    "test_files": {
+      "computed": 46,
+      "claimed": "N/A",
+      "delta": "N/A"
+    },
+    "scenarios": {
+      "computed": 5000,
+      "claimed": "N/A",
+      "delta": "N/A"
+    },
+    "schema_samples": {
+      "computed": 0,
+      "claimed": "N/A",
+      "delta": "N/A"
+    },
+    "routes": {
+      "computed": 12,
+      "claimed": "N/A",
+      "delta": "N/A"
+    },
+    "fuzz_vectors": {
+      "computed": 1,
+      "claimed": "N/A",
+      "delta": "N/A"
+    },
+    "taint_flows": {
+      "computed": 12,
+      "claimed": "N/A",
+      "delta": "N/A"
+    },
+    "dead_code_patches": {
+      "computed": 0,
+      "claimed": "N/A",
+      "delta": "N/A"
+    },
+    "tool_files": {
+      "computed": 27,
+      "claimed": "N/A",
+      "delta": "N/A"
+    },
+    "sdk_files": {
+      "computed": 0,
+      "claimed": "N/A",
+      "delta": "N/A"
+    },
+    "adrs": {
+      "computed": 0,
+      "claimed": "N/A",
+      "delta": "N/A"
+    },
+    "schemas": {
+      "computed": 48,
+      "claimed": "N/A",
+      "delta": "N/A"
+    }
+  },
+  "failures": [],
+  "generated_at": "2025-09-07T18:49:50.217960Z"
+}

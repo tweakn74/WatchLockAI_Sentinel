@@ -1,0 +1,87 @@
+```mermaid
+graph TD
+    %% Core Infrastructure
+    AppCore[app_core.*] --> |"bus, config, schemas, logging"| All[All Components]
+    
+    %% Application Entry Points
+    App[app.py] --> AppCore
+    App --> Service[service.*]
+    App --> UI[ui.*]
+    App --> Detection[detection.*]
+    
+    %% Service Layer
+    Service --> AppCore
+    Service --> Console[console.*]
+    Service --> Collectors[collectors.*]
+    Service --> Detection
+    Service --> Response[response.*]
+    
+    %% Monitoring Collectors (High Coupling)
+    Collectors --> |"Heavy Import"| AppCore
+    Collectors --> |"psutil, sys, asyncio"| System[System APIs]
+    CollectorsReg[collectors.reg_monitor] --> |"winreg (Windows only)"| WinAPIs[Windows APIs]
+    
+    %% Detection Layer
+    Detection --> AppCore
+    Detection --> |"numpy, sklearn (optional)"| ML[ML Libraries]
+    Detection --> |"embeddings, search"| Knowledge[knowledge.*]
+    
+    %% Response Actions
+    Response --> AppCore
+    Response --> |"psutil process control"| System
+    Response --> |"platform-specific"| Platform[Platform APIs]
+    
+    %% Web Console (API Layer)
+    Console --> AppCore
+    Console --> |"FastAPI, uvicorn"| WebFramework[Web Framework]
+    Console --> Config[config.*]
+    
+    %% Configuration System
+    Config --> |"yaml, pydantic"| ConfigLibs[Config Libraries]
+    
+    %% External Dependencies (High Pressure)
+    AppCore --> |"pydantic validation"| Pydantic[pydantic]
+    System --> |"cross-platform monitoring"| Psutil[psutil]
+    WebFramework --> |"async web server"| FastAPI[FastAPI + uvicorn]
+    
+    %% Platform-Specific Imports
+    WinAPIs --> |"Windows only"| WinSvc[servicemanager, win32service]
+    
+    classDef highPressure fill:#ff9999
+    classDef platformSpecific fill:#99ccff
+    classDef coreInfra fill:#99ff99
+    
+    class AppCore,Service,App coreInfra
+    class Psutil,Pydantic,FastAPI,System highPressure
+    class WinAPIs,WinSvc,CollectorsReg platformSpecific
+```
+
+## Top 10 Pressure Edges (High Coupling Imports)
+
+1. **app_core.schemas → pydantic** - Heavy validation dependency, critical for event typing
+2. **collectors.* → psutil** - System monitoring core, used by all collector modules  
+3. **app_core.config → pydantic + yaml** - Configuration parsing and validation bottleneck
+4. **service.service_wrapper → win32service** - Windows service integration, platform lock-in
+5. **console.web_api → FastAPI** - Web framework dependency for entire API surface
+6. **collectors.reg_monitor → winreg** - Windows-only registry access, platform coupling
+7. **app_core.bus → asyncio** - Core event system dependency, affects all async operations
+8. **response.actions → psutil** - Process control operations, system-level coupling
+9. **detection.* → app_core.schemas** - Event type coupling across detection components
+10. **All modules → app_core.config** - Global configuration access pattern, high fan-out
+
+## Import Coupling Analysis
+
+### High-Risk Dependencies
+- **Platform Lock-in**: winreg, win32service, servicemanager (Windows-specific)
+- **Framework Lock-in**: FastAPI, uvicorn (web stack), pydantic (validation)
+- **System Lock-in**: psutil (process/system monitoring across all collectors)
+
+### Abstraction Opportunities
+- **Platform Services**: Windows service operations could be abstracted behind interface
+- **System Monitoring**: psutil usage could be centralized in monitoring abstraction layer
+- **Event Validation**: Heavy pydantic usage could be optimized with caching/lazy validation
+
+### Circular Import Risks
+- **config.operational_mode** ↔ **app_core.config**: Bidirectional config access
+- **detection modules** ↔ **app_core.schemas**: Event type definitions and usage
+- **service.service_wrapper** → **console.web_api**: Service management via web API

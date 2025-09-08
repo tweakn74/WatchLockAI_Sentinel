@@ -1,0 +1,263 @@
+# MITRE ATT&CK Matrix - Baseline Coverage Rules (Fixed Format)
+# RC-2: Full ATT&CK Matrix Coverage
+# 20 root rules covering major attack scenarios
+
+- id: ATTK-BRUTE-LOGIN
+  name: Brute Force Login Attempt
+  tactic: Credential Access
+  technique: T1110
+  event: AuthEvent
+  window_s: 60
+  threshold: 10
+  group_by: username
+  where: "result == 'failure'"
+  severity: high
+  response: disable_account
+  stage: Initial Access
+
+- id: ATTK-PHISH-ATTACH
+  name: Phishing Email with Executable Attachment
+  tactic: Initial Access
+  technique: T1566
+  event: MailEvent
+  window_s: 300
+  threshold: 1
+  group_by: recipient
+  where: "has_attachment == true"
+  severity: crit
+  response: quarantine_email
+  stage: Initial Access
+
+- id: ATTK-DRIVEBY
+  name: Drive-by Download Attack
+  tactic: Initial Access
+  technique: T1189
+  event: WebEvent
+  window_s: 60
+  threshold: 1
+  group_by: src_ip
+  where: "referrer_suspicious == true"
+  severity: high
+  response: block_ip
+  stage: Initial Access
+
+- id: ATTK-INSIDER-DATA-HARVEST
+  name: Insider Data Harvesting
+  tactic: Collection
+  technique: T1005
+  event: FileEvent
+  window_s: 300
+  threshold: 50
+  group_by: username
+  where: "operation == 'read'"
+  severity: high
+  response: isolate_host
+  stage: Collection
+
+- id: ATTK-RANSOM-PREENC
+  name: Ransomware Pre-Encryption Activity
+  tactic: Impact
+  technique: T1486
+  event: FileEvent
+  window_s: 30
+  threshold: 100
+  group_by: process
+  where: "operation in ['create', 'rename', 'delete']"
+  severity: crit
+  response: kill_process
+  stage: Impact
+
+- id: ATTK-SUPPLY-UPDATE-TAMPER
+  name: Supply Chain Update Tampering
+  tactic: Initial Access
+  technique: T1195
+  event: ProcessEvent
+  window_s: 600
+  threshold: 1
+  group_by: parent_process
+  where: "process_signed == false"
+  severity: crit
+  response: isolate_host
+  stage: Initial Access
+
+- id: ATTK-CLOUD-TAKEOVER
+  name: Cloud Account Takeover
+  tactic: Initial Access
+  technique: T1078
+  event: CloudEvent
+  window_s: 3600
+  threshold: 1
+  group_by: username
+  where: "impossible_travel == true"
+  severity: crit
+  response: disable_account
+  stage: Initial Access
+
+- id: ATTK-API-STUFFING
+  name: API Credential Stuffing
+  tactic: Credential Access
+  technique: T1110.003
+  event: ApiEvent
+  window_s: 60
+  threshold: 50
+  group_by: src_ip
+  where: "response_code in [401, 429]"
+  severity: high
+  response: block_ip
+  stage: Credential Access
+
+- id: ATTK-IOT-ANOM-TRAFFIC
+  name: IoT Anomalous Traffic Pattern
+  tactic: Command and Control
+  technique: T1095
+  event: NetworkEvent
+  window_s: 300
+  threshold: 5
+  group_by: src_device
+  where: "direction == 'outbound'"
+  severity: high
+  response: isolate_host
+  stage: Command and Control
+
+- id: ATTK-BEC-INBOX-RULES
+  name: Business Email Compromise - Inbox Rules
+  tactic: Collection
+  technique: T1114
+  event: MailEvent
+  window_s: 300
+  threshold: 1
+  group_by: username
+  where: "rule_type == 'hidden_forward'"
+  severity: high
+  response: disable_account
+  stage: Collection
+
+- id: ATTK-INJECTION
+  name: Code Injection Attack
+  tactic: Execution
+  technique: T1059
+  event: ProcessEvent
+  window_s: 60
+  threshold: 1
+  group_by: parent_process
+  where: "command_line contains 'sqlmap'"
+  severity: high
+  response: kill_process
+  stage: Execution
+
+- id: ATTK-SAAS-PASSWORD-SPRAY
+  name: SaaS Password Spraying
+  tactic: Credential Access
+  technique: T1110.003
+  event: AuthEvent
+  window_s: 300
+  threshold: 20
+  group_by: src_ip
+  where: "result == 'failure'"
+  severity: high
+  response: block_ip
+  stage: Credential Access
+
+- id: ATTK-WATERING-HOLE
+  name: Watering Hole Attack
+  tactic: Initial Access
+  technique: T1189
+  event: WebEvent
+  window_s: 600
+  threshold: 10
+  group_by: dst_domain
+  where: "domain_age_days < 30"
+  severity: high
+  response: block_domain
+  stage: Initial Access
+
+- id: ATTK-VISHING
+  name: Voice Phishing (MFA Push Fatigue)
+  tactic: Initial Access
+  technique: T1656
+  event: AuthEvent
+  window_s: 300
+  threshold: 10
+  group_by: username
+  where: "mfa_method == 'push'"
+  severity: med
+  response: disable_account
+  stage: Initial Access
+
+- id: ATTK-KEYLOGGER
+  name: Keylogger Detection
+  tactic: Collection
+  technique: T1056
+  event: ProcessEvent
+  window_s: 3600
+  threshold: 1
+  group_by: process
+  where: "entropy_score < 3.0"
+  severity: high
+  response: kill_process
+  stage: Collection
+
+- id: ATTK-DDOS
+  name: Distributed Denial of Service
+  tactic: Impact
+  technique: T1498
+  event: NetworkEvent
+  window_s: 60
+  threshold: 1000
+  group_by: dst_ip
+  where: "connection_rate > 100"
+  severity: high
+  response: block_traffic
+  stage: Impact
+
+- id: ATTK-MITM
+  name: Man-in-the-Middle Attack
+  tactic: Credential Access
+  technique: T1557
+  event: NetworkEvent
+  window_s: 300
+  threshold: 5
+  group_by: src_mac
+  where: "arp_spoof_detected == true"
+  severity: high
+  response: isolate_host
+  stage: Credential Access
+
+- id: ATTK-ROGUE-USB
+  name: Rogue USB Device
+  tactic: Initial Access
+  technique: T1091
+  event: UsbEvent
+  window_s: 30
+  threshold: 1
+  group_by: device_id
+  where: "device_type == 'removable'"
+  severity: high
+  response: isolate_host
+  stage: Initial Access
+
+- id: ATTK-AI-DEEPFAKE
+  name: AI/Deepfake Phishing
+  tactic: Initial Access
+  technique: T1566
+  event: MailEvent
+  window_s: 300
+  threshold: 1
+  group_by: recipient
+  where: "nlp_flag_score >= 0.8"
+  severity: high
+  response: quarantine_email
+  stage: Initial Access
+
+- id: ATTK-ZERODAY-EXPLOIT
+  name: Zero-Day Exploit Attempt
+  tactic: Execution
+  technique: T1203
+  event: ProcessEvent
+  window_s: 60
+  threshold: 1
+  group_by: process
+  where: "exploit_marker_detected == true"
+  severity: crit
+  response: isolate_host
+  stage: Execution

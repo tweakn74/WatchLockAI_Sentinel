@@ -1,0 +1,21 @@
+{
+  "plugins": {
+    "example_hello": {
+      "path": "example_hello.py",
+      "sha256": "57a8bbbdb94985660d2a340e06d4ef99a504fe82bda3069bb1c777eec1626b10",
+      "version": "1.0.0",
+      "description": "Example hello world plugin for demonstration",
+      "author": "WatchLockAI",
+      "permissions": {
+        "filesystem": false,
+        "network": false,
+        "system_calls": false
+      },
+      "api_version": "1.0",
+      "enabled": true
+    }
+  },
+  "manifest_version": "1.0.0",
+  "created": "2025-09-04T10:29:27Z",
+  "updated": "2025-09-04T10:29:27Z"
+}

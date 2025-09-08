@@ -1,0 +1,16 @@
+{
+  "score": 0.0,
+  "window_minutes": 60,
+  "observation_count": 0,
+  "features_analyzed": [
+    "cpu_usage",
+    "memory_usage",
+    "network_activity",
+    "process_count"
+  ],
+  "model_status": "untrained",
+  "confidence": 0.0,
+  "threshold": 0.8,
+  "anomaly_detected": false,
+  "baseline_established": false
+}

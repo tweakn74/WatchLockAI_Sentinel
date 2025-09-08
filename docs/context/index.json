@@ -1,0 +1,330 @@
+[
+  {
+    "path": "INDEX.md",
+    "title": "Master Documentation Index",
+    "purpose": "Complete table of contents linking all context docs",
+    "anchors": [
+      "Architecture & System Design",
+      "Development Process & Standards",
+      "System Context & API Reference",
+      "Platform & Compatibility",
+      "Task Management & Planning"
+    ]
+  },
+  {
+    "path": "architecture.md",
+    "title": "System Architecture",
+    "purpose": "Complete system architecture and component interactions",
+    "anchors": [
+      "System Overview",
+      "Component Map",
+      "Data Flows",
+      "Dependencies"
+    ]
+  },
+  {
+    "path": "development_rails.md",
+    "title": "Development Rails",
+    "purpose": "Safe development workflow and Definition of Done",
+    "anchors": [
+      "Definition of Done",
+      "Commit Etiquette",
+      "Folder Ownership",
+      "Refactor Playbook"
+    ]
+  },
+  {
+    "path": "session_startup.md",
+    "title": "Session Startup",
+    "purpose": "Developer session setup and troubleshooting runbook",
+    "anchors": [
+      "Environment Prep",
+      "Baseline Commands",
+      "Platform Guards",
+      "Troubleshooting"
+    ]
+  },
+  {
+    "path": "testing_strategy.md",
+    "title": "Testing Strategy",
+    "purpose": "Test architecture and CI requirements",
+    "anchors": [
+      "Test Layers",
+      "Smoke Recipe",
+      "CI Invariants",
+      "Current Gaps"
+    ]
+  },
+  {
+    "path": "coding_standards.md",
+    "title": "Coding Standards",
+    "purpose": "Code quality standards and typing conventions",
+    "anchors": [
+      "Ruff Rules",
+      "Pyright Expectations",
+      "Typing Conventions",
+      "Platform Guards"
+    ]
+  },
+  {
+    "path": "release_checklist.md",
+    "title": "Release Checklist",
+    "purpose": "Pre-deployment validation checklist",
+    "anchors": [
+      "Pre-flight Steps",
+      "Cross-platform Checks",
+      "Changelog",
+      "Patch Artifact"
+    ]
+  },
+  {
+    "path": "master_todo.json",
+    "title": "Master To-Do List",
+    "purpose": "Authoritative prioritized task backlog",
+    "anchors": [
+      "P0 Tasks",
+      "P1 Tasks",
+      "P2 Tasks"
+    ]
+  },
+  {
+    "path": "master_todo.md",
+    "title": "Master To-Do (Human Readable)",
+    "purpose": "Human-readable task list with file links",
+    "anchors": [
+      "Priority Tasks",
+      "File References",
+      "Acceptance Criteria"
+    ]
+  },
+  {
+    "path": "events/contracts.md",
+    "title": "Event Contracts",
+    "purpose": "Event system producer-consumer contracts",
+    "anchors": [
+      "Event Types",
+      "Producer Contracts",
+      "Consumer Contracts"
+    ]
+  },
+  {
+    "path": "events/schema.json",
+    "title": "Event Schema",
+    "purpose": "JSON schema for all event types",
+    "anchors": []
+  },
+  {
+    "path": "api/routes.md",
+    "title": "API Routes",
+    "purpose": "REST API endpoints and web console routes",
+    "anchors": [
+      "Endpoints",
+      "Request Formats",
+      "Response Formats"
+    ]
+  },
+  {
+    "path": "config/keys.md",
+    "title": "Configuration Keys",
+    "purpose": "Configuration keys reference",
+    "anchors": [
+      "System Keys",
+      "Security Keys",
+      "Platform Keys"
+    ]
+  },
+  {
+    "path": "config/index.json",
+    "title": "Configuration Index",
+    "purpose": "Machine-readable configuration index",
+    "anchors": []
+  },
+  {
+    "path": "platform/guards.md",
+    "title": "Platform Guards",
+    "purpose": "Windows-specific code and Linux compatibility",
+    "anchors": [
+      "Windows Guards",
+      "Linux Compatibility",
+      "Type Stubs"
+    ]
+  },
+  {
+    "path": "glossary.md",
+    "title": "Glossary",
+    "purpose": "Terms and abbreviations dictionary",
+    "anchors": [
+      "Terms",
+      "Abbreviations",
+      "Concepts"
+    ]
+  },
+  {
+    "path": "assumptions.md",
+    "title": "System Assumptions",
+    "purpose": "System assumptions and constraints",
+    "anchors": [
+      "Platform Assumptions",
+      "Runtime Assumptions",
+      "Security Assumptions"
+    ]
+  },
+  {
+    "path": "workspace_overview.md",
+    "title": "Workspace Overview",
+    "purpose": "High-level workspace structure and components",
+    "anchors": [
+      "Directory Structure",
+      "Component Overview",
+      "File Organization"
+    ]
+  },
+  {
+    "path": "todo/todo.json",
+    "title": "Original Task Analysis",
+    "purpose": "Original detailed task analysis",
+    "anchors": []
+  },
+  {
+    "path": "decisions/ADR-0001-template.md",
+    "title": "ADR Template",
+    "purpose": "Architecture Decision Record template",
+    "anchors": [
+      "Template Structure",
+      "Decision Format",
+      "Status Options"
+    ]
+  },
+  {
+    "path": "decisions/ADR-0002-operational-mode.md",
+    "title": "Operational Mode Decision",
+    "purpose": "Operational mode switching decision record",
+    "anchors": [
+      "Context",
+      "Decision",
+      "Consequences"
+    ]
+  },
+  {
+    "path": "runbooks/README.md",
+    "title": "Runbooks Index",
+    "purpose": "Available operational runbooks",
+    "anchors": [
+      "Available Runbooks",
+      "Usage Guidelines"
+    ]
+  },
+  {
+    "path": "baselines.txt",
+    "title": "Baseline Measurements",
+    "purpose": "Human-readable baseline measurements with tool status",
+    "anchors": [
+      "Tool Status",
+      "Canonical Counts",
+      "SHA256 Hashes"
+    ]
+  },
+  {
+    "path": "baselines.json",
+    "title": "Baseline Data",
+    "purpose": "Machine-readable baseline measurements",
+    "anchors": []
+  },
+  {
+    "path": "context/event_system_architecture.md",
+    "title": "Event System Architecture",
+    "purpose": "Comprehensive documentation of the event bus, event types, schemas, and publisher-subscriber patterns",
+    "anchors": [
+      "EventBus",
+      "Event Schemas",
+      "Event Flow Patterns",
+      "Component Integration",
+      "Observability"
+    ]
+  },
+  {
+    "path": "context/api_reference_complete.md",
+    "title": "Complete API Reference",
+    "purpose": "Full documentation of all REST endpoints, request/response formats, authentication, and web console routes",
+    "anchors": [
+      "Core Endpoints",
+      "Authentication",
+      "Admin Endpoints",
+      "Streaming",
+      "Feature Flags"
+    ]
+  },
+  {
+    "path": "context/detection_engine_architecture.md",
+    "title": "Detection Engine Architecture",
+    "purpose": "Documentation of rules engine, behavioral analysis, threat intelligence, ML scoring, and MITRE ATT&CK integration",
+    "anchors": [
+      "Rules Engine",
+      "MITRE ATT&CK",
+      "Behavioral Analysis",
+      "ML Scoring",
+      "Threat Intelligence"
+    ]
+  },
+  {
+    "path": "context/response_system_architecture.md",
+    "title": "Response System Architecture",
+    "purpose": "Documentation of alerts system, response actions, playbooks, and operational mode enforcement",
+    "anchors": [
+      "Alert Management",
+      "Response Actions",
+      "Playbooks",
+      "Operational Modes",
+      "Safety Guardrails"
+    ]
+  },
+  {
+    "path": "context/configuration_system_architecture.md",
+    "title": "Configuration System Architecture",
+    "purpose": "Documentation of configuration management, operational modes, settings validation, and hot reload",
+    "anchors": [
+      "Configuration Loading",
+      "Operational Mode Management",
+      "Hot Reload",
+      "Validation",
+      "API Integration"
+    ]
+  },
+  {
+    "path": "context/component_integration_patterns.md",
+    "title": "Component Integration Patterns",
+    "purpose": "Documentation of how collectors, detection, response, and UI components integrate through the event bus",
+    "anchors": [
+      "Integration Patterns",
+      "Service Initialization",
+      "Data Flow",
+      "Cross-Component Communication",
+      "Error Handling"
+    ]
+  },
+  {
+    "path": "context/development_workflow_patterns.md",
+    "title": "Development Workflow Patterns",
+    "purpose": "Testing patterns, debugging approaches, and development best practices specific to this codebase",
+    "anchors": [
+      "Testing Patterns",
+      "Debugging",
+      "Performance Profiling",
+      "Code Quality",
+      "Deployment"
+    ]
+  },
+  {
+    "path": "context/master_todo.md",
+    "title": "Master TODO List - Context Documentation",
+    "purpose": "Comprehensive analysis and prioritized todo list for all context documentation files, identifying gaps, inconsistencies, and improvement opportunities",
+    "anchors": [
+      "Critical Documentation Issues",
+      "Context File Integration",
+      "Security Context Documentation",
+      "Performance and Scalability",
+      "Deployment and Operations",
+      "Implementation Roadmap"
+    ]
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "incident_response_checklist": {
+    "immediate_actions": [
+      "Isolate affected systems",
+      "Preserve volatile memory",
+      "Document initial observations",
+      "Contact legal/compliance teams",
+      "Begin evidence collection"
+    ],
+    "evidence_priorities": [
+      "RAM dump (highest priority - volatile)",
+      "Hard drive imaging",
+      "Network traffic capture",
+      "System logs",
+      "Registry hives",
+      "Browser artifacts",
+      "Email data"
+    ],
+    "chain_of_custody": {
+      "required_fields": [
+        "Evidence ID",
+        "Description",
+        "Date/Time collected",
+        "Collected by",
+        "Method of collection",
+        "Storage location",
+        "Hash values (MD5/SHA256)"
+      ]
+    }
+  },
+  "common_artifacts": {
+    "windows_locations": {
+      "prefetch": "C:\\Windows\\Prefetch\\*.pf",
+      "event_logs": "C:\\Windows\\System32\\winevt\\Logs\\*.evtx",
+      "registry_hives": [
+        "C:\\Windows\\System32\\config\\SYSTEM",
+        "C:\\Windows\\System32\\config\\SOFTWARE",
+        "C:\\Windows\\System32\\config\\SAM",
+        "C:\\Windows\\System32\\config\\SECURITY",
+        "C:\\Users\\*\\NTUSER.DAT"
+      ],
+      "browser_chrome": "C:\\Users\\*\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\History",
+      "browser_firefox": "C:\\Users\\*\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\places.sqlite"
+    }
+  }
+}

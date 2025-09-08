@@ -1,0 +1,319 @@
+{
+  "generator": "JSON Schema Generator v4.0",
+  "timestamp": "2025-09-06T22:43:50Z",
+  "total_schemas": 52,
+  "schemas": [
+    {
+      "method": "GET",
+      "path": "/",
+      "filename": "get.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/accounts",
+      "filename": "get_accounts.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_accounts.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/actions/pause",
+      "filename": "post_api_actions_pause.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_actions_pause.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/actions/resume",
+      "filename": "post_api_actions_resume.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_actions_resume.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/config/reload",
+      "filename": "post_api_admin_config_reload.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_admin_config_reload.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/config/schema",
+      "filename": "get_api_admin_config_schema.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_admin_config_schema.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/anomaly/train",
+      "filename": "post_api_admin_anomaly_train.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_admin_anomaly_train.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/quarantine",
+      "filename": "post_api_admin_quarantine.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_admin_quarantine.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/quarantine/restore",
+      "filename": "post_api_admin_quarantine_restore.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_admin_quarantine_restore.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/plugins",
+      "filename": "get_api_admin_plugins.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_admin_plugins.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/plugins/execute",
+      "filename": "post_api_admin_plugins_execute.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_admin_plugins_execute.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/preflight",
+      "filename": "get_api_admin_preflight.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_admin_preflight.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/backup",
+      "filename": "post_api_admin_backup.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_admin_backup.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/restore",
+      "filename": "post_api_admin_restore.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_admin_restore.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/rotate/preview",
+      "filename": "post_api_admin_rotate_preview.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_admin_rotate_preview.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/rotate/execute",
+      "filename": "post_api_admin_rotate_execute.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_admin_rotate_execute.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/chaos/inject",
+      "filename": "post_api_admin_chaos_inject.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_admin_chaos_inject.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/chaos/status",
+      "filename": "get_api_admin_chaos_status.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_admin_chaos_status.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/retention/run",
+      "filename": "post_api_admin_retention_run.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_admin_retention_run.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/retention/stats",
+      "filename": "get_api_admin_retention_stats.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_admin_retention_stats.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/perf/probe",
+      "filename": "post_api_admin_perf_probe.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_admin_perf_probe.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/perf/quick",
+      "filename": "get_api_admin_perf_quick.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_admin_perf_quick.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/alerts",
+      "filename": "get_api_alerts.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_alerts.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/anomaly/score",
+      "filename": "get_api_anomaly_score.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_anomaly_score.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/login",
+      "filename": "post_api_auth_login.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_auth_login.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/logout",
+      "filename": "post_api_auth_logout.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_auth_logout.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "filename": "get_api_auth_me.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_auth_me.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/detections",
+      "filename": "get_api_detections.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_detections.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/export/telemetry",
+      "filename": "get_api_export_telemetry.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_export_telemetry.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/metrics/event_bus",
+      "filename": "get_api_metrics_event_bus.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_metrics_event_bus.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/metrics/snapshot",
+      "filename": "get_api_metrics_snapshot.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_metrics_snapshot.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/metrics/health",
+      "filename": "get_api_metrics_health.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_metrics_health.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/mitre/coverage",
+      "filename": "get_api_mitre_coverage.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_mitre_coverage.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/policies",
+      "filename": "get_api_policies.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_policies.schema.json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/policies",
+      "filename": "post_api_policies.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/post_api_policies.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "filename": "get_api_status.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_status.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/stream/health",
+      "filename": "get_api_stream_health.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_stream_health.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ti/search",
+      "filename": "get_api_ti_search.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_api_ti_search.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/assets",
+      "filename": "get_assets.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_assets.schema.json"
+    },
+    {
+      "method": "PATCH",
+      "path": "console.anomaly.ANOMALY_SKLEARN_ENABLED",
+      "filename": "patch_console_anomaly_ANOMALY_SKLEARN_ENABLED.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/patch_console_anomaly_ANOMALY_SKLEARN_ENABLED.schema.json"
+    },
+    {
+      "method": "PATCH",
+      "path": "console.anomaly.ANOMALY_SKLEARN_ENABLED",
+      "filename": "patch_console_anomaly_ANOMALY_SKLEARN_ENABLED.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/patch_console_anomaly_ANOMALY_SKLEARN_ENABLED.schema.json"
+    },
+    {
+      "method": "PATCH",
+      "path": "console.quarantine.QUARANTINE_ENABLED",
+      "filename": "patch_console_quarantine_QUARANTINE_ENABLED.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/patch_console_quarantine_QUARANTINE_ENABLED.schema.json"
+    },
+    {
+      "method": "PATCH",
+      "path": "console.quarantine.QUARANTINE_ENABLED",
+      "filename": "patch_console_quarantine_QUARANTINE_ENABLED.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/patch_console_quarantine_QUARANTINE_ENABLED.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/detections",
+      "filename": "get_detections.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_detections.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "filename": "get_health.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_health.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/operational_mode",
+      "filename": "get_operational_mode.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_operational_mode.schema.json"
+    },
+    {
+      "method": "PUT",
+      "path": "/operational_mode",
+      "filename": "put_operational_mode.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/put_operational_mode.schema.json"
+    },
+    {
+      "method": "PATCH",
+      "path": "os.name",
+      "filename": "patch_os_name.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/patch_os_name.schema.json"
+    },
+    {
+      "method": "PATCH",
+      "path": "os.name",
+      "filename": "patch_os_name.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/patch_os_name.schema.json"
+    },
+    {
+      "method": "PATCH",
+      "path": "os.name",
+      "filename": "patch_os_name.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/patch_os_name.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/policies",
+      "filename": "get_policies.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_policies.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/processes",
+      "filename": "get_processes.schema.json",
+      "schema_file": "/workspace/WatchLockAI_Sentinel/DOCS/api/schema/get_processes.schema.json"
+    }
+  ]
+}

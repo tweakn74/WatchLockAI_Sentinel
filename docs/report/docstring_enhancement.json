@@ -1,0 +1,4183 @@
+{
+  "diff_examples": [
+    {
+      "diff": [
+        "--- original/capture_alert",
+        "+++ enhanced/capture_alert",
+        "@@ -1 +1,7 @@",
+        "+Capture Alert.",
+        " ",
+        "+Returns:",
+        "+    Return value description needed.",
+        "+",
+        "+Raises:",
+        "+    Exception: Exception description needed."
+      ],
+      "file_path": "temp_synthetic_probes.py",
+      "function_name": "capture_alert"
+    },
+    {
+      "diff": [
+        "--- original/sha256_of",
+        "+++ enhanced/sha256_of",
+        "@@ -1 +1,7 @@",
+        "+Sha256 Of.",
+        " ",
+        "+Returns:",
+        "+    Return value description needed.",
+        "+",
+        "+Raises:",
+        "+    Exception: Exception description needed."
+      ],
+      "file_path": "generate_inventory.py",
+      "function_name": "sha256_of"
+    },
+    {
+      "diff": [
+        "--- original/generate_inventory",
+        "+++ enhanced/generate_inventory",
+        "@@ -1 +1,7 @@",
+        "+Generate Inventory.",
+        " ",
+        "+Returns:",
+        "+    Return value description needed.",
+        "+",
+        "+Raises:",
+        "+    Exception: Exception description needed."
+      ],
+      "file_path": "generate_inventory.py",
+      "function_name": "generate_inventory"
+    },
+    {
+      "diff": [
+        "--- original/sha256_of_file",
+        "+++ enhanced/sha256_of_file",
+        "@@ -1 +1,9 @@",
+        " Calculate SHA256 hash of a file",
+        "+",
+        "+Returns:",
+        "+    Return value description needed.",
+        "+",
+        "+Raises:",
+        "+    FileNotFoundError: Exception description needed.",
+        "+    PermissionError: Exception description needed.",
+        "+    IOError: Exception description needed."
+      ],
+      "file_path": "generate_p2_003_004_artifacts.py",
+      "function_name": "sha256_of_file"
+    },
+    {
+      "diff": [
+        "--- original/generate_work_manifest",
+        "+++ enhanced/generate_work_manifest",
+        "@@ -1 +1,7 @@",
+        " Generate work manifest with all changes for P2-003 and P2-004",
+        "+",
+        "+Returns:",
+        "+    Return value description needed.",
+        "+",
+        "+Raises:",
+        "+    Exception: Exception description needed."
+      ],
+      "file_path": "generate_p2_003_004_artifacts.py",
+      "function_name": "generate_work_manifest"
+    },
+    {
+      "diff": [
+        "--- original/generate_repo_inventory",
+        "+++ enhanced/generate_repo_inventory",
+        "@@ -1 +1,7 @@",
+        " Generate complete repository inventory with SHA256 hashes",
+        "+",
+        "+Returns:",
+        "+    Return value description needed.",
+        "+",
+        "+Raises:",
+        "+    Exception: Exception description needed."
+      ],
+      "file_path": "generate_p2_003_004_artifacts.py",
+      "function_name": "generate_repo_inventory"
+    },
+    {
+      "diff": [
+        "--- original/signal_handler",
+        "+++ enhanced/signal_handler",
+        "@@ -1 +1,11 @@",
+        "+Signal Handler.",
+        " ",
+        "+Args:",
+        "+    signum: Parameter description needed.",
+        "+    frame: Parameter description needed.",
+        "+",
+        "+Returns:",
+        "+    None: Return value description needed.",
+        "+",
+        "+Raises:",
+        "+    Exception: Exception description needed."
+      ],
+      "file_path": "app.py",
+      "function_name": "signal_handler"
+    },
+    {
+      "diff": [
+        "--- original/start",
+        "+++ enhanced/start",
+        "@@ -1 +1,7 @@",
+        " Start the Sentinel application.",
+        "+",
+        "+Returns:",
+        "+    None: Return value description needed.",
+        "+",
+        "+Raises:",
+        "+    Exception: Exception description needed."
+      ],
+      "file_path": "app.py",
+      "function_name": "start"
+    },
+    {
+      "diff": [
+        "--- original/stop",
+        "+++ enhanced/stop",
+        "@@ -1 +1,7 @@",
+        " Stop the Sentinel application.",
+        "+",
+        "+Returns:",
+        "+    None: Return value description needed.",
+        "+",
+        "+Raises:",
+        "+    Exception: Exception description needed."
+      ],
+      "file_path": "app.py",
+      "function_name": "stop"
+    },
+    {
+      "diff": [
+        "--- original/run_forever",
+        "+++ enhanced/run_forever",
+        "@@ -1 +1,7 @@",
+        " Run application until stopped.",
+        "+",
+        "+Returns:",
+        "+    None: Return value description needed.",
+        "+",
+        "+Raises:",
+        "+    Exception: Exception description needed."
+      ],
+      "file_path": "app.py",
+      "function_name": "run_forever"
+    }
+  ],
+  "enhancements_by_file": {
+    "app.py": [
+      {
+        "enhanced_length": 212,
+        "enhancement_type": "added_raises",
+        "function_name": "signal_handler",
+        "line_number": 48,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 138,
+        "enhancement_type": "added_raises",
+        "function_name": "start",
+        "line_number": 55,
+        "original_length": 31
+      },
+      {
+        "enhanced_length": 137,
+        "enhancement_type": "added_raises",
+        "function_name": "stop",
+        "line_number": 96,
+        "original_length": 30
+      },
+      {
+        "enhanced_length": 137,
+        "enhancement_type": "added_raises",
+        "function_name": "run_forever",
+        "line_number": 120,
+        "original_length": 30
+      },
+      {
+        "enhanced_length": 301,
+        "enhancement_type": "added_raises",
+        "function_name": "run_interactive",
+        "line_number": 143,
+        "original_length": 199
+      },
+      {
+        "enhanced_length": 240,
+        "enhancement_type": "added_raises",
+        "function_name": "create_default_config",
+        "line_number": 168,
+        "original_length": 34
+      },
+      {
+        "enhanced_length": 291,
+        "enhancement_type": "added_raises",
+        "function_name": "validate_configuration",
+        "line_number": 182,
+        "original_length": 93
+      },
+      {
+        "enhanced_length": 210,
+        "enhancement_type": "added_raises",
+        "function_name": "rebuild_knowledge_index",
+        "line_number": 205,
+        "original_length": 108
+      },
+      {
+        "enhanced_length": 150,
+        "enhancement_type": "added_raises",
+        "function_name": "show_status",
+        "line_number": 230,
+        "original_length": 43
+      },
+      {
+        "enhanced_length": 159,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 236,
+        "original_length": 52
+      }
+    ],
+    "app_core/bus.py": [
+      {
+        "enhanced_length": 134,
+        "enhancement_type": "added_raises",
+        "function_name": "start",
+        "line_number": 72,
+        "original_length": 27
+      },
+      {
+        "enhanced_length": 133,
+        "enhancement_type": "added_raises",
+        "function_name": "stop",
+        "line_number": 82,
+        "original_length": 26
+      },
+      {
+        "enhanced_length": 468,
+        "enhancement_type": "added_raises",
+        "function_name": "subscribe",
+        "line_number": 183,
+        "original_length": 423
+      },
+      {
+        "enhanced_length": 194,
+        "enhancement_type": "added_raises",
+        "function_name": "unsubscribe",
+        "line_number": 223,
+        "original_length": 96
+      },
+      {
+        "enhanced_length": 187,
+        "enhancement_type": "added_raises",
+        "function_name": "publish",
+        "line_number": 239,
+        "original_length": 89
+      },
+      {
+        "enhanced_length": 213,
+        "enhancement_type": "added_raises",
+        "function_name": "publish_sync",
+        "line_number": 253,
+        "original_length": 115
+      },
+      {
+        "enhanced_length": 168,
+        "enhancement_type": "added_raises",
+        "function_name": "get_stats",
+        "line_number": 269,
+        "original_length": 123
+      },
+      {
+        "enhanced_length": 247,
+        "enhancement_type": "added_raises",
+        "function_name": "get_observability_metrics",
+        "line_number": 286,
+        "original_length": 202
+      },
+      {
+        "enhanced_length": 151,
+        "enhancement_type": "added_raises",
+        "function_name": "is_running",
+        "line_number": 303,
+        "original_length": 44
+      },
+      {
+        "enhanced_length": 174,
+        "enhancement_type": "added_raises",
+        "function_name": "get_subscription_info",
+        "line_number": 307,
+        "original_length": 129
+      },
+      {
+        "enhanced_length": 219,
+        "enhancement_type": "added_raises",
+        "function_name": "get_recent_events",
+        "line_number": 331,
+        "original_length": 174
+      },
+      {
+        "enhanced_length": 136,
+        "enhancement_type": "added_raises",
+        "function_name": "get_event_bus",
+        "line_number": 355,
+        "original_length": 87
+      },
+      {
+        "enhanced_length": 145,
+        "enhancement_type": "added_raises",
+        "function_name": "initialize_event_bus",
+        "line_number": 367,
+        "original_length": 96
+      },
+      {
+        "enhanced_length": 137,
+        "enhancement_type": "added_raises",
+        "function_name": "shutdown_event_bus",
+        "line_number": 379,
+        "original_length": 30
+      }
+    ],
+    "app_core/config.py": [
+      {
+        "enhanced_length": 205,
+        "enhancement_type": "added_raises",
+        "function_name": "current_mode",
+        "line_number": 117,
+        "original_length": 160
+      },
+      {
+        "enhanced_length": 372,
+        "enhancement_type": "improved_format",
+        "function_name": "load_config",
+        "line_number": 165,
+        "original_length": 377
+      },
+      {
+        "enhanced_length": 317,
+        "enhancement_type": "added_raises",
+        "function_name": "save_default_config",
+        "line_number": 211,
+        "original_length": 113
+      },
+      {
+        "enhanced_length": 323,
+        "enhancement_type": "added_raises",
+        "function_name": "validate_config",
+        "line_number": 228,
+        "original_length": 178
+      },
+      {
+        "enhanced_length": 363,
+        "enhancement_type": "added_raises",
+        "function_name": "start_hot_reload",
+        "line_number": 265,
+        "original_length": 159
+      },
+      {
+        "enhanced_length": 267,
+        "enhancement_type": "added_raises",
+        "function_name": "stop_hot_reload",
+        "line_number": 291,
+        "original_length": 58
+      },
+      {
+        "enhanced_length": 231,
+        "enhancement_type": "added_raises",
+        "function_name": "subscribe_on_change",
+        "line_number": 306,
+        "original_length": 129
+      },
+      {
+        "enhanced_length": 274,
+        "enhancement_type": "added_raises",
+        "function_name": "get_current_config",
+        "line_number": 389,
+        "original_length": 126
+      },
+      {
+        "enhanced_length": 271,
+        "enhancement_type": "added_raises",
+        "function_name": "get_config_version",
+        "line_number": 398,
+        "original_length": 123
+      }
+    ],
+    "app_core/logging_setup.py": [
+      {
+        "enhanced_length": 179,
+        "enhancement_type": "added_raises",
+        "function_name": "log_event",
+        "line_number": 31,
+        "original_length": 81
+      },
+      {
+        "enhanced_length": 188,
+        "enhancement_type": "added_raises",
+        "function_name": "log_alert",
+        "line_number": 48,
+        "original_length": 90
+      },
+      {
+        "enhanced_length": 514,
+        "enhancement_type": "added_raises",
+        "function_name": "setup_logging",
+        "line_number": 67,
+        "original_length": 465
+      },
+      {
+        "enhanced_length": 179,
+        "enhancement_type": "added_raises",
+        "function_name": "setup_windows_event_log",
+        "line_number": 152,
+        "original_length": 130
+      },
+      {
+        "enhanced_length": 161,
+        "enhancement_type": "added_raises",
+        "function_name": "emit",
+        "line_number": 173,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 255,
+        "enhancement_type": "added_raises",
+        "function_name": "log_event",
+        "line_number": 205,
+        "original_length": 153
+      },
+      {
+        "enhanced_length": 278,
+        "enhancement_type": "added_raises",
+        "function_name": "log_alert",
+        "line_number": 220,
+        "original_length": 176
+      },
+      {
+        "enhanced_length": 218,
+        "enhancement_type": "added_raises",
+        "function_name": "get_log_stats",
+        "line_number": 245,
+        "original_length": 169
+      }
+    ],
+    "app_core/schemas.py": [
+      {
+        "enhanced_length": 300,
+        "enhancement_type": "added_raises",
+        "function_name": "validate_entropy",
+        "line_number": 101,
+        "original_length": 50
+      }
+    ],
+    "collectors/fs_monitor.py": [
+      {
+        "enhanced_length": 190,
+        "enhancement_type": "added_raises",
+        "function_name": "compute_entropy",
+        "line_number": 26,
+        "original_length": 141
+      },
+      {
+        "enhanced_length": 306,
+        "enhancement_type": "added_raises",
+        "function_name": "compute_file_hash",
+        "line_number": 52,
+        "original_length": 155
+      },
+      {
+        "enhanced_length": 354,
+        "enhancement_type": "added_raises",
+        "function_name": "get_process_for_file",
+        "line_number": 72,
+        "original_length": 203
+      },
+      {
+        "enhanced_length": 437,
+        "enhancement_type": "added_raises",
+        "function_name": "create_file_event",
+        "line_number": 138,
+        "original_length": 290
+      },
+      {
+        "enhanced_length": 183,
+        "enhancement_type": "added_raises",
+        "function_name": "on_created",
+        "line_number": 201,
+        "original_length": 28
+      },
+      {
+        "enhanced_length": 187,
+        "enhancement_type": "added_raises",
+        "function_name": "on_modified",
+        "line_number": 209,
+        "original_length": 32
+      },
+      {
+        "enhanced_length": 183,
+        "enhancement_type": "added_raises",
+        "function_name": "on_deleted",
+        "line_number": 217,
+        "original_length": 28
+      },
+      {
+        "enhanced_length": 202,
+        "enhancement_type": "added_raises",
+        "function_name": "on_moved",
+        "line_number": 225,
+        "original_length": 47
+      },
+      {
+        "enhanced_length": 129,
+        "enhancement_type": "added_raises",
+        "function_name": "start",
+        "line_number": 255,
+        "original_length": 22
+      },
+      {
+        "enhanced_length": 128,
+        "enhancement_type": "added_raises",
+        "function_name": "stop",
+        "line_number": 264,
+        "original_length": 21
+      },
+      {
+        "enhanced_length": 154,
+        "enhancement_type": "added_raises",
+        "function_name": "start",
+        "line_number": 355,
+        "original_length": 47
+      },
+      {
+        "enhanced_length": 135,
+        "enhancement_type": "added_raises",
+        "function_name": "stop",
+        "line_number": 406,
+        "original_length": 28
+      },
+      {
+        "enhanced_length": 149,
+        "enhancement_type": "added_raises",
+        "function_name": "get_stats",
+        "line_number": 425,
+        "original_length": 104
+      }
+    ],
+    "collectors/health_monitor.py": [
+      {
+        "enhanced_length": 163,
+        "enhancement_type": "added_raises",
+        "function_name": "get_cpu_temperature",
+        "line_number": 26,
+        "original_length": 114
+      },
+      {
+        "enhanced_length": 131,
+        "enhancement_type": "added_raises",
+        "function_name": "start",
+        "line_number": 74,
+        "original_length": 24
+      },
+      {
+        "enhanced_length": 130,
+        "enhancement_type": "added_raises",
+        "function_name": "stop",
+        "line_number": 90,
+        "original_length": 23
+      },
+      {
+        "enhanced_length": 173,
+        "enhancement_type": "added_raises",
+        "function_name": "get_current_metrics",
+        "line_number": 249,
+        "original_length": 128
+      },
+      {
+        "enhanced_length": 149,
+        "enhancement_type": "added_raises",
+        "function_name": "get_stats",
+        "line_number": 257,
+        "original_length": 104
+      },
+      {
+        "enhanced_length": 166,
+        "enhancement_type": "added_raises",
+        "function_name": "get_system_info",
+        "line_number": 283,
+        "original_length": 121
+      }
+    ],
+    "collectors/net_monitor.py": [
+      {
+        "enhanced_length": 185,
+        "enhancement_type": "added_raises",
+        "function_name": "connection_key",
+        "line_number": 61,
+        "original_length": 26
+      },
+      {
+        "enhanced_length": 132,
+        "enhancement_type": "added_raises",
+        "function_name": "start",
+        "line_number": 87,
+        "original_length": 25
+      },
+      {
+        "enhanced_length": 131,
+        "enhancement_type": "added_raises",
+        "function_name": "stop",
+        "line_number": 106,
+        "original_length": 24
+      },
+      {
+        "enhanced_length": 149,
+        "enhancement_type": "added_raises",
+        "function_name": "get_connection_stats",
+        "line_number": 298,
+        "original_length": 104
+      },
+      {
+        "enhanced_length": 149,
+        "enhancement_type": "added_raises",
+        "function_name": "get_stats",
+        "line_number": 318,
+        "original_length": 104
+      },
+      {
+        "enhanced_length": 261,
+        "enhancement_type": "added_raises",
+        "function_name": "get_process_connections",
+        "line_number": 337,
+        "original_length": 170
+      }
+    ],
+    "collectors/proc_monitor.py": [
+      {
+        "enhanced_length": 309,
+        "enhancement_type": "added_raises",
+        "function_name": "compute_executable_hash",
+        "line_number": 22,
+        "original_length": 260
+      },
+      {
+        "enhanced_length": 132,
+        "enhancement_type": "added_raises",
+        "function_name": "start",
+        "line_number": 77,
+        "original_length": 25
+      },
+      {
+        "enhanced_length": 131,
+        "enhancement_type": "added_raises",
+        "function_name": "stop",
+        "line_number": 96,
+        "original_length": 24
+      },
+      {
+        "enhanced_length": 310,
+        "enhancement_type": "added_raises",
+        "function_name": "get_process_ancestry",
+        "line_number": 273,
+        "original_length": 219
+      },
+      {
+        "enhanced_length": 295,
+        "enhancement_type": "added_raises",
+        "function_name": "is_child_of",
+        "line_number": 300,
+        "original_length": 250
+      },
+      {
+        "enhanced_length": 149,
+        "enhancement_type": "added_raises",
+        "function_name": "get_stats",
+        "line_number": 313,
+        "original_length": 104
+      },
+      {
+        "enhanced_length": 274,
+        "enhancement_type": "added_raises",
+        "function_name": "get_process_info",
+        "line_number": 328,
+        "original_length": 183
+      }
+    ],
+    "collectors/reg_monitor.py": [
+      {
+        "enhanced_length": 244,
+        "enhancement_type": "improved_format",
+        "function_name": "parse_registry_key",
+        "line_number": 38,
+        "original_length": 249
+      },
+      {
+        "enhanced_length": 191,
+        "enhancement_type": "added_raises",
+        "function_name": "get_winreg_hive",
+        "line_number": 72,
+        "original_length": 142
+      },
+      {
+        "enhanced_length": 255,
+        "enhancement_type": "added_raises",
+        "function_name": "get_registry_value_info",
+        "line_number": 95,
+        "original_length": 206
+      },
+      {
+        "enhanced_length": 155,
+        "enhancement_type": "added_raises",
+        "function_name": "get_changes",
+        "line_number": 185,
+        "original_length": 110
+      },
+      {
+        "enhanced_length": 137,
+        "enhancement_type": "added_raises",
+        "function_name": "start",
+        "line_number": 263,
+        "original_length": 30
+      },
+      {
+        "enhanced_length": 123,
+        "enhancement_type": "added_raises",
+        "function_name": "stop",
+        "line_number": 282,
+        "original_length": 16
+      },
+      {
+        "enhanced_length": 133,
+        "enhancement_type": "added_raises",
+        "function_name": "start",
+        "line_number": 363,
+        "original_length": 26
+      },
+      {
+        "enhanced_length": 132,
+        "enhancement_type": "added_raises",
+        "function_name": "stop",
+        "line_number": 393,
+        "original_length": 25
+      },
+      {
+        "enhanced_length": 149,
+        "enhancement_type": "added_raises",
+        "function_name": "get_stats",
+        "line_number": 411,
+        "original_length": 104
+      }
+    ],
+    "config/operational_mode.py": [
+      {
+        "enhanced_length": 135,
+        "enhancement_type": "added_raises",
+        "function_name": "get_mode",
+        "line_number": 122,
+        "original_length": 86
+      },
+      {
+        "enhanced_length": 266,
+        "enhancement_type": "added_returns",
+        "function_name": "set_mode",
+        "line_number": 138,
+        "original_length": 218
+      },
+      {
+        "enhanced_length": 193,
+        "enhancement_type": "added_raises",
+        "function_name": "is_valid_mode",
+        "line_number": 164,
+        "original_length": 144
+      },
+      {
+        "enhanced_length": 149,
+        "enhancement_type": "added_raises",
+        "function_name": "get_valid_modes",
+        "line_number": 176,
+        "original_length": 100
+      }
+    ],
+    "console/anomaly.py": [
+      {
+        "enhanced_length": 147,
+        "enhancement_type": "added_raises",
+        "function_name": "to_dict",
+        "line_number": 43,
+        "original_length": 30
+      },
+      {
+        "enhanced_length": 188,
+        "enhancement_type": "added_raises",
+        "function_name": "from_dict",
+        "line_number": 52,
+        "original_length": 34
+      },
+      {
+        "enhanced_length": 236,
+        "enhancement_type": "added_raises",
+        "function_name": "save_to_file",
+        "line_number": 59,
+        "original_length": 27
+      },
+      {
+        "enhanced_length": 235,
+        "enhancement_type": "added_raises",
+        "function_name": "load_from_file",
+        "line_number": 69,
+        "original_length": 26
+      },
+      {
+        "enhanced_length": 290,
+        "enhancement_type": "added_raises",
+        "function_name": "extract_features",
+        "line_number": 99,
+        "original_length": 245
+      },
+      {
+        "enhanced_length": 242,
+        "enhancement_type": "added_raises",
+        "function_name": "calculate_z_score",
+        "line_number": 136,
+        "original_length": 38
+      },
+      {
+        "enhanced_length": 263,
+        "enhancement_type": "added_raises",
+        "function_name": "calculate_mad_score",
+        "line_number": 147,
+        "original_length": 59
+      },
+      {
+        "enhanced_length": 197,
+        "enhancement_type": "added_raises",
+        "function_name": "update_feature_stats",
+        "line_number": 168,
+        "original_length": 39
+      },
+      {
+        "enhanced_length": 202,
+        "enhancement_type": "added_raises",
+        "function_name": "add_observation",
+        "line_number": 196,
+        "original_length": 42
+      },
+      {
+        "enhanced_length": 287,
+        "enhancement_type": "added_raises",
+        "function_name": "compute_anomaly_score",
+        "line_number": 221,
+        "original_length": 242
+      },
+      {
+        "enhanced_length": 187,
+        "enhancement_type": "added_raises",
+        "function_name": "train_isolation_forest",
+        "line_number": 281,
+        "original_length": 142
+      },
+      {
+        "enhanced_length": 249,
+        "enhancement_type": "added_raises",
+        "function_name": "load_isolation_forest",
+        "line_number": 336,
+        "original_length": 40
+      },
+      {
+        "enhanced_length": 222,
+        "enhancement_type": "added_raises",
+        "function_name": "predict_with_isolation_forest",
+        "line_number": 348,
+        "original_length": 54
+      },
+      {
+        "enhanced_length": 165,
+        "enhancement_type": "added_raises",
+        "function_name": "get_detector",
+        "line_number": 378,
+        "original_length": 47
+      },
+      {
+        "enhanced_length": 151,
+        "enhancement_type": "added_raises",
+        "function_name": "add_observation",
+        "line_number": 386,
+        "original_length": 44
+      },
+      {
+        "enhanced_length": 147,
+        "enhancement_type": "added_raises",
+        "function_name": "compute_anomaly_score",
+        "line_number": 393,
+        "original_length": 30
+      },
+      {
+        "enhanced_length": 146,
+        "enhancement_type": "added_raises",
+        "function_name": "train_isolation_forest",
+        "line_number": 399,
+        "original_length": 29
+      }
+    ],
+    "console/api/operational_mode.py": [
+      {
+        "enhanced_length": 176,
+        "enhancement_type": "improved_format",
+        "function_name": "get_operational_mode",
+        "line_number": 21,
+        "original_length": 181
+      },
+      {
+        "enhanced_length": 236,
+        "enhancement_type": "improved_format",
+        "function_name": "set_operational_mode",
+        "line_number": 51,
+        "original_length": 241
+      }
+    ],
+    "console/auth.py": [
+      {
+        "enhanced_length": 226,
+        "enhancement_type": "added_raises",
+        "function_name": "add_user",
+        "line_number": 81,
+        "original_length": 24
+      },
+      {
+        "enhanced_length": 277,
+        "enhancement_type": "added_raises",
+        "function_name": "verify_user",
+        "line_number": 91,
+        "original_length": 23
+      },
+      {
+        "enhanced_length": 178,
+        "enhancement_type": "added_raises",
+        "function_name": "user_exists",
+        "line_number": 99,
+        "original_length": 20
+      },
+      {
+        "enhanced_length": 254,
+        "enhancement_type": "added_raises",
+        "function_name": "create_session_token",
+        "line_number": 114,
+        "original_length": 36
+      },
+      {
+        "enhanced_length": 320,
+        "enhancement_type": "added_raises",
+        "function_name": "verify_session_token",
+        "line_number": 125,
+        "original_length": 49
+      },
+      {
+        "enhanced_length": 267,
+        "enhancement_type": "added_raises",
+        "function_name": "get_cookie_config",
+        "line_number": 150,
+        "original_length": 51
+      },
+      {
+        "enhanced_length": 292,
+        "enhancement_type": "added_raises",
+        "function_name": "authenticate_user",
+        "line_number": 174,
+        "original_length": 29
+      },
+      {
+        "enhanced_length": 261,
+        "enhancement_type": "added_raises",
+        "function_name": "create_session",
+        "line_number": 180,
+        "original_length": 43
+      },
+      {
+        "enhanced_length": 311,
+        "enhancement_type": "added_raises",
+        "function_name": "verify_session",
+        "line_number": 186,
+        "original_length": 40
+      },
+      {
+        "enhanced_length": 247,
+        "enhancement_type": "added_raises",
+        "function_name": "get_cookie_config",
+        "line_number": 192,
+        "original_length": 31
+      },
+      {
+        "enhanced_length": 129,
+        "enhancement_type": "added_raises",
+        "function_name": "cookie_name",
+        "line_number": 199,
+        "original_length": 23
+      },
+      {
+        "enhanced_length": 199,
+        "enhancement_type": "added_raises",
+        "function_name": "get_auth",
+        "line_number": 209,
+        "original_length": 24
+      },
+      {
+        "enhanced_length": 220,
+        "enhancement_type": "added_raises",
+        "function_name": "get_session_user",
+        "line_number": 218,
+        "original_length": 43
+      },
+      {
+        "enhanced_length": 160,
+        "enhancement_type": "added_raises",
+        "function_name": "create_default_admin_user",
+        "line_number": 235,
+        "original_length": 59
+      }
+    ],
+    "console/backup_restore.py": [
+      {
+        "enhanced_length": 249,
+        "enhancement_type": "added_raises",
+        "function_name": "create_backup",
+        "line_number": 45,
+        "original_length": 204
+      },
+      {
+        "enhanced_length": 305,
+        "enhancement_type": "added_raises",
+        "function_name": "restore_backup",
+        "line_number": 116,
+        "original_length": 260
+      },
+      {
+        "enhanced_length": 161,
+        "enhancement_type": "added_raises",
+        "function_name": "list_backups",
+        "line_number": 207,
+        "original_length": 116
+      },
+      {
+        "enhanced_length": 152,
+        "enhancement_type": "added_raises",
+        "function_name": "get_backup_manager",
+        "line_number": 286,
+        "original_length": 103
+      }
+    ],
+    "console/chaos_probes.py": [
+      {
+        "enhanced_length": 304,
+        "enhancement_type": "added_raises",
+        "function_name": "inject_latency",
+        "line_number": 32,
+        "original_length": 259
+      },
+      {
+        "enhanced_length": 357,
+        "enhancement_type": "added_raises",
+        "function_name": "inject_error",
+        "line_number": 93,
+        "original_length": 312
+      },
+      {
+        "enhanced_length": 342,
+        "enhancement_type": "added_raises",
+        "function_name": "chaos_context",
+        "line_number": 177,
+        "original_length": 297
+      },
+      {
+        "enhanced_length": 159,
+        "enhancement_type": "added_raises",
+        "function_name": "list_active_probes",
+        "line_number": 190,
+        "original_length": 114
+      },
+      {
+        "enhanced_length": 210,
+        "enhancement_type": "added_raises",
+        "function_name": "stop_probe",
+        "line_number": 213,
+        "original_length": 165
+      },
+      {
+        "enhanced_length": 154,
+        "enhancement_type": "added_raises",
+        "function_name": "stop_all_probes",
+        "line_number": 250,
+        "original_length": 109
+      },
+      {
+        "enhanced_length": 238,
+        "enhancement_type": "added_raises",
+        "function_name": "get_injection_history",
+        "line_number": 280,
+        "original_length": 193
+      },
+      {
+        "enhanced_length": 152,
+        "enhancement_type": "added_raises",
+        "function_name": "get_statistics",
+        "line_number": 308,
+        "original_length": 107
+      },
+      {
+        "enhanced_length": 149,
+        "enhancement_type": "added_raises",
+        "function_name": "get_chaos_manager",
+        "line_number": 410,
+        "original_length": 100
+      },
+      {
+        "enhanced_length": 250,
+        "enhancement_type": "added_raises",
+        "function_name": "chaos_injection",
+        "line_number": 423,
+        "original_length": 154
+      },
+      {
+        "enhanced_length": 111,
+        "enhancement_type": "added_raises",
+        "function_name": "decorator",
+        "line_number": 431,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 109,
+        "enhancement_type": "added_raises",
+        "function_name": "wrapper",
+        "line_number": 432,
+        "original_length": 0
+      }
+    ],
+    "console/config_schema.py": [
+      {
+        "enhanced_length": 255,
+        "enhancement_type": "added_raises",
+        "function_name": "validate_env_config",
+        "line_number": 198,
+        "original_length": 42
+      },
+      {
+        "enhanced_length": 154,
+        "enhancement_type": "added_raises",
+        "function_name": "get_schema_dict",
+        "line_number": 293,
+        "original_length": 37
+      },
+      {
+        "enhanced_length": 252,
+        "enhancement_type": "added_raises",
+        "function_name": "get_config_summary",
+        "line_number": 297,
+        "original_length": 36
+      },
+      {
+        "enhanced_length": 254,
+        "enhancement_type": "added_raises",
+        "function_name": "get_config_schema",
+        "line_number": 323,
+        "original_length": 40
+      },
+      {
+        "enhanced_length": 255,
+        "enhancement_type": "added_raises",
+        "function_name": "validate_current_config",
+        "line_number": 331,
+        "original_length": 42
+      },
+      {
+        "enhanced_length": 154,
+        "enhancement_type": "added_raises",
+        "function_name": "get_schema_for_api",
+        "line_number": 336,
+        "original_length": 37
+      }
+    ],
+    "console/console_ui.py": [
+      {
+        "enhanced_length": 141,
+        "enhancement_type": "added_raises",
+        "function_name": "get_dashboard_html",
+        "line_number": 16,
+        "original_length": 92
+      },
+      {
+        "enhanced_length": 287,
+        "enhancement_type": "added_raises",
+        "function_name": "ensure_static_files",
+        "line_number": 542,
+        "original_length": 136
+      },
+      {
+        "enhanced_length": 140,
+        "enhancement_type": "added_raises",
+        "function_name": "get_console_info",
+        "line_number": 587,
+        "original_length": 91
+      }
+    ],
+    "console/log_config.py": [
+      {
+        "enhanced_length": 206,
+        "enhancement_type": "added_raises",
+        "function_name": "filter",
+        "line_number": 53,
+        "original_length": 50
+      },
+      {
+        "enhanced_length": 339,
+        "enhancement_type": "added_raises",
+        "function_name": "create_rotating_handler",
+        "line_number": 123,
+        "original_length": 294
+      },
+      {
+        "enhanced_length": 353,
+        "enhancement_type": "added_raises",
+        "function_name": "setup_logger",
+        "line_number": 161,
+        "original_length": 308
+      },
+      {
+        "enhanced_length": 157,
+        "enhancement_type": "added_raises",
+        "function_name": "get_log_status",
+        "line_number": 192,
+        "original_length": 40
+      },
+      {
+        "enhanced_length": 256,
+        "enhancement_type": "added_raises",
+        "function_name": "get_log_config",
+        "line_number": 207,
+        "original_length": 37
+      },
+      {
+        "enhanced_length": 146,
+        "enhancement_type": "added_raises",
+        "function_name": "setup_application_logging",
+        "line_number": 224,
+        "original_length": 45
+      },
+      {
+        "enhanced_length": 137,
+        "enhancement_type": "added_raises",
+        "function_name": "test_redaction",
+        "line_number": 260,
+        "original_length": 36
+      }
+    ],
+    "console/perf_probe.py": [
+      {
+        "enhanced_length": 318,
+        "enhancement_type": "added_raises",
+        "function_name": "test_single_request",
+        "line_number": 107,
+        "original_length": 174
+      },
+      {
+        "enhanced_length": 433,
+        "enhancement_type": "added_raises",
+        "function_name": "test_concurrent_requests",
+        "line_number": 125,
+        "original_length": 289
+      },
+      {
+        "enhanced_length": 141,
+        "enhancement_type": "added_raises",
+        "function_name": "worker",
+        "line_number": 149,
+        "original_length": 40
+      },
+      {
+        "enhanced_length": 112,
+        "enhancement_type": "added_raises",
+        "function_name": "percentile",
+        "line_number": 180,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 290,
+        "enhancement_type": "added_raises",
+        "function_name": "test_endpoint_suite",
+        "line_number": 254,
+        "original_length": 245
+      },
+      {
+        "enhanced_length": 422,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_load_test_report",
+        "line_number": 304,
+        "original_length": 275
+      },
+      {
+        "enhanced_length": 270,
+        "enhancement_type": "added_raises",
+        "function_name": "run_basic_performance_check",
+        "line_number": 389,
+        "original_length": 169
+      },
+      {
+        "enhanced_length": 279,
+        "enhancement_type": "added_raises",
+        "function_name": "run_stress_test",
+        "line_number": 406,
+        "original_length": 230
+      },
+      {
+        "enhanced_length": 220,
+        "enhancement_type": "added_raises",
+        "function_name": "get_performance_probe",
+        "line_number": 430,
+        "original_length": 171
+      }
+    ],
+    "console/plugin_sandbox.py": [
+      {
+        "enhanced_length": 177,
+        "enhancement_type": "improved_format",
+        "function_name": "load_manifest",
+        "line_number": 79,
+        "original_length": 186
+      },
+      {
+        "enhanced_length": 344,
+        "enhancement_type": "added_raises",
+        "function_name": "verify_plugin_hash",
+        "line_number": 104,
+        "original_length": 247
+      },
+      {
+        "enhanced_length": 270,
+        "enhancement_type": "added_raises",
+        "function_name": "sandboxed_import",
+        "line_number": 137,
+        "original_length": 123
+      },
+      {
+        "enhanced_length": 344,
+        "enhancement_type": "added_raises",
+        "function_name": "restricted_import",
+        "line_number": 143,
+        "original_length": 26
+      },
+      {
+        "enhanced_length": 397,
+        "enhancement_type": "added_raises",
+        "function_name": "load_plugin",
+        "line_number": 164,
+        "original_length": 250
+      },
+      {
+        "enhanced_length": 270,
+        "enhancement_type": "added_raises",
+        "function_name": "load_all_plugins",
+        "line_number": 219,
+        "original_length": 123
+      },
+      {
+        "enhanced_length": 298,
+        "enhancement_type": "added_raises",
+        "function_name": "execute_plugin",
+        "line_number": 241,
+        "original_length": 253
+      },
+      {
+        "enhanced_length": 311,
+        "enhancement_type": "added_raises",
+        "function_name": "unload_plugin",
+        "line_number": 269,
+        "original_length": 164
+      },
+      {
+        "enhanced_length": 250,
+        "enhancement_type": "added_raises",
+        "function_name": "get_plugin_loader",
+        "line_number": 305,
+        "original_length": 99
+      },
+      {
+        "enhanced_length": 268,
+        "enhancement_type": "added_raises",
+        "function_name": "execute_plugin_hook",
+        "line_number": 326,
+        "original_length": 219
+      }
+    ],
+    "console/preflight_checks.py": [
+      {
+        "enhanced_length": 231,
+        "enhancement_type": "added_raises",
+        "function_name": "check_python_environment",
+        "line_number": 57,
+        "original_length": 134
+      },
+      {
+        "enhanced_length": 234,
+        "enhancement_type": "added_raises",
+        "function_name": "check_required_modules",
+        "line_number": 101,
+        "original_length": 137
+      },
+      {
+        "enhanced_length": 270,
+        "enhancement_type": "added_raises",
+        "function_name": "check_file_permissions",
+        "line_number": 157,
+        "original_length": 123
+      },
+      {
+        "enhanced_length": 243,
+        "enhancement_type": "added_raises",
+        "function_name": "check_network_connectivity",
+        "line_number": 213,
+        "original_length": 146
+      },
+      {
+        "enhanced_length": 233,
+        "enhancement_type": "added_raises",
+        "function_name": "check_system_resources",
+        "line_number": 259,
+        "original_length": 136
+      },
+      {
+        "enhanced_length": 296,
+        "enhancement_type": "added_raises",
+        "function_name": "check_configuration_integrity",
+        "line_number": 333,
+        "original_length": 155
+      },
+      {
+        "enhanced_length": 286,
+        "enhancement_type": "added_raises",
+        "function_name": "check_security_settings",
+        "line_number": 410,
+        "original_length": 145
+      },
+      {
+        "enhanced_length": 215,
+        "enhancement_type": "added_raises",
+        "function_name": "run_all_checks",
+        "line_number": 487,
+        "original_length": 118
+      },
+      {
+        "enhanced_length": 279,
+        "enhancement_type": "added_raises",
+        "function_name": "run_preflight_checks",
+        "line_number": 555,
+        "original_length": 178
+      }
+    ],
+    "console/quarantine.py": [
+      {
+        "enhanced_length": 238,
+        "enhancement_type": "added_raises",
+        "function_name": "compute_file_sha256",
+        "line_number": 38,
+        "original_length": 30
+      },
+      {
+        "enhanced_length": 455,
+        "enhancement_type": "added_raises",
+        "function_name": "write_audit_log",
+        "line_number": 50,
+        "original_length": 22
+      },
+      {
+        "enhanced_length": 274,
+        "enhancement_type": "added_raises",
+        "function_name": "apply_windows_acl_hardening",
+        "line_number": 72,
+        "original_length": 225
+      },
+      {
+        "enhanced_length": 381,
+        "enhancement_type": "added_raises",
+        "function_name": "quarantine_file",
+        "line_number": 142,
+        "original_length": 234
+      },
+      {
+        "enhanced_length": 429,
+        "enhancement_type": "added_raises",
+        "function_name": "restore_file",
+        "line_number": 213,
+        "original_length": 282
+      },
+      {
+        "enhanced_length": 252,
+        "enhancement_type": "added_raises",
+        "function_name": "list_quarantined_files",
+        "line_number": 289,
+        "original_length": 27
+      },
+      {
+        "enhanced_length": 154,
+        "enhancement_type": "added_raises",
+        "function_name": "get_quarantine_status",
+        "line_number": 306,
+        "original_length": 37
+      },
+      {
+        "enhanced_length": 160,
+        "enhancement_type": "added_raises",
+        "function_name": "get_manager",
+        "line_number": 320,
+        "original_length": 40
+      },
+      {
+        "enhanced_length": 237,
+        "enhancement_type": "added_raises",
+        "function_name": "quarantine_file",
+        "line_number": 328,
+        "original_length": 18
+      },
+      {
+        "enhanced_length": 342,
+        "enhancement_type": "added_raises",
+        "function_name": "restore_file",
+        "line_number": 334,
+        "original_length": 27
+      },
+      {
+        "enhanced_length": 252,
+        "enhancement_type": "added_raises",
+        "function_name": "list_quarantined_files",
+        "line_number": 340,
+        "original_length": 27
+      },
+      {
+        "enhanced_length": 146,
+        "enhancement_type": "added_raises",
+        "function_name": "get_quarantine_status",
+        "line_number": 346,
+        "original_length": 29
+      }
+    ],
+    "console/rate_limit.py": [
+      {
+        "enhanced_length": 160,
+        "enhancement_type": "added_raises",
+        "function_name": "allow",
+        "line_number": 30,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 345,
+        "enhancement_type": "added_raises",
+        "function_name": "rate_limit_dependency",
+        "line_number": 44,
+        "original_length": 113
+      }
+    ],
+    "console/retention.py": [
+      {
+        "enhanced_length": 151,
+        "enhancement_type": "added_raises",
+        "function_name": "get_retention_days",
+        "line_number": 15,
+        "original_length": 45
+      },
+      {
+        "enhanced_length": 395,
+        "enhancement_type": "added_raises",
+        "function_name": "scan_directory_for_cleanup",
+        "line_number": 20,
+        "original_length": 346
+      },
+      {
+        "enhanced_length": 379,
+        "enhancement_type": "added_raises",
+        "function_name": "prune_quarantine_files",
+        "line_number": 62,
+        "original_length": 228
+      },
+      {
+        "enhanced_length": 360,
+        "enhancement_type": "added_raises",
+        "function_name": "prune_export_files",
+        "line_number": 99,
+        "original_length": 209
+      },
+      {
+        "enhanced_length": 365,
+        "enhancement_type": "added_raises",
+        "function_name": "prune_log_files",
+        "line_number": 136,
+        "original_length": 214
+      },
+      {
+        "enhanced_length": 275,
+        "enhancement_type": "added_raises",
+        "function_name": "prune_anomaly_state",
+        "line_number": 177,
+        "original_length": 226
+      },
+      {
+        "enhanced_length": 300,
+        "enhancement_type": "added_raises",
+        "function_name": "run_retention_job",
+        "line_number": 218,
+        "original_length": 251
+      },
+      {
+        "enhanced_length": 164,
+        "enhancement_type": "added_raises",
+        "function_name": "get_directory_stats",
+        "line_number": 282,
+        "original_length": 115
+      }
+    ],
+    "console/telemetry_export.py": [
+      {
+        "enhanced_length": 141,
+        "enhancement_type": "added_raises",
+        "function_name": "collect_system_metrics",
+        "line_number": 25,
+        "original_length": 96
+      },
+      {
+        "enhanced_length": 154,
+        "enhancement_type": "added_raises",
+        "function_name": "collect_application_metrics",
+        "line_number": 71,
+        "original_length": 109
+      },
+      {
+        "enhanced_length": 147,
+        "enhancement_type": "added_raises",
+        "function_name": "collect_security_metrics",
+        "line_number": 107,
+        "original_length": 104
+      },
+      {
+        "enhanced_length": 142,
+        "enhancement_type": "added_raises",
+        "function_name": "collect_plugin_metrics",
+        "line_number": 138,
+        "original_length": 97
+      },
+      {
+        "enhanced_length": 151,
+        "enhancement_type": "added_raises",
+        "function_name": "collect_all_metrics",
+        "line_number": 160,
+        "original_length": 106
+      },
+      {
+        "enhanced_length": 274,
+        "enhancement_type": "added_raises",
+        "function_name": "export_json",
+        "line_number": 194,
+        "original_length": 229
+      },
+      {
+        "enhanced_length": 165,
+        "enhancement_type": "added_raises",
+        "function_name": "export_prometheus",
+        "line_number": 215,
+        "original_length": 120
+      },
+      {
+        "enhanced_length": 287,
+        "enhancement_type": "added_raises",
+        "function_name": "add_metric",
+        "line_number": 225,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 144,
+        "enhancement_type": "added_raises",
+        "function_name": "export_csv",
+        "line_number": 271,
+        "original_length": 99
+      },
+      {
+        "enhanced_length": 162,
+        "enhancement_type": "added_raises",
+        "function_name": "get_telemetry_exporter",
+        "line_number": 308,
+        "original_length": 113
+      },
+      {
+        "enhanced_length": 251,
+        "enhancement_type": "added_raises",
+        "function_name": "export_telemetry",
+        "line_number": 320,
+        "original_length": 202
+      }
+    ],
+    "console/web_api.py": [
+      {
+        "enhanced_length": 331,
+        "enhancement_type": "added_raises",
+        "function_name": "rate_limited",
+        "line_number": 99,
+        "original_length": 282
+      },
+      {
+        "enhanced_length": 121,
+        "enhancement_type": "added_raises",
+        "function_name": "decorator",
+        "line_number": 110,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 109,
+        "enhancement_type": "added_raises",
+        "function_name": "wrapper",
+        "line_number": 111,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 256,
+        "enhancement_type": "added_raises",
+        "function_name": "admin_auth_dependency",
+        "line_number": 138,
+        "original_length": 94
+      },
+      {
+        "enhanced_length": 299,
+        "enhancement_type": "added_raises",
+        "function_name": "log_structured_metrics",
+        "line_number": 163,
+        "original_length": 56
+      },
+      {
+        "enhanced_length": 268,
+        "enhancement_type": "added_raises",
+        "function_name": "validation_exception_handler",
+        "line_number": 332,
+        "original_length": 64
+      },
+      {
+        "enhanced_length": 357,
+        "enhancement_type": "added_raises",
+        "function_name": "http_exception_handler",
+        "line_number": 346,
+        "original_length": 54
+      },
+      {
+        "enhanced_length": 136,
+        "enhancement_type": "added_raises",
+        "function_name": "get_status",
+        "line_number": 364,
+        "original_length": 19
+      },
+      {
+        "enhanced_length": 134,
+        "enhancement_type": "added_raises",
+        "function_name": "get_alerts",
+        "line_number": 380,
+        "original_length": 19
+      },
+      {
+        "enhanced_length": 296,
+        "enhancement_type": "added_raises",
+        "function_name": "get_detections",
+        "line_number": 412,
+        "original_length": 45
+      },
+      {
+        "enhanced_length": 157,
+        "enhancement_type": "added_raises",
+        "function_name": "pause_monitoring",
+        "line_number": 442,
+        "original_length": 40
+      },
+      {
+        "enhanced_length": 145,
+        "enhancement_type": "added_raises",
+        "function_name": "resume_monitoring",
+        "line_number": 455,
+        "original_length": 28
+      },
+      {
+        "enhanced_length": 253,
+        "enhancement_type": "added_raises",
+        "function_name": "search_threat_intelligence",
+        "line_number": 468,
+        "original_length": 42
+      },
+      {
+        "enhanced_length": 150,
+        "enhancement_type": "added_raises",
+        "function_name": "get_policies",
+        "line_number": 497,
+        "original_length": 33
+      },
+      {
+        "enhanced_length": 151,
+        "enhancement_type": "added_raises",
+        "function_name": "set_policies",
+        "line_number": 518,
+        "original_length": 28
+      },
+      {
+        "enhanced_length": 135,
+        "enhancement_type": "added_raises",
+        "function_name": "dashboard",
+        "line_number": 574,
+        "original_length": 20
+      },
+      {
+        "enhanced_length": 131,
+        "enhancement_type": "added_raises",
+        "function_name": "detections_page",
+        "line_number": 579,
+        "original_length": 16
+      },
+      {
+        "enhanced_length": 137,
+        "enhancement_type": "added_raises",
+        "function_name": "assets_page",
+        "line_number": 584,
+        "original_length": 22
+      },
+      {
+        "enhanced_length": 137,
+        "enhancement_type": "added_raises",
+        "function_name": "accounts_page",
+        "line_number": 589,
+        "original_length": 22
+      },
+      {
+        "enhanced_length": 196,
+        "enhancement_type": "added_raises",
+        "function_name": "processes_page",
+        "line_number": 594,
+        "original_length": 35
+      },
+      {
+        "enhanced_length": 155,
+        "enhancement_type": "added_raises",
+        "function_name": "policies_page",
+        "line_number": 599,
+        "original_length": 40
+      },
+      {
+        "enhanced_length": 210,
+        "enhancement_type": "added_raises",
+        "function_name": "get_event_bus_metrics",
+        "line_number": 606,
+        "original_length": 84
+      },
+      {
+        "enhanced_length": 193,
+        "enhancement_type": "added_raises",
+        "function_name": "get_metrics_snapshot",
+        "line_number": 623,
+        "original_length": 86
+      },
+      {
+        "enhanced_length": 237,
+        "enhancement_type": "added_raises",
+        "function_name": "metrics_health",
+        "line_number": 659,
+        "original_length": 111
+      },
+      {
+        "enhanced_length": 196,
+        "enhancement_type": "added_raises",
+        "function_name": "get_mitre_coverage",
+        "line_number": 698,
+        "original_length": 72
+      },
+      {
+        "enhanced_length": 296,
+        "enhancement_type": "added_raises",
+        "function_name": "admin_config_reload",
+        "line_number": 814,
+        "original_length": 87
+      },
+      {
+        "enhanced_length": 282,
+        "enhancement_type": "added_raises",
+        "function_name": "admin_config_schema",
+        "line_number": 847,
+        "original_length": 76
+      },
+      {
+        "enhanced_length": 208,
+        "enhancement_type": "added_raises",
+        "function_name": "anomaly_score",
+        "line_number": 877,
+        "original_length": 101
+      },
+      {
+        "enhanced_length": 209,
+        "enhancement_type": "added_raises",
+        "function_name": "admin_anomaly_train",
+        "line_number": 913,
+        "original_length": 102
+      },
+      {
+        "enhanced_length": 274,
+        "enhancement_type": "added_raises",
+        "function_name": "admin_quarantine_file",
+        "line_number": 945,
+        "original_length": 65
+      },
+      {
+        "enhanced_length": 277,
+        "enhancement_type": "added_raises",
+        "function_name": "admin_quarantine_restore",
+        "line_number": 979,
+        "original_length": 74
+      },
+      {
+        "enhanced_length": 343,
+        "enhancement_type": "added_raises",
+        "function_name": "auth_login",
+        "line_number": 1020,
+        "original_length": 71
+      },
+      {
+        "enhanced_length": 240,
+        "enhancement_type": "added_raises",
+        "function_name": "auth_logout",
+        "line_number": 1065,
+        "original_length": 64
+      },
+      {
+        "enhanced_length": 250,
+        "enhancement_type": "added_raises",
+        "function_name": "auth_me",
+        "line_number": 1095,
+        "original_length": 70
+      },
+      {
+        "enhanced_length": 174,
+        "enhancement_type": "added_raises",
+        "function_name": "stream_health",
+        "line_number": 1128,
+        "original_length": 73
+      },
+      {
+        "enhanced_length": 117,
+        "enhancement_type": "added_raises",
+        "function_name": "event_generator",
+        "line_number": 1151,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 198,
+        "enhancement_type": "added_raises",
+        "function_name": "health_check",
+        "line_number": 1210,
+        "original_length": 29
+      },
+      {
+        "enhanced_length": 332,
+        "enhancement_type": "added_raises",
+        "function_name": "telemetry_export",
+        "line_number": 1221,
+        "original_length": 69
+      },
+      {
+        "enhanced_length": 175,
+        "enhancement_type": "added_raises",
+        "function_name": "plugins_list",
+        "line_number": 1271,
+        "original_length": 68
+      },
+      {
+        "enhanced_length": 269,
+        "enhancement_type": "added_raises",
+        "function_name": "plugins_execute",
+        "line_number": 1298,
+        "original_length": 64
+      },
+      {
+        "enhanced_length": 202,
+        "enhancement_type": "added_raises",
+        "function_name": "preflight_checks",
+        "line_number": 1336,
+        "original_length": 43
+      },
+      {
+        "enhanced_length": 171,
+        "enhancement_type": "added_raises",
+        "function_name": "backup_create",
+        "line_number": 1366,
+        "original_length": 64
+      },
+      {
+        "enhanced_length": 267,
+        "enhancement_type": "added_raises",
+        "function_name": "backup_restore",
+        "line_number": 1376,
+        "original_length": 63
+      },
+      {
+        "enhanced_length": 174,
+        "enhancement_type": "added_raises",
+        "function_name": "secrets_rotate_preview",
+        "line_number": 1402,
+        "original_length": 67
+      },
+      {
+        "enhanced_length": 174,
+        "enhancement_type": "added_raises",
+        "function_name": "secrets_rotate_execute",
+        "line_number": 1412,
+        "original_length": 67
+      },
+      {
+        "enhanced_length": 247,
+        "enhancement_type": "added_raises",
+        "function_name": "chaos_inject_endpoint",
+        "line_number": 1438,
+        "original_length": 55
+      },
+      {
+        "enhanced_length": 172,
+        "enhancement_type": "added_raises",
+        "function_name": "chaos_status",
+        "line_number": 1450,
+        "original_length": 65
+      },
+      {
+        "enhanced_length": 272,
+        "enhancement_type": "added_raises",
+        "function_name": "retention_run_endpoint",
+        "line_number": 1477,
+        "original_length": 69
+      },
+      {
+        "enhanced_length": 188,
+        "enhancement_type": "added_raises",
+        "function_name": "retention_stats_endpoint",
+        "line_number": 1493,
+        "original_length": 81
+      },
+      {
+        "enhanced_length": 321,
+        "enhancement_type": "added_raises",
+        "function_name": "perf_probe_endpoint",
+        "line_number": 1519,
+        "original_length": 74
+      },
+      {
+        "enhanced_length": 234,
+        "enhancement_type": "added_raises",
+        "function_name": "perf_quick_check",
+        "line_number": 1557,
+        "original_length": 75
+      },
+      {
+        "enhanced_length": 132,
+        "enhancement_type": "added_raises",
+        "function_name": "start",
+        "line_number": 1621,
+        "original_length": 25
+      },
+      {
+        "enhanced_length": 131,
+        "enhancement_type": "added_raises",
+        "function_name": "stop",
+        "line_number": 1649,
+        "original_length": 24
+      },
+      {
+        "enhanced_length": 240,
+        "enhancement_type": "added_raises",
+        "function_name": "get_base_url",
+        "line_number": 1675,
+        "original_length": 35
+      }
+    ],
+    "detection/attack_matrix.py": [
+      {
+        "enhanced_length": 213,
+        "enhancement_type": "added_raises",
+        "function_name": "model_post_init",
+        "line_number": 38,
+        "original_length": 54
+      },
+      {
+        "enhanced_length": 212,
+        "enhancement_type": "added_raises",
+        "function_name": "increment",
+        "line_number": 123,
+        "original_length": 60
+      },
+      {
+        "enhanced_length": 198,
+        "enhancement_type": "added_raises",
+        "function_name": "get_count",
+        "line_number": 136,
+        "original_length": 46
+      },
+      {
+        "enhanced_length": 332,
+        "enhancement_type": "added_raises",
+        "function_name": "process_event",
+        "line_number": 181,
+        "original_length": 74
+      },
+      {
+        "enhanced_length": 268,
+        "enhancement_type": "added_raises",
+        "function_name": "handle_matches",
+        "line_number": 250,
+        "original_length": 59
+      },
+      {
+        "enhanced_length": 262,
+        "enhancement_type": "added_raises",
+        "function_name": "get_loaded_rules",
+        "line_number": 277,
+        "original_length": 37
+      },
+      {
+        "enhanced_length": 286,
+        "enhancement_type": "added_raises",
+        "function_name": "load_baseline_rules",
+        "line_number": 302,
+        "original_length": 71
+      },
+      {
+        "enhanced_length": 294,
+        "enhancement_type": "added_raises",
+        "function_name": "load_default_rules",
+        "line_number": 620,
+        "original_length": 79
+      },
+      {
+        "enhanced_length": 242,
+        "enhancement_type": "added_raises",
+        "function_name": "load_rules_by_profile",
+        "line_number": 705,
+        "original_length": 27
+      },
+      {
+        "enhanced_length": 361,
+        "enhancement_type": "added_raises",
+        "function_name": "load_rules_from_path",
+        "line_number": 715,
+        "original_length": 50
+      },
+      {
+        "enhanced_length": 368,
+        "enhancement_type": "added_raises",
+        "function_name": "load_rules_and_sequences_from_path",
+        "line_number": 760,
+        "original_length": 69
+      },
+      {
+        "enhanced_length": 259,
+        "enhancement_type": "added_raises",
+        "function_name": "get_loaded_rules",
+        "line_number": 825,
+        "original_length": 34
+      },
+      {
+        "enhanced_length": 337,
+        "enhancement_type": "added_raises",
+        "function_name": "wire",
+        "line_number": 831,
+        "original_length": 61
+      },
+      {
+        "enhanced_length": 115,
+        "enhancement_type": "added_raises",
+        "function_name": "event_handler",
+        "line_number": 889,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 109,
+        "enhancement_type": "added_raises",
+        "function_name": "handler",
+        "line_number": 890,
+        "original_length": 0
+      }
+    ],
+    "detection/behavioral_engine.py": [
+      {
+        "enhanced_length": 224,
+        "enhancement_type": "added_raises",
+        "function_name": "update_from_event",
+        "line_number": 84,
+        "original_length": 126
+      },
+      {
+        "enhanced_length": 163,
+        "enhancement_type": "added_raises",
+        "function_name": "get_statistics",
+        "line_number": 166,
+        "original_length": 46
+      },
+      {
+        "enhanced_length": 135,
+        "enhancement_type": "added_raises",
+        "function_name": "start",
+        "line_number": 255,
+        "original_length": 28
+      },
+      {
+        "enhanced_length": 134,
+        "enhancement_type": "added_raises",
+        "function_name": "stop",
+        "line_number": 265,
+        "original_length": 27
+      },
+      {
+        "enhanced_length": 212,
+        "enhancement_type": "added_raises",
+        "function_name": "set_event_bus",
+        "line_number": 269,
+        "original_length": 114
+      },
+      {
+        "enhanced_length": 295,
+        "enhancement_type": "added_raises",
+        "function_name": "get_recent_detections",
+        "line_number": 657,
+        "original_length": 250
+      },
+      {
+        "enhanced_length": 150,
+        "enhancement_type": "added_raises",
+        "function_name": "get_baseline_summary",
+        "line_number": 684,
+        "original_length": 33
+      },
+      {
+        "enhanced_length": 152,
+        "enhancement_type": "added_raises",
+        "function_name": "get_behavioral_engine",
+        "line_number": 713,
+        "original_length": 103
+      }
+    ],
+    "detection/knowledge/loader.py": [
+      {
+        "enhanced_length": 161,
+        "enhancement_type": "added_raises",
+        "function_name": "rebuild_index",
+        "line_number": 249,
+        "original_length": 116
+      },
+      {
+        "enhanced_length": 318,
+        "enhancement_type": "added_raises",
+        "function_name": "query_knowledge",
+        "line_number": 354,
+        "original_length": 218
+      },
+      {
+        "enhanced_length": 209,
+        "enhancement_type": "added_raises",
+        "function_name": "get_directive",
+        "line_number": 475,
+        "original_length": 164
+      },
+      {
+        "enhanced_length": 161,
+        "enhancement_type": "added_raises",
+        "function_name": "get_index_info",
+        "line_number": 501,
+        "original_length": 116
+      },
+      {
+        "enhanced_length": 144,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 537,
+        "original_length": 37
+      }
+    ],
+    "detection/ml_scoring.py": [
+      {
+        "enhanced_length": 572,
+        "enhancement_type": "added_raises",
+        "function_name": "score_behavior",
+        "line_number": 78,
+        "original_length": 527
+      },
+      {
+        "enhanced_length": 167,
+        "enhancement_type": "added_raises",
+        "function_name": "is_available",
+        "line_number": 209,
+        "original_length": 122
+      },
+      {
+        "enhanced_length": 172,
+        "enhancement_type": "added_raises",
+        "function_name": "get_model_info",
+        "line_number": 217,
+        "original_length": 127
+      },
+      {
+        "enhanced_length": 299,
+        "enhancement_type": "added_raises",
+        "function_name": "validate_signal",
+        "line_number": 234,
+        "original_length": 202
+      },
+      {
+        "enhanced_length": 237,
+        "enhancement_type": "added_raises",
+        "function_name": "create_ml_scorer",
+        "line_number": 259,
+        "original_length": 188
+      },
+      {
+        "enhanced_length": 147,
+        "enhancement_type": "added_raises",
+        "function_name": "get_ml_scorer",
+        "line_number": 281,
+        "original_length": 98
+      }
+    ],
+    "detection/rule_dsl.py": [
+      {
+        "enhanced_length": 213,
+        "enhancement_type": "added_raises",
+        "function_name": "model_post_init",
+        "line_number": 69,
+        "original_length": 54
+      },
+      {
+        "enhanced_length": 246,
+        "enhancement_type": "added_raises",
+        "function_name": "add_event",
+        "line_number": 107,
+        "original_length": 49
+      },
+      {
+        "enhanced_length": 236,
+        "enhancement_type": "added_raises",
+        "function_name": "get_current_count",
+        "line_number": 136,
+        "original_length": 39
+      },
+      {
+        "enhanced_length": 202,
+        "enhancement_type": "added_raises",
+        "function_name": "evaluate",
+        "line_number": 204,
+        "original_length": 42
+      },
+      {
+        "enhanced_length": 379,
+        "enhancement_type": "added_raises",
+        "function_name": "process_event",
+        "line_number": 275,
+        "original_length": 66
+      },
+      {
+        "enhanced_length": 193,
+        "enhancement_type": "added_raises",
+        "function_name": "parse_rules_from_dict",
+        "line_number": 339,
+        "original_length": 34
+      },
+      {
+        "enhanced_length": 320,
+        "enhancement_type": "added_raises",
+        "function_name": "process_event",
+        "line_number": 415,
+        "original_length": 52
+      },
+      {
+        "enhanced_length": 209,
+        "enhancement_type": "added_raises",
+        "function_name": "parse_sequence_rules",
+        "line_number": 544,
+        "original_length": 42
+      }
+    ],
+    "detection/rules_engine.py": [
+      {
+        "enhanced_length": 175,
+        "enhancement_type": "added_raises",
+        "function_name": "add_event",
+        "line_number": 42,
+        "original_length": 77
+      },
+      {
+        "enhanced_length": 206,
+        "enhancement_type": "added_raises",
+        "function_name": "get_events",
+        "line_number": 60,
+        "original_length": 161
+      },
+      {
+        "enhanced_length": 210,
+        "enhancement_type": "added_raises",
+        "function_name": "count_events",
+        "line_number": 76,
+        "original_length": 165
+      },
+      {
+        "enhanced_length": 352,
+        "enhancement_type": "added_raises",
+        "function_name": "check_file_event",
+        "line_number": 98,
+        "original_length": 205
+      },
+      {
+        "enhanced_length": 300,
+        "enhancement_type": "added_raises",
+        "function_name": "check_registry_event",
+        "line_number": 179,
+        "original_length": 203
+      },
+      {
+        "enhanced_length": 364,
+        "enhancement_type": "added_raises",
+        "function_name": "check_process_event",
+        "line_number": 235,
+        "original_length": 222
+      },
+      {
+        "enhanced_length": 289,
+        "enhancement_type": "added_raises",
+        "function_name": "check_network_event",
+        "line_number": 303,
+        "original_length": 192
+      },
+      {
+        "enhanced_length": 254,
+        "enhancement_type": "added_raises",
+        "function_name": "check_health_metric",
+        "line_number": 386,
+        "original_length": 104
+      },
+      {
+        "enhanced_length": 368,
+        "enhancement_type": "added_raises",
+        "function_name": "check_file_event",
+        "line_number": 394,
+        "original_length": 221
+      },
+      {
+        "enhanced_length": 151,
+        "enhancement_type": "added_raises",
+        "function_name": "start",
+        "line_number": 466,
+        "original_length": 44
+      },
+      {
+        "enhanced_length": 154,
+        "enhancement_type": "added_raises",
+        "function_name": "stop",
+        "line_number": 486,
+        "original_length": 47
+      },
+      {
+        "enhanced_length": 153,
+        "enhancement_type": "added_raises",
+        "function_name": "get_stats",
+        "line_number": 583,
+        "original_length": 108
+      },
+      {
+        "enhanced_length": 253,
+        "enhancement_type": "added_raises",
+        "function_name": "query_knowledge",
+        "line_number": 608,
+        "original_length": 153
+      }
+    ],
+    "detection/threat_intel_db.py": [
+      {
+        "enhanced_length": 283,
+        "enhancement_type": "added_raises",
+        "function_name": "search",
+        "line_number": 116,
+        "original_length": 238
+      },
+      {
+        "enhanced_length": 232,
+        "enhancement_type": "added_raises",
+        "function_name": "tactics_for",
+        "line_number": 163,
+        "original_length": 187
+      },
+      {
+        "enhanced_length": 237,
+        "enhancement_type": "added_raises",
+        "function_name": "techniques_for",
+        "line_number": 201,
+        "original_length": 192
+      },
+      {
+        "enhanced_length": 260,
+        "enhancement_type": "added_raises",
+        "function_name": "enrich_alert",
+        "line_number": 238,
+        "original_length": 215
+      },
+      {
+        "enhanced_length": 211,
+        "enhancement_type": "added_raises",
+        "function_name": "get_threat_intel_db",
+        "line_number": 442,
+        "original_length": 107
+      }
+    ],
+    "generate_inventory.py": [
+      {
+        "enhanced_length": 111,
+        "enhancement_type": "added_raises",
+        "function_name": "sha256_of",
+        "line_number": 8,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 120,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_inventory",
+        "line_number": 18,
+        "original_length": 0
+      }
+    ],
+    "generate_p2_003_004_artifacts.py": [
+      {
+        "enhanced_length": 234,
+        "enhancement_type": "added_raises",
+        "function_name": "sha256_of_file",
+        "line_number": 10,
+        "original_length": 31
+      },
+      {
+        "enhanced_length": 162,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_work_manifest",
+        "line_number": 18,
+        "original_length": 61
+      },
+      {
+        "enhanced_length": 158,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_repo_inventory",
+        "line_number": 124,
+        "original_length": 57
+      }
+    ],
+    "plugins/example_hello.py": [
+      {
+        "enhanced_length": 159,
+        "enhancement_type": "added_raises",
+        "function_name": "initialize",
+        "line_number": 30,
+        "original_length": 114
+      },
+      {
+        "enhanced_length": 225,
+        "enhancement_type": "added_raises",
+        "function_name": "execute",
+        "line_number": 39,
+        "original_length": 180
+      },
+      {
+        "enhanced_length": 150,
+        "enhancement_type": "added_raises",
+        "function_name": "cleanup",
+        "line_number": 58,
+        "original_length": 105
+      },
+      {
+        "enhanced_length": 136,
+        "enhancement_type": "added_raises",
+        "function_name": "get_info",
+        "line_number": 67,
+        "original_length": 91
+      },
+      {
+        "enhanced_length": 206,
+        "enhancement_type": "added_raises",
+        "function_name": "create_plugin",
+        "line_number": 87,
+        "original_length": 157
+      }
+    ],
+    "response/actions.py": [
+      {
+        "enhanced_length": 162,
+        "enhancement_type": "added_raises",
+        "function_name": "to_dict",
+        "line_number": 66,
+        "original_length": 117
+      },
+      {
+        "enhanced_length": 299,
+        "enhancement_type": "added_raises",
+        "function_name": "terminate_process",
+        "line_number": 87,
+        "original_length": 208
+      },
+      {
+        "enhanced_length": 235,
+        "enhancement_type": "added_raises",
+        "function_name": "pause_monitoring",
+        "line_number": 190,
+        "original_length": 190
+      },
+      {
+        "enhanced_length": 154,
+        "enhancement_type": "added_raises",
+        "function_name": "is_paused",
+        "line_number": 255,
+        "original_length": 109
+      },
+      {
+        "enhanced_length": 165,
+        "enhancement_type": "added_raises",
+        "function_name": "get_pause_remaining",
+        "line_number": 270,
+        "original_length": 120
+      },
+      {
+        "enhanced_length": 147,
+        "enhancement_type": "added_raises",
+        "function_name": "resume_monitoring",
+        "line_number": 282,
+        "original_length": 102
+      },
+      {
+        "enhanced_length": 232,
+        "enhancement_type": "added_raises",
+        "function_name": "quarantine_directory",
+        "line_number": 316,
+        "original_length": 187
+      },
+      {
+        "enhanced_length": 377,
+        "enhancement_type": "added_raises",
+        "function_name": "terminate_process",
+        "line_number": 431,
+        "original_length": 286
+      },
+      {
+        "enhanced_length": 235,
+        "enhancement_type": "added_raises",
+        "function_name": "pause_monitoring",
+        "line_number": 487,
+        "original_length": 190
+      },
+      {
+        "enhanced_length": 148,
+        "enhancement_type": "added_raises",
+        "function_name": "resume_monitoring",
+        "line_number": 500,
+        "original_length": 103
+      },
+      {
+        "enhanced_length": 288,
+        "enhancement_type": "added_raises",
+        "function_name": "quarantine_directory",
+        "line_number": 510,
+        "original_length": 243
+      },
+      {
+        "enhanced_length": 154,
+        "enhancement_type": "added_raises",
+        "function_name": "is_monitoring_paused",
+        "line_number": 536,
+        "original_length": 109
+      },
+      {
+        "enhanced_length": 176,
+        "enhancement_type": "added_raises",
+        "function_name": "get_monitoring_pause_remaining",
+        "line_number": 544,
+        "original_length": 131
+      },
+      {
+        "enhanced_length": 217,
+        "enhancement_type": "added_raises",
+        "function_name": "get_action_history",
+        "line_number": 552,
+        "original_length": 172
+      },
+      {
+        "enhanced_length": 151,
+        "enhancement_type": "added_raises",
+        "function_name": "get_stats",
+        "line_number": 563,
+        "original_length": 106
+      },
+      {
+        "enhanced_length": 128,
+        "enhancement_type": "added_raises",
+        "function_name": "clear_action_history",
+        "line_number": 595,
+        "original_length": 21
+      },
+      {
+        "enhanced_length": 410,
+        "enhancement_type": "added_raises",
+        "function_name": "request_user_consent",
+        "line_number": 600,
+        "original_length": 266
+      },
+      {
+        "enhanced_length": 298,
+        "enhancement_type": "added_raises",
+        "function_name": "provide_user_consent",
+        "line_number": 623,
+        "original_length": 253
+      },
+      {
+        "enhanced_length": 258,
+        "enhancement_type": "added_raises",
+        "function_name": "get_pending_consent_requests",
+        "line_number": 646,
+        "original_length": 114
+      }
+    ],
+    "response/alerts.py": [
+      {
+        "enhanced_length": 229,
+        "enhancement_type": "added_raises",
+        "function_name": "send_notification",
+        "line_number": 45,
+        "original_length": 184
+      },
+      {
+        "enhanced_length": 198,
+        "enhancement_type": "added_raises",
+        "function_name": "log_alert",
+        "line_number": 96,
+        "original_length": 153
+      },
+      {
+        "enhanced_length": 223,
+        "enhancement_type": "added_raises",
+        "function_name": "get_recent_alerts",
+        "line_number": 122,
+        "original_length": 178
+      },
+      {
+        "enhanced_length": 190,
+        "enhancement_type": "added_raises",
+        "function_name": "add_alert",
+        "line_number": 171,
+        "original_length": 92
+      },
+      {
+        "enhanced_length": 168,
+        "enhancement_type": "added_raises",
+        "function_name": "get_alerts",
+        "line_number": 180,
+        "original_length": 123
+      },
+      {
+        "enhanced_length": 201,
+        "enhancement_type": "added_raises",
+        "function_name": "get_recent_alerts",
+        "line_number": 188,
+        "original_length": 156
+      },
+      {
+        "enhanced_length": 136,
+        "enhancement_type": "added_raises",
+        "function_name": "clear",
+        "line_number": 199,
+        "original_length": 29
+      },
+      {
+        "enhanced_length": 167,
+        "enhancement_type": "added_raises",
+        "function_name": "start",
+        "line_number": 237,
+        "original_length": 60
+      },
+      {
+        "enhanced_length": 155,
+        "enhancement_type": "added_raises",
+        "function_name": "stop",
+        "line_number": 255,
+        "original_length": 48
+      },
+      {
+        "enhanced_length": 155,
+        "enhancement_type": "added_raises",
+        "function_name": "get_tray_alerts",
+        "line_number": 307,
+        "original_length": 110
+      },
+      {
+        "enhanced_length": 243,
+        "enhancement_type": "added_raises",
+        "function_name": "get_recent_alerts_from_log",
+        "line_number": 315,
+        "original_length": 198
+      },
+      {
+        "enhanced_length": 137,
+        "enhancement_type": "added_raises",
+        "function_name": "clear_tray_alerts",
+        "line_number": 326,
+        "original_length": 30
+      },
+      {
+        "enhanced_length": 147,
+        "enhancement_type": "added_raises",
+        "function_name": "get_stats",
+        "line_number": 331,
+        "original_length": 102
+      },
+      {
+        "enhanced_length": 161,
+        "enhancement_type": "added_raises",
+        "function_name": "get_alert_summary",
+        "line_number": 349,
+        "original_length": 116
+      },
+      {
+        "enhanced_length": 182,
+        "enhancement_type": "added_raises",
+        "function_name": "test_notification",
+        "line_number": 372,
+        "original_length": 137
+      }
+    ],
+    "response/playbooks.py": [
+      {
+        "enhanced_length": 266,
+        "enhancement_type": "added_raises",
+        "function_name": "trigger",
+        "line_number": 20,
+        "original_length": 168
+      }
+    ],
+    "scripts/generate_ga_signoff.py": [
+      {
+        "enhanced_length": 156,
+        "enhancement_type": "added_raises",
+        "function_name": "collect_performance_baseline",
+        "line_number": 24,
+        "original_length": 49
+      },
+      {
+        "enhanced_length": 152,
+        "enhancement_type": "added_raises",
+        "function_name": "collect_security_posture",
+        "line_number": 76,
+        "original_length": 45
+      },
+      {
+        "enhanced_length": 156,
+        "enhancement_type": "added_raises",
+        "function_name": "collect_sbom_license",
+        "line_number": 126,
+        "original_length": 49
+      },
+      {
+        "enhanced_length": 144,
+        "enhancement_type": "added_raises",
+        "function_name": "collect_packaging_hashes",
+        "line_number": 174,
+        "original_length": 37
+      },
+      {
+        "enhanced_length": 159,
+        "enhancement_type": "added_raises",
+        "function_name": "collect_windows_install_validation",
+        "line_number": 214,
+        "original_length": 52
+      },
+      {
+        "enhanced_length": 205,
+        "enhancement_type": "added_raises",
+        "function_name": "run_verifier_check",
+        "line_number": 241,
+        "original_length": 46
+      },
+      {
+        "enhanced_length": 314,
+        "enhancement_type": "added_raises",
+        "function_name": "assess_ga_readiness",
+        "line_number": 273,
+        "original_length": 52
+      },
+      {
+        "enhanced_length": 209,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_ga_signoff",
+        "line_number": 340,
+        "original_length": 48
+      },
+      {
+        "enhanced_length": 145,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 651,
+        "original_length": 44
+      }
+    ],
+    "scripts/generate_sbom_clean.py": [
+      {
+        "enhanced_length": 138,
+        "enhancement_type": "added_raises",
+        "function_name": "scan_codebase",
+        "line_number": 111,
+        "original_length": 37
+      },
+      {
+        "enhanced_length": 188,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_sbom_manifest",
+        "line_number": 145,
+        "original_length": 33
+      },
+      {
+        "enhanced_length": 193,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_license_attestation",
+        "line_number": 208,
+        "original_length": 38
+      },
+      {
+        "enhanced_length": 138,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 334,
+        "original_length": 37
+      }
+    ],
+    "scripts/generate_security_posture.py": [
+      {
+        "enhanced_length": 225,
+        "enhancement_type": "added_raises",
+        "function_name": "run_security_scan",
+        "line_number": 15,
+        "original_length": 176
+      },
+      {
+        "enhanced_length": 242,
+        "enhancement_type": "added_raises",
+        "function_name": "analyze_findings",
+        "line_number": 57,
+        "original_length": 193
+      },
+      {
+        "enhanced_length": 251,
+        "enhancement_type": "added_raises",
+        "function_name": "calculate_security_score",
+        "line_number": 119,
+        "original_length": 202
+      },
+      {
+        "enhanced_length": 210,
+        "enhancement_type": "added_raises",
+        "function_name": "get_posture_level",
+        "line_number": 142,
+        "original_length": 161
+      },
+      {
+        "enhanced_length": 247,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_security_posture_report",
+        "line_number": 162,
+        "original_length": 198
+      },
+      {
+        "enhanced_length": 257,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_category_analysis",
+        "line_number": 303,
+        "original_length": 39
+      },
+      {
+        "enhanced_length": 153,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_recommendations",
+        "line_number": 329,
+        "original_length": 52
+      },
+      {
+        "enhanced_length": 136,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_detailed_findings",
+        "line_number": 352,
+        "original_length": 35
+      },
+      {
+        "enhanced_length": 157,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 375,
+        "original_length": 56
+      }
+    ],
+    "scripts/package_release.py": [
+      {
+        "enhanced_length": 158,
+        "enhancement_type": "added_raises",
+        "function_name": "create_source_package",
+        "line_number": 27,
+        "original_length": 113
+      },
+      {
+        "enhanced_length": 181,
+        "enhancement_type": "added_raises",
+        "function_name": "create_offline_bundle",
+        "line_number": 115,
+        "original_length": 136
+      },
+      {
+        "enhanced_length": 213,
+        "enhancement_type": "added_raises",
+        "function_name": "calculate_sha256",
+        "line_number": 292,
+        "original_length": 168
+      },
+      {
+        "enhanced_length": 278,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_checksums",
+        "line_number": 311,
+        "original_length": 181
+      },
+      {
+        "enhanced_length": 242,
+        "enhancement_type": "added_raises",
+        "function_name": "create_verification_evidence",
+        "line_number": 345,
+        "original_length": 197
+      },
+      {
+        "enhanced_length": 140,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 440,
+        "original_length": 39
+      }
+    ],
+    "scripts/windows_install_dryrun.py": [
+      {
+        "enhanced_length": 247,
+        "enhancement_type": "added_raises",
+        "function_name": "analyze_powershell_script",
+        "line_number": 25,
+        "original_length": 202
+      },
+      {
+        "enhanced_length": 291,
+        "enhancement_type": "added_raises",
+        "function_name": "simulate_script_execution",
+        "line_number": 116,
+        "original_length": 246
+      },
+      {
+        "enhanced_length": 216,
+        "enhancement_type": "added_raises",
+        "function_name": "validate_service_lifecycle",
+        "line_number": 245,
+        "original_length": 119
+      },
+      {
+        "enhanced_length": 225,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_dryrun_report",
+        "line_number": 396,
+        "original_length": 180
+      },
+      {
+        "enhanced_length": 151,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 611,
+        "original_length": 50
+      }
+    ],
+    "service/service_wrapper.py": [
+      {
+        "enhanced_length": 142,
+        "enhancement_type": "added_raises",
+        "function_name": "initialize",
+        "line_number": 77,
+        "original_length": 35
+      },
+      {
+        "enhanced_length": 134,
+        "enhancement_type": "added_raises",
+        "function_name": "start",
+        "line_number": 238,
+        "original_length": 27
+      },
+      {
+        "enhanced_length": 133,
+        "enhancement_type": "added_raises",
+        "function_name": "stop",
+        "line_number": 248,
+        "original_length": 26
+      },
+      {
+        "enhanced_length": 133,
+        "enhancement_type": "added_raises",
+        "function_name": "run_forever",
+        "line_number": 286,
+        "original_length": 26
+      },
+      {
+        "enhanced_length": 138,
+        "enhancement_type": "added_raises",
+        "function_name": "get_status",
+        "line_number": 298,
+        "original_length": 31
+      },
+      {
+        "enhanced_length": 138,
+        "enhancement_type": "added_raises",
+        "function_name": "uptime_seconds",
+        "line_number": 314,
+        "original_length": 30
+      },
+      {
+        "enhanced_length": 312,
+        "enhancement_type": "added_raises",
+        "function_name": "trigger_config_reload",
+        "line_number": 318,
+        "original_length": 49
+      },
+      {
+        "enhanced_length": 135,
+        "enhancement_type": "added_raises",
+        "function_name": "SvcStop",
+        "line_number": 361,
+        "original_length": 28
+      },
+      {
+        "enhanced_length": 130,
+        "enhancement_type": "added_raises",
+        "function_name": "SvcDoRun",
+        "line_number": 378,
+        "original_length": 23
+      },
+      {
+        "enhanced_length": 135,
+        "enhancement_type": "added_raises",
+        "function_name": "install_service",
+        "line_number": 416,
+        "original_length": 28
+      },
+      {
+        "enhanced_length": 137,
+        "enhancement_type": "added_raises",
+        "function_name": "uninstall_service",
+        "line_number": 446,
+        "original_length": 30
+      },
+      {
+        "enhanced_length": 133,
+        "enhancement_type": "added_raises",
+        "function_name": "start_service",
+        "line_number": 466,
+        "original_length": 26
+      },
+      {
+        "enhanced_length": 132,
+        "enhancement_type": "added_raises",
+        "function_name": "stop_service",
+        "line_number": 486,
+        "original_length": 25
+      },
+      {
+        "enhanced_length": 153,
+        "enhancement_type": "added_raises",
+        "function_name": "run_interactive",
+        "line_number": 506,
+        "original_length": 46
+      },
+      {
+        "enhanced_length": 143,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 526,
+        "original_length": 37
+      }
+    ],
+    "temp_minimal_probes.py": [
+      {
+        "enhanced_length": 207,
+        "enhancement_type": "added_raises",
+        "function_name": "subscribe",
+        "line_number": 14,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 202,
+        "enhancement_type": "added_raises",
+        "function_name": "publish",
+        "line_number": 19,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 115,
+        "enhancement_type": "added_raises",
+        "function_name": "capture_alert",
+        "line_number": 40,
+        "original_length": 0
+      }
+    ],
+    "temp_synthetic_probes.py": [
+      {
+        "enhanced_length": 115,
+        "enhancement_type": "added_raises",
+        "function_name": "capture_alert",
+        "line_number": 19,
+        "original_length": 0
+      }
+    ],
+    "tools/api_contract_check.py": [
+      {
+        "enhanced_length": 183,
+        "enhancement_type": "added_raises",
+        "function_name": "extract_fastapi_routes",
+        "line_number": 58,
+        "original_length": 138
+      },
+      {
+        "enhanced_length": 154,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_contract",
+        "line_number": 222,
+        "original_length": 109
+      },
+      {
+        "enhanced_length": 335,
+        "enhancement_type": "added_raises",
+        "function_name": "load_baseline_contract",
+        "line_number": 254,
+        "original_length": 188
+      },
+      {
+        "enhanced_length": 354,
+        "enhancement_type": "added_raises",
+        "function_name": "save_contract",
+        "line_number": 276,
+        "original_length": 207
+      },
+      {
+        "enhanced_length": 260,
+        "enhancement_type": "added_raises",
+        "function_name": "compare_contracts",
+        "line_number": 300,
+        "original_length": 215
+      },
+      {
+        "enhanced_length": 121,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 450,
+        "original_length": 20
+      }
+    ],
+    "tools/compat_matrix.py": [
+      {
+        "enhanced_length": 122,
+        "enhancement_type": "added_raises",
+        "function_name": "run",
+        "line_number": 10,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 111,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 14,
+        "original_length": 0
+      }
+    ],
+    "tools/composite_health_check.py": [
+      {
+        "enhanced_length": 255,
+        "enhancement_type": "added_raises",
+        "function_name": "load_rc1_baseline",
+        "line_number": 17,
+        "original_length": 36
+      },
+      {
+        "enhanced_length": 269,
+        "enhancement_type": "added_raises",
+        "function_name": "check_file_integrity",
+        "line_number": 51,
+        "original_length": 50
+      },
+      {
+        "enhanced_length": 214,
+        "enhancement_type": "added_raises",
+        "function_name": "check_flag_consistency",
+        "line_number": 81,
+        "original_length": 45
+      },
+      {
+        "enhanced_length": 213,
+        "enhancement_type": "added_raises",
+        "function_name": "run_proof_consistency_check",
+        "line_number": 97,
+        "original_length": 44
+      },
+      {
+        "enhanced_length": 150,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 130,
+        "original_length": 49
+      }
+    ],
+    "tools/config_migrate.py": [
+      {
+        "enhanced_length": 169,
+        "enhancement_type": "added_raises",
+        "function_name": "scan_environment",
+        "line_number": 54,
+        "original_length": 52
+      },
+      {
+        "enhanced_length": 256,
+        "enhancement_type": "added_raises",
+        "function_name": "scan_config_file",
+        "line_number": 73,
+        "original_length": 37
+      },
+      {
+        "enhanced_length": 179,
+        "enhancement_type": "added_raises",
+        "function_name": "detect_migrations_needed",
+        "line_number": 105,
+        "original_length": 134
+      },
+      {
+        "enhanced_length": 277,
+        "enhancement_type": "added_raises",
+        "function_name": "create_backup",
+        "line_number": 133,
+        "original_length": 232
+      },
+      {
+        "enhanced_length": 275,
+        "enhancement_type": "added_raises",
+        "function_name": "apply_migrations",
+        "line_number": 173,
+        "original_length": 230
+      },
+      {
+        "enhanced_length": 248,
+        "enhancement_type": "added_raises",
+        "function_name": "list_current_config",
+        "line_number": 280,
+        "original_length": 32
+      },
+      {
+        "enhanced_length": 144,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 295,
+        "original_length": 43
+      }
+    ],
+    "tools/docstring_enricher.py": [
+      {
+        "enhanced_length": 157,
+        "enhancement_type": "added_raises",
+        "function_name": "enrich_docstrings",
+        "line_number": 42,
+        "original_length": 40
+      },
+      {
+        "enhanced_length": 174,
+        "enhancement_type": "added_raises",
+        "function_name": "visit_ClassDef",
+        "line_number": 323,
+        "original_length": 26
+      },
+      {
+        "enhanced_length": 177,
+        "enhancement_type": "added_raises",
+        "function_name": "visit_FunctionDef",
+        "line_number": 330,
+        "original_length": 29
+      },
+      {
+        "enhanced_length": 183,
+        "enhancement_type": "added_raises",
+        "function_name": "visit_AsyncFunctionDef",
+        "line_number": 334,
+        "original_length": 35
+      },
+      {
+        "enhanced_length": 249,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_diff_markdown",
+        "line_number": 385,
+        "original_length": 52
+      },
+      {
+        "enhanced_length": 125,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 452,
+        "original_length": 24
+      }
+    ],
+    "tools/feature_flags_analyzer.py": [
+      {
+        "enhanced_length": 148,
+        "enhancement_type": "added_raises",
+        "function_name": "analyze_flags",
+        "line_number": 61,
+        "original_length": 31
+      },
+      {
+        "enhanced_length": 179,
+        "enhancement_type": "added_raises",
+        "function_name": "visit_FunctionDef",
+        "line_number": 313,
+        "original_length": 31
+      },
+      {
+        "enhanced_length": 185,
+        "enhancement_type": "added_raises",
+        "function_name": "visit_AsyncFunctionDef",
+        "line_number": 320,
+        "original_length": 37
+      },
+      {
+        "enhanced_length": 176,
+        "enhancement_type": "added_raises",
+        "function_name": "visit_ClassDef",
+        "line_number": 327,
+        "original_length": 28
+      },
+      {
+        "enhanced_length": 211,
+        "enhancement_type": "added_raises",
+        "function_name": "visit_Call",
+        "line_number": 334,
+        "original_length": 63
+      },
+      {
+        "enhanced_length": 188,
+        "enhancement_type": "added_raises",
+        "function_name": "visit_Subscript",
+        "line_number": 379,
+        "original_length": 40
+      },
+      {
+        "enhanced_length": 263,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_markdown_report",
+        "line_number": 414,
+        "original_length": 61
+      },
+      {
+        "enhanced_length": 125,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 482,
+        "original_length": 24
+      }
+    ],
+    "tools/migrate_prior_state.py": [
+      {
+        "enhanced_length": 200,
+        "enhancement_type": "added_raises",
+        "function_name": "copy_if",
+        "line_number": 9,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 111,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 18,
+        "original_length": 0
+      }
+    ],
+    "tools/perf_baseline.py": [
+      {
+        "enhanced_length": 220,
+        "enhancement_type": "added_raises",
+        "function_name": "register_handler",
+        "line_number": 31,
+        "original_length": 23
+      },
+      {
+        "enhanced_length": 220,
+        "enhancement_type": "added_raises",
+        "function_name": "emit_async",
+        "line_number": 37,
+        "original_length": 26
+      },
+      {
+        "enhanced_length": 219,
+        "enhancement_type": "added_raises",
+        "function_name": "emit_sync",
+        "line_number": 50,
+        "original_length": 25
+      },
+      {
+        "enhanced_length": 168,
+        "enhancement_type": "added_raises",
+        "function_name": "get_event_bus",
+        "line_number": 61,
+        "original_length": 67
+      },
+      {
+        "enhanced_length": 249,
+        "enhancement_type": "added_raises",
+        "function_name": "measure_async_performance",
+        "line_number": 79,
+        "original_length": 36
+      },
+      {
+        "enhanced_length": 114,
+        "enhancement_type": "added_raises",
+        "function_name": "noop_handler",
+        "line_number": 82,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 248,
+        "enhancement_type": "added_raises",
+        "function_name": "measure_sync_performance",
+        "line_number": 118,
+        "original_length": 35
+      },
+      {
+        "enhanced_length": 114,
+        "enhancement_type": "added_raises",
+        "function_name": "noop_handler",
+        "line_number": 121,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 154,
+        "enhancement_type": "added_raises",
+        "function_name": "run_performance_baseline",
+        "line_number": 156,
+        "original_length": 37
+      },
+      {
+        "enhanced_length": 143,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 219,
+        "original_length": 42
+      }
+    ],
+    "tools/repair_and_validate.py": [
+      {
+        "enhanced_length": 198,
+        "enhancement_type": "added_raises",
+        "function_name": "backup",
+        "line_number": 70,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 282,
+        "enhancement_type": "added_raises",
+        "function_name": "ensure",
+        "line_number": 74,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 122,
+        "enhancement_type": "added_raises",
+        "function_name": "run",
+        "line_number": 86,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 111,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 90,
+        "original_length": 0
+      }
+    ],
+    "tools/rotate_secrets.py": [
+      {
+        "enhanced_length": 231,
+        "enhancement_type": "added_raises",
+        "function_name": "rotate_console_auth_session_key",
+        "line_number": 29,
+        "original_length": 125
+      },
+      {
+        "enhanced_length": 220,
+        "enhancement_type": "added_raises",
+        "function_name": "rotate_admin_token",
+        "line_number": 84,
+        "original_length": 114
+      },
+      {
+        "enhanced_length": 269,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_salt",
+        "line_number": 133,
+        "original_length": 224
+      },
+      {
+        "enhanced_length": 186,
+        "enhancement_type": "added_raises",
+        "function_name": "preview_rotation_plan",
+        "line_number": 191,
+        "original_length": 141
+      },
+      {
+        "enhanced_length": 275,
+        "enhancement_type": "added_raises",
+        "function_name": "execute_rotation",
+        "line_number": 241,
+        "original_length": 230
+      },
+      {
+        "enhanced_length": 151,
+        "enhancement_type": "added_raises",
+        "function_name": "get_rotation_history",
+        "line_number": 292,
+        "original_length": 106
+      },
+      {
+        "enhanced_length": 152,
+        "enhancement_type": "added_raises",
+        "function_name": "get_secret_rotator",
+        "line_number": 317,
+        "original_length": 103
+      }
+    ],
+    "tools/routing_atlas_generator.py": [
+      {
+        "enhanced_length": 149,
+        "enhancement_type": "added_raises",
+        "function_name": "analyze_routes",
+        "line_number": 83,
+        "original_length": 32
+      },
+      {
+        "enhanced_length": 206,
+        "enhancement_type": "added_raises",
+        "function_name": "visit_FunctionDef",
+        "line_number": 326,
+        "original_length": 58
+      },
+      {
+        "enhanced_length": 212,
+        "enhancement_type": "added_raises",
+        "function_name": "visit_AsyncFunctionDef",
+        "line_number": 339,
+        "original_length": 64
+      },
+      {
+        "enhanced_length": 125,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 560,
+        "original_length": 24
+      }
+    ],
+    "tools/sec_lint.py": [
+      {
+        "enhanced_length": 340,
+        "enhancement_type": "added_raises",
+        "function_name": "scan_file",
+        "line_number": 242,
+        "original_length": 193
+      },
+      {
+        "enhanced_length": 277,
+        "enhancement_type": "added_raises",
+        "function_name": "scan_directory",
+        "line_number": 343,
+        "original_length": 232
+      },
+      {
+        "enhanced_length": 265,
+        "enhancement_type": "added_raises",
+        "function_name": "generate_report",
+        "line_number": 381,
+        "original_length": 220
+      },
+      {
+        "enhanced_length": 226,
+        "enhancement_type": "added_raises",
+        "function_name": "check_current_tree",
+        "line_number": 527,
+        "original_length": 129
+      },
+      {
+        "enhanced_length": 137,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 542,
+        "original_length": 36
+      }
+    ],
+    "tools/self_check.py": [
+      {
+        "enhanced_length": 216,
+        "enhancement_type": "added_raises",
+        "function_name": "log",
+        "line_number": 33,
+        "original_length": 124
+      },
+      {
+        "enhanced_length": 218,
+        "enhancement_type": "added_raises",
+        "function_name": "check_python_environment",
+        "line_number": 44,
+        "original_length": 121
+      },
+      {
+        "enhanced_length": 281,
+        "enhancement_type": "added_raises",
+        "function_name": "check_file_system",
+        "line_number": 99,
+        "original_length": 134
+      },
+      {
+        "enhanced_length": 217,
+        "enhancement_type": "added_raises",
+        "function_name": "check_web_api_import",
+        "line_number": 161,
+        "original_length": 120
+      },
+      {
+        "enhanced_length": 216,
+        "enhancement_type": "added_raises",
+        "function_name": "check_health_endpoint",
+        "line_number": 214,
+        "original_length": 119
+      },
+      {
+        "enhanced_length": 271,
+        "enhancement_type": "added_raises",
+        "function_name": "check_admin_authentication",
+        "line_number": 270,
+        "original_length": 119
+      },
+      {
+        "enhanced_length": 271,
+        "enhancement_type": "added_raises",
+        "function_name": "check_configuration_validation",
+        "line_number": 332,
+        "original_length": 130
+      },
+      {
+        "enhanced_length": 199,
+        "enhancement_type": "added_raises",
+        "function_name": "run_all_checks",
+        "line_number": 381,
+        "original_length": 102
+      },
+      {
+        "enhanced_length": 132,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 457,
+        "original_length": 31
+      }
+    ],
+    "tools/symbol_atlas_generator.py": [
+      {
+        "enhanced_length": 152,
+        "enhancement_type": "added_raises",
+        "function_name": "analyze_codebase",
+        "line_number": 78,
+        "original_length": 35
+      },
+      {
+        "enhanced_length": 174,
+        "enhancement_type": "added_raises",
+        "function_name": "visit_ClassDef",
+        "line_number": 275,
+        "original_length": 26
+      },
+      {
+        "enhanced_length": 177,
+        "enhancement_type": "added_raises",
+        "function_name": "visit_FunctionDef",
+        "line_number": 305,
+        "original_length": 29
+      },
+      {
+        "enhanced_length": 183,
+        "enhancement_type": "added_raises",
+        "function_name": "visit_AsyncFunctionDef",
+        "line_number": 309,
+        "original_length": 35
+      },
+      {
+        "enhanced_length": 174,
+        "enhancement_type": "added_raises",
+        "function_name": "visit_Import",
+        "line_number": 357,
+        "original_length": 26
+      },
+      {
+        "enhanced_length": 181,
+        "enhancement_type": "added_raises",
+        "function_name": "visit_ImportFrom",
+        "line_number": 369,
+        "original_length": 33
+      },
+      {
+        "enhanced_length": 125,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 453,
+        "original_length": 24
+      }
+    ],
+    "tools/verify_minimax_claims.py": [
+      {
+        "enhanced_length": 116,
+        "enhancement_type": "added_raises",
+        "function_name": "sha256_of",
+        "line_number": 25,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 120,
+        "enhancement_type": "added_raises",
+        "function_name": "find_spec_ok",
+        "line_number": 32,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 219,
+        "enhancement_type": "added_raises",
+        "function_name": "load_json",
+        "line_number": 35,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 180,
+        "enhancement_type": "added_raises",
+        "function_name": "check_artifacts",
+        "line_number": 39,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 186,
+        "enhancement_type": "added_raises",
+        "function_name": "check_manifest_hashes",
+        "line_number": 42,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 127,
+        "enhancement_type": "added_raises",
+        "function_name": "run_py_compile",
+        "line_number": 54,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 190,
+        "enhancement_type": "added_raises",
+        "function_name": "check_no_new_runtime_deps",
+        "line_number": 68,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 188,
+        "enhancement_type": "added_raises",
+        "function_name": "check_public_invariants",
+        "line_number": 100,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 184,
+        "enhancement_type": "added_raises",
+        "function_name": "check_routes_on_off",
+        "line_number": 129,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 107,
+        "enhancement_type": "added_raises",
+        "function_name": "paths",
+        "line_number": 137,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 215,
+        "enhancement_type": "added_raises",
+        "function_name": "check_anomaly_routes",
+        "line_number": 176,
+        "original_length": 51
+      },
+      {
+        "enhanced_length": 107,
+        "enhancement_type": "added_raises",
+        "function_name": "paths",
+        "line_number": 187,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 208,
+        "enhancement_type": "added_raises",
+        "function_name": "check_quarantine_routes",
+        "line_number": 248,
+        "original_length": 44
+      },
+      {
+        "enhanced_length": 107,
+        "enhancement_type": "added_raises",
+        "function_name": "paths",
+        "line_number": 260,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 278,
+        "enhancement_type": "added_raises",
+        "function_name": "check_p2_auth_streaming_routes",
+        "line_number": 316,
+        "original_length": 59
+      },
+      {
+        "enhanced_length": 107,
+        "enhancement_type": "added_raises",
+        "function_name": "paths",
+        "line_number": 329,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 184,
+        "enhancement_type": "added_raises",
+        "function_name": "check_p3_invariants",
+        "line_number": 391,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 107,
+        "enhancement_type": "added_raises",
+        "function_name": "paths",
+        "line_number": 400,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 251,
+        "enhancement_type": "added_raises",
+        "function_name": "check_p5_session_hygiene",
+        "line_number": 460,
+        "original_length": 32
+      },
+      {
+        "enhanced_length": 198,
+        "enhancement_type": "added_raises",
+        "function_name": "check_p5_sse_correctness",
+        "line_number": 532,
+        "original_length": 34
+      },
+      {
+        "enhanced_length": 107,
+        "enhancement_type": "added_raises",
+        "function_name": "paths",
+        "line_number": 543,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 194,
+        "enhancement_type": "added_raises",
+        "function_name": "check_p5_retention_rotation",
+        "line_number": 612,
+        "original_length": 30
+      },
+      {
+        "enhanced_length": 196,
+        "enhancement_type": "added_raises",
+        "function_name": "check_p5_export_gating",
+        "line_number": 671,
+        "original_length": 32
+      },
+      {
+        "enhanced_length": 107,
+        "enhancement_type": "added_raises",
+        "function_name": "paths",
+        "line_number": 682,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 231,
+        "enhancement_type": "added_raises",
+        "function_name": "check_p5_api_freezer_alignment",
+        "line_number": 733,
+        "original_length": 67
+      },
+      {
+        "enhanced_length": 111,
+        "enhancement_type": "added_raises",
+        "function_name": "main",
+        "line_number": 803,
+        "original_length": 0
+      }
+    ],
+    "ui/tray_app.py": [
+      {
+        "enhanced_length": 216,
+        "enhancement_type": "added_raises",
+        "function_name": "create_default_icon",
+        "line_number": 26,
+        "original_length": 167
+      },
+      {
+        "enhanced_length": 155,
+        "enhancement_type": "added_raises",
+        "function_name": "create_menu",
+        "line_number": 105,
+        "original_length": 110
+      },
+      {
+        "enhanced_length": 116,
+        "enhancement_type": "added_raises",
+        "function_name": "run_test",
+        "line_number": 313,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 134,
+        "enhancement_type": "added_raises",
+        "function_name": "start",
+        "line_number": 350,
+        "original_length": 27
+      },
+      {
+        "enhanced_length": 133,
+        "enhancement_type": "added_raises",
+        "function_name": "stop",
+        "line_number": 385,
+        "original_length": 26
+      },
+      {
+        "enhanced_length": 202,
+        "enhancement_type": "added_raises",
+        "function_name": "update_status",
+        "line_number": 398,
+        "original_length": 104
+      },
+      {
+        "enhanced_length": 162,
+        "enhancement_type": "added_raises",
+        "function_name": "notify_new_alert",
+        "line_number": 414,
+        "original_length": 55
+      },
+      {
+        "enhanced_length": 272,
+        "enhancement_type": "added_raises",
+        "function_name": "run_in_thread",
+        "line_number": 436,
+        "original_length": 125
+      },
+      {
+        "enhanced_length": 116,
+        "enhancement_type": "added_raises",
+        "function_name": "run_tray",
+        "line_number": 442,
+        "original_length": 0
+      },
+      {
+        "enhanced_length": 156,
+        "enhancement_type": "added_raises",
+        "function_name": "get_stats",
+        "line_number": 453,
+        "original_length": 111
+      },
+      {
+        "enhanced_length": 260,
+        "enhancement_type": "added_raises",
+        "function_name": "create_tray_app",
+        "line_number": 467,
+        "original_length": 211
+      }
+    ]
+  },
+  "metadata": {
+    "files_processed": 78,
+    "files_with_enhancements": 64,
+    "generator": "WatchLockAI Docstring Enrichment Tool",
+    "timestamp": "2025-09-06T22:43:50Z",
+    "total_enhancements": 543,
+    "version": "1.0.0"
+  },
+  "statistics": {
+    "average_enhancements_per_file": 8.484375,
+    "by_enhancement_type": {
+      "added_raises": 537,
+      "added_returns": 1,
+      "improved_format": 5
+    },
+    "enhancements_per_file": {
+      "app.py": 10,
+      "app_core/bus.py": 14,
+      "app_core/config.py": 9,
+      "app_core/logging_setup.py": 8,
+      "app_core/schemas.py": 1,
+      "collectors/fs_monitor.py": 13,
+      "collectors/health_monitor.py": 6,
+      "collectors/net_monitor.py": 6,
+      "collectors/proc_monitor.py": 7,
+      "collectors/reg_monitor.py": 9,
+      "config/operational_mode.py": 4,
+      "console/anomaly.py": 17,
+      "console/api/operational_mode.py": 2,
+      "console/auth.py": 14,
+      "console/backup_restore.py": 4,
+      "console/chaos_probes.py": 12,
+      "console/config_schema.py": 6,
+      "console/console_ui.py": 3,
+      "console/log_config.py": 7,
+      "console/perf_probe.py": 9,
+      "console/plugin_sandbox.py": 10,
+      "console/preflight_checks.py": 9,
+      "console/quarantine.py": 12,
+      "console/rate_limit.py": 2,
+      "console/retention.py": 8,
+      "console/telemetry_export.py": 11,
+      "console/web_api.py": 54,
+      "detection/attack_matrix.py": 15,
+      "detection/behavioral_engine.py": 8,
+      "detection/knowledge/loader.py": 5,
+      "detection/ml_scoring.py": 6,
+      "detection/rule_dsl.py": 8,
+      "detection/rules_engine.py": 13,
+      "detection/threat_intel_db.py": 5,
+      "generate_inventory.py": 2,
+      "generate_p2_003_004_artifacts.py": 3,
+      "plugins/example_hello.py": 5,
+      "response/actions.py": 19,
+      "response/alerts.py": 15,
+      "response/playbooks.py": 1,
+      "scripts/generate_ga_signoff.py": 9,
+      "scripts/generate_sbom_clean.py": 4,
+      "scripts/generate_security_posture.py": 9,
+      "scripts/package_release.py": 6,
+      "scripts/windows_install_dryrun.py": 5,
+      "service/service_wrapper.py": 15,
+      "temp_minimal_probes.py": 3,
+      "temp_synthetic_probes.py": 1,
+      "tools/api_contract_check.py": 6,
+      "tools/compat_matrix.py": 2,
+      "tools/composite_health_check.py": 5,
+      "tools/config_migrate.py": 7,
+      "tools/docstring_enricher.py": 6,
+      "tools/feature_flags_analyzer.py": 8,
+      "tools/migrate_prior_state.py": 2,
+      "tools/perf_baseline.py": 10,
+      "tools/repair_and_validate.py": 4,
+      "tools/rotate_secrets.py": 7,
+      "tools/routing_atlas_generator.py": 4,
+      "tools/sec_lint.py": 5,
+      "tools/self_check.py": 9,
+      "tools/symbol_atlas_generator.py": 7,
+      "tools/verify_minimax_claims.py": 26,
+      "ui/tray_app.py": 11
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GET /api/admin/plugins Response",
+  "description": "Response schema for GET /api/admin/plugins",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array"
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "items"
+      ],
+      "additionalProperties": true,
+      "description": "Success response (HTTP 200)"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "code": {
+          "type": [
+            "string",
+            "integer"
+          ]
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": true,
+      "description": "Error response (HTTP 500)"
+    }
+  ]
+}

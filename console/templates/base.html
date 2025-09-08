@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}WatchLockAI Sentinel Console{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .status-green { background-color: #28a745; }
+        .status-yellow { background-color: #ffc107; }
+        .status-red { background-color: #dc3545; }
+        .sidebar {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #0d6efd;
+        }
+        .metric-card {
+            transition: transform 0.2s;
+        }
+        .metric-card:hover {
+            transform: translateY(-2px);
+        }
+        .alert-item {
+            border-left: 4px solid #dee2e6;
+            margin-bottom: 8px;
+        }
+        .alert-critical { border-left-color: #dc3545; }
+        .alert-warning { border-left-color: #ffc107; }
+        .alert-info { border-left-color: #0dcaf0; }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-shield-check text-primary me-2" style="font-size: 1.5rem;"></i>
+                        <h5 class="mb-0">WatchLockAI</h5>
+                    </div>
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.url.path == '/' %}active{% endif %}" href="/">
+                                <i class="bi bi-house-door me-2"></i>Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.url.path == '/detections' %}active{% endif %}" href="/detections">
+                                <i class="bi bi-exclamation-triangle me-2"></i>Detections
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.url.path == '/assets' %}active{% endif %}" href="/assets">
+                                <i class="bi bi-pc-display me-2"></i>Asset Monitoring
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.url.path == '/accounts' %}active{% endif %}" href="/accounts">
+                                <i class="bi bi-person-circle me-2"></i>Account Activity
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.url.path == '/processes' %}active{% endif %}" href="/processes">
+                                <i class="bi bi-cpu me-2"></i>Script & Process
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.url.path == '/policies' %}active{% endif %}" href="/policies">
+                                <i class="bi bi-gear me-2"></i>Policies
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div class="mb-3">
+                        <h6 class="sidebar-heading">Quick Actions</h6>
+                        <button class="btn btn-outline-warning btn-sm me-2" onclick="pauseMonitoring()">Pause</button>
+                        <button class="btn btn-outline-success btn-sm" onclick="resumeMonitoring()">Resume</button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">{% block header %}Dashboard{% endblock %}</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <span class="text-muted small" id="status-indicator">
+                                <span class="status-indicator status-yellow"></span>Loading...
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Global functions for API calls
+        async function fetchAPI(endpoint) {
+            try {
+                const response = await fetch(`/api${endpoint}`);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                return await response.json();
+            } catch (error) {
+                console.error(`API call failed: ${endpoint}`, error);
+                throw error;
+            }
+        }
+
+        async function postAPI(endpoint, data = {}) {
+            try {
+                const response = await fetch(`/api${endpoint}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                return await response.json();
+            } catch (error) {
+                console.error(`API call failed: ${endpoint}`, error);
+                throw error;
+            }
+        }
+
+        async function updateStatus() {
+            try {
+                const status = await fetchAPI('/status');
+                const indicator = document.getElementById('status-indicator');
+                const statusClass = status.running ? 'status-green' : 'status-red';
+                const statusText = status.running ? 'Running' : 'Stopped';
+                indicator.innerHTML = `<span class="status-indicator ${statusClass}"></span>${statusText}`;
+            } catch (error) {
+                const indicator = document.getElementById('status-indicator');
+                indicator.innerHTML = '<span class="status-indicator status-red"></span>Error';
+            }
+        }
+
+        async function pauseMonitoring() {
+            try {
+                const result = await postAPI('/actions/pause', { duration_minutes: 5 });
+                alert(result.message);
+                updateStatus();
+            } catch (error) {
+                alert('Failed to pause monitoring');
+            }
+        }
+
+        async function resumeMonitoring() {
+            try {
+                const result = await postAPI('/actions/resume');
+                alert(result.message);
+                updateStatus();
+            } catch (error) {
+                alert('Failed to resume monitoring');
+            }
+        }
+
+        // Update status every 30 seconds
+        setInterval(updateStatus, 30000);
+        updateStatus(); // Initial load
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

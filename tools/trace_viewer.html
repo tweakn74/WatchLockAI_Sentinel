@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>DevAgentZero • Reasoning Trace Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Minimal styling -->
+  <style>
+    :root { --bg:#0b0d10; --panel:#141821; --muted:#1c2430; --text:#e5edf5; --text-dim:#a8b3c4; --accent:#6aa6ff; --border:#2b3545; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    .card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 6px 16px rgba(0,0,0,.25); }
+    .card + .card { margin-top: 16px; }
+    .row { display: flex; gap: 12px; align-items: center; }
+    .space { height: 16px; }
+    .head { padding: 16px 18px; border-bottom: 1px solid var(--border); display:flex; gap:12px; align-items:center; }
+    .title { font-weight: 600; font-size: 18px; }
+    .badge { display:inline-flex; align-items:center; gap:6px; padding: 3px 8px; border:1px solid var(--border); border-radius: 999px; background: var(--muted); color: var(--text-dim); font-size: 12px; }
+    .btn { cursor:pointer; background:#1f2937; border:1px solid var(--border); color:var(--text); padding:8px 10px; border-radius:10px; }
+    .btn.outline { background:transparent; }
+    .input { width:100%; padding:8px 10px; border:1px solid var(--border); border-radius:10px; background:#0f131a; color:var(--text); }
+    .panel { padding: 14px 18px; }
+    .grid { display:grid; grid-template-columns: 1fr; gap: 16px; }
+    .stats { display:grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+    .stat { background: var(--muted); border:1px solid var(--border); border-radius:12px; padding:10px; }
+    .stat .v { font-weight:700; }
+    .list { max-height: 65vh; overflow:auto; }
+    .trace { border:1px solid var(--border); border-radius:12px; padding:12px; background:#0f131a; }
+    .trace + .trace { margin-top: 10px; }
+    .dim { color: var(--text-dim); }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .timeline { position:relative; height: 8px; background:#0b0f16; border-radius: 6px; overflow:hidden; }
+    .seg { position:absolute; top:0; bottom:0; }
+    .ev { border-left: 2px solid var(--border); padding-left: 10px; margin-left: 4px; }
+    details { background:#0c1016; border:1px solid var(--border); border-radius:10px; padding:8px 10px; }
+    details + details { margin-top: 8px; }
+    summary { cursor:pointer; outline:none; }
+    .drop { border:2px dashed var(--border); border-radius:14px; padding:26px; text-align:center; color:var(--text-dim); }
+    .muted { color: var(--text-dim); }
+    .pill { display:inline-block; padding:2px 8px; border-radius:999px; border:1px solid var(--border); background:#0b0f16; }
+    .roww { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    @media (max-width: 800px) { .stats { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="head">
+      <div class="title">Reasoning Trace Viewer</div>
+      <span class="badge">DevAgentZero</span>
+      <span id="banner" class="badge" title="Mode / models resolved by your runtime"></span>
+      <div style="margin-left:auto" class="row">
+        <input id="search" class="input" placeholder="Search (operation id, model, prompt text)" />
+        <label class="btn outline">
+          Load JSON
+          <input id="filepick" type="file" accept="application/json" multiple style="display:none" />
+        </label>
+        <button id="clearBtn" class="btn outline">Clear</button>
+      </div>
+    </div>
+    <div class="panel grid">
+      <div class="stats">
+        <div class="stat">
+          <div class="dim">Traces loaded</div>
+          <div id="count" class="v">0</div>
+        </div>
+        <div class="stat">
+          <div class="dim">Average duration</div>
+          <div id="avg" class="v">0 ms</div>
+        </div>
+        <div class="stat">
+          <div class="dim">Phase frequency</div>
+          <div id="phases" class="mono" style="font-size:12px; white-space:pre-wrap"></div>
+        </div>
+      </div>
+
+      <div id="drop" class="drop">Drag & drop reasoning <span class="mono">*.json</span> files here — or use “Load JSON”.</div>
+
+      <div class="list" id="list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- React from CDN (no build) -->
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script>
+const e = React.createElement;
+
+function fmtMs(n){
+  if (n < 1000) return n + " ms";
+  const s = n/1000; return (s >= 10 ? s.toFixed(0) : s.toFixed(1)) + " s";
+}
+function hueFor(phase){
+  const k = (phase || "").split(":")[0];
+  const map = { plan:200, fanout:260, reduce:330, tool:45, cache:170, decision:20, error:0, result:140 };
+  const base = map[k] ?? 210; return `hsl(${base} 80% 45%)`;
+}
+function dur(t){ const s=t.started_ms||0, f=t.finished_ms||((t.events||[]).at(-1)?.t||s); return Math.max(0, f-s); }
+function buckets(t){
+  const s=t.started_ms||0, f=t.finished_ms||((t.events||[]).at(-1)?.t||s), span=Math.max(1,f-s);
+  return (t.events||[]).map((ev,i)=>{
+    const next=t.events[i+1]?.t ?? f, w=Math.max(1,next-ev.t);
+    return {left: ((ev.t - s)/span)*100, width: (w/span)*100, phase: ev.phase, label: (ev.phase + ": " + (ev.msg||""))};
+  });
+}
+function phaseFreq(traces){
+  const out={}, k = (p)=> (p||"").split(":")[0];
+  for(const t of traces){ const seen=new Set(); for(const ev of (t.events||[])){ const kk=k(ev.phase); if(!seen.has(kk)){ seen.add(kk); out[kk]=(out[kk]||0)+1; } } }
+  return out;
+}
+
+function TraceCard({ t }) {
+  const segs = buckets(t);
+
+  return e('div', { className: 'trace' },
+    e('div', { className: 'roww' },
+      e('span', { className: 'pill mono' }, t.operation_id),
+      e('span', { className: 'pill' }, t.mode || 'unknown'),
+      e('span', { className: 'muted', style: { marginLeft: 'auto' } }, fmtMs(dur(t)))
+    ),
+    e('div', { className: 'roww', style: { marginTop: 6 } },
+      e('span', { className: 'pill' }, 'fast: ' + (t.fast_model || 'n/a')),
+      e('span', { className: 'pill' }, 'strong: ' + (t.strong_model || 'n/a'))
+    ),
+    e('div', { className: 'muted', style: { marginTop: 8 } }, (t.prompt || '').slice(0, 300)),
+    e('div', { className: 'timeline', style: { marginTop: 10, position: 'relative' } },
+      ...segs.map((s, i) =>
+        e('div', {
+          key: i,
+          className: 'seg',
+          title: s.label,
+          style: { left: s.left + '%', width: s.width + '%', background: hueFor(s.phase) }
+        })
+      )
+    ),
+    e('div', { style: { marginTop: 10 } },
+      e('details', null,
+        e('summary', null, `Events (${(t.events || []).length})`),
+        e('div', { style: { marginTop: 8 } },
+          ...(t.events || []).map((ev, i) =>
+            e('div', { key: i, className: 'ev' },
+              e('div', { className: 'roww' },
+                e('span', { className: 'pill' }, (ev.phase || '').replace('ask:', 'ask ')),
+                e('span', { className: 'muted' }, new Date(ev.t || 0).toLocaleTimeString())
+              ),
+              e('div', null, ev.msg || ''),
+              ev.meta && Object.keys(ev.meta).length
+                ? e('pre', {
+                    className: 'mono',
+                    style: { background: '#0b0f16', padding: '8px', borderRadius: '8px', overflow: 'auto' }
+                  }, JSON.stringify(ev.meta, null, 2))
+                : null
+            )
+          )
+        )
+      )
+    )
+  );
+}
+
+function App(){
+  const [traces, setTraces] = React.useState([]);
+  const [query, setQuery] = React.useState('');
+  const [banner, setBanner] = React.useState('[LLM] Mode: (open a runtime log to see)');
+
+  React.useEffect(()=>{
+    // Try to read a banner dropped in via text file if user drags one; otherwise leave default.
+    // (Optional: you can manually paste your preflight banner string into #banner below)
+  },[]);
+
+  const filtered = React.useMemo(()=>{
+    const q = query.trim().toLowerCase();
+    if (!q) return traces;
+    return traces.filter(t =>
+      (t.operation_id||'').toLowerCase().includes(q) ||
+      (t.mode||'').toLowerCase().includes(q) ||
+      (t.fast_model||'').toLowerCase().includes(q) ||
+      (t.strong_model||'').toLowerCase().includes(q) ||
+      (t.prompt||'').toLowerCase().includes(q)
+    );
+  }, [traces, query]);
+
+  const avg = React.useMemo(()=>{
+    if (!filtered.length) return 0;
+    return Math.round(filtered.reduce((a,t)=> a + dur(t), 0) / filtered.length);
+  }, [filtered]);
+
+  const phases = React.useMemo(()=> phaseFreq(filtered), [filtered]);
+
+  React.useEffect(()=> {
+    const el = document.getElementById('banner');
+    if (el) el.textContent = banner;
+  }, [banner]);
+
+  function handleFiles(fileList){
+    if (!fileList?.length) return;
+    const proms = Array.from(fileList).map(f => f.text().then(txt => ({ name:f.name, json: JSON.parse(txt) })).catch(()=>null));
+    Promise.all(proms).then(all => {
+      const valid = all.filter(Boolean).map(x=>x.json).filter(j => j && j.operation_id && Array.isArray(j.events));
+      if (valid.length) setTraces(prev => [...valid, ...prev]);
+    });
+  }
+
+  React.useEffect(()=>{
+    const search = document.getElementById('search');
+    const filepick = document.getElementById('filepick');
+    const clearBtn = document.getElementById('clearBtn');
+    const drop = document.getElementById('drop');
+    const list = document.getElementById('list');
+
+    search.oninput = (e)=> setQuery(e.target.value);
+    filepick.onchange = (e)=> handleFiles(e.target.files);
+    clearBtn.onclick = ()=> setTraces([]);
+
+    ;['dragenter','dragover'].forEach(evt => drop.addEventListener(evt, (e)=> { e.preventDefault(); drop.style.borderColor='#3a86ff'; }));
+    ;['dragleave','drop'].forEach(evt => drop.addEventListener(evt, (e)=> { e.preventDefault(); drop.style.borderColor='var(--border)'; }));
+    drop.addEventListener('drop', (e)=> handleFiles(e.dataTransfer.files));
+
+    // Render list
+    const root = ReactDOM.createRoot(list);
+    function render(){ root.render(e(React.Fragment, null, ...filtered.map((t,i)=> e(TraceCard, {t, key:t.operation_id || i})))) }
+    render();
+    return ()=> root.unmount();
+  }, [filtered]);
+
+  return null;
+}
+
+const root = ReactDOM.createRoot(document.createElement('div'));
+document.body.appendChild(root._internalRoot ? root._internalRoot.containerInfo : root._containerInfo || document.body.lastChild);
+root.render(e(App));
+</script>
+</body>
+</html>

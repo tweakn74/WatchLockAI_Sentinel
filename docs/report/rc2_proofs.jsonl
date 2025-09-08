@@ -1,0 +1,6 @@
+{"tool": "compile", "status": "PASS", "output": "All files compile successfully"}
+{"tool": "import_check", "status": "PASS", "output": "app_core=True, detection=True, fastapi=False"}
+{"tool": "rules_count", "status": "PASS", "output": "20 rules loaded from baseline.yaml"}
+{"tool": "brute_probe", "status": "PASS", "output": "3 brute force alerts generated"}
+{"tool": "ransom_probe", "status": "PASS", "output": "6 ransom alerts generated"}
+{"tool": "coverage_api", "status": "SKIP", "output": "FastAPI not available"}

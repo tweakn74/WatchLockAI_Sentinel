@@ -1,0 +1,15 @@
+# WatchLockAI Account Sentinel Requirements
+requests>=2.31.0
+psutil>=5.9.0  # System and user information
+sqlite3  # Built-in with Python (database operations)
+json  # Built-in with Python
+time  # Built-in with Python
+datetime  # Built-in with Python
+threading  # Built-in with Python
+logging  # Built-in with Python
+pathlib  # Built-in with Python
+hashlib  # Built-in with Python
+subprocess  # Built-in with Python
+
+# Windows-specific requirements (optional)
+pywin32>=306  # Windows API access for advanced features

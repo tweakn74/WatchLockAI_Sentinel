@@ -1,0 +1,1562 @@
+{
+  "merkle_root": "ea2629e6d220b4e5238f5ffeac258f09b7c191a574f1290ab9ac728736f33850",
+  "generated_at": "2025-09-07T18:45:12.044880Z",
+  "tool": "tools/merkle_pack.py",
+  "scope": "Credits Ragnarok v6.0 - P32",
+  "directories": {
+    "DOCS": {
+      "hash": "9e6281671812352e6b7cc72f5ad0017cc122c873a6ab65f5ec6c014ae03152a8",
+      "name": "DOCS",
+      "type": "directory",
+      "children": [
+        {
+          "hash": "3a6eac35757e7a9a75c222f83f7b743d76915be7f12bbd6bd8b6caaf80e9e45e",
+          "name": "Assumptions.md",
+          "type": "file"
+        },
+        {
+          "hash": "302cb99f9acba0a2ccf3a7f9df3392ae54933f1ccd712838bf76d3dc962dc3de",
+          "name": "Build_Manifest.json",
+          "type": "file"
+        },
+        {
+          "hash": "affeac283f4815c1aa8346139e61a3dcd2657a54382d86305f80ba64cd6849d8",
+          "name": "Build_Manifest_Final.json",
+          "type": "file"
+        },
+        {
+          "hash": "663b0fbbb3618f9f3dd6e872598564685e1ac51155a8c7d58d6e8bedbd7112f4",
+          "name": "Compatibility_Report.json",
+          "type": "file"
+        },
+        {
+          "hash": "f98375ef20427d6306d79854a9a1564edef8501e8af17118676ae8db03b70f37",
+          "name": "INDEX.md",
+          "type": "file"
+        },
+        {
+          "hash": "2b87e81e16056085f1e7145e887d63e976c7a72ad288d42e5f216e21c70cea64",
+          "name": "INSTALL.md",
+          "type": "file"
+        },
+        {
+          "hash": "da620e02bec7c71f1d48527d3dbb17f5976767cb00aeca11cdf20382e7c82e71",
+          "name": "Migration_Report.json",
+          "type": "file"
+        },
+        {
+          "hash": "ad336ad9f9c9fdc29a7228164484a6861672d22efd03e41d396d7ae1b7b0f7d9",
+          "name": "README.md",
+          "type": "file"
+        },
+        {
+          "hash": "9209acb90a5cfa30dce90355748ce8ea763c4a16d469b874b4997c83217a3040",
+          "name": "UX_Grounding.md",
+          "type": "file"
+        },
+        {
+          "hash": "0692d3ca45716b9ce8afc368e4843a4d9cb64380583eea7962f129ef4d000a1c",
+          "name": "api",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "db7f39adf4c5aa714c0f549c3889436d8d2955c594802b88f1b83ae3a0871ced",
+              "name": "routes.md",
+              "type": "file"
+            },
+            {
+              "hash": "b11387b0c9a5d13fcb27125c0b46c78bb45c46c41681e86ac5c223815fbe38e0",
+              "name": "schema",
+              "type": "directory",
+              "children": [
+                {
+                  "hash": "fae95b2877bd83d1bb5b2c47e9245b90a07b50c5f658c2dd79528e38e50f6d03",
+                  "name": "get.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "485f723c55a36ab1f3bea16ccb22eefffff03e64038fa5d0091515e8ad78064b",
+                  "name": "get_accounts.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "9589cf3bb8f4e5faa38e2ead405e1cd8b095e848a3d2308c6b83f1e8365a0eb7",
+                  "name": "get_api_admin_chaos_status.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "a7c01e283d3abd131012d7f7d1f0b97c608e8da03fbaa706d4f5e9c32571246c",
+                  "name": "get_api_admin_config_schema.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "e78c937e2c667194932717ac1b5d7bd5dcd3d2870e55fa3e73039097155e34c3",
+                  "name": "get_api_admin_perf_quick.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "4c3052be71fd5907dc3cd4e97e48388d755e35c4e127dbb4d42523d6ef9a29c6",
+                  "name": "get_api_admin_plugins.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "afded10df7d1d79642c714361202e440cc0b240a1a49be1c80b35d95c9e4f6e9",
+                  "name": "get_api_admin_preflight.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "e30998ff0174b2cd4b2bbee864c09c715ec128178c13307570b42a198ed6a616",
+                  "name": "get_api_admin_retention_stats.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "b13533c5e41269320afd1145f22844007e5e9c89f3ced77f90173474e97dce8b",
+                  "name": "get_api_alerts.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "9cfb7ae2b80a823339fd9e8438f54c9ddb5f1ed37a1628d3f12a283aa76202d8",
+                  "name": "get_api_anomaly_score.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "e8de8b4ac4aa20f338efb57e13f0be04cf6f2300b1b4290d9d4d6a69cdc2c703",
+                  "name": "get_api_auth_me.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "62356cabcc0ba0dbe461df835ba5f36028ecf6f52f731e8821677def90abfc9e",
+                  "name": "get_api_detections.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "406f40caa7e76291a2c88b2a608edc82cb02f2329417d8088e971341e402815d",
+                  "name": "get_api_export_telemetry.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "050aaea41fba58f1fd877c62ad6f46ac75e57233ebef3f3a4cf48a8a6b52d50a",
+                  "name": "get_api_metrics_event_bus.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "9bd0c3f775199fade76d893db30ce04f59f39b685c15780e10268e143d23f0ba",
+                  "name": "get_api_metrics_health.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "b93e4f2ea5711c74cdfe276308686fd9623f969ae6718e1edb3730c849e54b17",
+                  "name": "get_api_metrics_snapshot.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "4f445b7f1b9be2df8429c33bfa3bb3600493a7d7a15b235182db4d90a5aef312",
+                  "name": "get_api_mitre_coverage.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "262bd2afa2e85f8986a6cf1de1162b9f84a86659a58ec711c34b30f499d061e5",
+                  "name": "get_api_policies.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "0d72b88db902fa65912d4272c50f114e494cf9f416524d88c2d862268879c392",
+                  "name": "get_api_status.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "05aab0d4feefd653753b84c822acb063c7d754bebd68f92ad348eb9a5b955cf1",
+                  "name": "get_api_stream_health.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "ac9581b809d75fcc4322adb3c94af935d43c679112efb5fa1febfbc9ef1b0f45",
+                  "name": "get_api_ti_search.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "53469d146b9301063c152e37a9994672e651499067928bea6b483589291fae35",
+                  "name": "get_assets.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "b7a46a07b9c48108efda27c0b8cbd26058d7b34fb371a4d2f279610592373bcf",
+                  "name": "get_detections.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "e2bfb519af5d1cde34b695a40e56ecf85823978183a93940152e82a330ed1c71",
+                  "name": "get_health.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "c8f1ca48255c9299d2c09d2347c202d870511bfac698280e268f2bad6143687c",
+                  "name": "get_operational_mode.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "a9dccd9154473bbc4c576fd17070f53be88c2d6c34198e55d1916cb11a171212",
+                  "name": "get_policies.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "8894dd371fa58c5b8f9df7e494df8636f986015f738478a70f3eab024f860719",
+                  "name": "get_processes.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "018077ec499003f0170eac1eae0f69166f97889a136b3d9b032e9de19ca246dc",
+                  "name": "index.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "c58162256011d85f38ec54c1514b1a5e4b2f44882204658e209c9ed7bc6ac406",
+                  "name": "patch_console_anomaly_ANOMALY_SKLEARN_ENABLED.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "ac421542668f376be8411a6db42fdaab65735d85bc36ee3d530e7cffa6bf2bbb",
+                  "name": "patch_console_quarantine_QUARANTINE_ENABLED.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "6ac2d1dfdd35c98231b872c9f82f76c48328c62b479edfc227ca9e4f681fbaf5",
+                  "name": "patch_os_name.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "1f2bea0a2d19f7e7b43613905b4bcecf6619c106248a9a62d95c02078db4932d",
+                  "name": "post_api_actions_pause.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "f2f507b16746ae62314013cb4c6a1ebdb55edb622e5313b263db0b6ca9423451",
+                  "name": "post_api_actions_resume.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "b308879056c06cc4ae3c0da6ba66c1d281054a3a86d2a636b5bcc34273b0ca17",
+                  "name": "post_api_admin_anomaly_train.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "71c4d2ea50d3088b1f98287e0e551474c1c0c767bd5825e68f48084de282a517",
+                  "name": "post_api_admin_backup.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "915f75ca255e7ee047cb62ee9bb2887c3b599cc060cfd22ab1745876c214e0fb",
+                  "name": "post_api_admin_chaos_inject.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "c83bfedc137261249ae7ac9d5334557fa393d86ed322b010182bfa4520af6f1e",
+                  "name": "post_api_admin_config_reload.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "75fc9c948332bd786958de80d81cc0cec6b11c1751f02e05f02b293ef31043c6",
+                  "name": "post_api_admin_perf_probe.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "7691c49f7f6f3fd0ecef47fea314d928baf3d638ac1979dc5105f546a02de997",
+                  "name": "post_api_admin_plugins_execute.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "e6d45636cb18aaf74c82871d1e3398166b779568da34aa7948391e210860ef9a",
+                  "name": "post_api_admin_quarantine.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "ae48c596c3c0484b5939b4cfb023c8831311036a5e7615176b030d646ea22783",
+                  "name": "post_api_admin_quarantine_restore.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "05e51acfc97ed63f17b5e7839405e443c372e8b4b7edeb5fc729a112ac689804",
+                  "name": "post_api_admin_restore.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "0bb32e40815dae91b9311864d408d2815138ad638a5a4e854238e08057807e81",
+                  "name": "post_api_admin_retention_run.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "01cfe31ea2ba44e31a319c9a485c2743950f49e68324051db36573b6a0094bc3",
+                  "name": "post_api_admin_rotate_execute.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "804bff081259141cf851c939e477c66dfc3e29261dcaddbfee6e1ac9bb113c01",
+                  "name": "post_api_admin_rotate_preview.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "61e8d48cf747326b2236900792a65cb613722b66b529a70d3c2cd84316808a25",
+                  "name": "post_api_auth_login.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "bca19875547f7d3b9107f3d5995f34bb75999356a14986f182d18bf334edfa6c",
+                  "name": "post_api_auth_logout.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "0d251f7d6f1f32d703d54e2e165671ce3f8ead3d185245832aa4b73dafc22855",
+                  "name": "post_api_policies.schema.json",
+                  "type": "file"
+                },
+                {
+                  "hash": "e974e0bbdfeb651953e950469c95c38205644fcba3bfa37927c2c68cb9b7f372",
+                  "name": "put_operational_mode.schema.json",
+                  "type": "file"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "hash": "bb06e610f6ae1238d2067c5bd2f28202b8056abcbfeaa3ed2e36d0e7e5576084",
+          "name": "arch",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "8d1b0146aec547cd32369c5e6849d30852e0da156a3d1f1e020136c3a540d9ff",
+              "name": "import_graph.mmd",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "hash": "ffe28aae7dbe548ca68f222962c83e29ef053a629d3e192833f4f1ea1c3e8a42",
+          "name": "architecture.md",
+          "type": "file"
+        },
+        {
+          "hash": "82c233d8de0253a4da3afc9d833170eb7a33008f09989ec5a2477c523c460306",
+          "name": "assumptions.md",
+          "type": "file"
+        },
+        {
+          "hash": "cf433b1a24f2e506ac96d3e9d3014f4581c7c0fc18d8839aed5786bac71dae4a",
+          "name": "baselines.json",
+          "type": "file"
+        },
+        {
+          "hash": "2cfeb2a38dcadbb9ec821cbfc6e8ba1c8f1f53e8322748f83cbe5d6a0a62907c",
+          "name": "baselines.txt",
+          "type": "file"
+        },
+        {
+          "hash": "4955d253fa2e4eb5d14be822b35b7f9dfa9c97f735cd32cb27f4e3a7a7e401d4",
+          "name": "coding_standards.md",
+          "type": "file"
+        },
+        {
+          "hash": "5de124f7d6a6d21f9a3fc9a89eab6897516c3192de415ffaf7c88f4ab14b8e94",
+          "name": "config",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "49d5f77112afa3c68b52fe21abffa0135a6c256e2a093ca58bb770a3ea032f5c",
+              "name": "config.example.json",
+              "type": "file"
+            },
+            {
+              "hash": "ccb804670547452a3b17a882cb3f3d285fa16d4a5f6ff4c378bd3aa67a1fbe03",
+              "name": "index.json",
+              "type": "file"
+            },
+            {
+              "hash": "4a439802fa2dba869f6c7399cd53fc63c1a577b580139adcabcdc0ad523ecac7",
+              "name": "keys.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "hash": "7afe05a75e8358a81c2c8bd8021b172e2c0bc0b2173ab5b80e71ef9f279374e6",
+          "name": "context",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "36d731734718cf40a48a45c180941585cfb18301116629fbdcf26508a12c6a4f",
+              "name": "index.json",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "hash": "0a6eca3d4459bd09094e72c547a4ce2244f1066efecc59f5a45c19e5974a9f3b",
+          "name": "decisions",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "517b05f6b9f2eb4fa04fed6b267b57c4fb62e95358e8fbf79c065c3ee3ed2ae5",
+              "name": "ADR-0001-template.md",
+              "type": "file"
+            },
+            {
+              "hash": "8f5f3397e96614bf9d67a4eaa17de4edf07e8db1509b670c5b4710e2cbd017d3",
+              "name": "ADR-0002-operational-mode.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "hash": "4a72d81e1ba3987a3640963b16b692b321a21dd3a139a735f1c58cc0e0b8ed4f",
+          "name": "deploy_windows.md",
+          "type": "file"
+        },
+        {
+          "hash": "5b3cc2f34fdc2c42e182e49bff221534081e6389586f5ba1ebc63feabe8f6e49",
+          "name": "development_rails.md",
+          "type": "file"
+        },
+        {
+          "hash": "7c698220b3c599f172167f909d09360a9261b50fdf96419f443e82523448e8c3",
+          "name": "diagrams",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "ff118eef6de345ef789060fc7aa839f1cee58092b593d4d13e526977b157aea7",
+              "name": "admin_rbac_flow.png",
+              "type": "file"
+            },
+            {
+              "hash": "d126a5fa0275c73220bce8d2021e11138ff3441d5e05ce61ae8bc6346717cfdf",
+              "name": "anomaly_detection_path.md",
+              "type": "file"
+            },
+            {
+              "hash": "6d05315b6839b67ba3d00502fae272932dce5cc441e07396b48b1815e1145533",
+              "name": "data_flow.md",
+              "type": "file"
+            },
+            {
+              "hash": "a91c0b72ac6773fa840d17b49bb18e8e0e3013dd7bdf6a5e12bdc387960eb27e",
+              "name": "quarantine_lifecycle.md",
+              "type": "file"
+            },
+            {
+              "hash": "35ff865b9561594f6124b2c81ebee6efb8ee4ffcfea01d5b8581bbb6866b0d55",
+              "name": "rbac_admin_flow.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "hash": "2bd36bb789ecc70d1b342642c878962d6af57877b638072d72feb15c93b24a54",
+          "name": "events",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "098a4dc7885c495a092894c5e4a266f5294e4d41b9a5e86082683fd4d46c46a9",
+              "name": "contracts.md",
+              "type": "file"
+            },
+            {
+              "hash": "56c08ce4e36c512b1ff6632b571e30714ab273df3fe2173e82c09ec8c0db57ef",
+              "name": "schema.json",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "hash": "5b329c07e06a5934960a349a5fa03ecd782018f8032c3c37fc13efcd26395c48",
+          "name": "feature_backlog.md",
+          "type": "file"
+        },
+        {
+          "hash": "81343168477763c3e98f547f4c34c4237abcb4bb74799171d6157d7f094d1b58",
+          "name": "final_report.md",
+          "type": "file"
+        },
+        {
+          "hash": "c77ecc854b86cd497aaaa84e57892191accbc43cd3ebccad3139132689a81586",
+          "name": "glossary.md",
+          "type": "file"
+        },
+        {
+          "hash": "1772daf66eaf07a53e5265c2222316b0bfc33f279c72c3e43c2edac0a2cc1d40",
+          "name": "interop_map.docx",
+          "type": "file"
+        },
+        {
+          "hash": "5d3a0706272ee2ae69b325429f5ec534aa4cfb679f89f4c0e06375ffb179eaac",
+          "name": "interop_map.md",
+          "type": "file"
+        },
+        {
+          "hash": "323969d15c5c5fbf2530678cbc7cfcc75b272aca54a5fc7fae7df049e937ba82",
+          "name": "interop_map.pdf",
+          "type": "file"
+        },
+        {
+          "hash": "3619dd5eb24bc23542bca4781724a9f2ece2c801e0c11db5948262d228e84be7",
+          "name": "interop_todo.json",
+          "type": "file"
+        },
+        {
+          "hash": "ed999c86a7f83759efe20c150cdaee26f98a72717b0d7c2b2bd39a1598f9e1fb",
+          "name": "master_todo.json",
+          "type": "file"
+        },
+        {
+          "hash": "1337498ad5b0168e9d95354c4729992f2a1350138e3ce4403989570dfdb9259c",
+          "name": "master_todo.md",
+          "type": "file"
+        },
+        {
+          "hash": "dcb3aedae397cd3d13caf4c1895d42ede0f3477e401538da37faa907837e8a07",
+          "name": "master_todo.txt",
+          "type": "file"
+        },
+        {
+          "hash": "86db602ae5ed09358625b2d3e7974a2a31f942b396923379ec0e419edd6efe7d",
+          "name": "mitre",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "452bdbd52d6e7aae1f078aac3b4d9eb420e8da658c988567e0f4af7fe8a4beac",
+              "name": "rules",
+              "type": "directory",
+              "children": [
+                {
+                  "hash": "52ae909827236a20bca8dd99fdc95cd72e4bbe6e74ee92b27444f318820b0cec",
+                  "name": "baseline.yaml",
+                  "type": "file"
+                },
+                {
+                  "hash": "52ae909827236a20bca8dd99fdc95cd72e4bbe6e74ee92b27444f318820b0cec",
+                  "name": "baseline_fixed.yaml",
+                  "type": "file"
+                },
+                {
+                  "hash": "fedff6d308f98f1e926a74476c3563078687a60bf00bcd7e0ec4e83ed818f761",
+                  "name": "rc3_baseline.yaml",
+                  "type": "file"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "hash": "e6d9d1bf12ea05ad8b23fd32c5cfc04679c40343eba2deed8012f2e771295a0e",
+          "name": "operations_runbook.md",
+          "type": "file"
+        },
+        {
+          "hash": "fd3460a99d573b2c1ac9cfda9bb90180bcdf24957011d416f0a373d3cbb1505b",
+          "name": "p0_fixes_plan.md",
+          "type": "file"
+        },
+        {
+          "hash": "efc448580b3864601ee78afbf15fe47371ddb3f22a2b64a34d9e5c3ab9cff585",
+          "name": "platform",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "07444a40766a5142d21d4f8f9c49ae50578f7d815a3d69faa6baab6b0e43dfda",
+              "name": "guards.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "hash": "8bf2f3ede2f7fcfe37413cc68be3c70ffb51945156144de63399d1eb38966174",
+          "name": "proposals",
+          "type": "directory"
+        },
+        {
+          "hash": "7bc5b5432547a85c12ed8d5d8475bf6ef27090dfd426732a897a1340a391d038",
+          "name": "release_checklist.md",
+          "type": "file"
+        },
+        {
+          "hash": "ee6a2c1ca0653fd28cde624b4165cfc82576aefbea5bf38ea46602bf4b8f192a",
+          "name": "report",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "be0662f9d19877e7baa4f1c71b1428f8ec98f7858a947fd3565c0dcc09e22337",
+              "name": "FINAL_CHAT_REPORT_P3_P4_COMPLETE.docx",
+              "type": "file"
+            },
+            {
+              "hash": "4a9e0ae88d489dc7a58aae7269949ce784dcc32e1bfc6e2e8543033bbd2ccee8",
+              "name": "FINAL_CHAT_REPORT_P3_P4_COMPLETE.md",
+              "type": "file"
+            },
+            {
+              "hash": "b58c417b4562f0d8cceb993d69abfd15ac4a41913ed6914f903fa03312130d11",
+              "name": "FINAL_CHAT_REPORT_P3_P4_COMPLETE.pdf",
+              "type": "file"
+            },
+            {
+              "hash": "8f27fe32df4d410bb1e0e39944970c41cfd21b9d62135da981fb8e28d788f8cd",
+              "name": "FINAL_CHAT_REPORT_P4.md",
+              "type": "file"
+            },
+            {
+              "hash": "19ece5b84f6b22d24fd24962343d4beef239ebd2e69f1b81038bd621ff17a610",
+              "name": "FINAL_CHAT_REPORT_P5.docx",
+              "type": "file"
+            },
+            {
+              "hash": "91e959ddf72fdbafbe38b2967646024a3680244ae6a2ab63bb9c74e1f3a880ea",
+              "name": "FINAL_CHAT_REPORT_P5.md",
+              "type": "file"
+            },
+            {
+              "hash": "326c046ede1ee8092384838d648a820ee8fb189904ec4cbdba4f401a2a1d56c1",
+              "name": "FINAL_CHAT_REPORT_P5.pdf",
+              "type": "file"
+            },
+            {
+              "hash": "5d896d0676076278717a9a01a051f1fc95283403a2dc6d41c13865b8ffd6f636",
+              "name": "GA_SIGNOFF.md",
+              "type": "file"
+            },
+            {
+              "hash": "b7f421148e9bb923f0d2b03bc6d716bc9e44619f4617b126416a36d17c420369",
+              "name": "P3_FINAL_IMPLEMENTATION_REPORT.md",
+              "type": "file"
+            },
+            {
+              "hash": "c70270e150c66bd0df711b77d40b14f79d56aa1af2f03cecc9f55053a9a17d49",
+              "name": "RC2_FINAL_CHAT_REPORT.docx",
+              "type": "file"
+            },
+            {
+              "hash": "72ff7a5e523fa1423536e52f585d9313b67cec78acb3cf8ad65601bf8dacd1d9",
+              "name": "RC2_FINAL_CHAT_REPORT.md",
+              "type": "file"
+            },
+            {
+              "hash": "71b85e9888ba5cf49aefdb2f0f37234913e3832b2afe76b079cce1cf37f020da",
+              "name": "RC2_FINAL_CHAT_REPORT.pdf",
+              "type": "file"
+            },
+            {
+              "hash": "2b6f10644fc034e81e0629d4fb2fdcfe2572a7c563d7c52559d31750ab850e91",
+              "name": "RC_SIGNOFF.md",
+              "type": "file"
+            },
+            {
+              "hash": "891112a194709b878dd9923ba514ad7135c02a5243cb99c712a3397bdb0bdf5a",
+              "name": "api_contract.md",
+              "type": "file"
+            },
+            {
+              "hash": "8162a3a4fb21eebc02d4c79731f228e2501bb46a83da64a86edeede60a11a43c",
+              "name": "api_contract_baseline.json",
+              "type": "file"
+            },
+            {
+              "hash": "718eba13873f8f8e21f0f22df99f326a23a5e65ee7dad5b063fa10fc1e9082fe",
+              "name": "api_contract_current.json",
+              "type": "file"
+            },
+            {
+              "hash": "d32069e381cb4079fd2abdf4c7d2f342958d4c00627820593b593ec3cda98ef8",
+              "name": "config_contract.md",
+              "type": "file"
+            },
+            {
+              "hash": "efd33f19f608a43d36de4a4407669956f619ee81226752b9001b8f9eb86345ae",
+              "name": "dead_code_analysis.json",
+              "type": "file"
+            },
+            {
+              "hash": "7770df1a8e27ed9c0ae1b6400f031b4dbaf1dfa37912ab2328063d80aa36f39e",
+              "name": "dead_code_scan.md",
+              "type": "file"
+            },
+            {
+              "hash": "e7f24e8846a880c37f8bf8169d33ecc380df35ede0d925c4b716d0ad2bfebd99",
+              "name": "diffs",
+              "type": "directory",
+              "children": [
+                {
+                  "hash": "dc795f89cd066698c06d02b5872e26e058bb7dd7e013545efa0e62a1564e579a",
+                  "name": "fuzz_findings_report.patch",
+                  "type": "file"
+                },
+                {
+                  "hash": "4ed6a80606737daec979b4bf5dbdf0cfaf1fb4bbc47b17e4e621c8d504888890",
+                  "name": "operational_playbooks_addition.patch",
+                  "type": "file"
+                },
+                {
+                  "hash": "22b10a42f4a0fdd79d199b714de0ee779bab1452b799a29feac15cec4f26c50b",
+                  "name": "perf_baseline_enhanced.patch",
+                  "type": "file"
+                },
+                {
+                  "hash": "b3da5ebb105f5dd0ae71d0a9a2d12a71359419422cc211a4845c303172346609",
+                  "name": "performance_baseline.patch",
+                  "type": "file"
+                },
+                {
+                  "hash": "d037ce1540e89ffd0ddbc16b34fb6d2973f5480b6f66883e6ff19fe10aa93919",
+                  "name": "sdk_client_addition.patch",
+                  "type": "file"
+                },
+                {
+                  "hash": "15d311ad854fd9198a0f8db900805cb11b4a4f934d0cf49f1c3d6f22ade69a88",
+                  "name": "sdk_examples_documentation.patch",
+                  "type": "file"
+                },
+                {
+                  "hash": "b5ac58844ac620bbd08e3df4b26caaf8e9c2be5d50168ef08531357ff7444500",
+                  "name": "security_findings_report.patch",
+                  "type": "file"
+                },
+                {
+                  "hash": "3d08542c5181f7758832244f485fb5926c331c397cd3c9769018d6a1f9f0cc54",
+                  "name": "sentinel_sdk_implementation.patch",
+                  "type": "file"
+                },
+                {
+                  "hash": "842c5a4acfee7da0efebc79633ea8f37d51828ddf8fe320b927331027a6fc755",
+                  "name": "test_fuzz_inputs_fix.patch",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "hash": "e170f333942fff80d1a57454e07e10e0cb56101de536f66fb08d5d5a4077d2f6",
+              "name": "docstring_diff.md",
+              "type": "file"
+            },
+            {
+              "hash": "a1674b4c67c2b2602520638bd497c3c07e670f3593fdb5e90772adda2ab3cf72",
+              "name": "docstring_enhancement.json",
+              "type": "file"
+            },
+            {
+              "hash": "964cdafee126bcbc2be358ccca706c4e054d196e49751d9aa07ffc039f559129",
+              "name": "feature_flags.md",
+              "type": "file"
+            },
+            {
+              "hash": "87ece90d0d18080b1b8e44717f999c17817c220ad1ebe708f5bf11bb05a8308b",
+              "name": "feature_flags_matrix.json",
+              "type": "file"
+            },
+            {
+              "hash": "3596ded963f7cb1fe392754df229e96188ed6b8533e54e9670796fcab3b5a0e8",
+              "name": "fuzz_findings.md",
+              "type": "file"
+            },
+            {
+              "hash": "a25f8eb127ae7d4e8a23ecb0efac1e6906a964cfca523f73b4b3799ddc3c61bb",
+              "name": "harvest_filelist.txt",
+              "type": "file"
+            },
+            {
+              "hash": "8b493babd50eb5a922e4f512e942effa5f7b746acb01cc2c6f0d102173440ad8",
+              "name": "index_completeness.json",
+              "type": "file"
+            },
+            {
+              "hash": "f99b293fca77e68bb9602389803f274ac6040e5c95cbc3dc9aa288929ad31f20",
+              "name": "license_attestation.md",
+              "type": "file"
+            },
+            {
+              "hash": "fa227c89fa892b0c2f07d46ab2c6378ace5945f6118ad6cbc1f9ca564db52ac7",
+              "name": "link_audit.json",
+              "type": "file"
+            },
+            {
+              "hash": "4f2e2e7b4927a74271f7fd0bef2af01c282079d80b767913c8c8e52eee089a18",
+              "name": "observability_playbook.md",
+              "type": "file"
+            },
+            {
+              "hash": "0ebe6195b89c6d81f4f282fd01d098695b5f426039be2175243eaaa0f90379f9",
+              "name": "operational_playbooks.docx",
+              "type": "file"
+            },
+            {
+              "hash": "6f66136af351c5c17f5d913c9b868bce2185bdc79c9fe96038423eb339ca76e7",
+              "name": "operational_playbooks.md",
+              "type": "file"
+            },
+            {
+              "hash": "c3f3d054605381d4ba9efa37fa20c09b00c9773a6fed2bd2797b4cf862e691f2",
+              "name": "operational_playbooks.pdf",
+              "type": "file"
+            },
+            {
+              "hash": "92142e5d83e6f429311f32d83af123b4b7b0e84d0388429eb2d22b8ae606251c",
+              "name": "p1_002_003_verification.md",
+              "type": "file"
+            },
+            {
+              "hash": "e1b1d4f12a4c7a62133b9856854925a2530907d2b3dd1dea5cb18df17ec8f1be",
+              "name": "p1_004_verification.md",
+              "type": "file"
+            },
+            {
+              "hash": "41d904005135e6dd9e1fd6cc8e8ef7268984526f88fbb6e4dbc2d3dd82819136",
+              "name": "p2_001_002_chat_report.md",
+              "type": "file"
+            },
+            {
+              "hash": "8bf215b82334fb78d2612f1a3c8eaa8a8f1c4360d804f44f7b56f4d0c7d4b22e",
+              "name": "p2_003_004_chat_report.md",
+              "type": "file"
+            },
+            {
+              "hash": "ac2dd9bd61a37bca9388e35271772233888f0608bacec6db8756f2d14ee7f109",
+              "name": "p3_work_manifest.json",
+              "type": "file"
+            },
+            {
+              "hash": "ec09e38d553df03fb89c180f6956b27fae624c1a2fc7e983fa185d16598ea935",
+              "name": "packaging_evidence.md",
+              "type": "file"
+            },
+            {
+              "hash": "9abaf0c0af1ab7d28e9be889c3ca5bda57b1d75713a59a571196f94edf01ab85",
+              "name": "perf_baseline.json",
+              "type": "file"
+            },
+            {
+              "hash": "fb29e8a80bc44243c52d101bac7088c6c89ed2ef88ed4e2cb5f27cf3549de9d4",
+              "name": "perf_baseline_enhanced.md",
+              "type": "file"
+            },
+            {
+              "hash": "3d58db949c0a3dc3b006d581fa0a19656ee432b6871eb6ac2fc3682d6bc3ec74",
+              "name": "perf_baseline_rc1.md",
+              "type": "file"
+            },
+            {
+              "hash": "96dddfc960ecdab7ead7b9d2d00e0b8079ef008bfce47040c2d0ced2d9ed6649",
+              "name": "perf_microbench.json",
+              "type": "file"
+            },
+            {
+              "hash": "68facb0327f4d120d922c453f9172b1eecf4fe793f77f21e40ad8fb90d9159af",
+              "name": "rc1_anti_skip.txt",
+              "type": "file"
+            },
+            {
+              "hash": "99a10d57aaa22c148b33999adc895e9f5332c5d22e983d7b434c387ff4d65b16",
+              "name": "rc1_flags.json",
+              "type": "file"
+            },
+            {
+              "hash": "15f4a3a0c6dcc3e6eec815744da99c3ee362fb3980ec7b09a9737fcacb377222",
+              "name": "rc1_hashes.json",
+              "type": "file"
+            },
+            {
+              "hash": "c1f864ea25340c29ee8d3a991d17e77458116d5d8731dc2489cecce62611d2d6",
+              "name": "rc1_meta.json",
+              "type": "file"
+            },
+            {
+              "hash": "9da33658132af5606c03f5fbc81e55660c4fa3639adbd887d4b8a0bd9b817c63",
+              "name": "rc1_proofs.jsonl",
+              "type": "file"
+            },
+            {
+              "hash": "d4ad88979f525258e262c846941e3c21a8cebe82da54abac7dbe4e43e04c342e",
+              "name": "rc2_flags.json",
+              "type": "file"
+            },
+            {
+              "hash": "f8a0f307959a5ac4fbcd63d015b60c16848facca1b9ea1b9d2fb07d1d01bbbe9",
+              "name": "rc2_hashes.json",
+              "type": "file"
+            },
+            {
+              "hash": "03c217b539ec1f99f56c9fb9d32b65c1af21602dc3ebe6464c27a916c4c95fc3",
+              "name": "rc2_meta.json",
+              "type": "file"
+            },
+            {
+              "hash": "417706207fb6606ba87397bc8b1c3716bc2885d91638f082ca5caeca86815451",
+              "name": "rc2_proofs.jsonl",
+              "type": "file"
+            },
+            {
+              "hash": "772799a3aa67a5e6cc184d3e0d68dd66f13d10231770d4e4f6c53fe499fc8ecb",
+              "name": "rc3_hashes.json",
+              "type": "file"
+            },
+            {
+              "hash": "234ea886f5ee526086bd765f986df8fd24e2b77f53d3473d68dbc58e17a6c8ef",
+              "name": "rc_feature_verification.md",
+              "type": "file"
+            },
+            {
+              "hash": "d3d8c4e3164dc0e93d317d6a9752a0336f938865d4854a6e076c5527cbc27d84",
+              "name": "repo_inventory.json",
+              "type": "file"
+            },
+            {
+              "hash": "ee8bfe3e33b8edae3f95d54742b91211f3c67e0cc86bbb65b1ef30dbb83f1d0b",
+              "name": "repro_manifest.json",
+              "type": "file"
+            },
+            {
+              "hash": "ab344eb8727a23363440179a73267e8ed944061fbdeff77f63b1822e8812ec77",
+              "name": "routing_atlas.json",
+              "type": "file"
+            },
+            {
+              "hash": "a49b1d1278dd4ac17d2a415a09d1e2aed85e044625abdcebf772699c88142579",
+              "name": "sbom_manifest.json",
+              "type": "file"
+            },
+            {
+              "hash": "19456b6023fdfe9923559da5f29959bce3be12222c4149d75cbd399042a51e92",
+              "name": "scenario_bank.md",
+              "type": "file"
+            },
+            {
+              "hash": "6720e0eb6daa2b010ba2bd4aea0ccd38c0e8bbc2b3d603785042320e3bdf12d7",
+              "name": "sdk_examples.md",
+              "type": "file"
+            },
+            {
+              "hash": "db5c5f4e1a6caad7c30b9c023beaae5f8d9411ebe93e72a813aef3fb5a6a385a",
+              "name": "sec_findings.json",
+              "type": "file"
+            },
+            {
+              "hash": "a5f381f992379812e379eed338fcc10700b68d4c8af876f9e2fad12f76eb5e16",
+              "name": "security_findings.md",
+              "type": "file"
+            },
+            {
+              "hash": "49120d549ffe7256a6737ddb6b83ab01d97b1d0dcd8c795303f0cb0c6e34229b",
+              "name": "symbol_atlas.json",
+              "type": "file"
+            },
+            {
+              "hash": "67a097752072166fb12779d8e27d1f8e8cbf4d8bebe0af3a090d9c00737a6471",
+              "name": "verification_evidence.docx",
+              "type": "file"
+            },
+            {
+              "hash": "48b7484d9363d8cb5e9ac573c6dea54a2ca14b13d9dc9297a36f8ad5a8786c02",
+              "name": "verification_evidence.md",
+              "type": "file"
+            },
+            {
+              "hash": "6cff3d9c43501c9f132883c0b181ad9063315982db205c925e9f7911444cddde",
+              "name": "verification_evidence.pdf",
+              "type": "file"
+            },
+            {
+              "hash": "2e4a85ea89a93797320eaf9c5062a36fcf3cdbdf16d1b3e69a99a2d53ef7109b",
+              "name": "verification_evidence_updated.md",
+              "type": "file"
+            },
+            {
+              "hash": "31479be8f2687857d37acd6130100f47f8ff9b314fad81dc76fbdd77004c4735",
+              "name": "windows_install_dryrun.md",
+              "type": "file"
+            },
+            {
+              "hash": "f552705e008383ce51a7ad2343db32b3c4232d1615b5a03d1fae8544f0dbbce9",
+              "name": "windows_service.md",
+              "type": "file"
+            },
+            {
+              "hash": "569f306262895172552e8b4c10c72568ef7251e89fe7ee11ea45ccf573cc8f2a",
+              "name": "work_manifest.json",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "hash": "9171c8bfe4a71bab7b2e8e290d2d71d74f7e3c8dc8980be7ed414c87f10088b1",
+          "name": "rollout_playbook.md",
+          "type": "file"
+        },
+        {
+          "hash": "1a8c10ba5e778f7f9d43c5dda696d0075f83b99141a497614c1a5ed9c617e3b0",
+          "name": "runbooks",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "1ed3417a38289f2695ebd9ea5132a866f124ddc50bb7bc36904fc61b256c9b35",
+              "name": "README.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "hash": "dfa0b76965a00e420c24ef48970cea0c100ca44a046dd2c13f2b964aa22786bf",
+          "name": "scenarios",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "2647e2c77426b28f328d67426385ec8a1604ca525e009e04d1902ae913a14974",
+              "name": "additional_random.jsonl",
+              "type": "file"
+            },
+            {
+              "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "name": "auth_bypass.jsonl",
+              "type": "file"
+            },
+            {
+              "hash": "015aef3cc2639c3b9d4e1d39a440f9af88e759b8b107ca2235938d60c1f66f00",
+              "name": "boundary_conditions.jsonl",
+              "type": "file"
+            },
+            {
+              "hash": "176a6762376f994c1442b650c7299cf4adf8b11103fa6258d53ed9bda7a481e7",
+              "name": "content_type_attacks.jsonl",
+              "type": "file"
+            },
+            {
+              "hash": "d70aa85110ed78128b83bfd4d93819a1a5550d30527e1e3c543dc2be35e9c809",
+              "name": "malformed_inputs.jsonl",
+              "type": "file"
+            },
+            {
+              "hash": "db1317adb36cc11fba2e9bed0474e7dabacd0f1309cb5bb9feee911f8a0a08ae",
+              "name": "parameter_fuzzing.jsonl",
+              "type": "file"
+            },
+            {
+              "hash": "aafb7e1639fb9c6356243e04ecbe5e93e510bc36d1b9e76c17b545dbaf227c8f",
+              "name": "path_traversal.jsonl",
+              "type": "file"
+            },
+            {
+              "hash": "edd51a25d3d469165a9a8673a3509e6c46341a388e1df5b7902e22f4b634678f",
+              "name": "unicode_torture.jsonl",
+              "type": "file"
+            },
+            {
+              "hash": "15306866f745da668983a850ad2e21dde30b9620337c55dc24ba2ffbf3dce5c2",
+              "name": "valid_requests.jsonl",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "hash": "fd394c3b003b9e64bf56fe5b00b3081208b8472cb65927c69781ee72a89cfc8a",
+          "name": "security",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "1e06ac303a66af1ea6dfd6ce055afb495223b7647bae8564b95ef663ded2e190",
+              "name": "sec_lint_report.md",
+              "type": "file"
+            },
+            {
+              "hash": "36e4843f482fcca3e5d48d970d010ff4edbee5f0a805c631b3e4b0750acca040",
+              "name": "security_posture_rc1.md",
+              "type": "file"
+            },
+            {
+              "hash": "fa0e0cf228cc9cc851434b011a2dfe02e07974fdcc31a4b62baf5650f11590f7",
+              "name": "taint_map.json",
+              "type": "file"
+            },
+            {
+              "hash": "b0ecd23b4323b6ffc622f48b3db98eb59bb902df8abf2fe0dc973abc09e12025",
+              "name": "taint_map.md",
+              "type": "file"
+            },
+            {
+              "hash": "20391f39d74a0330b2eceff28d2df1af31e2f8a170aa75a4eec81c69443c5d5a",
+              "name": "threat_map.md",
+              "type": "file"
+            },
+            {
+              "hash": "30d7422d4c2bdc820bd35e1adab01e5c0eb9155ce6a0fddfb59b49b7d77d71ec",
+              "name": "threat_model.md",
+              "type": "file"
+            },
+            {
+              "hash": "472593eb5d5d564ea86c83750d7090ba4b316a16f644f91efa006f4465bca128",
+              "name": "unicode_hardening.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "hash": "2f53fd873b6dfca5cc4aa07f0bafa989561babc9b0c20faa6967050774561e6b",
+          "name": "session_startup.md",
+          "type": "file"
+        },
+        {
+          "hash": "49d802f789955eee17e18f108c3b5032513c9308eb8f277be410295420b6fe4f",
+          "name": "testing_strategy.md",
+          "type": "file"
+        },
+        {
+          "hash": "ef262ff3c2352e3c67b866292af0cb71abf64de28020b9d57f7de8c0222028ca",
+          "name": "todo",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "301ae2de5c2adfb27d602e99f6a56543e11a0a5b0ce31caac34f0f1782149355",
+              "name": "todo.docx",
+              "type": "file"
+            },
+            {
+              "hash": "8393032ca36ab77d856ff124819dcf88036d5e052ec4fb6ac30ec2e84362691b",
+              "name": "todo.json",
+              "type": "file"
+            },
+            {
+              "hash": "01ad7035b50820dadff6aaac47c007d1f9e96344fe6d8bcf4c6ef39a628a50d1",
+              "name": "todo.md",
+              "type": "file"
+            },
+            {
+              "hash": "8a385314cf84e358c1b365fbef032f5a6869b4421e8224cdcec5a74582d6773c",
+              "name": "todo.pdf",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "hash": "0563997905c027c19de14c4245da46cbaab4d4a1e52a53841ec075a0296a82ea",
+          "name": "workspace_overview.md",
+          "type": "file"
+        }
+      ]
+    },
+    "tools": {
+      "hash": "a192eb7b2361424fb9c65ea63143dd850d8b5396b0059660d77c277b219e2928",
+      "name": "tools",
+      "type": "directory",
+      "children": [
+        {
+          "hash": "e638e2c9a5d44583aaf980ef08005e4ccef490e7747d90cc0b9782fad07ae089",
+          "name": "api_contract_check.py",
+          "type": "file"
+        },
+        {
+          "hash": "739bdb9313fd1e05ab264f0bfa4b32b250e3e023e0f705e08e07e15452994b03",
+          "name": "compat_matrix.py",
+          "type": "file"
+        },
+        {
+          "hash": "aedfdbdfaa891df50d1ea50276a9daf72d210cb6a58ef49e0a069b3b882d2089",
+          "name": "composite_health_check.py",
+          "type": "file"
+        },
+        {
+          "hash": "61f0622481192d7c2445b225b1cf72b86a66ef5e2dfe6917ac6e24c6d2b7e174",
+          "name": "config_migrate.py",
+          "type": "file"
+        },
+        {
+          "hash": "6cd8f414fd2e372c931e4c2afa41855f5d18d892035d9150de81847eeaa94607",
+          "name": "dead_code_patch_generator.py",
+          "type": "file"
+        },
+        {
+          "hash": "64ce87f319bf7c5d5736ab8101a0b778dbbb8f545d2d6957417eedc9768d5e79",
+          "name": "dead_code_scan.py",
+          "type": "file"
+        },
+        {
+          "hash": "2ab7ad0a7bbab20578bc5f67cf6d69ff18f47b7fd6ef33217c54cdb9100f86f2",
+          "name": "docstring_enricher.py",
+          "type": "file"
+        },
+        {
+          "hash": "978730a2e2579e81bdc7f1c5b80915d056b0aec439b04f21b53a5730675eb1e3",
+          "name": "feature_flags_analyzer.py",
+          "type": "file"
+        },
+        {
+          "hash": "16bc9423fa9ea3916f161d97328caafb536e4798734ebfb67a2fdbadf2b68a95",
+          "name": "full_harvest_builder.py",
+          "type": "file"
+        },
+        {
+          "hash": "68fc1b4d3e3d0700c3f3736a661cc64bacbffed253573ffddbb93f65b0cfee10",
+          "name": "json_schema_generator.py",
+          "type": "file"
+        },
+        {
+          "hash": "6d98464c752e49ad9fe8ccd0155e9ad6439cd1b8aeb729515f935e1ed053b123",
+          "name": "microbench.py",
+          "type": "file"
+        },
+        {
+          "hash": "6761129cdac246e3ae04430a71b5c726d4ff7b47278a85374053edc13de71b6c",
+          "name": "migrate_prior_state.py",
+          "type": "file"
+        },
+        {
+          "hash": "5889a05223bbce49618262f6bb051a53461eb89b48e6987d7b13c873639fa9c4",
+          "name": "perf_baseline.py",
+          "type": "file"
+        },
+        {
+          "hash": "d7d6d3ac95d7a1d42da9c3236b23581122f1b0725e2082bbaf96d6308ca6b12b",
+          "name": "property_test_generator.py",
+          "type": "file"
+        },
+        {
+          "hash": "f0bd47bf79834d28f7533ec558854192206cb15788c5339bc023097c260932c9",
+          "name": "repair_and_validate.py",
+          "type": "file"
+        },
+        {
+          "hash": "6e95d248a824afcf92f71c26a2e50cf2679ee1833455f08db8b9a19a7f18b323",
+          "name": "repro_pack_builder.py",
+          "type": "file"
+        },
+        {
+          "hash": "1003aca5f6fd3e1852e54d173ac7f9ee62b036fb5c969347077f0c26302d9bf6",
+          "name": "rotate_secrets.py",
+          "type": "file"
+        },
+        {
+          "hash": "721b21d6ad5af555970450c13c3471b334c64b3c1043f5491aeb2bc3f5934ffb",
+          "name": "routing_atlas_generator.py",
+          "type": "file"
+        },
+        {
+          "hash": "8eb4be90d793b9a94a55444724e308ad0261a14a0865fdaca2ca8e6b79987df3",
+          "name": "scenario_generator.py",
+          "type": "file"
+        },
+        {
+          "hash": "e32a7bc2acb656e9958837379b606b6a1c1c8eee40083169af88acddcbab6ae1",
+          "name": "scenario_replayer.py",
+          "type": "file"
+        },
+        {
+          "hash": "682985f7c882ebcef66a5ce48896008b657a0aaa88b3d4259a153f6964fa276f",
+          "name": "sec_lint.py",
+          "type": "file"
+        },
+        {
+          "hash": "d2e25f98d787ea02261a1284b1fe3dd5cbcea7cd488453d579fc35c7db3e3769",
+          "name": "self_check.py",
+          "type": "file"
+        },
+        {
+          "hash": "9c47bd201bcf79d5a1ab44883cf0cf88e2d888be8de8ee509fc955f0eb33ce65",
+          "name": "sentinel_sdk.py",
+          "type": "file"
+        },
+        {
+          "hash": "ea5da373f56bd2291b08245484f6d8c2a2d264342a758c6d243def2b4744624a",
+          "name": "symbol_atlas_generator.py",
+          "type": "file"
+        },
+        {
+          "hash": "319bfde018a4f4f08386ed8075187d5085c9e0178b14714b80cba2f384fd55fd",
+          "name": "taint_scan.py",
+          "type": "file"
+        },
+        {
+          "hash": "dc7c9b213694d0a3933731ed5d210dcaa6d66e1b05b82601848e1ae2d6da2e27",
+          "name": "threat_mapper.py",
+          "type": "file"
+        },
+        {
+          "hash": "6e006188201084272dfb292431751ee343d6a550f5365477bb8a1e35ce8a9829",
+          "name": "verify_minimax_claims.py",
+          "type": "file"
+        }
+      ]
+    },
+    "tests": {
+      "hash": "a0eea7b7628d02765f0b2081e9a1b5f900b3e091509498659586c0b0469e6ce3",
+      "name": "tests",
+      "type": "directory",
+      "children": [
+        {
+          "hash": "b7a50cb4a2e111f8e4e31e534d27a64e8c2986835f3fdc5a4f6ea750b5087543",
+          "name": "__init__.py",
+          "type": "file"
+        },
+        {
+          "hash": "180817627d0809e876f85d93be79604489137084fe27ec3a9b8f444a07eea96f",
+          "name": "e2e",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "f56302f2b81242b8dbda85af0de64312f3d24da3996e8d72c3b50ae82bc9d49a",
+              "name": "test_sentinel_e2e.py",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "hash": "618765e0e660b46b8dd2cda189dd33ed741e0be06353705551d54f9c6c7d82a4",
+          "name": "golden",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "d21d633531a83cbe56c38cc30d55b88479319199b1149f2209190e3b3e270c22",
+              "name": "anomaly_score_response.json",
+              "type": "file"
+            },
+            {
+              "hash": "388cd0867b74109ee9f53b9c67b988fcc5037295236e904bd0a80360ac7b0afe",
+              "name": "event_bus_response.json",
+              "type": "file"
+            },
+            {
+              "hash": "3eca02f0630c282c0217eb6d45b7c9760208187e60693a080b6b5504fcb2fbcb",
+              "name": "health_response.json",
+              "type": "file"
+            },
+            {
+              "hash": "c4b476098b50dbd31c8958f435e79cf2231375eaf014cfc49f739573cf5d0fad",
+              "name": "metrics_snapshot_response.json",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "hash": "ad376d0676d466ce523ce234f7ccb584756ff7ab088253d60a11d6475af819b9",
+          "name": "test_anomaly.py",
+          "type": "file"
+        },
+        {
+          "hash": "87ba10fc3ff1db59b4f3c819ade01a83589569135c9e7df51ac5b1b7ff0211b6",
+          "name": "test_api_contract_check.py",
+          "type": "file"
+        },
+        {
+          "hash": "d5c481475890d02287ed748bd5f5633e731d44793ad1a5ea4e2e0e16245019aa",
+          "name": "test_attack_matrix_smoke.py",
+          "type": "file"
+        },
+        {
+          "hash": "9a527110ec36dbc14951404fd7e2611fccee2ecbbf1aad574bc9b77b6438a2ba",
+          "name": "test_attack_sequences.py",
+          "type": "file"
+        },
+        {
+          "hash": "5d351828157dbabaa10ad157960eb4c73c99b5f3e657a4fe1190275fbd3c0115",
+          "name": "test_auth.py",
+          "type": "file"
+        },
+        {
+          "hash": "3b02582a21fec12d8a7e7a447caeed675dd57dab031b42182f8264e96c15fb87",
+          "name": "test_backup_restore.py",
+          "type": "file"
+        },
+        {
+          "hash": "b668f3effef124be712245eda609de10c1b5fcbe48263d47d0b4dac3cb281fdd",
+          "name": "test_bus_metrics.py",
+          "type": "file"
+        },
+        {
+          "hash": "ad93960f1c77444fe590c9bf1ce2804c159a015cffa76f02f30c38d08ace88b8",
+          "name": "test_chaos_probes.py",
+          "type": "file"
+        },
+        {
+          "hash": "601e70a137f8582ed7a00d0226e618525eb35b5ed15356066f2461ef0a852984",
+          "name": "test_config_migrate.py",
+          "type": "file"
+        },
+        {
+          "hash": "078e5f91e5c5ee32bcf5f0870071a7a3781472b6194d017782b744aa62aa7977",
+          "name": "test_config_reload.py",
+          "type": "file"
+        },
+        {
+          "hash": "a840c51c5cbf92ab5fde0e7ce71adf36ffacfe611135ed5b1428b35d168c3ae9",
+          "name": "test_config_schema.py",
+          "type": "file"
+        },
+        {
+          "hash": "1c6f59cb6776ddee488af42396b7fdd6fbaaef58db7ebf87ff1bc4767ef2803a",
+          "name": "test_console_ui.py",
+          "type": "file"
+        },
+        {
+          "hash": "e27bb6fa0c6f3f9deddd293de879fa024720e46befc9ad980cc37e9c29e805d5",
+          "name": "test_contracts.py",
+          "type": "file"
+        },
+        {
+          "hash": "7928da1c0d2d6689804ce082e90be313df6b2b75d8fb4be20aae9ef9dbcee10b",
+          "name": "test_fuzz_inputs.py",
+          "type": "file"
+        },
+        {
+          "hash": "9571d92bb38f23ff2d15ecd7a9ac7b8260782731df71b3a6fe03c2e3a531a051",
+          "name": "test_golden_payloads.py",
+          "type": "file"
+        },
+        {
+          "hash": "75370b0a0521fc1276623b5149c0cafac14c19cecbe796f5e60645fe604927a0",
+          "name": "test_health_endpoint.py",
+          "type": "file"
+        },
+        {
+          "hash": "5150cae7609c0e5bcdc9a2b4efe436e8fcb559316be97b19b8cd932319373657",
+          "name": "test_integration_smoke.py",
+          "type": "file"
+        },
+        {
+          "hash": "cc0a7ae03c971d3665e536b9b2434ff64fa9a8a381e759ff9f1fefc7b5c2cf90",
+          "name": "test_log_rotation.py",
+          "type": "file"
+        },
+        {
+          "hash": "ad248b749e7b5700128b243747819175ee24df4a2c339de02ed74c6dffd9296b",
+          "name": "test_offline_installer.py",
+          "type": "file"
+        },
+        {
+          "hash": "acd5978eb7ee471ab7b014414a77052584a3a7a0c8b2a36ad6af9fe7886829fe",
+          "name": "test_operational_mode.py",
+          "type": "file"
+        },
+        {
+          "hash": "ccd9b8b368732dfc3fbc4a92a9d0f2b1f46ad208a4f1a4dda8f3b64428f5edeb",
+          "name": "test_p2_endpoints.py",
+          "type": "file"
+        },
+        {
+          "hash": "44a88f8cc992f1f47473b57c21416210ca5653f04ee557ee2eec94e14da44817",
+          "name": "test_perf_probe.py",
+          "type": "file"
+        },
+        {
+          "hash": "74ab5f9b1d85bb9598f299d45000067b65d15f40eccd0a5b1eff933e428c3d98",
+          "name": "test_plugin_sandbox.py",
+          "type": "file"
+        },
+        {
+          "hash": "389fc42f573f5ff6df4e98af70fe749ccede3380d73b248816d31aee82e52173",
+          "name": "test_preflight_checks.py",
+          "type": "file"
+        },
+        {
+          "hash": "6d5d48ea9bf9225ff94b83df99cc0dc7bae9dc6aaf13ba9020f04ab22955db05",
+          "name": "test_quarantine.py",
+          "type": "file"
+        },
+        {
+          "hash": "6722349a5b01ab5f895e4191586d01546d367263f00b076a2b97e918558ef1e3",
+          "name": "test_quarantine_traversal.py",
+          "type": "file"
+        },
+        {
+          "hash": "596fc6feea521ea3ce1b2a00b44a40d494479cf6eaa5971d9397cad0aa171e41",
+          "name": "test_rate_limit.py",
+          "type": "file"
+        },
+        {
+          "hash": "8799eaae2abfe9e2b7600c977d93742387a1b648329cf72a6062338d4522b413",
+          "name": "test_rbac.py",
+          "type": "file"
+        },
+        {
+          "hash": "dacaf95b1345c3b5fc29270e13e220b92c93807c1fba390d4c4ad5d3e89af2f9",
+          "name": "test_rbac_abuse.py",
+          "type": "file"
+        },
+        {
+          "hash": "89367e8e2ebbf570a854f19f883877e53d4bf54736f413130d29f5c2f4596c49",
+          "name": "test_retention.py",
+          "type": "file"
+        },
+        {
+          "hash": "c67ac4b9bcc48667955df50a00f10a11c0188088ebc15578120cd8f11878d8ad",
+          "name": "test_secret_rotation.py",
+          "type": "file"
+        },
+        {
+          "hash": "dccc5b2a35c85be0b2148e5355a1a56b2c008e1154abf0de4aaf44a57b4ef1e3",
+          "name": "test_self_check.py",
+          "type": "file"
+        },
+        {
+          "hash": "ee2c6e7e8cce971457c8d3ff8df4edaae2c221dc6beb59fbe53e65bc2a146bb4",
+          "name": "test_streaming.py",
+          "type": "file"
+        },
+        {
+          "hash": "17deff0266656ed2219306326e30e39826656409601e5e32a978396c204be4e5",
+          "name": "test_structured_logging.py",
+          "type": "file"
+        },
+        {
+          "hash": "465648430cf557a6e89d045a48c4c307dae09a8b156d96af2d9afb8bfa20d311",
+          "name": "test_telemetry_export.py",
+          "type": "file"
+        },
+        {
+          "hash": "b277f48a97c55905202300922adc8b9ce3f5242f19d986b903bc4190fb66a2fa",
+          "name": "test_unicode_normalization.py",
+          "type": "file"
+        },
+        {
+          "hash": "8023c01ed0e1a10843a053d758f9fdd50cf0559b2b38baa7a94f61ffca48a9b6",
+          "name": "test_versioning.py",
+          "type": "file"
+        },
+        {
+          "hash": "ed5167bf0ae4ecc0605e21076e09e378d46528e0b3522f49050b6f6de07ee6d2",
+          "name": "test_windows_service.py",
+          "type": "file"
+        },
+        {
+          "hash": "be1b880ff78769ecd6127123854cb199b393f41ae0bd0b87c86989cdd649ac9e",
+          "name": "unit",
+          "type": "directory",
+          "children": [
+            {
+              "hash": "24e2f3f5f9971189d0134008645b15848942dd50227b4a7e0124ec91c5a9a496",
+              "name": "test_alert_manager.py",
+              "type": "file"
+            },
+            {
+              "hash": "1d13613c0aada92d3fbab639cf33c26d111ad3c061cda0c2a4710595a0b86f02",
+              "name": "test_config.py",
+              "type": "file"
+            },
+            {
+              "hash": "e376b991b81cb836010b955f53d6e54e062f3b85362e6354b56f52fd14717763",
+              "name": "test_event_bus.py",
+              "type": "file"
+            },
+            {
+              "hash": "09aac40149c3c8c45f94975bab3ed0081e69e615842280003f05697cdcf63ed3",
+              "name": "test_fs_monitor.py",
+              "type": "file"
+            },
+            {
+              "hash": "7edd0535d3fd41e901939ddd97cc11c5cd7895d920681fd88b95369fc5d899a8",
+              "name": "test_rules_engine.py",
+              "type": "file"
+            },
+            {
+              "hash": "5d341f772f5592c66582c9d16867527a91f39e7c0d109e355b64612ccd9ee323",
+              "name": "test_schemas.py",
+              "type": "file"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "file_count": 277,
+  "directory_count": 3,
+  "hash_algorithm": "SHA256"
+}

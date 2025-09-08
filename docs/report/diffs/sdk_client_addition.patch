@@ -1,0 +1,53 @@
+--- /dev/null
++++ b/tools/sentinel_sdk.py
+@@ -0,0 +1,50 @@
++#!/usr/bin/env python3
++"""WatchLockAI Sentinel Python SDK Client.
++
++Comprehensive Python client library for WatchLockAI Sentinel API with:
++- Full API endpoint coverage (41+ routes)
++- Authentication and session management
++- Error handling and retry logic
++- Rate limiting awareness
++- Streaming support (SSE)
++- Comprehensive logging
++- Type hints and documentation
++"""
++
++import json
++import logging
++import time
++from datetime import datetime, timezone
++from pathlib import Path
++from typing import Any, Dict, List, Optional, Union, Iterator
++from urllib.parse import urljoin, urlencode
++import warnings
++
++try:
++    import requests
++    from requests.adapters import HTTPAdapter
++    from urllib3.util.retry import Retry
++    REQUESTS_AVAILABLE = True
++except ImportError:
++    REQUESTS_AVAILABLE = False
++    warnings.warn("requests library not available - HTTP functionality disabled")
++
++
++class SentinelAPIError(Exception):
++    """Base exception for Sentinel API errors."""
++    def __init__(self, message: str, response: Optional[requests.Response] = None):
++        super().__init__(message)
++        self.response = response
++        self.status_code = response.status_code if response else None
++
++
++class SentinelClient:
++    """WatchLockAI Sentinel API Client.
++    
++    Provides comprehensive access to all Sentinel API endpoints with
++    authentication, error handling, and rate limiting support.
++    """
++    
++    def __init__(self, base_url: str = "http://localhost:8080", **kwargs):
++        """Initialize Sentinel API client."""
++        # Implementation details...

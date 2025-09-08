@@ -1,0 +1,296 @@
+{
+  "generated_at": "2025-09-03T03:02:21Z",
+  "p0": [
+    {
+      "id": "P0-001",
+      "title": "Fix Windows Registry Monitor Import Guards",
+      "category": "PLATFORM_GUARD",
+      "paths": ["collectors/reg_monitor.py"],
+      "evidence": "Platform guards implemented but may have typing issues with conditional imports",
+      "proposed_fix": "Add proper type stubs for winreg when module not available on Linux",
+      "acceptance": [
+        "pyright=0 on collectors/reg_monitor.py",
+        "Registry monitor loads without errors on both Windows and Linux"
+      ],
+      "risk": "low",
+      "est_dev_min": 30,
+      "depends_on": []
+    },
+    {
+      "id": "P0-002", 
+      "title": "Fix Windows Service Wrapper Import Guards",
+      "category": "PLATFORM_GUARD",
+      "paths": ["service/service_wrapper.py"],
+      "evidence": "Platform guards for win32 modules may have typing issues with conditional imports",
+      "proposed_fix": "Add proper type stubs for win32 modules when not available on Linux",
+      "acceptance": [
+        "pyright=0 on service/service_wrapper.py",
+        "Service wrapper loads without errors on Linux",
+        "Service functions return appropriate error messages on Linux"
+      ],
+      "risk": "low",
+      "est_dev_min": 45,
+      "depends_on": []
+    },
+    {
+      "id": "P0-003",
+      "title": "Fix Response Actions Platform-Specific Code",
+      "category": "PLATFORM_GUARD", 
+      "paths": ["response/actions.py"],
+      "evidence": "Platform-aware timeouts and error handling may have typing inconsistencies",
+      "proposed_fix": "Ensure proper typing for platform-specific timeout and error message logic",
+      "acceptance": [
+        "pyright=0 on response/actions.py",
+        "Process termination works correctly on both platforms",
+        "Appropriate timeouts applied per platform"
+      ],
+      "risk": "medium",
+      "est_dev_min": 25,
+      "depends_on": []
+    },
+    {
+      "id": "P0-004",
+      "title": "Missing Console Web API Import Guard",
+      "category": "IMPORT_CYCLE",
+      "paths": ["console/web_api.py", "service/service_wrapper.py"],
+      "evidence": "service_wrapper imports console.web_api but has try/except guard that may not be typed properly",
+      "proposed_fix": "Add proper typing and lazy import pattern for optional web API dependency",
+      "acceptance": [
+        "pyright=0 on service/service_wrapper.py",
+        "Service starts correctly when FastAPI not available",
+        "Graceful degradation message logged"
+      ],
+      "risk": "medium",
+      "est_dev_min": 20,
+      "depends_on": []
+    },
+    {
+      "id": "P0-005",
+      "title": "Event Schema Type Union Resolution",
+      "category": "EVENT_SCHEMA",
+      "paths": ["app_core/schemas.py"],
+      "evidence": "SentinelEvent union type may need explicit type discrimination for proper routing",
+      "proposed_fix": "Add explicit discriminator field or improve union type handling",
+      "acceptance": [
+        "pyright=0 on app_core/schemas.py",
+        "Event bus routing works correctly for all event types",
+        "No runtime type resolution errors"
+      ],
+      "risk": "high",
+      "est_dev_min": 60,
+      "depends_on": []
+    }
+  ],
+  "p1": [
+    {
+      "id": "P1-001",
+      "title": "Add Missing Error Handling in Event Bus Worker",
+      "category": "EVENT_SCHEMA",
+      "paths": ["app_core/bus.py"],
+      "evidence": "Event bus worker has basic error handling but could be more robust for edge cases",
+      "proposed_fix": "Add comprehensive error handling and recovery for event delivery failures",
+      "acceptance": [
+        "Event bus worker handles all subscriber error types gracefully",
+        "Failed subscribers are automatically cleaned up",
+        "Error metrics are tracked and logged"
+      ],
+      "risk": "low",
+      "est_dev_min": 90,
+      "depends_on": []
+    },
+    {
+      "id": "P1-002",
+      "title": "Implement Configuration Hot Reload",
+      "category": "CONFIG",
+      "paths": ["app_core/config.py"],
+      "evidence": "Configuration currently requires restart to reload changes from config.yaml",
+      "proposed_fix": "Add file watcher for config.yaml changes and safe hot reload mechanism",
+      "acceptance": [
+        "Configuration changes detected automatically",
+        "Components notified of relevant config changes",
+        "Invalid config changes are rejected safely"
+      ],
+      "risk": "medium",
+      "est_dev_min": 180,
+      "depends_on": []
+    },
+    {
+      "id": "P1-003",
+      "title": "Add Comprehensive API Input Validation",
+      "category": "API_ROUTER",
+      "paths": ["console/web_api.py", "console/api/operational_mode.py"],
+      "evidence": "API endpoints have basic validation but could be more comprehensive",
+      "proposed_fix": "Add comprehensive input validation, rate limiting, and error response formatting",
+      "acceptance": [
+        "All API endpoints validate inputs thoroughly",
+        "Appropriate HTTP status codes returned",
+        "Error responses follow consistent format"
+      ],
+      "risk": "medium",
+      "est_dev_min": 120,
+      "depends_on": []
+    },
+    {
+      "id": "P1-004",
+      "title": "Optimize Event Bus Performance for High Load",
+      "category": "EVENT_SCHEMA",
+      "paths": ["app_core/bus.py"],
+      "evidence": "Event bus uses asyncio.Queue which may not be optimal for very high event volumes",
+      "proposed_fix": "Implement event batching and optimize queue performance for high throughput",
+      "acceptance": [
+        "Event bus handles >1000 events/sec without backpressure",
+        "Memory usage remains bounded under high load",
+        "Event delivery latency stays under acceptable thresholds"
+      ],
+      "risk": "low",
+      "est_dev_min": 240,
+      "depends_on": []
+    },
+    {
+      "id": "P1-005",
+      "title": "Add Threat Intelligence Database Caching",
+      "category": "CONFIG",
+      "paths": ["detection/threat_intel_db.py"],
+      "evidence": "Threat intelligence searches may be slow without proper caching",
+      "proposed_fix": "Implement LRU cache for threat intelligence queries with TTL expiration",
+      "acceptance": [
+        "TI queries cached with configurable TTL",
+        "Cache hit rate >80% for common queries", 
+        "Memory usage bounded by cache size limits"
+      ],
+      "risk": "low",
+      "est_dev_min": 150,
+      "depends_on": []
+    }
+  ],
+  "p2": [
+    {
+      "id": "P2-001",
+      "title": "Add Behavioral Engine Machine Learning Integration",
+      "category": "DOCS",
+      "paths": ["detection/behavioral_engine.py"],
+      "evidence": "Behavioral engine exists but lacks ML-based anomaly detection",
+      "proposed_fix": "Integrate scikit-learn or similar for behavioral anomaly detection",
+      "acceptance": [
+        "ML models trained on baseline behavior",
+        "Anomaly scores computed for new events",
+        "Model retraining mechanism implemented"
+      ],
+      "risk": "high",
+      "est_dev_min": 480,
+      "depends_on": []
+    },
+    {
+      "id": "P2-002",
+      "title": "Implement Advanced File Quarantine System",
+      "category": "CONFIG",
+      "paths": ["response/actions.py"],
+      "evidence": "File quarantine mentioned but not fully implemented",
+      "proposed_fix": "Build secure file quarantine with restore capability and audit trail",
+      "acceptance": [
+        "Files can be quarantined to secure location",
+        "Quarantined files can be safely restored",
+        "Full audit trail of quarantine operations"
+      ],
+      "risk": "high",
+      "est_dev_min": 360,
+      "depends_on": ["P0-003"]
+    },
+    {
+      "id": "P2-003",
+      "title": "Add Web Console Authentication",
+      "category": "API_ROUTER",
+      "paths": ["console/web_api.py"],
+      "evidence": "Web console currently has no authentication (localhost only)",
+      "proposed_fix": "Implement session-based authentication for web console access",
+      "acceptance": [
+        "Login page with credential validation",
+        "Session management with timeout",
+        "Protected API endpoints require authentication"
+      ],
+      "risk": "medium",
+      "est_dev_min": 300,
+      "depends_on": ["P1-003"]
+    },
+    {
+      "id": "P2-004",
+      "title": "Implement Real-time Dashboard Updates",
+      "category": "API_ROUTER",
+      "paths": ["console/web_api.py"],
+      "evidence": "Dashboard requires manual refresh for updated information",
+      "proposed_fix": "Add WebSocket or SSE for real-time dashboard updates",
+      "acceptance": [
+        "Dashboard updates automatically with new events",
+        "Real-time alert notifications in web UI",
+        "Graceful fallback to polling if WebSocket fails"
+      ],
+      "risk": "medium",
+      "est_dev_min": 240,
+      "depends_on": ["P1-001"]
+    },
+    {
+      "id": "P2-005",
+      "title": "Add Comprehensive Integration Tests",
+      "category": "TEST",
+      "paths": ["tests/"],
+      "evidence": "Limited integration tests for end-to-end workflows",
+      "proposed_fix": "Build comprehensive integration test suite covering major workflows",
+      "acceptance": [
+        "E2E tests for event generation → detection → response",
+        "API integration tests with real HTTP calls",
+        "Cross-platform test coverage"
+      ],
+      "risk": "low",
+      "est_dev_min": 400,
+      "depends_on": []
+    },
+    {
+      "id": "P2-006",
+      "title": "Implement Configuration Schema Validation",
+      "category": "CONFIG",
+      "paths": ["app_core/config.py"],
+      "evidence": "Configuration validation relies on Pydantic but lacks comprehensive schema validation",
+      "proposed_fix": "Add JSON schema validation for configuration with helpful error messages",
+      "acceptance": [
+        "Configuration validated against formal JSON schema",
+        "Clear error messages for invalid configuration",
+        "Schema versioning for configuration migration"
+      ],
+      "risk": "low",
+      "est_dev_min": 180,
+      "depends_on": ["P1-002"]
+    },
+    {
+      "id": "P2-007",
+      "title": "Add Process Tree Analysis",
+      "category": "EVENT_SCHEMA",
+      "paths": ["collectors/proc_monitor.py", "detection/behavioral_engine.py"],
+      "evidence": "Process monitoring captures parent PID but doesn't build process tree analysis",
+      "proposed_fix": "Implement process tree construction and suspicious tree pattern detection",
+      "acceptance": [
+        "Process trees built from parent-child relationships",
+        "Suspicious process spawning patterns detected",
+        "Process tree visualization in web console"
+      ],
+      "risk": "medium", 
+      "est_dev_min": 320,
+      "depends_on": ["P1-004"]
+    },
+    {
+      "id": "P2-008",
+      "title": "Implement Memory-Resident Threat Hunting",
+      "category": "DOCS",
+      "paths": ["detection/"],
+      "evidence": "System focuses on real-time detection but lacks historical threat hunting",
+      "proposed_fix": "Add capability to hunt for threats in historical event data",
+      "acceptance": [
+        "Historical event search with complex queries",
+        "Threat hunting playbooks can be executed",
+        "Results exportable for further analysis"
+      ],
+      "risk": "high",
+      "est_dev_min": 600,
+      "depends_on": ["P1-001", "P1-005"]
+    }
+  ]
+}

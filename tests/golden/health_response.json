@@ -1,0 +1,13 @@
+{
+  "status": "healthy",
+  "timestamp": "2025-01-01T00:00:00Z",
+  "uptime_seconds": 3600,
+  "service_running": true,
+  "components": {
+    "event_bus": "operational",
+    "alert_manager": "operational",
+    "rules_engine": "operational"
+  },
+  "version": "rc-1",
+  "build": "stable"
+}

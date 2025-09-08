@@ -1,0 +1,149 @@
+{
+  "mitre_attack_framework": {
+    "tactics": {
+      "TA0001": {
+        "name": "Initial Access",
+        "description": "Adversaries try to get into your network",
+        "techniques": [
+          "T1566",
+          "T1190",
+          "T1133",
+          "T1078"
+        ]
+      },
+      "TA0002": {
+        "name": "Execution",
+        "description": "Adversaries try to run malicious code",
+        "techniques": [
+          "T1059",
+          "T1053",
+          "T1203",
+          "T1204"
+        ]
+      },
+      "TA0003": {
+        "name": "Persistence",
+        "description": "Adversaries try to maintain access",
+        "techniques": [
+          "T1547",
+          "T1053",
+          "T1543",
+          "T1136"
+        ]
+      },
+      "TA0004": {
+        "name": "Privilege Escalation",
+        "description": "Adversaries try to gain higher permissions",
+        "techniques": [
+          "T1055",
+          "T1068",
+          "T1134",
+          "T1484"
+        ]
+      },
+      "TA0005": {
+        "name": "Defense Evasion",
+        "description": "Adversaries try to avoid detection",
+        "techniques": [
+          "T1055",
+          "T1027",
+          "T1070",
+          "T1036"
+        ]
+      },
+      "TA0006": {
+        "name": "Credential Access",
+        "description": "Adversaries try to steal credentials",
+        "techniques": [
+          "T1003",
+          "T1110",
+          "T1555",
+          "T1558"
+        ]
+      },
+      "TA0007": {
+        "name": "Discovery",
+        "description": "Adversaries try to learn about your environment",
+        "techniques": [
+          "T1082",
+          "T1083",
+          "T1057",
+          "T1018"
+        ]
+      },
+      "TA0008": {
+        "name": "Lateral Movement",
+        "description": "Adversaries try to move through your environment",
+        "techniques": [
+          "T1021",
+          "T1080",
+          "T1550",
+          "T1563"
+        ]
+      },
+      "TA0009": {
+        "name": "Collection",
+        "description": "Adversaries try to gather data",
+        "techniques": [
+          "T1005",
+          "T1039",
+          "T1025",
+          "T1115"
+        ]
+      },
+      "TA0011": {
+        "name": "Command and Control",
+        "description": "Adversaries try to communicate with systems",
+        "techniques": [
+          "T1071",
+          "T1572",
+          "T1090",
+          "T1568"
+        ]
+      },
+      "TA0010": {
+        "name": "Exfiltration",
+        "description": "Adversaries try to steal data",
+        "techniques": [
+          "T1041",
+          "T1048",
+          "T1052",
+          "T1567"
+        ]
+      },
+      "TA0040": {
+        "name": "Impact",
+        "description": "Adversaries try to manipulate, interrupt, or destroy",
+        "techniques": [
+          "T1485",
+          "T1486",
+          "T1490",
+          "T1499"
+        ]
+      }
+    }
+  },
+  "behavioral_indicators": {
+    "anomalous_processes": [
+      "powershell.exe -encodedcommand",
+      "rundll32.exe javascript:",
+      "regsvr32.exe /s /u /i:http",
+      "wmic.exe process call create",
+      "certutil.exe -urlcache -split -f"
+    ],
+    "suspicious_network": [
+      "beacon_intervals",
+      "c2_communication",
+      "dns_tunneling",
+      "tor_usage",
+      "proxy_chains"
+    ],
+    "credential_access": [
+      "lsass.exe access",
+      "sam_file_access",
+      "kerberos_ticket_extraction",
+      "password_spraying",
+      "credential_dumping"
+    ]
+  }
+}

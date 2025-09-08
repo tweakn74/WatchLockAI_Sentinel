@@ -1,0 +1,1 @@
+PASS: Flask mentions limited to test mocking, console UI present

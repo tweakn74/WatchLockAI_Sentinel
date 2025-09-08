@@ -1,0 +1,94 @@
+2025-07-12 21:01:14,554 - WatchLockAI-Brain - INFO - WatchLockAI Agentic AI Brain initialized
+2025-07-12 21:01:14,554 - WatchLockAI-Brain - INFO - WatchLockAI Agentic AI Brain started and ready for threat analysis
+2025-07-12 21:02:23,808 - WatchLockAI-Brain - INFO - WatchLockAI Agentic AI Brain initialized
+2025-07-12 21:02:23,808 - WatchLockAI-Brain - INFO - WatchLockAI Agentic AI Brain started and ready for threat analysis
+2025-07-12 21:02:47,365 - WatchLockAI-Brain - INFO - HTTP: "GET /health HTTP/1.1" 200 -
+2025-07-12 21:02:47,366 - WatchLockAI-Brain - INFO - HTTP: "GET /status HTTP/1.1" 200 -
+2025-07-12 21:02:47,367 - WatchLockAI-Brain - INFO - Analyzing threat event: user_login
+2025-07-12 21:02:47,367 - WatchLockAI-Brain - ERROR - Error processing request: 'str' object has no attribute 'value'
+2025-07-12 21:02:47,367 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:02:47,368 - WatchLockAI-Brain - INFO - Analyzing threat event: powershell_execution
+2025-07-12 21:02:47,369 - WatchLockAI-Brain - ERROR - Error processing request: 'str' object has no attribute 'value'
+2025-07-12 21:02:47,369 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:02:47,369 - WatchLockAI-Brain - INFO - Analyzing threat event: process_access
+2025-07-12 21:02:47,370 - WatchLockAI-Brain - WARNING - Penetration testing activity detected: mimikatz
+2025-07-12 21:02:47,370 - WatchLockAI-Brain - WARNING - Penetration testing activity flagged - adjusting response
+2025-07-12 21:02:47,370 - WatchLockAI-Brain - ERROR - Error processing request: 'str' object has no attribute 'value'
+2025-07-12 21:02:47,370 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:02:47,370 - WatchLockAI-Brain - INFO - Analyzing threat event: network_scan
+2025-07-12 21:02:47,371 - WatchLockAI-Brain - WARNING - Penetration testing activity detected: nmap
+2025-07-12 21:02:47,371 - WatchLockAI-Brain - WARNING - Penetration testing activity flagged - adjusting response
+2025-07-12 21:02:47,371 - WatchLockAI-Brain - ERROR - Error processing request: 'str' object has no attribute 'value'
+2025-07-12 21:02:47,371 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:02:51,441 - WatchLockAI-Brain - INFO - HTTP: "GET /health HTTP/1.1" 200 -
+2025-07-12 21:02:55,941 - WatchLockAI-Brain - INFO - Analyzing threat event: test
+2025-07-12 21:02:55,941 - WatchLockAI-Brain - ERROR - Error processing request: 'str' object has no attribute 'value'
+2025-07-12 21:02:55,941 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:03:24,697 - WatchLockAI-Brain - INFO - WatchLockAI Agentic AI Brain initialized
+2025-07-12 21:03:24,698 - WatchLockAI-Brain - INFO - WatchLockAI Agentic AI Brain started and ready for threat analysis
+2025-07-12 21:03:43,349 - WatchLockAI-Brain - INFO - Analyzing threat event: test
+2025-07-12 21:03:43,349 - WatchLockAI-Brain - ERROR - Error processing request: Object of type ThreatLevel is not JSON serializable
+2025-07-12 21:03:43,349 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:04:22,219 - WatchLockAI-Brain - INFO - WatchLockAI Agentic AI Brain initialized
+2025-07-12 21:04:22,219 - WatchLockAI-Brain - INFO - WatchLockAI Agentic AI Brain started and ready for threat analysis
+2025-07-12 21:04:37,322 - WatchLockAI-Brain - INFO - Analyzing threat event: test
+2025-07-12 21:04:37,322 - WatchLockAI-Brain - ERROR - Error processing request: Object of type ThreatLevel is not JSON serializable
+2025-07-12 21:04:37,322 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:04:51,971 - WatchLockAI-Brain - INFO - WatchLockAI Agentic AI Brain initialized
+2025-07-12 21:04:51,971 - WatchLockAI-Brain - INFO - WatchLockAI Agentic AI Brain started and ready for threat analysis
+2025-07-12 21:05:07,264 - WatchLockAI-Brain - INFO - Analyzing threat event: test
+2025-07-12 21:05:07,264 - WatchLockAI-Brain - ERROR - Error processing request: Object of type ThreatLevel is not JSON serializable
+2025-07-12 21:05:07,264 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:05:47,189 - WatchLockAI-Brain - INFO - WatchLockAI Agentic AI Brain initialized
+2025-07-12 21:05:47,189 - WatchLockAI-Brain - INFO - WatchLockAI Agentic AI Brain started and ready for threat analysis
+2025-07-12 21:06:01,989 - WatchLockAI-Brain - INFO - Analyzing threat event: test
+2025-07-12 21:06:01,993 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 200 -
+2025-07-12 21:06:05,865 - WatchLockAI-Brain - INFO - HTTP: "GET /health HTTP/1.1" 200 -
+2025-07-12 21:06:05,867 - WatchLockAI-Brain - INFO - HTTP: "GET /status HTTP/1.1" 200 -
+2025-07-12 21:06:05,868 - WatchLockAI-Brain - INFO - Analyzing threat event: user_login
+2025-07-12 21:06:05,871 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 200 -
+2025-07-12 21:06:05,872 - WatchLockAI-Brain - INFO - Analyzing threat event: powershell_execution
+2025-07-12 21:06:05,874 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 200 -
+2025-07-12 21:06:05,876 - WatchLockAI-Brain - INFO - Analyzing threat event: process_access
+2025-07-12 21:06:05,876 - WatchLockAI-Brain - WARNING - Penetration testing activity detected: mimikatz
+2025-07-12 21:06:05,876 - WatchLockAI-Brain - WARNING - Penetration testing activity flagged - adjusting response
+2025-07-12 21:06:05,878 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 200 -
+2025-07-12 21:06:05,879 - WatchLockAI-Brain - INFO - Analyzing threat event: network_scan
+2025-07-12 21:06:05,879 - WatchLockAI-Brain - WARNING - Penetration testing activity detected: nmap
+2025-07-12 21:06:05,879 - WatchLockAI-Brain - WARNING - Penetration testing activity flagged - adjusting response
+2025-07-12 21:06:05,882 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 200 -
+2025-07-12 21:15:22,848 - WatchLockAI-Brain - INFO - Analyzing threat event: file_system_medium
+2025-07-12 21:15:22,853 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 200 -
+2025-07-12 21:15:32,318 - WatchLockAI-Brain - INFO - Analyzing threat event: file_system_medium
+2025-07-12 21:15:32,321 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 200 -
+2025-07-12 21:15:32,322 - WatchLockAI-Brain - INFO - Analyzing threat event: process_high
+2025-07-12 21:15:32,322 - WatchLockAI-Brain - WARNING - Penetration testing activity detected: mimikatz
+2025-07-12 21:15:32,323 - WatchLockAI-Brain - WARNING - Penetration testing activity flagged - adjusting response
+2025-07-12 21:15:32,325 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 200 -
+2025-07-12 21:15:32,329 - WatchLockAI-Brain - INFO - Analyzing threat event: browser_suspicious_activity
+2025-07-12 21:15:32,332 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 200 -
+2025-07-12 21:15:32,333 - WatchLockAI-Brain - INFO - Analyzing threat event: browser_suspicious_activity
+2025-07-12 21:15:32,337 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 200 -
+2025-07-12 21:19:25,162 - WatchLockAI-Brain - ERROR - Error processing request: SecurityEvent.__init__() got an unexpected keyword argument 'response_action'
+2025-07-12 21:19:25,162 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:19:25,164 - WatchLockAI-Brain - ERROR - Error processing request: SecurityEvent.__init__() got an unexpected keyword argument 'response_action'
+2025-07-12 21:19:25,164 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:19:25,165 - WatchLockAI-Brain - ERROR - Error processing request: SecurityEvent.__init__() got an unexpected keyword argument 'response_action'
+2025-07-12 21:19:25,165 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:19:36,011 - WatchLockAI-Brain - ERROR - Error processing request: SecurityEvent.__init__() got an unexpected keyword argument 'response_action'
+2025-07-12 21:19:36,011 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:19:36,013 - WatchLockAI-Brain - ERROR - Error processing request: SecurityEvent.__init__() got an unexpected keyword argument 'response_action'
+2025-07-12 21:19:36,013 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:19:36,014 - WatchLockAI-Brain - ERROR - Error processing request: SecurityEvent.__init__() got an unexpected keyword argument 'response_action'
+2025-07-12 21:19:36,014 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:24:17,613 - WatchLockAI-Brain - ERROR - Error processing request: SecurityEvent.__init__() got an unexpected keyword argument 'user_account'
+2025-07-12 21:24:17,613 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:24:17,629 - WatchLockAI-Brain - ERROR - Error processing request: SecurityEvent.__init__() got an unexpected keyword argument 'user_account'
+2025-07-12 21:24:17,629 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-12 21:24:17,646 - WatchLockAI-Brain - ERROR - Error processing request: SecurityEvent.__init__() got an unexpected keyword argument 'event_id'
+2025-07-12 21:24:17,646 - WatchLockAI-Brain - INFO - HTTP: "POST /analyze HTTP/1.1" 500 -
+2025-07-13 01:58:38,047 - WatchLockAI-Brain - INFO - WatchLockAI Brain server starting on http://localhost:9999
+2025-07-13 01:58:38,047 - WatchLockAI-Brain - INFO - Available endpoints: /status, /health, /modules, /chat, /analyze
+2025-07-13 01:58:50,661 - WatchLockAI-Brain - INFO - 127.0.0.1 - "GET /status HTTP/1.1" 200 -
+2025-07-13 01:58:50,662 - WatchLockAI-Brain - INFO - 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+2025-07-13 01:58:50,663 - WatchLockAI-Brain - INFO - 127.0.0.1 - "POST /chat HTTP/1.1" 200 -

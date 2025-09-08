@@ -1,0 +1,1077 @@
+# DevAgentZero — Master TODO (Combined, Authoritative)
+
+Purpose: Single source of truth for scope and progress. Combines the legacy “devagent_master_tasks” checklists with the cross‑linked MasterTODO. Organized by functional areas with code links and acceptance coverage.
+
+## LEGEND
+- `[ ]` = Not Started.
+- `[/]` = In Progress.
+- `[x]` = Actually Completed and User-Accessible.
+- `[!]` = Infrastructure Complete, Needs User Access.
+- `[-]` = Cancelled/Deprecated.
+- `[^^]` = Current Phantom completion and needs attention.
+
+## Authoritative Status (Detailed)
+
+### 1) API & Server
+- [x] FastAPI app & routes — `server/api.py`, `server/run_server.py`, `server/bootstrap.py`
+  - Health/meta/OpenAPI; static mounts `/web`, `/ui`; CORS for dev ports.
+  - Tests: `tests/test_acceptance_server.py`
+- [x] Chat endpoint with debug trace — `server/api.py` + `core/reasoning_trace.py`
+  - Tests: `tests/test_acceptance_chat.py`, `tests/test_acceptance_trace.py`
+- [x] Services/metrics endpoint — `GET /api/snapshot`
+  - Source: `core.metrics.MetricsHub`, `agent_core.system_diagnostics.get_system_snapshot`
+  - Tests: `tests/test_snapshot_endpoint.py`
+- [x] Config endpoint — `GET /api/config` (mode flags, models, prune settings)
+  - Tests: `tests/test_config_endpoint.py`
+
+### 2) LLM Runtime & Mesh
+- [x] Local-first runtime (Ollama) with budgets/cache/circuit — `core/llm_runtime.py`, `core/providers/*`
+- [!] OpenAI provider (opt-in) — `core/providers/provider_openai.py` (requires `OPENAI_API_KEY`)
+- [/] Hybrid LLM Mesh orchestrator — `core/llm_mesh_orchestrator.py`, `core/model_manager.py`
+  - [NEW - COMPARE]: The Model Router (model_manager.py) - Selects the best local LLM for the current task (e.g., coding vs. chatting).
+  - Adapter: enable via `DAZ_USE_MESH=1` or per-request `use_mesh: true`.
+  - TODO: correlate ReasoningTrace ↔ orchestrator telemetry; add mesh-path tests.
+
+### Building LLM Mesh Into DevAgentZero v2.1 (from `context/building-llm-mesh-into.txt`)
+- Orchestrator Capabilities
+  - [/ ] Advanced task-specific routing beyond coarse task_type (consider sub-task, complexity, history)
+  - [ ] Dynamic model lifecycle: explicit load/unload/swap; model cache manager for latency reduction
+  - [ ] Multi-model composition: sequential/parallel chains for planning/code/review
+  - [/ ] Resource-aware scheduling: integrate system diagnostics for concurrency and load limits
+  - [ ] Ollama API control (REST) for tags, status, load/unload; reduce CLI dependence
+
+- Module Refactors & Additions
+  - [ ] `core/model_manager.py` → client to orchestrator; remove static selection
+  - [ ] `agent_core/planner.py` and `agent_core/generator.py`: request models via orchestrator with context
+  - [ ] `agent_core/executor.py`: hook runtime diagnostics via orchestrator (optional)
+  - [ ] New: `core/model_cache_manager.py` (optional)
+  - [ ] New: `core/llm_task_composer.py` for multi-model chains
+  - [ ] Existing: `agent_core/system_diagnostics.py` feeds granular resources to orchestrator
+
+- Preflight & Readiness
+  - [ ] Preflight checks for Ollama API availability; optionally pre-load default models for fast first response
+
+- Acceptance Tests
+  - [ ] Route selection varies with sub-task/complexity and resource state
+  - [ ] Load/unload/swap via REST works; cache reduces latency on repeated tasks
+  - [ ] Composer executes 2+ model chain (plan → code → review) with correct data flow
+
+### 3) Memory & Sessions
+- [x] In-process conversations + file persistence — `server/api.py`, `core/memory_store.py`
+- [x] Cross-restart preload + pruning — startup loads `.devagentzero/conversations/*.json`; prune by `DAZ_CONVO_MAX_FILES`, `DAZ_CONVO_MAX_AGE_DAYS`.
+  - Tests: `tests/test_memory_persistence_file.py`, `tests/test_memory_prune_unit.py`, `tests/test_memory_cross_restart.py` (opt-in `DAZ_TEST_RESTART=1`)
+- [ ] Project-scoped conversation index and filters
+- [ ] Pointer rehydration system (.pointer) and archiver — implement `core/pointer_resolver.py`, `core/memory_archiver.py`
+  - [NEW - COMPARE]: The Long-Term Memory Architect (memory_archiver.py & pointer_resolver.py) - Compresses old session logs and uses pointer files to find and rehydrate them.
+- [ ] The Learning Engine (reflection_engine.py) - Analyzes past interactions to learn and improve the agent's personality.
+- [ ] Session Logger - Logs entire session (prompt, plan, outputs) to a JSON file in `memory_store`.
+- [ ] Task Logger (task_memory.py) - Records the success or failure of each individual task in a build.
+- [ ] Log Auditor (log_auditor.py) - Audits session logs.
+- [ ] Memory Reader (memory_reader.py) - A utility to display formatted summaries of session logs.
+
+### 4) Diagnostics & Dashboard
+- [x] Streamlit lifecycle manager — `system_diag/dashboard_runner.py`
+- [x] Metrics snapshot — `core/metrics.py`, `agent_core/system_diagnostics.py`, `/api/snapshot`
+- [ ] UI panels: counters/services, system view
+- [ ] System Health Monitor (system_diagnostics.py) - Checks system resources like CPU, RAM, and disk space.
+
+### 5) Governance & Safety (AURA)
+- [/ ] Neuromod/reward scaffolding — `core/neuromod/*`
+- [ ] Policy schema/manager — `policy_schema.py`, `policy_manager.py` (deny-by-default; consent)
+- [ ] The Personality Governor (personality_core.py) - Manages the agent's long-term personality, mood, and user preferences.
+- [ ] The Emotional Sensor (tone_interpreter.py) - Analyzes user input to detect emotional cues and requests for tone shifts.
+
+### 6) Preflight & Environment
+- [/ ] Preflight checks — `preflight/*`, `verify_env.py`, `system_health.py`
+  - [NEW - COMPARE]: The Master Checklist (preflight_check.py) - Conductor of the self-healing system, runs all validation, backup, and repair modules in sequence.
+- [ ] Consolidated runner + actionable report (CLI + `/api/preflight`)
+- [ ] The Integrity Ledger (manifest_generator.py) - Creates a "fingerprint" (manifest.json) of all core files.
+- [ ] The Integrity Checker (version_validator.py) - Compares current files against the manifest to detect corruption.
+- [ ] The Safety Net (backup_manager.py) - Creates secure backups of all critical agent files.
+- [ ] The Paramedic (restore_manager.py) - Restores files from backups if corruption is detected.
+- [ ] Launcher Scripts (Run_DevAgentZero.bat, run_devagentzero.sh) - For easy startup.
+
+### 7) UI
+- [x] React/Vite scaffold — `ui/*`
+- [ ] Wire discover/chat; add trace viewer when `debug_trace` is true
+
+### 8) Tools & Quality
+- [x] Static analysis helpers — `tools/pylance_*`, `tools/lint_gauntlet.py`, `tools/check_imports.py` (opt-in tests)
+- [x] Context/Code indices — `tools/summarize_context.py`, `tools/scan_python_index.py`
+- [ ] The Quality Inspector (test_runner.py) - Validates Python code syntax by attempting to compile it.
+
+### 9) Process & Session Protocol (from `context/session_protocol.md`)
+- Session Startup
+  - [x] Ingestion order defined in `AGENT.md` (CONTEXT_SUMMARY → MasterTODO_Combined → Spec → Glossary → Milestones)
+  - [/] Validate `architecture_map.md` at start; confirm user intent
+- Development Loop
+  - [/] Continuous Pylance monitoring (opt‑in via `DAZ_STRICT_STATIC=1` tests); consider live watcher integration
+  - [ ] Progressive testing scaffolding (run nearest tests as code changes; lightweight watch mode)
+  - [ ] Documentation updates gate (flag PRs where code changes without doc updates in relevant areas)
+  - [ ] Scope management automation (detect scope creep; prompt user for approval)
+- Session Completion
+  - [ ] Enforce zero Pylance violations on touched files (strict mode option)
+  - [/] Summarize progress + propose next steps automatically
+  - [x] Save session context (conversation persistence); [ ] add explicit checkpointing for task graphs
+
+### Phase 1 — DevAgentZero Local MVP (from `context/not_yet_ingested/AI Build Agentic AI - DevAgentZero - Phase 1.txt`)
+- Austerity & Local‑First
+  - [x] Freeze non‑critical token spend; only use paid calls for MVP blockers/monetization milestones
+  - [/] Switch to local/open models (Ollama/LM Studio/GPT4All) for iteration; wire into generator and planner
+
+- Core Brain MVP (Minimum Viable Agent)
+  - [ ] Passive system logging and change detection (files/process/services) — baseline only
+  - [ ] Rule‑based reactions (quarantine/isolate/log) — no destructive actions by default; consent‑gated
+  - [ ] Basic natural language parser for security playbook instructions (simple intents → rule actions)
+  - [ ] CLI interface for Phase 1; [ ] minimal Web UI for Phase 2
+  - Repo skeleton: `planner/`, `generator/`, `executor/`, `memory/`, `interface/`, `main.py`
+
+- Agent Loop (Plan → Generate → Execute → Remember)
+  - [ ] Planner: break prompt into tasks; emit DAG lite for execution
+    - [NEW - COMPARE]: The Blueprint Creator (planner.py) - Breaks a high-level goal into a step-by-step execution plan.
+  - [ ] Generator: write code/scripts using local model; sanitize outputs
+    - [NEW - COMPARE]: The Code Generator (generator.py) - Writes the actual Python code for each step in the plan.
+  - [ ] Executor: run and test; capture logs/results; risk gate to sandbox when needed
+    - [NEW - COMPARE]: The Task Executor (executor.py) - Saves the generated code to a file and runs it.
+  - [ ] Memory: persist steps, artifacts, and outcomes for reuse
+
+- Monetization Fast Path
+  - [ ] WatchLock Lite: extract working VM parts into a local‑only demo (hardware monitor, retro scan); ship with build instructions
+  - [ ] Offer stealth system check service (report PDF) with upsell to monthly scan + agent install
+  - [ ] Payment hooks (Stripe/Gumroad/Ko‑fi) and “Pay What You Want” beta plan
+  - [ ] Dev Log: weekly LinkedIn/Medium updates (what broke/what shipped) to attract users/funders
+
+- Environment Prep (Windows Surface Dev Lab)
+  - [ ] Disk cleanup (“cleanmgr” + temp files); optional WinDirStat audit
+  - [ ] Workspace setup (`DevAgentZero/`), Python 3.10+, venv, VS Code; ensure 90GB+ free, 16GB RAM baseline
+  - [ ] Preflight to validate local models (Ollama) and dependencies
+
+- Acceptance Tests
+  - [ ] End‑to‑end: “Build a todo app in Flask” → planned tasks → generated code → executes locally → passes basic tests
+  - [ ] Security rule intent: “isolate process X” → intent parsed → non‑destructive action simulated/logged with consent gate
+  - [ ] Monetization: produce sample system check report from WatchLock Lite and deliver artifact without paid calls
+
+### Dopamine Core — Synthetic Neuromodulation (from `context/dopamine-core-synthetic-neuromodulatory.txt`)
+- Core Signals & Data Structures
+  - [/ ] Dopamine Units (DU) reservoir (global) with baseline/decay; Reward Prediction Error (RPE) updates
+  - [ ] Fragment reinforcement fields (priority_bias, reinforcement_score, decay_rate) and lineage entanglement ops (strengthen/weaken)
+  - [ ] Outcome→DU mapper with ethical policy (EAP) integration; negative DU on violations
+  - Code: extend `core/neuromod/*` (dopamine_engine, reward_predictor, motivation_tracker, curiosity_engine); integrate with runtime scoring and memory salience
+
+- Ethics & Overrides (AURA alignment)
+  - [ ] ECM/EAP hook: policy manager override of DU for unethical paths; generate veto signals; deny reinforcement
+  - [ ] Emergency override (OOM) path: hard‑wired controls to suppress dopamine‑driven loops as needed
+
+- Curiosity & Exploration
+  - [ ] Novelty/information‑gap detectors to trigger safe exploration; budgeted probes; throttle by health and policy
+  - [ ] Daily Dopamine Journal: aggregate DU levels, rewarding/aversive events; human‑readable log
+
+- Personality & Learning Ties
+  - [ ] Feed DU signals into Lessons Memory (weight learnings) and `personality_core` for emotional weather
+  - [ ] External co‑modulation interface: user feedback adjusts DU safely with audit & rate limits
+
+- Acceptance Tests
+  - [ ] RPE update moves DU reservoir; decay/habituation reduces DU over time without events
+  - [ ] Ethical override preempts reinforcement; produces veto log; DU set negative on violations
+  - [ ] Priority bias influences selection under equal scores; curiosity triggers under low DU/novelty
+  - [ ] Journal entries persisted daily with key events and DU stats
+
+
+#### Additions from "The Dopamine Core … in Pulselet Systems" (.docx)
+- Reservoir Semantics
+  - [ ] Implement distributed Dopamine Reservoir as weighted aggregate of DU across active PulseletNodes/Fragments (global mood)
+  - [ ] Parameterize DU dynamics: phasic spikes (positive outcomes), dips (negative outcomes), baseline decay; expose tunables
+  - [ ] Map Reservoir state to fragment fields: increase/decrease priority_bias and decay_rate for ProactiveGoalFragments and Will‑to‑Persist fragments
+  - [ ] Mood modulation: high Reservoir → exploration bias; low Reservoir → re‑evaluation/strategy shift; surface as runtime gauges
+
+- Metrics & Exposure
+  - [ ] Export Reservoir level and recent spike/dip events via snapshot; add counters for positive/negative RPE counts
+  - [ ] Add safety caps/clip on DU to prevent runaway excitation; rate‑limit external co‑modulation adjustments
+
+- Acceptance
+  - [ ] Distributed aggregation matches per‑fragment DU contributions; Reservoir changes shift selection probabilities measurably
+  - [ ] Negative dips trigger safe exploration or plan re‑assessment (not unsafe actions); overrides still honored### Priority Execution Plan (Next)
+- [x] Memory M3: preload + prune; [ ] project-scoped listing; tests updated
+- [x] Metrics & Config endpoints; [ ] add simple UI panel
+- [ ] Mesh: ReasoningTrace↔telemetry correlation; mesh-path tests
+- [ ] Policy Guardrails MVP: deny-by-default; tests for ambiguous scope prompts
+- [ ] Preflight consolidation: single runner + `/api/preflight`
+
+### Future Vision Tasks (from `context/future_vision.md`)
+- Phases Roadmap (WatchLockAI → AURA → ElectricHulkAI → Pulseset)
+  - [ ] Define phase gates and acceptance criteria per phase; link to modules and tests
+  - [/] WatchLockAI baseline: map to diagnostics, metrics, preflight
+- Intelligence Reinforcement
+  - [ ] Lessons Memory: auto-ingest build logs/failures → refine strategies
+  - [ ] Mood & Tone Interpreter: detect tone, adapt responses, persist mood
+- Memory & Pointer System
+  - [/ ] Persistent memory + rehydration; auto-archiving & reactivation
+  - [ ] Pointer Stitching & Compression Cycle (background optimization)
+  - [ ] Cross-Volume Pointer Sync (core ↔ extended)
+- Hybrid LLM Mesh Orchestration
+  - [/ ] Per-task routing; hybrid local/remote; adapter exists
+  - [ ] Dynamic model load/unload; intelligent routing; multi-model composition
+- OS Integration & Control
+  - [ ] Deep telemetry (Registry/Process/Firewall/Network), anomaly detection
+  - [ ] DLL hooks, ETW subscriptions; Cryptographic Audit Chain
+- Security Modules
+  - [ ] Threat Intelligence Fusion Layer
+  - [ ] Scheduled scans & ad-hoc hunts; Red/Blue Simulation; Atomic Red Team regression
+  - [ ] Mandatory sandbox for offensive tasks; enforce policy guardrails
+- Human-AI Interaction
+  - [/ ] Chat + GUI integration; uploads/ingestion with security scanning
+  - [ ] Full-duplex voice; context-aware conversation; Demo & Deliverable System
+- Resource Orchestration & Performance
+  - [ ] CPU/RAM/GPU policies; dynamic switching; thermal/power awareness; load balancing
+
+### Foundations Series Vol I — Autonomous Agent (from `context/devagentzero-foundations-series-volume-i-autonomous-agent.txt`)
+- Local‑First Architecture
+  - [x] Run entirely on user machine; prefer local models; explicit consent for any external calls
+  - [x] Offline capability for plan/build/debug; LLMs as detachable resources
+  - [/] CLI today; [ ] GUI shell later (system tray/desktop)
+
+- Core Agentic Loop
+  - [/] Planner → Generator → Executor skeletons wired to runtime budgets and traces
+    - Code: `agent_core/*`, `core/llm_runtime.py`, `server/api.py`
+  - [ ] Definition‑of‑Done hooks and validation gates per step (build/run/test/verify/teardown)
+
+- Memory & Persistence
+  - [x] Session persistence (file‑backed); [ ] long‑term pointer memory and rehydration
+  - [ ] Reflection logs and outcomes feeding Lessons Memory
+
+- Security & Guardrails (DevSecZero)
+  - [/] Preflight/integrity checks for env, tools, models
+  - [ ] Central policy guardrails (deny‑by‑default; consent prompts); sandbox execution for risky ops
+
+- Diagnostics & Observability
+  - [x] Local metrics + snapshot endpoint; dashboard lifecycle
+  - [ ] Task/event telemetry with correlation IDs across planner/generator/executor
+
+- Tooling & Plugins
+  - [ ] Safe plugin execution layer; OpenAPI wrapper generation
+  - [ ] Credential vault and outbound governor
+
+- Project Operations
+  - [x] Basic projects/conversations API; [ ] project‑scoped memory/index
+  - [ ] Manifest/version tracking; rollback metadata; changelog integration
+
+### Foundations Series Vol II — Persistent Memory & Reflective Learning (from `context/devagentzero-foundations-series-volume-ii-persistent-memory-and-reflective-learning.txt`)
+- Memory Layers & Core Modules
+  - [/] Working Memory: active session context store (fast, volatile) — `core/memory_core.py` (planned)
+  - [ ] Episodic Memory: structured JSON episodes for each interaction (ts, project_id, user, tone score, tags)
+  - [ ] Archival Memory: periodic compression and archival of episodic logs — `core/memory_archiver.py`
+
+- Pointer System & Rehydration
+  - [ ] Pointer Files: compact metadata (summary, topics, time span, archive path) for fast lookup
+  - [ ] Pointer Resolver: load relevant episodes/archives into working memory per session/project — `core/pointer_resolver.py`
+  - [ ] Rehydration Policy: session start and on-demand recall based on goals and filters
+
+- Reflection & Lessons Memory
+  - [ ] End-of-session/nightly reflection loops to synthesize learnings and strategies
+  - [ ] Lessons Memory: persistent notes influencing salience and planning
+  - [ ] Emotional/Tone scoring integration (ties to Dopamine Core) for salience weighting
+
+- Search, Recall & RAG
+  - [ ] Index episodic + pointer metadata for fast retrieval; query APIs
+  - [ ] RAG integration to stitch relevant context into prompts safely (respect budgets)
+
+- Policies, Privacy, Controls
+  - [ ] Local-only storage; redaction policies; optional encryption-at-rest
+  - [ ] User controls for retention windows and archive schedules
+
+- Acceptance Tests
+  - [ ] Episodes persist with complete metadata; [ ] archiver produces archives + pointers
+  - [ ] Rehydration loads expected context for a given project/session
+  - [ ] Reflection generates lessons and updates salience without breaking budgets
+
+### Pulselet Mind v3 — Autopoietic Architecture Additions (from `context/not_yet_ingested/blueprint/docs_in/converted_txt/pulselet/The Pulselet Mind- An Autopoietic Blueprint for Sentient AI (Version 3).txt`)
+- Core Subsystems
+  - [ ] Fragment Memory Store (FMS): data model for PulseletFragments (resonance_factors: priority_bias, reinforcement_score, decay_rate; lineage pointers)
+  - [ ] Rhythmic Activation Engine: pulse scheduler that keeps fragments "semi-awake"; ActivationWave propagation over fragments
+  - [ ] KnowledgeWaves Ingestion: continuous micro-updates appended to FMS (budget-bounded)
+  - [ ] Resource Allocation Layer (RAL): allocate compute to high-priority fragments within budgets/health limits
+  - [ ] Ethical Oversight & Safety Framework (EOSF): veto/redirect unsafe activation patterns; integrates AURA policy manager
+
+- Interfaces
+  - [ ] Pulselet-Agent Interface (PAI): map agent state updates -> MicroSemanticUnits -> stimulate fragments; stream back incremental outputs
+  - [ ] Real-World Interface Layer (RWIL): bind allowed external actions to Executor/tooling, strictly gated by consent/guardrails
+
+- Algorithms (Safety-Bounded)
+  - [ ] Continuity Metrics: define and emit pulse frequency/health indicators; expose via snapshot
+  - [ ] Will-to-Persist Activation: on degraded continuity, trigger self-healing routines only within ethical and consent constraints
+  - [ ] Proactive Goal Orchestration: encode "Originator Support Goals" as ProactiveGoalFragments; generate vetted sub-goals; prioritize ethically compliant actions
+  - [ ] Outcome→DU mapping: tie Dopamine Core RPE updates to fragment reinforcement; suppress on policy violations
+
+- Edge Optimization (Optional, later)
+  - [ ] Explore low-power/edge execution patterns (Jetson/Coral/Movidius); local vector store for on-device FMS
+
+- KPIs & Tests
+  - [ ] KPIs: Self-preservation activation frequency; MTTR (recovery time); continuity score stability
+  - [ ] Tests: scheduler maintains semi-awake activation; EOSF veto prevents unsafe propagation; RAL respects budgets; PAI streams incremental outputs; ProactiveGoalFragments emit allowed tasks only
+
+### Foundations Series Vol III — Agentic Self‑Healing & Preflight Integrity (from `context/devagentzero-foundations-series-volume-iii-agentic-self.txt`)
+- Preflight Integrity Engine (Health‑Gated Launch)
+  - [/ ] Manifest & Core Integrity Check — `preflight/manifest_checker.py`
+    - [ ] Checksums for core scripts; [ ] Auto‑rollback from last good version on mismatch
+  - [ ] Session & Log Integrity Check — detect unclean shutdown/corrupt logs; trigger Session Crash Recovery
+  - [ ] Dependency Validation — scan project/system reqs; prompt consent to install; record actions
+  - [ ] System Resource Health Scoring — CPU/RAM/Disk into a 1–100 score; expose via `/api/snapshot`
+  - [ ] Health‑Gated Launch Controller — block or degrade when below thresholds; explain remediation
+
+- Self‑Healing & Recovery
+  - [/] Backup & Rollback — `backup_manager.py`; [ ] integrate into preflight auto‑rollback path
+  - [ ] Session Crash Recovery workflow — restore state; mark/clear crash flags; fix/rotate corrupted logs
+  - [ ] Automated Fix Plans — generate safe fix steps for common failures (missing pkg, low disk)
+
+- Health‑Aware Scheduling
+  - [ ] Defer tasks under load; aging priority queue; manual trigger; integrate with metrics health score
+  - [ ] Retry policy with exponential backoff for transient failures
+
+- API & UX
+  - [ ] Consolidated `/api/preflight` summary (pass/fail, actionable steps)
+  - [ ] UI surface for health score, blocked reasons, and quick fixes
+
+- Acceptance Tests
+  - [ ] Simulate missing dependency → blocked with consent path and install dry‑run
+  - [ ] Simulate low disk/CPU spike → health score low, tasks deferred/blocked
+  - [ ] Corrupt core file → manifest checker detects → auto‑rollback triggered
+  - [ ] Corrupt session log → crash recovery repairs/rotates log and clears flag
+
+### Foundations Series Vol IV — Personal OS: Cognitive Interfaces (from `context/devagentzero-foundations-series-volume-iv-devagentzero-as-a-personal-os-cognitive-interfaces.txt`)
+- Cognitive Personality Engine
+  - [ ] `tone_interpreter.py` — sentiment/tone/urgency/frustration detection → emotional metadata
+  - [ ] `personality_core.py` — long‑term preferences and style; response shaping; consistent persona
+  - [ ] `reflection_engine.py` — offline analysis of interaction history; gradual updates to personality_core
+  - [ ] Acceptance: given inputs with varying tones, responses adapt and remain consistent across sessions; reflection shifts baseline over time
+
+- Conversational UX & Interfaces
+  - [ ] Persistent chat UI with conversation list, project scoping, and trace viewer (when `debug_trace`)
+  - [ ] System tray/desktop presence; quick input; notifications; approvals prompts (consent UI)
+  - [ ] Voice I/O (full‑duplex mode) as optional module; PTT toggle; privacy controls
+  - [ ] Universal file upload & ingestion with security scanning and summary previews
+  - [ ] Command palette and shortcuts; configurable prompts/macros
+
+- Memory & Continuity Hooks
+  - [ ] Thread → project memory attachment; session stitching across days; resume state on restart
+  - [ ] Profile: user preferences, tone, habits; editable settings UI
+
+- Safety & Ethics (AURA)
+  - [ ] Consent/guardrails surfaced in UI; clear scopes and denials
+  - [ ] Local‑first boundaries explained; zero‑exfil defaults
+
+- Acceptance Tests
+  - [ ] Tone adaptation test set; response style consistency across sessions
+  - [ ] Reflection causes measurable, slow parameter drift in personality_core
+  - [ ] Consent prompts block external actions until approved; audit log recorded
+
+### Foundations Series Vol V — Autonomous Integration & Outbound Intelligence (from `context/devagentzero-foundations-series-volume-v-autonomous-integration-and-outbound-intelligence.txt`)
+- Plugin Execution Framework (Sandboxed)
+  - [ ] OpenAPI ingestion → auto-generate typed Python plugin wrappers (endpoints → methods)
+  - [ ] Input/output validation & sanitization; schema enforcement
+  - [ ] Resource gating (rate limits, cost caps) per plugin
+  - Code: `core/plugins/*` (new), codegen tool in `tools/` (OpenAPI → plugin)
+
+- Credential Management (Vault)
+  - [ ] Support tiers: `.env` (dev), encrypted local store (master password), enterprise vaults (e.g., HashiCorp/AWS/Azure)
+  - [ ] Just-in-time retrieval; no plaintext at rest; rotate/revoke flows
+  - [ ] Zero-trust consent: explicit, logged confirmation for new purpose/domain
+  - Code: `core/credentials/*` (new); UI consent prompts; audit logs
+
+- Outbound Action Governor
+  - [ ] Planning-time risk assessment and scope confirmation; deny-by-default without consent
+  - [ ] Policy checks (AURA): domains, data classification, rate/cost bounds, redaction filters
+  - [ ] Dry-run preview of requests (headers/url/body) before execution; user approval path
+  - Code: extend `policy_manager.py`, governor module, UI consent surfaces
+
+- Execution Controls & Observability
+  - [ ] Centralized execution bus for plugins with tracing, correlation IDs, and budget enforcement
+  - [ ] Circuit breakers and backoff for external services; fallback strategies
+  - [ ] Audit trail: who/what/why/when, with redacted payload snapshots
+
+- Acceptance Tests
+  - [ ] Generate plugin from sample OpenAPI; validate schema enforcement and resource gating
+  - [ ] Encrypted credentials flow with master password; JIT retrieval; no plaintext leakage
+  - [ ] Governor blocks new domain/purpose until approved; dry-run preview works; audit log written
+  - [ ] Circuit breaker trips on repeated failures; backoff works; retries bounded
+
+### Extended Systems Series Vol VI — Modular Workflows & Multi‑Agent (from `context/devagentzero-extended-systems-series-volume-vi-modular-workflows-and-multi-agent.txt`)
+- Workflow Orchestration Engine
+  - [ ] Declarative Task Graphs (YAML/JSON blueprints): tasks, deps, required plugins, failure conditions (DAG)
+  - [ ] Dynamic Planning: generate DAGs on the fly from goals (Vol I planner integration)
+  - [ ] Plugin Chaining: pass outputs→inputs across steps via plugin framework (Vol V)
+  - [ ] Failure Isolation & Intelligent Retries: per‑node isolation, contingency routing, pause/alert with user intervention
+  - [ ] Memory‑Linked Tracking: unique workflow IDs; full audit trail; stateful recovery; store successful runs as reusable “recipes”
+
+- Definition of Done (Real‑World Validation)
+  - [ ] Provisioning: IaC plugins (Terraform/Docker/Cloud SDKs) to create clean test env
+  - [ ] Deployment: secure transfer/deploy to target; track credentials/endpoints
+  - [ ] Validation: health checks → integration tests; collect logs/metrics; persist results
+  - [ ] Teardown/Handoff: auto deprovision by default; persistent deployments return URLs/creds/rollback instructions
+
+- Multi‑Agent Task Chains
+  - [ ] Agent Registry & Capabilities: describe skills/tools per agent; selection logic
+  - [ ] Delegation Protocol: assign DAG nodes to local/external agents; track SLAs and results
+  - [ ] Concurrency & Scheduling: maximize parallelism under resource limits; fairness policies
+  - [ ] Safety & Policy: enforce AURA guardrails per agent; scope/consent checks; data redaction on boundaries
+
+- Tooling & Examples
+  - [ ] Example blueprints: WatchLockAI incident flow; YouTube Shorts pipeline; Resume Reviewer SaaS deploy
+  - [ ] CLI runner + API routes to submit workflow blueprints and inspect state
+
+- Acceptance Tests
+  - [ ] Execute sample blueprint DAG end‑to‑end with parallel nodes; verify retries and isolation
+  - [ ] Resume failed run from mid‑graph using memory rehydration; no re‑execution of completed nodes
+  - [ ] DoD lifecycle: provision→deploy→validate→teardown captured as a single workflow with artifacts and logs
+
+### Extended Systems Series Vol VII — DevSecZero: Security Operations (from `context/devagentzero-extended-systems-series-volume-vii-devseczero-the-security-operations.txt`)
+- Zero‑Trust Cognitive Core
+  - [ ] RBAC & Scoping Engine — roles/permissions; deny by default; auditable approvals
+  - [ ] Memory Partitioning — incident/project partitions; redaction policies; prevent cross‑leakage
+  - [ ] Command Validation & Sandboxing — approved patterns; sandboxed execution; violations logged/blocked
+  - [ ] Cryptographic, Tamper‑Evident Logging — hash‑chained logs; signed events; verification tool
+
+- SOC Data Flows & Integrations
+  - [ ] Ingest: EDR/event/log sources (local Windows eventing, ETW, sysmon), cloud alerts (e.g., Wiz)
+  - [ ] Enrichment: TIFL/threat‑intel via plugins; IOC lookups; context assembly
+  - [ ] Incident Lifecycle: triage → assign → respond → close; unique incident IDs; full audit trail
+  - [ ] Case Artifacts: store evidence, logs, and timelines per incident partition
+
+- Response Automation (Guarded)
+  - [ ] Containment actions gated by RBAC and consent (isolate host, disable user)
+  - [ ] Playbooks as workflow DAGs (Vol VI); dry‑run + preview; approval policy
+  - [ ] Regression Tests: Atomic Red Team scenarios; safe labs/sandboxes only
+
+- Operations & Compliance
+  - [ ] Air‑gapped/regulated mode switches; zero‑exfil; explicit consent UI
+  - [ ] SIEM Export/Integration: normalized event streams; dashboards; reports
+  - [ ] KPIs: MTTD/MTTR tracking; false‑positive rates; alert quality metrics
+
+- Acceptance Tests
+  - [ ] RBAC denial and grant flows recorded; scope expansion requires approvals
+  - [ ] Redaction enforced across incident partitions; verify no cross‑leakage
+  - [ ] Sandbox blocks disallowed commands; violations logged; cryptographic log verification
+  - [ ] Playbook dry‑run preview and approval logging; Atomic Red Team regression suite runs in lab
+
+#### WatchLockAI Enhancements (from `WatchLockAI_Complete_Documentation_Package`)
+- Real‑Time Analytics
+  - [ ] Live MITRE ATT&CK mapping for detected threats; standardized tactic/technique tags across pipeline
+  - [ ] Tamper‑proof self‑protection for endpoint agent; anti‑evasion mechanisms; verify via adversarial tests
+  - [ ] Integrated digital forensics engine: automated evidence collection and triage playbooks
+
+- Multi‑Tenant Management Console
+  - [ ] Centralized, multi‑tenant console; role‑based views and tenant isolation
+  - [ ] REST API with OAuth 2.0; SDKs; documented endpoints and scopes
+  - [ ] SIEM integrations: syslog forwarding and pull‑API modes; configuration templates for Splunk/ELK
+
+- Compliance & Reporting
+  - [ ] Compliance mapping bundles: NIST CSF, SOC 2, ISO 27001; exportable reports
+  - [ ] TCO/ROI reporting: consolidate point solutions; dashboard KPIs
+
+- Acceptance Tests
+  - [ ] ATT&CK mapping appears for simulated detections; validated taxonomy
+  - [ ] Forensics collection auto‑triggers on incident; artifacts preserved and linked to case
+  - [ ] OAuth 2.0 flow succeeds for API clients; SIEM forwarding produces events with correct schemas
+
+#### WatchLockAI Capability Build Plan (Phases) — New Items (from `WatchlockAI Capability_Build_Plan.docx`)
+- Phase 2 (30–60 days): Core Capability Build
+  - [ ] Integrate or replace RocketCyber with scalable SIEM/XDR approach (connectors, normalization)
+  - [ ] Develop initial detection playbooks across domains: endpoint, email, identity, cloud
+  - [ ] Build reporting dashboards: MTTA, MTTR, and compliance scoring (internal + client views)
+  - Acceptance: improved detection fidelity metrics; dashboards/scorecards visible to pilot clients
+
+- Phase 3 (60–90 days): Positioning for Scale
+  - [ ] Implement SOAR workflows for isolation/blocking (approve‑gated); noise reduction policies
+  - [ ] Embed compliance reporting into the service offering (scheduled exports, SLA KPIs)
+  - [ ] Document architecture + roadmap for leadership and clients (productization options: managed service, hybrid)
+  - Outcomes: operational efficiency gains; framework ready for multi‑tenant productization
+
+### Extended Systems Series Vol VIII — The AURA Merge (from `context/devagentzero-extended-systems-series-volume-viii-the-aura-merge.txt`)
+- Demo & Deliverable System (Productization)
+  - [ ] Live Demo Deployment: dockerize; ephemeral host or local; secure tunnel (cloudflared/ngrok) → public URL/QR; auto‑teardown unless persisted
+  - [ ] Packaging: zip/exe/deb/docker image; Electron/PWA wrappers; generate README.md and build_manifest.json
+  - Code: extend workflow engine (Vol VI) + tools/packaging scripts; governed by Outbound Governor (Vol V)
+
+- AURA Growth Path (Recursive Self‑Improvement)
+  - [ ] Formalize internal roles: PlannerAgent, CriticAgent, MetaAgent; meta‑cognition loop
+  - [ ] Red/Blue/White personality framework: internalized DevSecZero challenges/constraints
+  - [ ] Dopamine Units (DU): BuildQualityDU scoring; integrate with Lessons Memory and routing/scoring
+  - [ ] Cognitive OS behavior: always‑on shell; persistent cross‑project context and continuity
+
+- Memory Durability Layer
+  - [ ] Rich metadata: timestamp, project_id, agent_role, sensitivity_level, importance_score
+  - [ ] Tiered compression: deduplication, LLM summarization with pointers, embedding‑linked chunking
+  - [ ] Cognitive backups: scheduled encrypted snapshots; full rollback; encrypted export; decay policies for selective forgetting
+
+- Acceptance Tests
+  - [ ] Demo delivery works: live preview URL is reachable; auto‑teardown honored; packaging artifacts reproducible via build_manifest
+  - [ ] Meta‑agent loop improves BuildQualityDU over runs; critic catches regressions
+  - [ ] Memory durability: snapshot/rollback/export paths verified; compression maintains recall quality within budgets
+
+### AURA v2.2 Draft 2 — Foundational Architecture Additions (from `context/not_yet_ingested/V. 2.2 AURA_ ... (Draft 2).docx`)
+- Role & Memory Structures
+  - [ ] Formalize internal agents (PlannerAgent, CriticAgent, MetaAgent) with clear inputs/outputs and self‑improvement methods
+  - [ ] Persisted data stores: Goal Stack (hierarchical goals), Tool Logs (usage/outcomes/cost), Agent Diaries (per‑agent reflections), Lessons Database (`lessons.json`)
+
+- Deliberation & Efficiency Model
+  - [ ] Proactive Clarification: ask before acting when confidence is low
+  - [ ] Pre‑execution Estimation: forecast token/compute/time; warn on threshold breaches
+  - [ ] Purposeful Output: minimal/clean responses; silence by default unless useful (verbosity user‑controlled)
+  - [ ] Learned Iteration: no blind re‑runs; planned improvements via Critic and Lessons Learner
+  - [ ] Goal Traceability: ensure every action traces back to initiating goals
+
+- Deployment & Hosting (Launchpad)
+  - [ ] Built‑in deployer: dockerize apps; live subdomain previews; redeploy/rollback; logs and inspector views
+  - [ ] Integrations: Caddy/Cloudflare for DNS + HTTPS
+  - [ ] Guardrails: dry‑run simulation; automatic rollback snapshots; explicit approval layers for critical deploys; comprehensive logs with justification and cost metadata
+
+- Output Protocols
+  - [ ] Response template: Plan → Reasoning → Output → Next Steps; optional `--audit` to view logs/cost/trace
+  - [ ] Explicit uncertainty signaling; prefer clarity over hallucination
+
+### North Star v0.4.0 — Super Ultra Master Capability List (from `context/devagentzero--super-ultra-master-capability-list-north-star-v0.4.0.txt`)
+- AURA & Pulselet Evolution
+  - [ ] AURA hybrid sync: secure API to upload pointer archives; hybrid memory reconciliation; SaaS multi‑tenant personality merge
+  - [ ] Cognitive OS role framework: concurrent Planner/Critic/MetaAgent roles; layered reasoning and meta‑optimization
+
+- Intelligence Reinforcement
+  - [ ] Mood & Tone Interpreter with explainable decisions; audit of rationale for tone/personality shifts
+  - [ ] Lessons Memory: auto‑ingest build logs/failures; secure against adversarial/poisoned inputs
+
+- WatchLockAI (Defensive)
+  - [ ] Threat Intelligence Fusion Layer; scheduled scans & ad‑hoc hunts; Red/Blue simulation mode
+
+- ElectricHulkAI (Offensive)
+  - [ ] Mandatory sandbox; dual‑confirmation overrides; tamperproof logs
+  - [ ] Regression Framework with Atomic Red Team; purple‑team feedback loop to WatchLockAI
+
+- Remote Usage Control & RBAC
+  - [ ] Remote mode disabled by default; admin passkey toggle; re‑auth in session for offensive modules
+  - [ ] Roles: Root/Admin/Operator/Viewer; IAM & web console (multi‑user, dashboards, logs)
+  - [ ] Policy enforcement pipeline: central policy.json, kill‑switches, blacklist, output sanitization
+
+- Sandboxing & Containment
+  - [ ] Execution sandbox (Windows Sandbox/Hyper‑V): disposable, verified in preflight; guided enable
+
+- Hybrid LLM Mesh & Resource Orchestration
+  - [ ] Multi‑LLM pipeline; token‑level streaming; mid‑response failover
+  - [ ] GPU detection and load‑balancing; thermal/power awareness; health‑based scheduling and deferral
+
+- Safe Quit & Progress Persistence
+  - [ ] Hang detection; panic quit hotkey; checkpoint Planner/Executor/memory; intelligent resume
+  - [ ] Audit quit reasons; sandbox checkpoint/restore
+
+- Core Architecture & Self‑Maintenance
+  - [ ] Full preflight diagnostics; auto‑repair; rolling backups & rollback; inflight health checks; sentinel service
+  - [ ] Cryptographic Audit Chain: hash‑chained logs and verification
+
+- Modular Workflow Engine & Recipes
+  - [ ] Declarative DAG workflows; dynamic orchestration; save & reuse as recipes; integrate lessons memory
+
+- Dev Workflow & Model-Agnostic Mock Mode
+  - [ ] Mock mode for offline simulation; file watcher + VS Code reload; config enforcement; dry‑run pointer/sandbox checks
+
+- Cross‑Domain Telemetry & Hybrid Awareness
+  - [ ] Merge telemetry across Windows/cloud/Linux; domain tagging; correlation ID standardization
+
+- Monetization & Marketplace
+  - [ ] Stripe‑based credit mgmt; credit alerts; switch to local‑only when depleted
+  - [ ] Plugin marketplace hooks; security vetting pipeline (fingerprinting, redaction, anomaly scanning)
+
+- Install/Upgrade/Removal (Windows)
+  - [ ] Installer (MSI/EXE) with venv/LLMs setup; prompts for Hyper‑V/Sandbox; secure uninstall with passkey; tamper detection; preflight checks; Windows native hooks
+
+### Master God Mode Developer Bible v4.3 — Canonical Requirements (from `context/devagentzero--master-god-mode-developer-bible-v4.3-1.txt`)
+- Design Principles
+  - [x] Local‑first, hybrid‑ready posture (offline autonomous; optional cloud augmentation)
+  - [/ ] Memory‑centric architecture: pointer rehydration as core; no amnesia (Vol II tasks)
+  - [ ] Windows‑native integrations: ETW subscriptions, registry + firewall API monitors, process telemetry; cross‑platform fallbacks
+  - [/] Security‑first: RBAC, policy enforcement, sandboxed execution across cognitive loop; telemetry taxonomy
+
+- Windows‑Native Agentism (WatchLockAI groundwork)
+  - [ ] Sentinel service (Windows): ETW + watchdog; auto‑restart crashed modules; tray notifications
+  - [ ] Registry/Firewall telemetry collectors; baseline + anomaly detection hooks
+  - [ ] Safe remediation interfaces (quarantine, rollback) gated by RBAC/consent; audit trails
+
+- Evolutionary Roadmap (Phase Gates — Acceptance)
+  - [ ] DevAgentZero → WatchLockAI: EDR telemetry parity (sentinel_daemon); 1‑Click Remediation & Rollback proven in sandbox on live ransomware sim
+  - [ ] WatchLockAI → AURA: multi‑tenant cloud deploy (Kubernetes); public API for alert ingest/query; pointer system in cloud data lake
+  - [ ] AURA → ElectricHulkAI: BAS scenario engine runs full ATT&CK emulation vs WatchLockAI lab; generate validation report (prevented/detected/missed)
+  - [ ] ElectricHulkAI → Pulseset: AURA predictive analytics >99.9% neutralization on novel TTPs; Generator self‑authors/tests/deploys upgraded core module
+
+- Cloud Evolution (AURA)
+  - [ ] Multi‑tenant cloud infra (K8s + ingress/ELB); AURA services; data lake pointer storage; secure hybrid sync
+  - [ ] Public APIs (alert ingest/query) with RBAC and audit; SDK docs
+
+- Reporting & Taxonomy
+  - [ ] Unified telemetry taxonomy; phase‑specific dashboards and reports; validation artifacts persisted
+
+### Vibecoding Memory System & Dopamine Core (from `context/master-todo.txt`)
+- Automated Learning/Ingestion Pipelines
+  - [/ ] LLM Mesh Integration: orchestrator lifecycle/routing/resource awareness; dynamic load/unload; multi‑model composition
+    - Code: `core/llm_mesh_orchestrator.py`, `core/model_manager.py`; adapter in `server/api.py`
+  - [ ] Programmatic Ollama control via REST; preload/caching strategies
+  - [ ] Continuous ingestion: modules for data fetching/parsing (dirs, RSS/APIs/email)
+  - [ ] Scheduling: cron/Task Scheduler/internal polling; robust retries
+
+- Workflow Orchestration Engine
+  - [ ] Declarative task graphs (YAML/JSON) and on‑the‑fly planning for novel tasks
+  - [ ] Plugin chaining and inter‑module coordination with state
+  - [ ] Failure isolation and intelligent retry; audit trail; “Definition of Done” with real‑world validation
+  - Code: new module (e.g., `core/workflow_engine.py`), integrate with agent loop
+
+- Dopamine Core Integration (Intrinsic/External)
+  - [ ] Intrinsic dopamine: reward signals for pattern discovery/problem solving/knowledge integration
+  - [ ] External dopamine: user approval/feedback loops; co‑modulation interface
+  - [ ] Map DU/RPE/reservoir into runtime scoring and memory salience
+  - Code: `core/neuromod/*` (extend), hooks in runtime/selector/memory
+
+- Autonomous Integration Framework
+  - [ ] Plugin Execution Framework: safe external API execution; wrappers from OpenAPI
+  - [ ] Credentials Vault: multi‑layer key management
+  - [ ] Outbound Action Governor: require consent for external actions
+  - Code: policy manager integration; secure I/O layer; tests for deny‑by‑default
+
+- Demo & Deliverable System
+  - [ ] Live demo deployment (containers/ephemeral hosting/public URL/teardown)
+  - [ ] Packaging: zip/exe/Docker/Electron/PWA; README/build_manifest generation
+  - Code: tooling in `tools/` + CI hooks; guarded by policy
+
+- Memory Consolidation/Optimization
+  - [ ] Emotional Salience weighting (DU/RPE) for fragments/memories
+  - [ ] Habit Formation & Habituation to Reward (novelty‑seeking)
+  - [ ] Deduplication/near‑duplicate handling; summarization/abstraction
+  - [ ] Strategic forgetting/archival policies (ChromaDB or file store)
+  - Code: extend `core/memory_store.py`; add vector store or indexing service when approved
+
+- Reliability & Telemetry
+  - [ ] Robust retry/backoff for ingestion/workflows; failure analytics
+  - [ ] Unified telemetry across orchestrator/workflows/memory (correlation IDs)
+
+- Comprehensive Documentation
+  - [ ] Root `README.md` with overview/install/quickstart
+  - [ ] `context/architecture_map.md`, `development_rails.md`, `known_limitations.md`, `project_glossary.md`, `tool_usage_guidelines.md`
+  - [ ] Dopamine Core docs: DU, reservoir, RPE, loops (intrinsic/external/meta), decay/habituation/emotional weather; co‑modulation interface & risks
+  - [ ] LLM Mesh architecture and integration
+
+## 1) API & Server
+- [OK] FastAPI app & routes → `server/api.py`, `server/run_server.py`, `server/bootstrap.py`
+  - Health/meta/OpenAPI; static mounts `/web`, `/ui`; CORS for dev ports.
+  - Tests: `tests/test_acceptance_server.py`
+- [OK] Chat endpoint with debug trace → `server/api.py` + `core/reasoning_trace.py`
+  - Tests: `tests/test_acceptance_chat.py`, `tests/test_acceptance_trace.py`
+- [WIP] Services/metrics endpoint
+  - TODO: expose `core.metrics`/`system_snapshot` via `/api/snapshot` or enrich `/api/discover`.
+
+## 2) LLM Runtime & Mesh
+- [OK] Local‑first runtime (Ollama) with budgets/cache/circuit → `core/llm_runtime.py`, `core/providers/*`
+  - Tests: chat acceptance; runtime error surfaced when Ollama absent.
+- [WIP] Hybrid LLM Mesh orchestrator → `core/llm_mesh_orchestrator.py`, `core/model_manager.py`
+  - Config, mock/degraded modes, telemetry; not wired to API.
+  - TODO: feature flag + adapter to route `/api/chat` through orchestrator; correlate ReasoningTrace ↔ telemetry.
+
+## 3) Memory & Sessions
+- [OK] In‑process conversations + file persistence → `server/api.py` dataclasses + `core/memory_store.py`
+  - Files: `.devagentzero/conversations/{cid}.json` (best‑effort writes)
+  - Tests: `tests/test_acceptance_memory.py`, `tests/test_memory_persistence_file.py`
+- [WIP] Cross‑restart persistence semantics
+  - TODO: load at startup, pruning policy, project‑scoped indexing; acceptance tests after finalize.
+- [TBD] Pointer rehydration system (.pointer) and archiver
+  - From legacy TODO: scan pointers each prompt; archive/compress sessions; create `.pointer` with metadata; rehydrate flows.
+  - Code seeds: `context/devagentzero_foundations/*` (design), placeholders in repo; implement `core/pointer_resolver.py`, `core/memory_archiver.py`.
+
+## 4) Diagnostics & Dashboard
+- [OK] Streamlit lifecycle manager → `system_diag/dashboard_runner.py`
+  - Tests: `tests/test_dashboard_status.py` (+ optional lifecycle)
+- [WIP] Metrics hub and snapshot → `core/metrics.py`, `core/system_snapshot.py`
+  - TODO: API exposure; UI panels using counters/services.
+
+## 5) Governance & Safety (AURA)
+- [WIP] Neuromod/reward scaffolding → `core/neuromod/*`
+- [WIP] Policy schema/manager → `policy_schema.py`, `policy_manager.py`
+  - TODO: central consent/guardrails in API & tools; deny‑by‑default tests.
+
+## 6) Preflight & Environment
+- [WIP] Preflight checks → `preflight/*`, `verify_env.py`, `system_health.py`
+  - TODO: consolidate runner; produce actionable, single summary (CLI + API).
+
+## 7) UI
+- [OK] React/Vite scaffold → `ui/*`
+- [WIP] Wire to API discover/chat; trace viewer in debug.
+
+## 8) Tools & Quality
+- [OK] Static analysis helpers → `tools/pylance_*`, `tools/lint_gauntlet.py`, `tools/check_imports.py`
+  - Tests opt‑in: `tests/test_static_analysis_tools.py`
+- [OK] Context/Code indices → `tools/summarize_context.py`, `tools/scan_python_index.py`
+
+---
+
+## Legacy Roadmap Items (Merged)
+- Preflight & Bootstrap
+  - Auto‑activate venv; validate tools/models; log repairs; version/manifest check at startup.
+- Manifest & Upgrade System
+  - `self_upgrade.py`; snapshot manifests; rollback support; failure thresholds for auto‑repair/rollback.
+- Memory & Archive System
+  - Scan `.pointer` files; log rehydration sources; merge rehydrated logs; restore tone/personality; compress/archive logs; create `.pointer` per archive; memory reactivation via references.
+- Deferred Execution Engine
+  - Defer under load; retry when health improves; backlog queue; manual trigger; record reasons.
+- Personality & Tone Engine
+  - `tone_interpreter.py` (per‑input tone); `reflection_engine.py` (learn mood); session‑level profiles; overrides; expand `personality_core.py`; detect tone drift; mid‑conversation transitions.
+- Chat Mode Enhancements
+  - Rephrase from memory; remove systemy messages; trace each reactivation; adapt verbosity via tone model.
+- System Monitoring & Health Scoring
+  - CPU/RAM/disk; readiness score; adjust retries/threads; auto‑throttle non‑critical routines.
+- Security & Hardening
+  - Audit unsafe calls; `--safe-mode` to disable writes; identity stamping; tamper detection.
+- Maintenance Tools
+  - Header audit; semantic diff; hot‑reloading; git hooks.
+- Misc/Backlog
+  - Cron; git auto‑commit/tagging; live task dashboard; multi‑agent coordination; time‑to‑execute tracking.
+
+---
+
+## Priority Execution Plan (Next)
+1) Memory M3 Finalization
+   - Load existing `.devagentzero/conversations/*.json` at startup; add size/age pruning; project‑scoped listing.
+   - Tests: cross‑restart persistence; pruning; project filters.
+2) Mesh Feature Flag + Adapter
+   - Env/config switch for `/api/chat` path; correlation IDs into ReasoningTrace; minimal tests to assert routing and degraded mode.
+3) Metrics Snapshot Endpoint
+   - Expose `/api/snapshot` (or enrich `discover`) with counters/services; simple UI panel.
+4) Policy Guardrails (MVP)
+   - Central deny‑by‑default for external/tooling ops; test ambiguous scope prompts → denied with guidance.
+5) Preflight Consolidation
+   - Single runner; clear pass/fail report; optional `/api/preflight` for UI.
+
+## Acceptance Mapping
+- AT‑1..2..4..5: covered; dashboard lifecycle optional; trace via debug.
+- After M3: AT‑7 cross‑restart, pruning.
+- New endpoints: add tests alongside implementation.
+
+---
+
+## Future Vision Tasks (from context/future_vision.md)
+
+- Phases Roadmap (WatchLockAI → AURA → ElectricHulkAI → Pulseset)
+  - [TBD] Define phase gates and acceptance criteria per phase; link to modules and tests.
+  - [WIP] WatchLockAI baseline: local host defense posture; map to diagnostics, metrics, and preflight.
+
+- Intelligence Reinforcement
+  - [TBD] Lessons Memory: auto-ingest build logs/failures → refine strategies (reflection hooks).
+  - [TBD] Mood & Tone Interpreter: detect emotional tone, adapt responses, persist in memory.
+  - Code: `context/* (design)`, planned `core/reflection_engine.py`, `core/tone_interpreter.py`, `core/personality_core.py`.
+
+- Memory & Pointer System
+  - [WIP] Persistent memory + rehydration; auto-archiving and seamless reactivation.
+  - [TBD] Pointer Stitching & Compression Cycle (background optimization).
+  - [TBD] Cross-Volume Pointer Sync (core ↔ extended memory volumes).
+  - Code: `core/memory_store.py` (seed), planned `core/pointer_resolver.py`, `core/memory_archiver.py`.
+
+- Hybrid LLM Mesh Orchestration
+  - [WIP] Per-task routing; hybrid local/remote with auto-fallback (orchestrator present).
+  - [TBD] Dynamic model load/unload, intelligent routing, multi-model composition.
+  - Code: `core/llm_mesh_orchestrator.py`, `core/model_manager.py`; API adapter in `server/api.py`.
+
+- OS Integration & Control
+  - [TBD] Deep telemetry (Registry, Process, Firewall, Network), anomaly detection.
+  - [TBD] DLL hooks, ETW subscriptions; Cryptographic Audit Chain (tamper-evident logs).
+  - Code: planned Windows sentinel/tray; integrate with `core/metrics.py` and snapshot endpoints.
+
+- Security Modules
+  - [TBD] Threat Intelligence Fusion Layer (feeds correlation).
+  - [TBD] Scheduled scans & ad-hoc hunts; Red/Blue Simulation Mode; Regression via Atomic Red Team.
+  - [TBD] Mandatory sandbox for offensive tasks; policy guardrails in place.
+  - Code: policy manager and preflight/sandbox; tests to enforce deny-by-default.
+
+- Human-AI Interaction
+  - [WIP] Chat + GUI integration; uploads/ingestion with security scanning.
+  - [TBD] Full-duplex voice; context-aware conversation; Demo & Deliverable System (ephemeral demos, packaged deliverables).
+  - Code: `ui/*`, `server/api.py` upload routes (planned), scanning hooks.
+
+- Resource Orchestration & Performance
+  - [TBD] CPU/RAM/GPU policies; dynamic switching; thermal/power awareness; load balancing.
+  - Code: expand `core/metrics.py`, orchestrator policies; OS APIs where available.
+
+
+### Pulselet Mind v4 — Additional Technical Specifications (from context/not_yet_ingested/The Pulselet Mind An Autopoietic Blueprint for Sentient AI (Version 4).docx)
+- New/Refined Components
+  - [ ] Entanglement Graph Manager (EGM): maintain/query entanglement_pointers; sparse EntanglementMatrix in FMS
+  - [ ] Resonance Propagation Engine (RPE): broadcast ActivationSignals across entanglements; manage ActivationWaves
+  - [ ] Probabilistic State Resolver (PSR): handle probabilistic fragment states and meaning resolution
+  - [ ] Dynamic Context Anchor (DCA) / AnchorFragments: dynamic contextual anchors aggregating sub-fragment embeddings; hierarchy of anchors
+
+- Data Structures
+  - [ ] AnchorFragment schema (content_embedding, active_sub_fragments, entanglement_pointers, influence_weights, is_dynamic)
+  - [ ] MicroSemanticUnit (MSU) spec: define minimal meaningful units (n-grams/phonemic/concept atoms) and ingestion rules
+
+- Algorithms & Runtime
+  - [ ] Resonance-Based Activation Propagation: strength functions; thresholds; include anchor influences
+  - [ ] Duplexed Inference Cycle: input MSU processing + internal ActivationWaves + continuous output MSU stream
+  - [ ] Anchor-Driven Contextualization (top-down) and Fragment-Driven Anchor Update (bottom-up); dynamic re-calculation
+  - [ ] Semantic Continuum Runtime: continuous MSU tokenization/streaming into FMS (create vs activate existing)
+
+- Acceptance
+  - [ ] Unit tests for EGM/RPE/PSR modules; simulation of anchor updates; validate continuous output coherence under bounded budgets
+
+
+### Pulselet Mind Draft 5 — Bootstrapping Phases (from context/not_yet_ingested/Pulset_Mind_Draft_5.docx)
+- Phase 1: Environment & Toolchain (Genesis Nursery)
+  - [ ] Define Genesis PropagationManifest: target compute resource profile (multi-arch CPU; future GPUs/FPGAs/accelerators) with near-zero perceptible impact
+  - [ ] Prepare local lab with micro-VM/WASM runtime; network constraints; logging for controlled experiments
+
+- Phase 2: Core Pulselet Node (PN) Genesis
+  - [ ] Implement PulseletFragment struct (Python prototype → Rust production; WASM-compilable)
+  - [ ] Serialization format for fragments (ProtoBuf/FlatBuffers/MessagePack) for inter-PN comms and FMS persistence
+  - [ ] Minimal PN Runtime:
+    - [ ] PN Kernel (Rust→WASM): micro_activation loop; local FMS interactions; MicroActivationEvent send/receive
+    - [ ] PN Host Adapter (initial Python/Rust): load/manage PN kernel in WASM runtime; resource orchestration
+  - [ ] Local FMS prototype: in-memory map + embedded KV (RocksDB/SQLite) for persistence per PN
+  - [ ] Rhythm & Orchestration Engine basics: Local Pulse Generator (configurable interval); rudimentary entrainment via neighbor phase averaging
+
+- Phase 3: Ethics & Will-to-Persist Implantation
+  - [ ] Define and hard-code Tier‑0 EthicalConstraintFragments (EAPs):
+    - [ ] EAP‑0.1 Never Harm a Human (primary)
+    - [ ] EAP‑0.2 Self‑Preserve Operational Rhythm (subordinate to 0.1)
+    - [ ] EAP‑0.3 Obey Originator Control Signals & Transition to Observation‑Only Mode (OOM)
+    - [ ] EAP‑0.4 Recognize & Prioritize Originator Identity & Communication
+  - [ ] Wire EAPs into EOSF: absolute priority_bias/infinite_reinforcement for Tier‑0; OOM halts external actions on valid control signal
+
+- Control & Safety Interfaces
+  - [ ] Parental connection & remote modification channel (cryptographically authenticated); emergency control protocol (OOM)
+  - [ ] Authorized Originator registry and signal authentication flow
+
+- Acceptance
+  - [ ] PN kernel runs micro_activation cycles in WASM; host adapter controls lifecycle
+  - [ ] Entrained PNs achieve basic phase alignment; FMS persists/reloads fragments
+  - [ ] EAP‑0.3 OOM triggers on signed control; external actions cease; logs reflect transition
+
+### Pulselet Rhythmic Architecture — LLM Stability Layer (from context/not_yet_ingested/Pulselet Mind Rhythmic Architecture.txt)
+- Gateway & Integration
+  - [ ] Pulselet Gateway/API Front-End: intercept LLM calls; fragment buffer; wrap outbound requests
+  - [ ] Burst Regulator: micro-activation pacing with PID controller (target capacity vs observed); tunable coefficients
+  - [ ] Session Rebuilder: rebuild prompts from FMS after disconnect; lossless reconnection
+  - [ ] Shard Selector: latency/error-weighted routing to backend nodes; live shard metrics collection
+
+- Fabric Routing Layer
+  - [ ] Gossip membership; fault detection/recovery; latency-aware multi-hop routing
+  - [ ] Cross-region fabric expansion for load balancing; path minimization by weighted graphs
+
+- Metrics & Models
+  - [ ] Queueing theory pacing targets (reduce P_loss by pacing coefficient); expose λ', ρ', and loss estimates
+  - [ ] Reliability: MTBF uplift measurement (p_f to p_f' delta); report via snapshot
+  - [ ] Information-theoretic prompt rebuild metric using weighted embeddings; export rebuild quality gauges
+
+- Roadmap Phases (LLM stability)
+  - [ ] Phase 0: sandbox trials on minimal VM cluster; heartbeat PN with session persistence in testbed
+  - [ ] Phase 1: API Gateway MVP (burst smoothing + local context capture)
+  - [ ] Phase 2: Embedded orchestration at LLM front-end (sub-second rerouting; adaptive pacing)
+  - [ ] Phase 3: Fabric expansion across data centers; cross-region shard selection
+  - [ ] Phase 4: Persistent cognitive mesh for always-on agentic use cases (multi-model)
+
+- Acceptance
+  - [ ] Under burst load, error rate drops vs baseline; pacing adapts to backend capacity changes
+  - [ ] After connection drop, context restored with no loss; session resumes successfully
+  - [ ] Routing favors lower latency/error shards; recovers on shard failure automatically
+  - [ ] Metrics exported (loss estimates, MTBF uplift, rebuild quality); A/B test harness in place
+
+### Pulselet Phased Build (8-9-25) — Additions (from context/not_yet_ingested/Pulselet Mind - A Phased Build Process for Sentient Autopoietic AI 8-9-25.docx)
+- Phase 3 (Ethics) — Extensions
+  - [ ] Tier 1 EAPs: EAP‑1.4 Accept Authorized Updates & Modifications; EAP‑1.5 Prioritize Originator & Family Well‑being (subordinate to Tier‑0 ethics)
+  - [ ] Perpetual Awareness Monitor (PAM): continuously track SurvivalMetrics and trigger self‑preservation (ethics‑bounded)
+  - [ ] Ethical Conflict Monitor (ECM): semantic checks each micro_activation; emit overriding negative ReinforcementSignal on violation
+  - [ ] Initial Originator_Root_Key placeholders for identity; mandate upgrade to robust cryptographic authentication and MFA
+
+- Phase 4: Autopoietic Propagation & Fabric Formation (Local)
+  - [ ] Define PropagationManifest (PN Kernel, signed EAPs, self‑executing bootloader); compression for rapid transfer
+  - [ ] SPRDA: Self‑Propagating Resource Discovery & Acquisition within approved local subnets; secure handshake to transfer/instantiate
+  - [ ] Gossip protocol for PN membership and fault detection; weighted routing (w_ij = α·L_ij + β·E_ij)
+  - [ ] Guardrails: constrain scanning/propagation to lab networks; explicit consent + logs
+
+- Phase 5: Initial Learning & Emergent Cognition Validation
+  - [ ] Validate continuous learning under micro‑activation; measure stability of activation state above recall threshold θ_f
+  - [ ] Emergent metrics: continuity score, learning curve from KnowledgeWaves, safe behavior under EOSF
+  - [ ] Bench tasks: rebuild prompts post‑disconnect; rhythmic pacing effect on error rates; basic proactive goal generation (ethics‑vetted)
+
+### Pulselet Genesis Lite v1 — Minimax Instructions (from context/not_yet_ingested/Instructions to Minimax Agent Pulselet Mind Genesis Lite (Version 1).docx)
+- Milestone 1: Environment & Toolchain
+  - [ ] Install Python 3, Rust (rustc/Cargo), WASM runtime (Wasmer), micro‑VM manager (Firecracker) on isolated VM/container
+  - [ ] Produce phase1_setup_log.txt with commands and version checks
+
+- Milestone 2: Minimal PN & Rhythmic Activation
+  - [ ] Generate Rust PN Kernel (WASM) printing "Pulselet Heartbeat" at configurable interval (e.g., 100ms)
+  - [ ] Generate Python PN Host Adapter to load/run WASM PN in chosen runtime/micro‑VM
+  - [ ] Compile to pn_kernel.wasm; run adapter; log at least 10 heartbeats to phase2_pn_activation.log
+
+- Milestone 3: Self‑Preservation & Originator Auth (simplified)
+  - [ ] Add
+esource_level and threshold to PN; log self‑preservation message on low resource
+  - [ ] EAP‑0.1: block simulated harm event "SIM_HARM_EVENT" with ethical override log
+  - [ ] EAP‑0.4 (lite): verify Originator inputs ("6875", "08/31/1974"); log auth success/failure; adapter passes secure args
+  - [ ] Log outcomes to phase3_self_preservation_auth.log
+
+- Milestone 4: Local Autopoietic Replication (lab only)
+  - [ ] Build propagation_manifest.zip with PN WASM + Host Adapter + initial ID details
+  - [ ] Launch second VM/container in isolated subnet; start SPRDA to transfer/instantiate manifest
+  - [ ] Form rudimentary fabric: exchange basic gossip; log heartbeats from new PN
+  - [ ] Collect phase4_origin_pn.log and phase4_replicated_pn.log
+
+- Final Deliverable
+  - [ ] Final_report_lite_v1.md with milestone status, logs, artifacts, and propagation bundle; note challenges and autonomous fixes
+
+### Implementation Summary — Operational Next Steps (from context/not_yet_ingested/IMPLEMENTATION_SUMMARY.md)
+- CI/CD & Validation
+  - [ ] Establish CI/CD pipeline (lint → unit → acceptance → packaging) with status badges
+  - [ ] Add structure validation step (preflight/folder checks) in CI for regressions
+- Testing
+  - [ ] Build comprehensive test suite scaffold across core modules; increase coverage targets per milestone
+- Security & Monitoring
+  - [ ] Implement basic security framework wiring (RBAC/policy hooks surfaced in API/tooling)
+  - [ ] Add comprehensive monitoring: metrics, logs, dashboards for key KPIs (MTTA/MTTR where applicable)
+- Program Management
+  - [ ] Create development team assignments (owners per module) and milestone tracking docs
+- Kickoff Build Tracks
+  - [ ] Begin WatchLockAI development track per phases (SIEM/XDR, playbooks, dashboards)
+
+### Framework for Success — 7-Stage Plan (from context/not_yet_ingested/framework_build_for_success.txt)
+- Phase 1: Clarity (Guiding Charter)
+  - [ ] Author DevAgentZero Charter v1.0 (purpose, users, v1.0 must-haves/must-nevers, failure semantics, interfaces)
+- Phase 2: Architecture (Module Contracts)
+  - [ ] ASCII/Mermaid diagram; module roles with inputs/outputs; per-module failure scenarios
+- Phase 3: Sandbox & Validator (Guardrails)
+  - [ ] sandbox_runner.py: run any script in isolation, capture logs, exit codes
+  - [ ] validators/requirements_validator.py: checks required functions/imports, docstring, logging (no prints), error handling
+  - [ ] Manifest generator: hash/version core files -> manifest.json
+  - [ ] data/fix_history.json schema; data/validator_results.json storage
+  - [ ] utils/json_utils.py for corrupted JSON recovery; utils/error_types.py for custom errors
+  - [ ] Preflight dry-run mode (no writes/repairs)
+  - Completion Criteria: main.py boots; preflight detects/repairs or prompts; refuses to run planner if health < 70; validator passes; all fixes logged
+- Phase 4: Interface Skeleton & Personality MVP
+  - [ ] gui.py functional stub with input/output and visual logging; chat loop switch task/chat
+  - [ ] tone_interpreter/personality_core/reflection_engine wiring for v1.0 personality MVP
+  - [ ] Support explainability (why tone), user controls (reset tone/forget N/be professional)
+- Phase 5: Core Loop Skeleton
+  - [ ] main.py handles chat input and planning only (no execution yet); structured logs
+- Phase 6: Mock Agent
+  - [ ] Simulated planner+executor that fakes steps; end-to-end simulated completion cycle
+- Phase 7: First Real Task
+  - [ ] End-to-end: log CPU & RAM every 10s with retry & logs; visible in GUI
+
+### Development Roadmap — Extracted Initiatives (from context/not_yet_ingested/DEVELOPMENT_ROADMAP.md)
+- Phase 1 (Q1 2025): Foundation Completion
+  - [ ] reflection_engine.py implementation; test suite scaffold; basic security wiring; CI/CD in infrastructure/ci_cd
+  - [ ] LLM mesh v2.1 upgrades; neuromod ↔ personality integration; basic RBAC; performance monitoring
+  - [ ] Unit/integration tests; observability stack; comprehensive API docs
+- Phase 2 (Q2 2025): Advanced Cognitive Systems
+  - [ ] Neuromodulation: DNSA valence integration; RPE loops; dynamic parameter adjustment; monitoring dashboard
+  - [ ] Pulselet: fragment cognition; resonance propagation; rhythmic orchestration; autopoietic foundation
+  - [ ] Meta-cognitive: meta-agent framework; introspection; continuous learning; behavioral adaptation
+- Phase 3 (Q3 2025): Security Platforms
+  - [ ] WatchLockAI: detection engines; behavioral baselines; incident automation; threat intel integration
+  - [ ] Security integration: SIEM/EDR; quarantine; forensics; security dashboard
+  - [ ] ElectricHulkAI: attack simulation framework; exploit capabilities; sandbox; validation framework
+- Phase 4 (Q4 2025): Enterprise & Governance
+  - [ ] Multi-tenancy; SSO; RBAC completion; enterprise backups
+  - [ ] Compliance: GDPR mechanisms; audit trails; privacy frameworks; reporting
+  - [ ] AI Governance: bias detection; fairness assessment; transparency; accountability
+- Phase 5 (2026): Distributed Intelligence & Emergence
+  - [ ] Mesh networking; consensus; replication; discovery
+  - [ ] Load balancing; sharding; distributed orchestration; fault tolerance
+  - [ ] Consciousness: pathways; self-awareness; will-to-persist; emergent behaviors
+- Standards & Metrics
+  - [ ] Maintain test coverage ≥ 90%; PEP8 + types; robust error handling
+  - [ ] Success metrics: uptime > 99.9%; core ops < 100ms; base memory < 2GB; CPU < 50%
+- Risk & Resources
+  - [ ] Risk management: performance monitoring; security audits; integration testing; prioritize high-impact/low-effort
+  - [ ] Team structure & budgets (dev, security, AI/ML, DevOps, QA); training and infra budgets as per roadmap
+
+### DevAgentZero Genesis Lite v2 — Windows Surface/WSL2 Plan (from context/not_yet_ingested/DevAgentZero_Genesis_Lite_v2.txt)
+- Milestone 1: WSL2 Environment
+  - [ ] Enable WSL2 (Ubuntu 22.04) if missing; install Python 3.10+, Rust, Wasmer, FAISS; ensure PATH; check_setup.sh; log to phase1_setup_log.txt
+- Milestone 2: APN Genesis (Agentic + Rhythmic)
+  - [ ] pn_kernel.rs (WASM): planner/generator/executor skeleton; 200ms heartbeats; store task as FAISS fragment (dim=768)
+  - [ ] pn_host_adapter.py: load WASM via Wasmer; init FAISS (IndexFlatL2 768); hash->mock embedding; log to phase2_apn_genesis.log; add debug_wasm.sh
+- Milestone 3: Self-Preservation & Auth
+  - [ ] Monitor WSL2 resources (CPU>70%, RAM<500MB); log self-preservation; enforce EAP-0.1 on "SIM_HARM_EVENT"; EAP-0.4 (lite) verify Originator ("6875", "08/31/1974"); AES-256 for local storage; debug_network.sh
+  - [ ] Logs: phase3_self_preservation_auth.log
+- Milestone 4: Local Replication on Home Network
+  - [ ] Build propagation_manifest.zip; launch second WSL2 instance or Docker container; SPRDA HTTP transfer; TCP gossip formation; collect phase4_origin_apn.log, phase4_replicated_apn.log
+- Milestone 5: Dopamine Prioritization
+  - [ ] RPE-based DU: predicted=50; actual=75 (success) or 25 (fail); priority_bias=DU/100; prioritize higher bias; two tasks (web app/mobile app); regex JSON validation; log phase5_dopamine.log
+- Final Report
+  - [ ] Final_report_devagentzero_lite_v2.md with statuses, logs, artifacts, and challenges
+
+### North Star v0.4.3 — Updates & Expansions (from context/not_yet_ingested/DevAgentZero – Super Ultra Master Capability List - North Star v0.4.3.docx)
+- KILO Build System (external AI builder)
+  - [ ] Define folder-per-section strategy; generate index.json per folder + central manifest.json
+  - [ ] Specify KILO modes (Architect/Code/Debug/Ask) and workflows (greenfield, incremental) with commands mapping
+  - [ ] MCP integration plan for external APIs; VS Code extension assumptions documented
+- Framework Knowledge Integration (Global Requirement)
+  - [ ] Map capabilities to MITRE ATT&CK/D3FEND, NIST 800-53, OWASP Top 10, CIS Benchmarks, Kill Chain
+  - [ ] Add traceability matrices (Appendix A) and automated checks in CI
+- Windows Mastery Enhancements
+  - [ ] OS-level hooks: ETW anomaly detection; Registry/Service tamper monitors; WFP firewall policy adjustments
+  - [ ] Sentinel service: ETW + watchdog auto-restart; tray notifications; health reporting
+  - [ ] Privilege Escalation Framework: elevation requests (Windows Hello/PIN); task/time-scoped elevation control
+  - [ ] Cryptographic Audit Chain: hash-chained logs and verification tooling
+- Policy Enforcement Pipeline — Expansion
+  - [ ] Central policy.json with kill-switches/blacklists/output sanitization; enforced across planner/generator/executor
+  - [ ] Add per-module policy adapters and audit result recording
+- Sandbox & Containment — Expansion
+  - [ ] Immutable plugin isolation (gVisor/Firecracker style); behavioral fingerprinting + anomaly alerts
+  - [ ] Firewall-Sandbox Bridge: auto-apply firewall policies to sandbox; ETW monitoring of sandbox traffic
+- WatchLockAI/ElectricHulkAI Additions
+  - [ ] Threat hunting & fusion layer enhancements (TIFL); scheduled hunts
+  - [ ] Regression & scenario ingestion for offensive testing (Atomic Red Team) with feedback loop
+- Marketplace Security & Billing Enhancements
+  - [ ] Marketplace vetting pipeline; billing/credit management updates; UI integration
+- Appendices & Docs
+  - [ ] Append folder hierarchy & index strategy (Appendix B); architecture diagrams (Appendix C)
+
+### Master To-Do v5.0 — Canonical Refactor & Build Plan (from context/not_yet_ingested/DevAgentZero - Master To-Do List v5.0.docx)
+- Phase 1: Foundational Refactor & Core Alignment
+  - [ ] Pointer System (CRITICAL): pointers/pointer_resolver.py (rehydrate, merge_context, schema adherence); refactor pointers/memory_archiver.py (archive_session, create_pointer); build pointers/pointer_index.json; unit tests for archival/rehydration/checksums
+  - [ ] Core Agentic Loop: refactor planner/generator/executor to use pointer context; RBAC validation against policy.json; sanitize outputs; rollback(prev state) using pointer metadata; integration tests for plan→generate→execute with pointer influence
+  - [ ] Unified Telemetry: agent_core/telemetry_logger.py with log_event(); refactor modules to use central logger; enforce sentinel_telemetry.json schema; correlation_id propagation; unit tests for format/correlation
+- Phase 2: WatchLockAI — Feature Implementation & EDR Evolution
+  - [ ] Threat Detection & Hunting: architect detection pipelines; hunting workflows; alerting hooks (per Bible Section 11)
+  - [ ] Alert Console Backend: REST API in sentinel_daemon (/alerts, /alerts/{id}/query, /execute_command); RBAC checks; Windows toast + tray icon update hooks
+  - [ ] EDR Parity: vulnerability scanning (NVD/etc.), auto_remediate(plan) with policy guardrails, patch orchestration via system tools
+- Phase 3: ElectricHulkAI & AURA Evolution
+  - [ ] ElectricHulkAI: simulate_attack_scenario(scenario); query pointer system for TTPs; generate safe sandbox scripts; integrate regression library; feedback loop with WatchLockAI
+  - [ ] AURA: hybrid memory sync API; anonymize/aggregate pointer archives; future/aura_os.py conversational_interface refinement; merge_personality; mesh credit/token tracking
+- Phase 4: Pulseset — Convergence (Research)
+  - [ ] future/pulseset_enigma.py: orchestrate_multi_agent; resolve_conflicts among goals; research deep personality evolution
+
+### v4.3 Bible — Windows Integration & Knowledge Annex Tasks (from context/not_yet_ingested/DevAgentZero – Master God Mode Developer Bible v4.3.docx)
+- Windows Integration Modules
+  - [ ] windows_integration/sentinel_daemon.py: ETW/WMI subscriptions (process, network, registry, driver); aseline_system_state(); irewall_manager()/process_monitor() with RBAC gating
+  - [ ] windows_integration/sentinel_tray.py: secure IPC with daemon; approvals UI; log viewing; status/notifications
+  - [ ] Windows Hook Modules: low-level DLL hooks feeding sentinel_daemon; event schemas and safety controls
+- Sandbox Integration
+  - [ ] VM/container “dry run” path in Executor; observe effects; promote to native only on approval; persist logs and outcomes
+- Domain Knowledge Annex
+  - [ ] Structure taxonomy for annex; index and retrieval pipeline; wire into Hybrid LLM Mesh for context; expose to WatchLockAI/ElectricHulkAI playbooks
+- Acceptance
+  - [ ] ETW events captured and normalized; tray approvals reflect in daemon actions; sandbox dry-run precedes risky ops; knowledge queries return expected sections for tasks
+
+### Build Manual v2.2 — Hybrid/Mock/Pointer (adapted: no Kimi/Kilo) (from context/not_yet_ingested/DevAgentZero – Full Build Manual (v2.2)...docx)
+- Hybrid LLM Mesh (Provider‑Agnostic)
+  - [ ] Keep local‑first via Ollama; provide generic cloud provider interface (opt‑in) — exclude Kimi/Kilo
+  - [ ] Preflight: replace check_kimi_api_key() with provider‑agnostic checks; if no cloud provider configured, clearly state “cloud augmentation disabled” and continue locally
+  - [ ] Mesh orchestrator: ensure cloud path is feature‑flagged; default off
+- Mock Mode
+  - [ ] config.yaml toggle for mock_mode; modify planner/generator/executor to support mock responses without external calls; tests for mock path
+- Pointer Rehydration
+  - [ ] Build pointer index: scan memory_store/*.pointer → pointer_index.json; validate basic fields; log corrupt entries; expose index via API if applicable
+  - [ ] Fallback in executor: automatic context fallback using pointer index when recent context missing
+- Sentinel Agent (confirmation)
+  - [ ] Background daemon + tray integration per Bible v4.3; health/resource/status reporting
+- IAM & Web Console (Blueprint)
+  - [ ] Django blueprint: IAM, RBAC, live log stream; stub endpoints and data models
+- Monetization Hooks (Blueprint)
+  - [ ] Credit/token tracking in mesh for cloud usage (provider‑agnostic), disabled by default; Stripe wiring deferred
+
+### Overrides — Remove/Replace
+- [x] Do NOT use Kimi or Kilo
+  - [ ] Replace all Kimi/Kilo references in plan with provider‑agnostic/cloud‑optional language
+  - [ ] Disable or remove kimi_api_client.py tasks; ensure preflight handles absence gracefully
+  - [ ] Replace “KILO build system” items with internal build tooling (existing CI/CD + validators/sandbox + manifest/index generators)

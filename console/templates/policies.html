@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+
+{% block title %}Policies - WatchLockAI Sentinel{% endblock %}
+{% block header %}Operational Policies{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="bi bi-gear me-2"></i>Operational Control Settings
+                </h5>
+                <span class="badge bg-secondary" id="current-mode-badge">Loading...</span>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info" role="alert">
+                    <i class="bi bi-info-circle me-2"></i>
+                    <strong>Operational Modes:</strong>
+                    <ul class="mb-0 mt-2">
+                        <li><strong>Monitor Mode:</strong> Passive detection and alerting only. No destructive actions allowed.</li>
+                        <li><strong>Proactive Mode:</strong> Active threat response enabled. Allows destructive actions like process termination.</li>
+                    </ul>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <h6 class="mb-3">Current Operational Mode</h6>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="operationalMode" id="monitorMode" value="monitor">
+                            <label class="form-check-label" for="monitorMode">
+                                <strong>Monitor Mode</strong>
+                                <div class="text-muted small">
+                                    <i class="bi bi-eye me-1"></i>
+                                    Detection and alerting only - no automatic response actions
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="radio" name="operationalMode" id="proactiveMode" value="proactive">
+                            <label class="form-check-label" for="proactiveMode">
+                                <strong>Proactive Mode</strong>
+                                <div class="text-muted small">
+                                    <i class="bi bi-shield-fill-exclamation me-1"></i>
+                                    Active threat response with destructive actions enabled
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                            <button type="button" class="btn btn-primary" onclick="updateOperationalMode()">
+                                <i class="bi bi-check-circle me-2"></i>Update Mode
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" onclick="loadCurrentMode()">
+                                <i class="bi bi-arrow-clockwise me-2"></i>Refresh
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card bg-light">
+                            <div class="card-body text-center">
+                                <div id="mode-status-icon" class="mb-2" style="font-size: 3rem;">
+                                    <i class="bi bi-question-circle text-muted"></i>
+                                </div>
+                                <h6 class="card-title" id="mode-status-text">Loading...</h6>
+                                <p class="card-text small text-muted" id="mode-description">
+                                    Retrieving current operational mode...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configuration Status -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="bi bi-sliders me-2"></i>Configuration Status
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between">
+                            <span>Destructive Actions:</span>
+                            <span class="badge" id="destructive-actions-badge">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between">
+                            <span>Last Updated:</span>
+                            <span class="text-muted" id="last-updated">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast for notifications -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="notification-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <i class="bi bi-gear-fill me-2"></i>
+            <strong class="me-auto">Policy Update</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body" id="toast-message">
+            <!-- Dynamic message -->
+        </div>
+    </div>
+</div>
+
+<script>
+// Load current operational mode on page load
+document.addEventListener('DOMContentLoaded', function() {
+    loadCurrentMode();
+});
+
+async function loadCurrentMode() {
+    try {
+        const response = await fetch('/api/policies');
+        const data = await response.json();
+        
+        if (data.success) {
+            const mode = data.operational_mode;
+            
+            // Update radio buttons
+            document.getElementById('monitorMode').checked = (mode === 'monitor');
+            document.getElementById('proactiveMode').checked = (mode === 'proactive');
+            
+            // Update status display
+            updateModeDisplay(mode);
+            
+            // Update configuration status
+            updateConfigStatus(data);
+        } else {
+            showError('Failed to load operational mode: ' + data.message);
+        }
+    } catch (error) {
+        console.error('Error loading operational mode:', error);
+        showError('Failed to communicate with server');
+    }
+}
+
+async function updateOperationalMode() {
+    const selectedMode = document.querySelector('input[name="operationalMode"]:checked');
+    
+    if (!selectedMode) {
+        showError('Please select an operational mode');
+        return;
+    }
+    
+    const mode = selectedMode.value;
+    
+    try {
+        const response = await fetch('/api/policies', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                operational_mode: mode
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            updateModeDisplay(mode);
+            showSuccess(`Operational mode updated to "${mode}"`);
+            
+            // Reload to get fresh configuration status
+            setTimeout(loadCurrentMode, 1000);
+        } else {
+            showError('Failed to update operational mode: ' + data.message);
+        }
+    } catch (error) {
+        console.error('Error updating operational mode:', error);
+        showError('Failed to communicate with server');
+    }
+}
+
+function updateModeDisplay(mode) {
+    const statusIcon = document.getElementById('mode-status-icon');
+    const statusText = document.getElementById('mode-status-text');
+    const statusDescription = document.getElementById('mode-description');
+    const modeBadge = document.getElementById('current-mode-badge');
+    
+    if (mode === 'monitor') {
+        statusIcon.innerHTML = '<i class="bi bi-eye text-info"></i>';
+        statusText.textContent = 'Monitor Mode';
+        statusDescription.textContent = 'Passive monitoring and detection active. No automatic response actions.';
+        modeBadge.className = 'badge bg-info';
+        modeBadge.textContent = 'Monitor';
+    } else if (mode === 'proactive') {
+        statusIcon.innerHTML = '<i class="bi bi-shield-fill-exclamation text-warning"></i>';
+        statusText.textContent = 'Proactive Mode';
+        statusDescription.textContent = 'Active threat response enabled. Destructive actions allowed.';
+        modeBadge.className = 'badge bg-warning';
+        modeBadge.textContent = 'Proactive';
+    }
+}
+
+function updateConfigStatus(data) {
+    const destructiveActionsBadge = document.getElementById('destructive-actions-badge');
+    const lastUpdated = document.getElementById('last-updated');
+    
+    if (data.allow_destructive_actions) {
+        destructiveActionsBadge.className = 'badge bg-success';
+        destructiveActionsBadge.textContent = 'Enabled';
+    } else {
+        destructiveActionsBadge.className = 'badge bg-secondary';
+        destructiveActionsBadge.textContent = 'Disabled';
+    }
+    
+    lastUpdated.textContent = new Date(data.timestamp).toLocaleString();
+}
+
+function showSuccess(message) {
+    showToast(message, 'success');
+}
+
+function showError(message) {
+    showToast(message, 'error');
+}
+
+function showToast(message, type) {
+    const toast = document.getElementById('notification-toast');
+    const toastMessage = document.getElementById('toast-message');
+    
+    toastMessage.textContent = message;
+    
+    // Update toast styling based on type
+    toast.className = `toast ${type === 'error' ? 'border-danger' : 'border-success'}`;
+    
+    const bsToast = new bootstrap.Toast(toast);
+    bsToast.show();
+}
+</script>
+{% endblock %}

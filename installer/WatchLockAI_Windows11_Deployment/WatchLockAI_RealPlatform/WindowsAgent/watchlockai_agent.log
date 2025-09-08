@@ -1,0 +1,5 @@
+2025-07-12 21:15:22,854 - WatchLockAI-Agent - WARNING - AI Brain detected threat: [21:15:22] Security event detected: file_system_medium from FileSystemMonitor. Behavioral anomaly detected (score: 0.80). Threat assessment: MEDIUM.
+2025-07-12 21:15:32,321 - WatchLockAI-Agent - WARNING - AI Brain detected threat: [21:15:32] Security event detected: file_system_medium from FileSystemMonitor. Behavioral anomaly detected (score: 0.80). Threat assessment: MEDIUM.
+2025-07-12 21:15:32,326 - WatchLockAI-Agent - ERROR - Failed to send event to AI Brain: HTTPConnectionPool(host='localhost', port=9998): Max retries exceeded with url: /analyze (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f281885e780>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-07-12 21:15:32,332 - WatchLockAI-Agent - WARNING - Suspicious browser activity: http://malware.com/download.exe
+2025-07-12 21:15:32,337 - WatchLockAI-Agent - WARNING - Suspicious browser activity: http://phishing.net/login

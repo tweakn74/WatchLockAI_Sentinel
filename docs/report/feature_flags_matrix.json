@@ -1,0 +1,4464 @@
+{
+  "flags": {
+    "ADMIN_AUTH_ENABLED": {
+      "canonical_default": "0",
+      "category": "auth",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tools/verify_minimax_claims.py",
+        "tools/self_check.py",
+        "console/web_api.py",
+        "tests/test_p2_endpoints.py",
+        "tests/test_rbac.py"
+      ],
+      "name": "ADMIN_AUTH_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "POST /api/auth/login",
+        "POST /api/admin/config/reload",
+        "GET /api/anomaly/score",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/admin/export",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "sensitive",
+      "security_impact": [
+        "Authentication bypass risk",
+        "Privilege escalation potential"
+      ],
+      "test_references": [
+        "tests/test_p2_endpoints.py",
+        "tests/test_rbac.py"
+      ],
+      "usage_count": 11,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"ADMIN_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_p2_endpoints.py",
+          "line_number": 321,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:test_admin_auth_enabled_missing_header",
+          "default_value": null,
+          "file_path": "tests/test_rbac.py",
+          "line_number": 44,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:test_admin_auth_enabled_wrong_token",
+          "default_value": null,
+          "file_path": "tests/test_rbac.py",
+          "line_number": 64,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:test_admin_auth_enabled_correct_token",
+          "default_value": null,
+          "file_path": "tests/test_rbac.py",
+          "line_number": 84,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "ADMIN_AUTH_ENABLED = os.getenv(\"ADMIN_AUTH_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}  # default OFF",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 37,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:check_admin_authentication",
+          "default_value": null,
+          "file_path": "tools/self_check.py",
+          "line_number": 295,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:check_anomaly_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 218,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:check_quarantine_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 273,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:check_p3_invariants",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 408,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:check_p3_invariants",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 445,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:check_p5_export_gating",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 694,
+          "usage_type": "environ_direct"
+        }
+      ]
+    },
+    "ADMIN_TOKEN": {
+      "canonical_default": null,
+      "category": "auth",
+      "default_values": [],
+      "documentation_status": "undocumented",
+      "failure_modes": [
+        "No default value - runtime failure likely",
+        "Security degradation if misconfigured"
+      ],
+      "files_used_in": [
+        "tools/verify_minimax_claims.py",
+        "tools/self_check.py",
+        "console/web_api.py",
+        "tests/test_p2_endpoints.py",
+        "tools/rotate_secrets.py",
+        "tests/test_rbac.py"
+      ],
+      "name": "ADMIN_TOKEN",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "POST /api/auth/login",
+        "POST /api/admin/config/reload",
+        "GET /api/anomaly/score",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/admin/export",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "secret",
+      "security_impact": [
+        "Credential exposure risk",
+        "Unauthorized access potential",
+        "Should be encrypted/masked in logs"
+      ],
+      "test_references": [
+        "tests/test_p2_endpoints.py",
+        "tests/test_rbac.py"
+      ],
+      "usage_count": 13,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"ADMIN_TOKEN\"] = \"test_admin_token\"",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_p2_endpoints.py",
+          "line_number": 322,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_TOKEN\"] = \"test-secret-token\"",
+          "context": "function:test_admin_auth_enabled_missing_header",
+          "default_value": null,
+          "file_path": "tests/test_rbac.py",
+          "line_number": 45,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_TOKEN\"] = \"test-secret-token\"",
+          "context": "function:test_admin_auth_enabled_wrong_token",
+          "default_value": null,
+          "file_path": "tests/test_rbac.py",
+          "line_number": 65,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_TOKEN\"] = \"test-secret-token\"",
+          "context": "function:test_admin_auth_enabled_correct_token",
+          "default_value": null,
+          "file_path": "tests/test_rbac.py",
+          "line_number": 85,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "ADMIN_TOKEN = os.getenv(\"ADMIN_TOKEN\", \"\")",
+          "context": "module",
+          "default_value": "",
+          "file_path": "console/web_api.py",
+          "line_number": 38,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_TOKEN\"] = \"test_token_selfcheck\"",
+          "context": "function:check_admin_authentication",
+          "default_value": null,
+          "file_path": "tools/self_check.py",
+          "line_number": 296,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_TOKEN\"] = \"test_token_123\"",
+          "context": "function:check_anomaly_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 219,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_TOKEN\"] = \"test_token_456\"",
+          "context": "function:check_quarantine_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 274,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_TOKEN\"] = \"t0k3n\"",
+          "context": "function:check_p3_invariants",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 409,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_TOKEN\"] = \"t0k3n\"",
+          "context": "function:check_p3_invariants",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 446,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"ADMIN_TOKEN\"] = \"test_export_token\"",
+          "context": "function:check_p5_export_gating",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 695,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "current_token = os.getenv(\"ADMIN_TOKEN\", \"\")",
+          "context": "function:rotate_admin_token",
+          "default_value": "",
+          "file_path": "tools/rotate_secrets.py",
+          "line_number": 104,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "current_admin_token = os.getenv(\"ADMIN_TOKEN\", \"\")",
+          "context": "function:preview_rotation_plan",
+          "default_value": "",
+          "file_path": "tools/rotate_secrets.py",
+          "line_number": 217,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "ANOMALY_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tools/verify_minimax_claims.py",
+        "tests/test_anomaly.py",
+        "console/anomaly.py",
+        "console/web_api.py"
+      ],
+      "name": "ANOMALY_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/admin/export",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "tests/test_anomaly.py"
+      ],
+      "usage_count": 4,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"ANOMALY_ENABLED\"] = \"1\"",
+          "context": "module",
+          "default_value": null,
+          "file_path": "tests/test_anomaly.py",
+          "line_number": 16,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "ANOMALY_ENABLED = os.getenv(\"ANOMALY_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/anomaly.py",
+          "line_number": 24,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "ANOMALY_ENABLED = os.getenv(\"ANOMALY_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}  # default OFF",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 41,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "os.environ[\"ANOMALY_ENABLED\"] = \"1\"",
+          "context": "function:check_anomaly_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 198,
+          "usage_type": "environ_direct"
+        }
+      ]
+    },
+    "ANOMALY_SKLEARN_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tools/verify_minimax_claims.py",
+        "console/anomaly.py",
+        "console/web_api.py"
+      ],
+      "name": "ANOMALY_SKLEARN_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/admin/export",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 3,
+      "usages": [
+        {
+          "code_snippet": "ANOMALY_SKLEARN_ENABLED = os.getenv(\"ANOMALY_SKLEARN_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/anomaly.py",
+          "line_number": 25,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "ANOMALY_SKLEARN_ENABLED = os.getenv(\"ANOMALY_SKLEARN_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}  # default OFF",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 42,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "os.environ[\"ANOMALY_SKLEARN_ENABLED\"] = \"1\"",
+          "context": "function:check_anomaly_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 217,
+          "usage_type": "environ_direct"
+        }
+      ]
+    },
+    "BACKUP_DIR": {
+      "canonical_default": "data/backups",
+      "category": "storage",
+      "default_values": [
+        "data/backups"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/backup_restore.py"
+      ],
+      "name": "BACKUP_DIR",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "BACKUP_DIR = os.getenv(\"BACKUP_DIR\", \"data/backups\")",
+          "context": "module",
+          "default_value": "data/backups",
+          "file_path": "console/backup_restore.py",
+          "line_number": 20,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "BACKUP_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/backup_restore.py",
+        "console/web_api.py"
+      ],
+      "name": "BACKUP_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 2,
+      "usages": [
+        {
+          "code_snippet": "BACKUP_ENABLED = os.getenv(\"BACKUP_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/backup_restore.py",
+          "line_number": 19,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "BACKUP_ENABLED = os.getenv(\"BACKUP_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "function:_setup_routes",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 1353,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "CHAOS_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/chaos_probes.py",
+        "console/web_api.py"
+      ],
+      "name": "CHAOS_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 2,
+      "usages": [
+        {
+          "code_snippet": "CHAOS_ENABLED = os.getenv(\"CHAOS_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/chaos_probes.py",
+          "line_number": 18,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "CHAOS_ENABLED = os.getenv(\"CHAOS_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "function:_setup_routes",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 1425,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "CHAOS_ERROR_RATE": {
+      "canonical_default": "0.1",
+      "category": "performance",
+      "default_values": [
+        "0.1"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/chaos_probes.py"
+      ],
+      "name": "CHAOS_ERROR_RATE",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "CHAOS_ERROR_RATE = float(os.getenv(\"CHAOS_ERROR_RATE\", \"0.1\"))  # 10% default error rate",
+          "context": "module",
+          "default_value": "0.1",
+          "file_path": "console/chaos_probes.py",
+          "line_number": 20,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "CHAOS_MAX_LATENCY_MS": {
+      "canonical_default": "5000",
+      "category": "configuration",
+      "default_values": [
+        "5000"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/chaos_probes.py"
+      ],
+      "name": "CHAOS_MAX_LATENCY_MS",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "CHAOS_MAX_LATENCY_MS = int(os.getenv(\"CHAOS_MAX_LATENCY_MS\", \"5000\"))  # 5 second max",
+          "context": "module",
+          "default_value": "5000",
+          "file_path": "console/chaos_probes.py",
+          "line_number": 19,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "CONFIG_HOT_RELOAD_DEBOUNCE_MS": {
+      "canonical_default": "750",
+      "category": "configuration",
+      "default_values": [
+        "750"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/web_api.py"
+      ],
+      "name": "CONFIG_HOT_RELOAD_DEBOUNCE_MS",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "CONFIG_HOT_RELOAD_DEBOUNCE_MS = int(os.getenv(\"CONFIG_HOT_RELOAD_DEBOUNCE_MS\", \"750\"))",
+          "context": "module",
+          "default_value": "750",
+          "file_path": "console/web_api.py",
+          "line_number": 31,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "CONFIG_HOT_RELOAD_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "app_core/config.py",
+        "tools/verify_minimax_claims.py",
+        "tests/test_rate_limit.py",
+        "tools/self_check.py",
+        "tests/test_config_reload.py",
+        "console/web_api.py",
+        "tests/test_p2_endpoints.py",
+        "tests/test_rbac.py"
+      ],
+      "name": "CONFIG_HOT_RELOAD_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "POST /api/admin/config/reload?debounce_ms=999999",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "POST /api/auth/login",
+        "POST /api/admin/config/reload",
+        "GET /api/anomaly/score",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/admin/export",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "POST /api/admin/config/reload?debounce_ms=-10",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "tests/test_p2_endpoints.py",
+        "tests/test_config_reload.py",
+        "tests/test_rate_limit.py",
+        "tests/test_rbac.py"
+      ],
+      "usage_count": 13,
+      "usages": [
+        {
+          "code_snippet": "CONFIG_HOT_RELOAD_ENABLED = os.getenv(\"CONFIG_HOT_RELOAD_ENABLED\", \"0\") == \"1\"",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "app_core/config.py",
+          "line_number": 17,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "os.environ[\"CONFIG_HOT_RELOAD_ENABLED\"] = \"1\"",
+          "context": "function:test_admin_reload_rate_limited",
+          "default_value": null,
+          "file_path": "tests/test_rate_limit.py",
+          "line_number": 15,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONFIG_HOT_RELOAD_ENABLED\"] = \"1\"",
+          "context": "function:test_debounce_ms_validation",
+          "default_value": null,
+          "file_path": "tests/test_rate_limit.py",
+          "line_number": 39,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONFIG_HOT_RELOAD_ENABLED\"] = \"1\"  # Enable admin endpoint",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_p2_endpoints.py",
+          "line_number": 323,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONFIG_HOT_RELOAD_ENABLED\"] = \"1\"",
+          "context": "function:test_admin_auth_default_off",
+          "default_value": null,
+          "file_path": "tests/test_rbac.py",
+          "line_number": 22,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONFIG_HOT_RELOAD_ENABLED\"] = \"1\"",
+          "context": "function:test_admin_auth_enabled_missing_header",
+          "default_value": null,
+          "file_path": "tests/test_rbac.py",
+          "line_number": 43,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONFIG_HOT_RELOAD_ENABLED\"] = \"1\"",
+          "context": "function:test_admin_auth_enabled_wrong_token",
+          "default_value": null,
+          "file_path": "tests/test_rbac.py",
+          "line_number": 63,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONFIG_HOT_RELOAD_ENABLED\"] = \"1\"",
+          "context": "function:test_admin_auth_enabled_correct_token",
+          "default_value": null,
+          "file_path": "tests/test_rbac.py",
+          "line_number": 83,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONFIG_HOT_RELOAD_ENABLED\"] = \"1\"",
+          "context": "function:test_config_reload_route_when_enabled",
+          "default_value": null,
+          "file_path": "tests/test_config_reload.py",
+          "line_number": 13,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "CONFIG_HOT_RELOAD_ENABLED = os.getenv(\"CONFIG_HOT_RELOAD_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}  # default OFF",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 30,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "\"CONFIG_HOT_RELOAD_ENABLED\": os.getenv(\"CONFIG_HOT_RELOAD_ENABLED\", \"0\"),",
+          "context": "function:metrics_health",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 676,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "os.environ[\"CONFIG_HOT_RELOAD_ENABLED\"] = \"1\"  # Enable an admin route",
+          "context": "function:check_admin_authentication",
+          "default_value": null,
+          "file_path": "tools/self_check.py",
+          "line_number": 297,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONFIG_HOT_RELOAD_ENABLED\"] = \"1\"",
+          "context": "function:check_routes_on_off",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 158,
+          "usage_type": "environ_direct"
+        }
+      ]
+    },
+    "CONFIG_HOT_RELOAD_INTERVAL": {
+      "canonical_default": "3.0",
+      "category": "configuration",
+      "default_values": [
+        "3.0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "app_core/config.py"
+      ],
+      "name": "CONFIG_HOT_RELOAD_INTERVAL",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "CONFIG_HOT_RELOAD_INTERVAL = float(os.getenv(\"CONFIG_HOT_RELOAD_INTERVAL\", \"3.0\"))",
+          "context": "module",
+          "default_value": "3.0",
+          "file_path": "app_core/config.py",
+          "line_number": 18,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "CONFIG_PATH": {
+      "canonical_default": "config.yaml",
+      "category": "storage",
+      "default_values": [
+        "config.yaml"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "app_core/config.py"
+      ],
+      "name": "CONFIG_PATH",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "CONFIG_PATH = os.getenv(\"CONFIG_PATH\", \"config.yaml\")",
+          "context": "module",
+          "default_value": "config.yaml",
+          "file_path": "app_core/config.py",
+          "line_number": 19,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "CONSOLE_AUTH_ENABLED": {
+      "canonical_default": "0",
+      "category": "auth",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tests/test_auth.py",
+        "tests/test_streaming.py",
+        "tools/verify_minimax_claims.py",
+        "console/auth.py",
+        "console/telemetry_export.py",
+        "console/web_api.py",
+        "tests/test_p2_endpoints.py",
+        "console/preflight_checks.py"
+      ],
+      "name": "CONSOLE_AUTH_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "POST /api/auth/login",
+        "POST /api/admin/config/reload",
+        "GET /api/anomaly/score",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/admin/export",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "sensitive",
+      "security_impact": [
+        "Authentication bypass risk",
+        "Privilege escalation potential"
+      ],
+      "test_references": [
+        "tests/test_auth.py",
+        "tests/test_streaming.py",
+        "tests/test_p2_endpoints.py"
+      ],
+      "usage_count": 16,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_p2_endpoints.py",
+          "line_number": 57,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_p2_endpoints.py",
+          "line_number": 318,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_streaming.py",
+          "line_number": 213,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:test_config_validation_enabled_without_key",
+          "default_value": null,
+          "file_path": "tests/test_auth.py",
+          "line_number": 74,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:test_config_validation_short_key",
+          "default_value": null,
+          "file_path": "tests/test_auth.py",
+          "line_number": 84,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:test_config_validation_valid",
+          "default_value": null,
+          "file_path": "tests/test_auth.py",
+          "line_number": 94,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:test_auth_enabled_with_config",
+          "default_value": null,
+          "file_path": "tests/test_auth.py",
+          "line_number": 316,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "if os.getenv(\"CONSOLE_AUTH_ENABLED\", \"0\") == \"1\":",
+          "context": "function:check_configuration_integrity",
+          "default_value": "0",
+          "file_path": "console/preflight_checks.py",
+          "line_number": 354,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "if os.getenv(\"CONSOLE_AUTH_ENABLED\", \"0\") == \"1\":",
+          "context": "function:check_security_settings",
+          "default_value": "0",
+          "file_path": "console/preflight_checks.py",
+          "line_number": 425,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "self.enabled = os.environ.get(\"CONSOLE_AUTH_ENABLED\", \"0\") == \"1\"",
+          "context": "function:__init__",
+          "default_value": "0",
+          "file_path": "console/auth.py",
+          "line_number": 18,
+          "usage_type": "environ_get"
+        },
+        {
+          "code_snippet": "CONSOLE_AUTH_ENABLED = os.getenv(\"CONSOLE_AUTH_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 48,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "\"auth_enabled\": os.getenv(\"CONSOLE_AUTH_ENABLED\", \"0\") == \"1\",",
+          "context": "function:collect_application_metrics",
+          "default_value": "0",
+          "file_path": "console/telemetry_export.py",
+          "line_number": 88,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:check_p2_auth_streaming_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 336,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_ENABLED\"] = \"0\"",
+          "context": "function:check_p2_auth_streaming_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 379,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:check_p5_session_hygiene",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 472,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_ENABLED\"] = \"1\"",
+          "context": "function:check_p5_sse_correctness",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 592,
+          "usage_type": "environ_direct"
+        }
+      ]
+    },
+    "CONSOLE_AUTH_SESSION_KEY": {
+      "canonical_default": null,
+      "category": "auth",
+      "default_values": [],
+      "documentation_status": "undocumented",
+      "failure_modes": [
+        "No default value - runtime failure likely",
+        "Security degradation if misconfigured"
+      ],
+      "files_used_in": [
+        "tests/test_auth.py",
+        "tests/test_streaming.py",
+        "tools/verify_minimax_claims.py",
+        "console/auth.py",
+        "tests/test_p2_endpoints.py",
+        "tools/rotate_secrets.py",
+        "console/preflight_checks.py"
+      ],
+      "name": "CONSOLE_AUTH_SESSION_KEY",
+      "routes_influenced": [
+        "GET /api/stream/health",
+        "GET /api/admin/config/schema",
+        "POST /api/admin/anomaly/train",
+        "POST /api/admin/export",
+        "POST /api/auth/logout",
+        "POST /api/auth/login",
+        "POST /api/admin/config/reload",
+        "GET /api/anomaly/score",
+        "POST /api/admin/quarantine",
+        "GET /api/auth/me",
+        "GET /api/metrics/health"
+      ],
+      "security_classification": "secret",
+      "security_impact": [
+        "Credential exposure risk",
+        "Unauthorized access potential",
+        "Should be encrypted/masked in logs"
+      ],
+      "test_references": [
+        "tests/test_auth.py",
+        "tests/test_streaming.py",
+        "tests/test_p2_endpoints.py"
+      ],
+      "usage_count": 13,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_SESSION_KEY\"] = \"d\" * 64  # 32 bytes hex",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_p2_endpoints.py",
+          "line_number": 58,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_SESSION_KEY\"] = \"e\" * 64",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_p2_endpoints.py",
+          "line_number": 319,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_SESSION_KEY\"] = \"c\" * 64  # Valid session key",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_streaming.py",
+          "line_number": 214,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_SESSION_KEY\"] = \"short\"  # Too short",
+          "context": "function:test_config_validation_short_key",
+          "default_value": null,
+          "file_path": "tests/test_auth.py",
+          "line_number": 85,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_SESSION_KEY\"] = \"a\" * 64  # Valid 32 byte hex",
+          "context": "function:test_config_validation_valid",
+          "default_value": null,
+          "file_path": "tests/test_auth.py",
+          "line_number": 95,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_SESSION_KEY\"] = \"b\" * 64",
+          "context": "function:test_auth_enabled_with_config",
+          "default_value": null,
+          "file_path": "tests/test_auth.py",
+          "line_number": 317,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "session_key = os.getenv(\"CONSOLE_AUTH_SESSION_KEY\", \"\")",
+          "context": "function:check_configuration_integrity",
+          "default_value": "",
+          "file_path": "console/preflight_checks.py",
+          "line_number": 355,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "self.session_key = os.environ.get(\"CONSOLE_AUTH_SESSION_KEY\", \"\")",
+          "context": "function:__init__",
+          "default_value": "",
+          "file_path": "console/auth.py",
+          "line_number": 19,
+          "usage_type": "environ_get"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_SESSION_KEY\"] = \"a\" * 64  # Valid 32-byte hex key",
+          "context": "function:check_p2_auth_streaming_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 337,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_SESSION_KEY\"] = \"a\" * 64  # Valid 32-byte hex key",
+          "context": "function:check_p5_session_hygiene",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 473,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_SESSION_KEY\"] = \"a\" * 64",
+          "context": "function:check_p5_sse_correctness",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 593,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "current_key = os.getenv(\"CONSOLE_AUTH_SESSION_KEY\", \"\")",
+          "context": "function:rotate_console_auth_session_key",
+          "default_value": "",
+          "file_path": "tools/rotate_secrets.py",
+          "line_number": 55,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "current_session_key = os.getenv(\"CONSOLE_AUTH_SESSION_KEY\", \"\")",
+          "context": "function:preview_rotation_plan",
+          "default_value": "",
+          "file_path": "tools/rotate_secrets.py",
+          "line_number": 208,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "CONSOLE_AUTH_USER_DB": {
+      "canonical_default": "data/auth/users.json",
+      "category": "auth",
+      "default_values": [
+        "data/auth/users.json"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/preflight_checks.py",
+        "tests/test_auth.py",
+        "tests/test_p2_endpoints.py",
+        "console/auth.py"
+      ],
+      "name": "CONSOLE_AUTH_USER_DB",
+      "routes_influenced": [
+        "POST /api/auth/logout",
+        "POST /api/auth/login",
+        "POST /api/admin/config/reload",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "sensitive",
+      "security_impact": [
+        "Authentication bypass risk",
+        "Privilege escalation potential"
+      ],
+      "test_references": [
+        "tests/test_auth.py",
+        "tests/test_p2_endpoints.py"
+      ],
+      "usage_count": 6,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_USER_DB\"] = self.user_db_path",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_p2_endpoints.py",
+          "line_number": 59,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_USER_DB\"] = self.user_db_path",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_p2_endpoints.py",
+          "line_number": 320,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_USER_DB\"] = \"test_users.json\"",
+          "context": "function:test_config_validation_valid",
+          "default_value": null,
+          "file_path": "tests/test_auth.py",
+          "line_number": 96,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"CONSOLE_AUTH_USER_DB\"] = os.path.join(self.temp_dir, \"users.json\")",
+          "context": "function:test_auth_enabled_with_config",
+          "default_value": null,
+          "file_path": "tests/test_auth.py",
+          "line_number": 318,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "user_db = os.getenv(\"CONSOLE_AUTH_USER_DB\", \"data/auth/users.json\")",
+          "context": "function:check_security_settings",
+          "default_value": "data/auth/users.json",
+          "file_path": "console/preflight_checks.py",
+          "line_number": 426,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "self.user_db_path = os.environ.get(\"CONSOLE_AUTH_USER_DB\", \"data/auth/users.json\")",
+          "context": "function:__init__",
+          "default_value": "data/auth/users.json",
+          "file_path": "console/auth.py",
+          "line_number": 20,
+          "usage_type": "environ_get"
+        }
+      ]
+    },
+    "CONSOLE_UI_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/console_ui.py",
+        "console/web_api.py"
+      ],
+      "name": "CONSOLE_UI_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 2,
+      "usages": [
+        {
+          "code_snippet": "CONSOLE_UI_ENABLED = os.getenv(\"CONSOLE_UI_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/console_ui.py",
+          "line_number": 13,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "CONSOLE_UI_ENABLED = os.getenv(\"CONSOLE_UI_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "function:_setup_routes",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 1570,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "DEBUG": {
+      "canonical_default": "0",
+      "category": "logging",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/preflight_checks.py"
+      ],
+      "name": "DEBUG",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "debug_enabled = os.getenv(\"DEBUG\", \"0\") == \"1\"",
+          "context": "function:check_security_settings",
+          "default_value": "0",
+          "file_path": "console/preflight_checks.py",
+          "line_number": 420,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "EXPORT_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tools/verify_minimax_claims.py",
+        "console/telemetry_export.py",
+        "console/web_api.py"
+      ],
+      "name": "EXPORT_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/admin/export",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 4,
+      "usages": [
+        {
+          "code_snippet": "EXPORT_ENABLED = os.getenv(\"EXPORT_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "function:_setup_routes",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 1215,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "if os.getenv(\"EXPORT_ENABLED\", \"0\") != \"1\":",
+          "context": "function:export_telemetry",
+          "default_value": "0",
+          "file_path": "console/telemetry_export.py",
+          "line_number": 330,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "os.environ[\"EXPORT_ENABLED\"] = \"1\"",
+          "context": "function:check_p3_invariants",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 444,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"EXPORT_ENABLED\"] = \"1\"",
+          "context": "function:check_p5_export_gating",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 693,
+          "usage_type": "environ_direct"
+        }
+      ]
+    },
+    "HEALTH_ENDPOINT_ENABLED": {
+      "canonical_default": "1",
+      "category": "feature",
+      "default_values": [
+        "1",
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tools/verify_minimax_claims.py",
+        "tests/test_streaming.py",
+        "tests/test_bus_metrics.py",
+        "tools/self_check.py",
+        "console/telemetry_export.py",
+        "console/web_api.py",
+        "tests/test_health_endpoint.py"
+      ],
+      "name": "HEALTH_ENDPOINT_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/admin/export",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "tests/test_streaming.py",
+        "tests/test_health_endpoint.py",
+        "tests/test_bus_metrics.py"
+      ],
+      "usage_count": 8,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"HEALTH_ENDPOINT_ENABLED\"] = \"0\"",
+          "context": "function:test_health_metrics_route_can_be_disabled",
+          "default_value": null,
+          "file_path": "tests/test_bus_metrics.py",
+          "line_number": 103,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"HEALTH_ENDPOINT_ENABLED\"] = \"1\"",
+          "context": "function:test_health_endpoint_enabled_when_flag_set",
+          "default_value": null,
+          "file_path": "tests/test_health_endpoint.py",
+          "line_number": 102,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"HEALTH_ENDPOINT_ENABLED\"] = \"1\"",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_streaming.py",
+          "line_number": 113,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "HEALTH_ENDPOINT_ENABLED = os.getenv(\"HEALTH_ENDPOINT_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 28,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "\"HEALTH_ENDPOINT_ENABLED\": os.getenv(\"HEALTH_ENDPOINT_ENABLED\", \"0\")",
+          "context": "function:metrics_health",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 679,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "\"health_endpoint_enabled\": os.getenv(\"HEALTH_ENDPOINT_ENABLED\", \"1\") == \"1\",",
+          "context": "function:collect_application_metrics",
+          "default_value": "1",
+          "file_path": "console/telemetry_export.py",
+          "line_number": 87,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "os.environ[\"HEALTH_ENDPOINT_ENABLED\"] = \"1\"",
+          "context": "function:check_health_endpoint",
+          "default_value": null,
+          "file_path": "tools/self_check.py",
+          "line_number": 239,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"HEALTH_ENDPOINT_ENABLED\"] = \"1\"",
+          "context": "function:check_p3_invariants",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 417,
+          "usage_type": "environ_direct"
+        }
+      ]
+    },
+    "HOST": {
+      "canonical_default": "127.0.0.1",
+      "category": "network",
+      "default_values": [
+        "127.0.0.1"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/preflight_checks.py"
+      ],
+      "name": "HOST",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "host = os.getenv(\"HOST\", \"127.0.0.1\")",
+          "context": "function:check_network_connectivity",
+          "default_value": "127.0.0.1",
+          "file_path": "console/preflight_checks.py",
+          "line_number": 222,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "HOSTNAME": {
+      "canonical_default": "unknown",
+      "category": "network",
+      "default_values": [
+        "unknown"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/telemetry_export.py"
+      ],
+      "name": "HOSTNAME",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "\"hostname\": os.environ.get(\"HOSTNAME\", \"unknown\"),",
+          "context": "function:collect_all_metrics",
+          "default_value": "unknown",
+          "file_path": "console/telemetry_export.py",
+          "line_number": 173,
+          "usage_type": "environ_get"
+        }
+      ]
+    },
+    "LOG_BACKUPS": {
+      "canonical_default": "5",
+      "category": "logging",
+      "default_values": [
+        "5"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/web_api.py",
+        "tests/test_log_rotation.py",
+        "console/log_config.py"
+      ],
+      "name": "LOG_BACKUPS",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "tests/test_log_rotation.py"
+      ],
+      "usage_count": 3,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"LOG_BACKUPS\"] = \"3\"",
+          "context": "function:test_setup_application_logging",
+          "default_value": null,
+          "file_path": "tests/test_log_rotation.py",
+          "line_number": 296,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "backup_count = int(os.getenv(\"LOG_BACKUPS\", \"5\"))",
+          "context": "function:get_log_config",
+          "default_value": "5",
+          "file_path": "console/log_config.py",
+          "line_number": 213,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "LOG_BACKUPS = int(os.getenv(\"LOG_BACKUPS\", \"5\"))  # 5 backup files default",
+          "context": "module",
+          "default_value": "5",
+          "file_path": "console/web_api.py",
+          "line_number": 59,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "LOG_MAX_BYTES": {
+      "canonical_default": "1048576",
+      "category": "logging",
+      "default_values": [
+        "1048576",
+        "10485760"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/preflight_checks.py",
+        "console/web_api.py",
+        "tests/test_log_rotation.py",
+        "console/log_config.py"
+      ],
+      "name": "LOG_MAX_BYTES",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "tests/test_log_rotation.py"
+      ],
+      "usage_count": 4,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"LOG_MAX_BYTES\"] = \"2097152\"  # 2MB",
+          "context": "function:test_setup_application_logging",
+          "default_value": null,
+          "file_path": "tests/test_log_rotation.py",
+          "line_number": 295,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "log_max_bytes = os.getenv(\"LOG_MAX_BYTES\", \"10485760\")  # 10MB default",
+          "context": "function:check_configuration_integrity",
+          "default_value": "10485760",
+          "file_path": "console/preflight_checks.py",
+          "line_number": 362,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "max_bytes = int(os.getenv(\"LOG_MAX_BYTES\", \"1048576\"))",
+          "context": "function:get_log_config",
+          "default_value": "1048576",
+          "file_path": "console/log_config.py",
+          "line_number": 212,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "LOG_MAX_BYTES = int(os.getenv(\"LOG_MAX_BYTES\", \"1048576\"))  # 1MB default",
+          "context": "module",
+          "default_value": "1048576",
+          "file_path": "console/web_api.py",
+          "line_number": 58,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "LOG_REDACT_SECRETS": {
+      "canonical_default": "1",
+      "category": "logging",
+      "default_values": [
+        "1",
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [
+        "Security degradation if misconfigured"
+      ],
+      "files_used_in": [
+        "tools/verify_minimax_claims.py",
+        "tests/test_log_rotation.py",
+        "console/telemetry_export.py",
+        "console/web_api.py",
+        "console/preflight_checks.py",
+        "console/log_config.py"
+      ],
+      "name": "LOG_REDACT_SECRETS",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/admin/export",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "secret",
+      "security_impact": [
+        "Credential exposure risk",
+        "Unauthorized access potential",
+        "Should be encrypted/masked in logs"
+      ],
+      "test_references": [
+        "tests/test_log_rotation.py"
+      ],
+      "usage_count": 6,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"LOG_REDACT_SECRETS\"] = \"1\"",
+          "context": "function:test_setup_application_logging",
+          "default_value": null,
+          "file_path": "tests/test_log_rotation.py",
+          "line_number": 297,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "if os.getenv(\"LOG_REDACT_SECRETS\", \"0\") != \"1\":",
+          "context": "function:check_security_settings",
+          "default_value": "0",
+          "file_path": "console/preflight_checks.py",
+          "line_number": 443,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "redact_secrets = os.getenv(\"LOG_REDACT_SECRETS\", \"1\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "function:get_log_config",
+          "default_value": "1",
+          "file_path": "console/log_config.py",
+          "line_number": 214,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "LOG_REDACT_SECRETS = os.getenv(\"LOG_REDACT_SECRETS\", \"1\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}  # default ON",
+          "context": "module",
+          "default_value": "1",
+          "file_path": "console/web_api.py",
+          "line_number": 60,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "\"log_redaction_enabled\": os.getenv(\"LOG_REDACT_SECRETS\", \"0\") == \"1\"",
+          "context": "function:collect_application_metrics",
+          "default_value": "0",
+          "file_path": "console/telemetry_export.py",
+          "line_number": 91,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "if os.getenv(\"LOG_REDACT_SECRETS\", \"1\") == \"1\":",
+          "context": "function:check_p5_retention_rotation",
+          "default_value": "1",
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 617,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "METRICS_DEBUG_ENABLED": {
+      "canonical_default": "0",
+      "category": "logging",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tools/verify_minimax_claims.py",
+        "tests/test_structured_logging.py",
+        "tests/test_bus_metrics.py",
+        "console/web_api.py"
+      ],
+      "name": "METRICS_DEBUG_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/admin/export",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "tests/test_structured_logging.py",
+        "tests/test_bus_metrics.py"
+      ],
+      "usage_count": 7,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"METRICS_DEBUG_ENABLED\"] = \"1\"",
+          "context": "function:test_observability_metrics_route_when_enabled",
+          "default_value": null,
+          "file_path": "tests/test_bus_metrics.py",
+          "line_number": 38,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"METRICS_DEBUG_ENABLED\"] = \"1\"",
+          "context": "function:test_metrics_snapshot_endpoint",
+          "default_value": null,
+          "file_path": "tests/test_structured_logging.py",
+          "line_number": 15,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"METRICS_DEBUG_ENABLED\"] = \"1\"",
+          "context": "function:test_event_bus_metrics_logging",
+          "default_value": null,
+          "file_path": "tests/test_structured_logging.py",
+          "line_number": 65,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "METRICS_DEBUG_ENABLED = os.getenv(\"METRICS_DEBUG_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 29,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "\"METRICS_DEBUG_ENABLED\": os.getenv(\"METRICS_DEBUG_ENABLED\", \"0\"),",
+          "context": "function:metrics_health",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 675,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "os.environ[\"METRICS_DEBUG_ENABLED\"] = \"1\"",
+          "context": "function:check_anomaly_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 191,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"METRICS_DEBUG_ENABLED\"] = \"1\"",
+          "context": "function:check_anomaly_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 199,
+          "usage_type": "environ_direct"
+        }
+      ]
+    },
+    "MITRE_API_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/web_api.py"
+      ],
+      "name": "MITRE_API_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "MITRE_API_ENABLED = os.getenv(\"MITRE_API_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 34,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "MITRE_MATRIX_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "detection/attack_matrix.py",
+        "temp_minimal_probes.py",
+        "console/web_api.py",
+        "temp_synthetic_probes.py",
+        "service/service_wrapper.py"
+      ],
+      "name": "MITRE_MATRIX_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 5,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"MITRE_MATRIX_ENABLED\"]=\"1\"",
+          "context": "module",
+          "default_value": null,
+          "file_path": "temp_synthetic_probes.py",
+          "line_number": 2,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"MITRE_MATRIX_ENABLED\"]=\"1\"",
+          "context": "module",
+          "default_value": null,
+          "file_path": "temp_minimal_probes.py",
+          "line_number": 28,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "if wire_attack_matrix and os.getenv(\"MITRE_MATRIX_ENABLED\", \"0\") == \"1\":",
+          "context": "async_function:initialize",
+          "default_value": "0",
+          "file_path": "service/service_wrapper.py",
+          "line_number": 113,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "matrix_enabled = os.getenv(\"MITRE_MATRIX_ENABLED\", \"0\") == \"1\"",
+          "context": "function:get_mitre_coverage",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 702,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "if os.getenv(\"MITRE_MATRIX_ENABLED\", \"0\") != \"1\":",
+          "context": "function:wire",
+          "default_value": "0",
+          "file_path": "detection/attack_matrix.py",
+          "line_number": 836,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "MITRE_PROFILE": {
+      "canonical_default": "baseline",
+      "category": "storage",
+      "default_values": [
+        "baseline"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "temp_synthetic_probes.py",
+        "service/service_wrapper.py",
+        "temp_minimal_probes.py",
+        "console/web_api.py"
+      ],
+      "name": "MITRE_PROFILE",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 4,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"MITRE_PROFILE\"]=\"baseline\"",
+          "context": "module",
+          "default_value": null,
+          "file_path": "temp_synthetic_probes.py",
+          "line_number": 3,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"MITRE_PROFILE\"]=\"baseline\"",
+          "context": "module",
+          "default_value": null,
+          "file_path": "temp_minimal_probes.py",
+          "line_number": 29,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "profile = os.getenv(\"MITRE_PROFILE\", \"baseline\")",
+          "context": "async_function:initialize",
+          "default_value": "baseline",
+          "file_path": "service/service_wrapper.py",
+          "line_number": 115,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "profile = os.getenv(\"MITRE_PROFILE\", \"baseline\")",
+          "context": "function:get_mitre_coverage",
+          "default_value": "baseline",
+          "file_path": "console/web_api.py",
+          "line_number": 701,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "MITRE_REACTIVE_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "detection/attack_matrix.py",
+        "service/service_wrapper.py"
+      ],
+      "name": "MITRE_REACTIVE_ENABLED",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 2,
+      "usages": [
+        {
+          "code_snippet": "responder = Playbooks(self.event_bus, _mode_provider) if (Playbooks and os.getenv(\"MITRE_REACTIVE_ENABLED\", \"0\") == \"1\") else None",
+          "context": "async_function:initialize",
+          "default_value": "0",
+          "file_path": "service/service_wrapper.py",
+          "line_number": 114,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "reactive_enabled = os.getenv(\"MITRE_REACTIVE_ENABLED\", \"0\") == \"1\"",
+          "context": "function:handle_matches",
+          "default_value": "0",
+          "file_path": "detection/attack_matrix.py",
+          "line_number": 270,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "MITRE_RULES_PATH": {
+      "canonical_default": null,
+      "category": "storage",
+      "default_values": [],
+      "documentation_status": "undocumented",
+      "failure_modes": [
+        "No default value - runtime failure likely"
+      ],
+      "files_used_in": [
+        "detection/attack_matrix.py",
+        "console/web_api.py"
+      ],
+      "name": "MITRE_RULES_PATH",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 2,
+      "usages": [
+        {
+          "code_snippet": "rules_path = os.getenv(\"MITRE_RULES_PATH\")",
+          "context": "function:get_mitre_coverage",
+          "default_value": null,
+          "file_path": "console/web_api.py",
+          "line_number": 715,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "rules_path = os.getenv(\"MITRE_RULES_PATH\")",
+          "context": "function:wire",
+          "default_value": null,
+          "file_path": "detection/attack_matrix.py",
+          "line_number": 855,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "PERF_PROBE_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/web_api.py"
+      ],
+      "name": "PERF_PROBE_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "PERF_PROBE_ENABLED = os.getenv(\"PERF_PROBE_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "function:_setup_routes",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 1506,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "PERF_SOAK_BASE_URL": {
+      "canonical_default": "http://127.0.0.1:8080",
+      "category": "network",
+      "default_values": [
+        "http://127.0.0.1:8080"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "scripts/rc_soak_test.py"
+      ],
+      "name": "PERF_SOAK_BASE_URL",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "scripts/rc_soak_test.py"
+      ],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "base_url = os.getenv(\"PERF_SOAK_BASE_URL\", \"http://127.0.0.1:8080\")",
+          "context": "function:main",
+          "default_value": "http://127.0.0.1:8080",
+          "file_path": "scripts/rc_soak_test.py",
+          "line_number": 322,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "PERF_SOAK_CLIENTS": {
+      "canonical_default": "16",
+      "category": "configuration",
+      "default_values": [
+        "16"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "scripts/rc_soak_test_mock.py",
+        "scripts/rc_soak_test.py"
+      ],
+      "name": "PERF_SOAK_CLIENTS",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "scripts/rc_soak_test_mock.py",
+        "scripts/rc_soak_test.py"
+      ],
+      "usage_count": 2,
+      "usages": [
+        {
+          "code_snippet": "clients = int(os.getenv(\"PERF_SOAK_CLIENTS\", \"16\"))",
+          "context": "function:main",
+          "default_value": "16",
+          "file_path": "scripts/rc_soak_test_mock.py",
+          "line_number": 205,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "clients = int(os.getenv(\"PERF_SOAK_CLIENTS\", \"16\"))",
+          "context": "function:main",
+          "default_value": "16",
+          "file_path": "scripts/rc_soak_test.py",
+          "line_number": 321,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "PERF_SOAK_DURATION_S": {
+      "canonical_default": "600",
+      "category": "configuration",
+      "default_values": [
+        "600"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "scripts/rc_soak_test_mock.py",
+        "scripts/rc_soak_test.py"
+      ],
+      "name": "PERF_SOAK_DURATION_S",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "scripts/rc_soak_test_mock.py",
+        "scripts/rc_soak_test.py"
+      ],
+      "usage_count": 2,
+      "usages": [
+        {
+          "code_snippet": "duration_s = int(os.getenv(\"PERF_SOAK_DURATION_S\", \"600\"))  # 10 minutes",
+          "context": "function:main",
+          "default_value": "600",
+          "file_path": "scripts/rc_soak_test_mock.py",
+          "line_number": 204,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "duration_s = int(os.getenv(\"PERF_SOAK_DURATION_S\", \"600\"))  # 10 minutes",
+          "context": "function:main",
+          "default_value": "600",
+          "file_path": "scripts/rc_soak_test.py",
+          "line_number": 320,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "PLUGINS_DIR": {
+      "canonical_default": "plugins",
+      "category": "storage",
+      "default_values": [
+        "plugins"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/preflight_checks.py",
+        "console/plugin_sandbox.py"
+      ],
+      "name": "PLUGINS_DIR",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 2,
+      "usages": [
+        {
+          "code_snippet": "plugin_dir = Path(os.getenv(\"PLUGINS_DIR\", \"plugins\"))",
+          "context": "function:check_configuration_integrity",
+          "default_value": "plugins",
+          "file_path": "console/preflight_checks.py",
+          "line_number": 374,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "plugins_dir = os.getenv(\"PLUGINS_DIR\", \"plugins\")",
+          "context": "function:get_plugin_loader",
+          "default_value": "plugins",
+          "file_path": "console/plugin_sandbox.py",
+          "line_number": 314,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "PLUGINS_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/preflight_checks.py",
+        "console/plugin_sandbox.py",
+        "console/telemetry_export.py",
+        "console/web_api.py"
+      ],
+      "name": "PLUGINS_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 6,
+      "usages": [
+        {
+          "code_snippet": "if os.getenv(\"PLUGINS_ENABLED\", \"0\") == \"1\":",
+          "context": "function:check_configuration_integrity",
+          "default_value": "0",
+          "file_path": "console/preflight_checks.py",
+          "line_number": 373,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "PLUGINS_ENABLED = os.getenv(\"PLUGINS_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "function:_setup_routes",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 1257,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "plugins_enabled = os.getenv(\"PLUGINS_ENABLED\", \"0\") == \"1\"",
+          "context": "function:get_plugin_loader",
+          "default_value": "0",
+          "file_path": "console/plugin_sandbox.py",
+          "line_number": 313,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "if os.getenv(\"PLUGINS_ENABLED\", \"0\") != \"1\":",
+          "context": "function:execute_plugin_hook",
+          "default_value": "0",
+          "file_path": "console/plugin_sandbox.py",
+          "line_number": 336,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "\"plugins_enabled\": os.getenv(\"PLUGINS_ENABLED\", \"0\") == \"1\",",
+          "context": "function:collect_application_metrics",
+          "default_value": "0",
+          "file_path": "console/telemetry_export.py",
+          "line_number": 90,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "if os.getenv(\"PLUGINS_ENABLED\", \"0\") != \"1\":",
+          "context": "function:collect_plugin_metrics",
+          "default_value": "0",
+          "file_path": "console/telemetry_export.py",
+          "line_number": 144,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "PORT": {
+      "canonical_default": "8000",
+      "category": "network",
+      "default_values": [
+        "8000"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/preflight_checks.py"
+      ],
+      "name": "PORT",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "port = int(os.getenv(\"PORT\", \"8000\"))",
+          "context": "function:check_network_connectivity",
+          "default_value": "8000",
+          "file_path": "console/preflight_checks.py",
+          "line_number": 223,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "QUARANTINE_DIR": {
+      "canonical_default": "data/quarantine",
+      "category": "storage",
+      "default_values": [
+        "data/quarantine"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/preflight_checks.py",
+        "console/quarantine.py"
+      ],
+      "name": "QUARANTINE_DIR",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 2,
+      "usages": [
+        {
+          "code_snippet": "quarantine_dir = Path(os.getenv(\"QUARANTINE_DIR\", \"data/quarantine\"))",
+          "context": "function:check_file_permissions",
+          "default_value": "data/quarantine",
+          "file_path": "console/preflight_checks.py",
+          "line_number": 189,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "QUARANTINE_DIR = Path(os.getenv(\"QUARANTINE_DIR\", \"data/quarantine\"))",
+          "context": "module",
+          "default_value": "data/quarantine",
+          "file_path": "console/quarantine.py",
+          "line_number": 26,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "QUARANTINE_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tools/verify_minimax_claims.py",
+        "console/quarantine.py",
+        "console/web_api.py",
+        "console/preflight_checks.py",
+        "tests/test_quarantine.py"
+      ],
+      "name": "QUARANTINE_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/admin/export",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "tests/test_quarantine.py"
+      ],
+      "usage_count": 5,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"QUARANTINE_ENABLED\"] = \"1\"",
+          "context": "module",
+          "default_value": null,
+          "file_path": "tests/test_quarantine.py",
+          "line_number": 16,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "if os.getenv(\"QUARANTINE_ENABLED\", \"0\") == \"1\":",
+          "context": "function:check_file_permissions",
+          "default_value": "0",
+          "file_path": "console/preflight_checks.py",
+          "line_number": 188,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "QUARANTINE_ENABLED = os.getenv(\"QUARANTINE_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}  # default OFF",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 45,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "QUARANTINE_ENABLED = os.getenv(\"QUARANTINE_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/quarantine.py",
+          "line_number": 25,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "os.environ[\"QUARANTINE_ENABLED\"] = \"1\"",
+          "context": "function:check_quarantine_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 272,
+          "usage_type": "environ_direct"
+        }
+      ]
+    },
+    "RATE_LIMIT_ENABLED": {
+      "canonical_default": "0",
+      "category": "performance",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tools/verify_minimax_claims.py",
+        "tests/test_rate_limit.py",
+        "console/rate_limit.py",
+        "console/web_api.py",
+        "tests/test_p2_endpoints.py"
+      ],
+      "name": "RATE_LIMIT_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "POST /api/admin/config/reload?debounce_ms=999999",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "POST /api/auth/login",
+        "POST /api/admin/config/reload",
+        "GET /api/anomaly/score",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/admin/export",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "POST /api/admin/config/reload?debounce_ms=-10",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "tests/test_p2_endpoints.py",
+        "tests/test_rate_limit.py"
+      ],
+      "usage_count": 7,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"RATE_LIMIT_ENABLED\"] = \"1\"",
+          "context": "function:test_admin_reload_rate_limited",
+          "default_value": null,
+          "file_path": "tests/test_rate_limit.py",
+          "line_number": 16,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"RATE_LIMIT_ENABLED\"] = \"0\"",
+          "context": "function:test_debounce_ms_validation",
+          "default_value": null,
+          "file_path": "tests/test_rate_limit.py",
+          "line_number": 41,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"RATE_LIMIT_ENABLED\"] = \"0\"  # Disable for testing",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_p2_endpoints.py",
+          "line_number": 60,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "RATE_LIMIT_ENABLED = os.getenv(\"RATE_LIMIT_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/rate_limit.py",
+          "line_number": 11,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "\"RATE_LIMIT_ENABLED\": os.getenv(\"RATE_LIMIT_ENABLED\", \"0\"),",
+          "context": "function:metrics_health",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 678,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "os.environ[\"RATE_LIMIT_ENABLED\"] = \"1\"",
+          "context": "function:check_quarantine_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 295,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"RATE_LIMIT_ENABLED\"] = \"1\"",
+          "context": "function:check_p2_auth_streaming_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 353,
+          "usage_type": "environ_direct"
+        }
+      ]
+    },
+    "RETENTION_DAYS": {
+      "canonical_default": "14",
+      "category": "configuration",
+      "default_values": [
+        "14"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tests/test_retention.py",
+        "console/retention.py"
+      ],
+      "name": "RETENTION_DAYS",
+      "routes_influenced": [
+        "POST /api/admin/retention/run?dry=true&retention_days=30"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "tests/test_retention.py"
+      ],
+      "usage_count": 2,
+      "usages": [
+        {
+          "code_snippet": "del os.environ['RETENTION_DAYS']",
+          "context": "function:test_get_retention_days_default",
+          "default_value": null,
+          "file_path": "tests/test_retention.py",
+          "line_number": 73,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "return int(os.getenv(\"RETENTION_DAYS\", \"14\"))",
+          "context": "function:get_retention_days",
+          "default_value": "14",
+          "file_path": "console/retention.py",
+          "line_number": 17,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "RETENTION_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "console/web_api.py"
+      ],
+      "name": "RETENTION_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "RETENTION_ENABLED = os.getenv(\"RETENTION_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "function:_setup_routes",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 1464,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "ROTATE_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tools/rotate_secrets.py",
+        "console/web_api.py"
+      ],
+      "name": "ROTATE_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 2,
+      "usages": [
+        {
+          "code_snippet": "ROTATE_ENABLED = os.getenv(\"ROTATE_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "function:_setup_routes",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 1389,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "ROTATE_ENABLED = os.getenv(\"ROTATE_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "tools/rotate_secrets.py",
+          "line_number": 19,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "SENTINEL_LOG_LEVEL": {
+      "canonical_default": null,
+      "category": "logging",
+      "default_values": [],
+      "documentation_status": "undocumented",
+      "failure_modes": [
+        "No default value - runtime failure likely"
+      ],
+      "files_used_in": [
+        "service/service_wrapper.py"
+      ],
+      "name": "SENTINEL_LOG_LEVEL",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"SENTINEL_LOG_LEVEL\"] = \"DEBUG\"",
+          "context": "function:main",
+          "default_value": null,
+          "file_path": "service/service_wrapper.py",
+          "line_number": 563,
+          "usage_type": "environ_direct"
+        }
+      ]
+    },
+    "SERVICE_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tests/test_windows_service.py",
+        "console/web_api.py"
+      ],
+      "name": "SERVICE_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "tests/test_windows_service.py"
+      ],
+      "usage_count": 2,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"SERVICE_ENABLED\"] = old_env",
+          "context": "function:test_service_flag_disabled_by_default",
+          "default_value": null,
+          "file_path": "tests/test_windows_service.py",
+          "line_number": 48,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "SERVICE_ENABLED = os.getenv(\"SERVICE_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}  # default OFF",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 63,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "STREAM_ENABLED": {
+      "canonical_default": "0",
+      "category": "feature",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tools/verify_minimax_claims.py",
+        "tests/test_streaming.py",
+        "console/telemetry_export.py",
+        "console/web_api.py",
+        "tests/test_p2_endpoints.py"
+      ],
+      "name": "STREAM_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "POST /api/auth/login",
+        "POST /api/admin/config/reload",
+        "GET /api/anomaly/score",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/admin/export",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "tests/test_streaming.py",
+        "tests/test_p2_endpoints.py"
+      ],
+      "usage_count": 10,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"STREAM_ENABLED\"] = \"1\"",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_p2_endpoints.py",
+          "line_number": 251,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"STREAM_ENABLED\"] = \"0\"",
+          "context": "function:test_streaming_endpoint_disabled",
+          "default_value": null,
+          "file_path": "tests/test_p2_endpoints.py",
+          "line_number": 281,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"STREAM_ENABLED\"] = \"1\"",
+          "context": "function:test_streaming_flags_parsing",
+          "default_value": null,
+          "file_path": "tests/test_streaming.py",
+          "line_number": 76,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"STREAM_ENABLED\"] = \"1\"",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_streaming.py",
+          "line_number": 110,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"STREAM_ENABLED\"] = \"0\"",
+          "context": "function:test_sse_endpoint_disabled",
+          "default_value": null,
+          "file_path": "tests/test_streaming.py",
+          "line_number": 144,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"STREAM_ENABLED\"] = \"1\"",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_streaming.py",
+          "line_number": 211,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "STREAM_ENABLED = os.getenv(\"STREAM_ENABLED\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 52,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "\"stream_enabled\": os.getenv(\"STREAM_ENABLED\", \"0\") == \"1\",",
+          "context": "function:collect_application_metrics",
+          "default_value": "0",
+          "file_path": "console/telemetry_export.py",
+          "line_number": 89,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "os.environ[\"STREAM_ENABLED\"] = \"1\"",
+          "context": "function:check_p2_auth_streaming_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 334,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"STREAM_ENABLED\"] = \"1\"",
+          "context": "function:check_p5_sse_correctness",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 548,
+          "usage_type": "environ_direct"
+        }
+      ]
+    },
+    "STREAM_HEALTH_INTERVAL_MS": {
+      "canonical_default": "1000",
+      "category": "configuration",
+      "default_values": [
+        "1000"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tests/test_streaming.py",
+        "tests/test_p2_endpoints.py",
+        "console/web_api.py"
+      ],
+      "name": "STREAM_HEALTH_INTERVAL_MS",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "POST /api/auth/login",
+        "POST /api/admin/config/reload",
+        "GET /api/anomaly/score",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "tests/test_streaming.py",
+        "tests/test_p2_endpoints.py"
+      ],
+      "usage_count": 4,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"STREAM_HEALTH_INTERVAL_MS\"] = \"100\"  # Fast for testing",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_p2_endpoints.py",
+          "line_number": 253,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"STREAM_HEALTH_INTERVAL_MS\"] = \"500\"",
+          "context": "function:test_streaming_flags_parsing",
+          "default_value": null,
+          "file_path": "tests/test_streaming.py",
+          "line_number": 78,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"STREAM_HEALTH_INTERVAL_MS\"] = \"100\"  # Fast for testing",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_streaming.py",
+          "line_number": 112,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "STREAM_HEALTH_INTERVAL_MS = int(os.getenv(\"STREAM_HEALTH_INTERVAL_MS\", \"1000\"))",
+          "context": "module",
+          "default_value": "1000",
+          "file_path": "console/web_api.py",
+          "line_number": 54,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "STREAM_REQUIRE_AUTH": {
+      "canonical_default": "0",
+      "category": "auth",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tools/verify_minimax_claims.py",
+        "tests/test_streaming.py",
+        "console/web_api.py"
+      ],
+      "name": "STREAM_REQUIRE_AUTH",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/admin/export",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "sensitive",
+      "security_impact": [
+        "Authentication bypass risk",
+        "Privilege escalation potential"
+      ],
+      "test_references": [
+        "tests/test_streaming.py"
+      ],
+      "usage_count": 5,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"STREAM_REQUIRE_AUTH\"] = \"1\"",
+          "context": "function:test_streaming_flags_parsing",
+          "default_value": null,
+          "file_path": "tests/test_streaming.py",
+          "line_number": 79,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"STREAM_REQUIRE_AUTH\"] = \"1\"",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_streaming.py",
+          "line_number": 212,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "STREAM_REQUIRE_AUTH = os.getenv(\"STREAM_REQUIRE_AUTH\", \"0\").strip().lower() in {\"1\", \"true\", \"yes\", \"on\"}",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 55,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "os.environ[\"STREAM_REQUIRE_AUTH\"] = \"1\"",
+          "context": "function:check_p2_auth_streaming_routes",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 335,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"STREAM_REQUIRE_AUTH\"] = \"1\"",
+          "context": "function:check_p5_sse_correctness",
+          "default_value": null,
+          "file_path": "tools/verify_minimax_claims.py",
+          "line_number": 591,
+          "usage_type": "environ_direct"
+        }
+      ]
+    },
+    "STREAM_TYPE": {
+      "canonical_default": "sse",
+      "category": "configuration",
+      "default_values": [
+        "sse"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "tests/test_streaming.py",
+        "tests/test_p2_endpoints.py",
+        "console/web_api.py"
+      ],
+      "name": "STREAM_TYPE",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "POST /api/auth/login",
+        "POST /api/admin/config/reload",
+        "GET /api/anomaly/score",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [
+        "tests/test_streaming.py",
+        "tests/test_p2_endpoints.py"
+      ],
+      "usage_count": 4,
+      "usages": [
+        {
+          "code_snippet": "os.environ[\"STREAM_TYPE\"] = \"sse\"",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_p2_endpoints.py",
+          "line_number": 252,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"STREAM_TYPE\"] = \"sse\"",
+          "context": "function:test_streaming_flags_parsing",
+          "default_value": null,
+          "file_path": "tests/test_streaming.py",
+          "line_number": 77,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "os.environ[\"STREAM_TYPE\"] = \"sse\"",
+          "context": "function:setUp",
+          "default_value": null,
+          "file_path": "tests/test_streaming.py",
+          "line_number": 111,
+          "usage_type": "environ_direct"
+        },
+        {
+          "code_snippet": "STREAM_TYPE = os.getenv(\"STREAM_TYPE\", \"sse\").lower()  # only 'sse' implemented",
+          "context": "module",
+          "default_value": "sse",
+          "file_path": "console/web_api.py",
+          "line_number": 53,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "TI_CACHE_ENABLED": {
+      "canonical_default": "0",
+      "category": "performance",
+      "default_values": [
+        "0"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "detection/threat_intel_db.py",
+        "console/web_api.py"
+      ],
+      "name": "TI_CACHE_ENABLED",
+      "routes_influenced": [
+        "POST /api/actions/pause",
+        "GET /api/admin/config/schema",
+        "GET /api/metrics/snapshot",
+        "GET /api/policies",
+        "GET /api/anomaly/score",
+        "POST /api/admin/config/reload",
+        "POST /api/auth/login",
+        "GET /api/admin/plugins",
+        "GET /api/admin/perf/quick",
+        "POST /api/admin/quarantine",
+        "GET /assets",
+        "POST /api/policies",
+        "GET /api/metrics/event_bus",
+        "GET /health",
+        "POST /api/admin/chaos/inject",
+        "GET /api/status",
+        "POST /api/actions/resume",
+        "GET /api/ti/search",
+        "GET /",
+        "POST /api/admin/rotate/execute",
+        "GET /api/admin/preflight",
+        "GET /api/detections",
+        "POST /api/admin/rotate/preview",
+        "GET /api/stream/health",
+        "GET /api/export/telemetry",
+        "GET /api/mitre/coverage",
+        "POST /api/admin/anomaly/train",
+        "GET /api/alerts",
+        "GET /api/admin/retention/stats",
+        "POST /api/auth/logout",
+        "GET /processes",
+        "GET /policies",
+        "POST /api/admin/backup",
+        "GET /api/metrics/health",
+        "POST /api/admin/perf/probe",
+        "POST /api/admin/retention/run",
+        "GET /detections",
+        "POST /api/admin/plugins/execute",
+        "POST /api/admin/quarantine/restore",
+        "GET /accounts",
+        "POST /api/admin/restore",
+        "GET /api/admin/chaos/status",
+        "GET /api/auth/me"
+      ],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 2,
+      "usages": [
+        {
+          "code_snippet": "\"TI_CACHE_ENABLED\": os.getenv(\"TI_CACHE_ENABLED\", \"0\"),",
+          "context": "function:metrics_health",
+          "default_value": "0",
+          "file_path": "console/web_api.py",
+          "line_number": 677,
+          "usage_type": "getenv"
+        },
+        {
+          "code_snippet": "CACHE_ENABLED = os.getenv(\"TI_CACHE_ENABLED\", \"0\") == \"1\"",
+          "context": "module",
+          "default_value": "0",
+          "file_path": "detection/threat_intel_db.py",
+          "line_number": 23,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "TI_CACHE_MAX": {
+      "canonical_default": "2048",
+      "category": "performance",
+      "default_values": [
+        "2048"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "detection/threat_intel_db.py"
+      ],
+      "name": "TI_CACHE_MAX",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "CACHE_MAX_SIZE = int(os.getenv(\"TI_CACHE_MAX\", \"2048\"))    # 2048 entries default",
+          "context": "module",
+          "default_value": "2048",
+          "file_path": "detection/threat_intel_db.py",
+          "line_number": 25,
+          "usage_type": "getenv"
+        }
+      ]
+    },
+    "TI_CACHE_TTL": {
+      "canonical_default": "300",
+      "category": "performance",
+      "default_values": [
+        "300"
+      ],
+      "documentation_status": "undocumented",
+      "failure_modes": [],
+      "files_used_in": [
+        "detection/threat_intel_db.py"
+      ],
+      "name": "TI_CACHE_TTL",
+      "routes_influenced": [],
+      "security_classification": "public",
+      "security_impact": [],
+      "test_references": [],
+      "usage_count": 1,
+      "usages": [
+        {
+          "code_snippet": "CACHE_TTL_SECONDS = int(os.getenv(\"TI_CACHE_TTL\", \"300\"))  # 5 minutes default",
+          "context": "module",
+          "default_value": "300",
+          "file_path": "detection/threat_intel_db.py",
+          "line_number": 24,
+          "usage_type": "getenv"
+        }
+      ]
+    }
+  },
+  "metadata": {
+    "files_analyzed": 117,
+    "flags_with_defaults": 49,
+    "flags_with_tests": 23,
+    "generator": "WatchLockAI Feature Flags Matrix Generator",
+    "timestamp": "2025-09-06T22:43:50Z",
+    "total_flags": 53,
+    "version": "1.0.0"
+  },
+  "statistics": {
+    "by_category": {
+      "auth": 6,
+      "configuration": 8,
+      "feature": 18,
+      "logging": 6,
+      "network": 4,
+      "performance": 5,
+      "storage": 6
+    },
+    "by_security_classification": {
+      "public": 46,
+      "secret": 3,
+      "sensitive": 4
+    },
+    "flags_without_defaults": [
+      "SENTINEL_LOG_LEVEL",
+      "CONSOLE_AUTH_SESSION_KEY",
+      "ADMIN_TOKEN",
+      "MITRE_RULES_PATH"
+    ],
+    "most_used_flags": [
+      {
+        "category": "auth",
+        "files_count": 8,
+        "name": "CONSOLE_AUTH_ENABLED",
+        "usage_count": 16
+      },
+      {
+        "category": "feature",
+        "files_count": 8,
+        "name": "CONFIG_HOT_RELOAD_ENABLED",
+        "usage_count": 13
+      },
+      {
+        "category": "auth",
+        "files_count": 7,
+        "name": "CONSOLE_AUTH_SESSION_KEY",
+        "usage_count": 13
+      },
+      {
+        "category": "auth",
+        "files_count": 6,
+        "name": "ADMIN_TOKEN",
+        "usage_count": 13
+      },
+      {
+        "category": "auth",
+        "files_count": 5,
+        "name": "ADMIN_AUTH_ENABLED",
+        "usage_count": 11
+      },
+      {
+        "category": "feature",
+        "files_count": 5,
+        "name": "STREAM_ENABLED",
+        "usage_count": 10
+      },
+      {
+        "category": "feature",
+        "files_count": 7,
+        "name": "HEALTH_ENDPOINT_ENABLED",
+        "usage_count": 8
+      },
+      {
+        "category": "logging",
+        "files_count": 4,
+        "name": "METRICS_DEBUG_ENABLED",
+        "usage_count": 7
+      },
+      {
+        "category": "performance",
+        "files_count": 5,
+        "name": "RATE_LIMIT_ENABLED",
+        "usage_count": 7
+      },
+      {
+        "category": "auth",
+        "files_count": 4,
+        "name": "CONSOLE_AUTH_USER_DB",
+        "usage_count": 6
+      },
+      {
+        "category": "logging",
+        "files_count": 6,
+        "name": "LOG_REDACT_SECRETS",
+        "usage_count": 6
+      },
+      {
+        "category": "feature",
+        "files_count": 4,
+        "name": "PLUGINS_ENABLED",
+        "usage_count": 6
+      },
+      {
+        "category": "feature",
+        "files_count": 5,
+        "name": "MITRE_MATRIX_ENABLED",
+        "usage_count": 5
+      },
+      {
+        "category": "feature",
+        "files_count": 5,
+        "name": "QUARANTINE_ENABLED",
+        "usage_count": 5
+      },
+      {
+        "category": "auth",
+        "files_count": 3,
+        "name": "STREAM_REQUIRE_AUTH",
+        "usage_count": 5
+      }
+    ],
+    "security_sensitive_flags": [
+      "CONSOLE_AUTH_SESSION_KEY",
+      "ADMIN_TOKEN",
+      "LOG_REDACT_SECRETS"
+    ]
+  }
+}

@@ -1,0 +1,413 @@
+{
+  "BaseEvent": {
+    "description": "Base event with common fields per schemas.md",
+    "fields": {
+      "host_id": {
+        "type": "string",
+        "required": true,
+        "default": "socket.gethostname()",
+        "description": "Hostname of the system generating the event"
+      },
+      "sentinel_version": {
+        "type": "string", 
+        "required": true,
+        "default": "1.0.0",
+        "description": "Version of Sentinel generating the event"
+      },
+      "ts": {
+        "type": "string",
+        "required": true,
+        "format": "ISO-8601",
+        "default": "datetime.now(timezone.utc).isoformat()",
+        "description": "Event timestamp in UTC"
+      }
+    }
+  },
+  "FileEvent": {
+    "extends": "BaseEvent",
+    "description": "File system event implementing schemas.md specification",
+    "fields": {
+      "event_type": {
+        "type": "enum",
+        "required": true,
+        "values": ["created", "modified", "deleted", "renamed"],
+        "description": "Type of file system event"
+      },
+      "path": {
+        "type": "string",
+        "required": true,
+        "description": "Full path to the affected file"
+      },
+      "old_path": {
+        "type": "string",
+        "required": false,
+        "description": "Original path for renamed files"
+      },
+      "size_bytes": {
+        "type": "integer",
+        "required": false,
+        "constraints": ">=0",
+        "description": "File size in bytes"
+      },
+      "sha256": {
+        "type": "string",
+        "required": false,
+        "format": "hex",
+        "description": "SHA256 hash of file contents"
+      },
+      "entropy": {
+        "type": "float",
+        "required": false,
+        "constraints": "0.0 <= entropy <= 8.0",
+        "description": "Shannon entropy of file contents"
+      },
+      "proc_pid": {
+        "type": "integer",
+        "required": false,
+        "description": "PID of process that triggered the event"
+      },
+      "proc_name": {
+        "type": "string",
+        "required": false,
+        "description": "Name of process that triggered the event"
+      }
+    },
+    "example": {
+      "host_id": "DESKTOP-ABC123",
+      "sentinel_version": "1.0.0",
+      "ts": "2025-09-03T03:02:21.123456Z",
+      "event_type": "created",
+      "path": "C:\\Users\\user\\Documents\\test.txt",
+      "size_bytes": 1024,
+      "entropy": 7.2,
+      "proc_pid": 1234,
+      "proc_name": "notepad.exe"
+    }
+  },
+  "ProcessEvent": {
+    "extends": "BaseEvent",
+    "description": "Process lifecycle event implementing schemas.md specification",
+    "fields": {
+      "event_type": {
+        "type": "enum",
+        "required": true,
+        "values": ["started", "exited"],
+        "description": "Type of process event"
+      },
+      "pid": {
+        "type": "integer",
+        "required": true,
+        "constraints": ">0",
+        "description": "Process ID"
+      },
+      "ppid": {
+        "type": "integer",
+        "required": false,
+        "description": "Parent process ID"
+      },
+      "exe": {
+        "type": "string",
+        "required": false,
+        "description": "Executable path"
+      },
+      "cmdline": {
+        "type": "string",
+        "required": false,
+        "description": "Command line arguments"
+      },
+      "username": {
+        "type": "string",
+        "required": false,
+        "description": "User account running the process"
+      },
+      "hash_sha256": {
+        "type": "string",
+        "required": false,
+        "format": "hex",
+        "description": "SHA256 hash of executable"
+      },
+      "start_ts": {
+        "type": "string",
+        "required": false,
+        "format": "ISO-8601",
+        "description": "Process start timestamp"
+      },
+      "end_ts": {
+        "type": "string",
+        "required": false,
+        "format": "ISO-8601",
+        "description": "Process end timestamp"
+      }
+    },
+    "example": {
+      "host_id": "DESKTOP-ABC123",
+      "sentinel_version": "1.0.0", 
+      "ts": "2025-09-03T03:02:21.123456Z",
+      "event_type": "started",
+      "pid": 5678,
+      "ppid": 1234,
+      "exe": "C:\\Windows\\System32\\cmd.exe",
+      "cmdline": "cmd.exe /c dir",
+      "username": "DESKTOP-ABC123\\user",
+      "hash_sha256": "abc123def456..."
+    }
+  },
+  "RegistryEvent": {
+    "extends": "BaseEvent",
+    "description": "Windows registry event implementing schemas.md specification",
+    "platform": "Windows only",
+    "fields": {
+      "event_type": {
+        "type": "enum",
+        "required": true,
+        "values": ["created", "modified", "deleted"],
+        "description": "Type of registry event"
+      },
+      "hive": {
+        "type": "enum", 
+        "required": true,
+        "values": ["HKCU", "HKLM", "HKU", "HKCR"],
+        "description": "Registry hive"
+      },
+      "key_path": {
+        "type": "string",
+        "required": true,
+        "description": "Registry key path"
+      },
+      "value_name": {
+        "type": "string",
+        "required": false,
+        "description": "Registry value name"
+      },
+      "value_type": {
+        "type": "string",
+        "required": false,
+        "description": "Registry value type (REG_SZ, REG_DWORD, etc.)"
+      },
+      "data_preview": {
+        "type": "string",
+        "required": false,
+        "constraints": "max_length=200",
+        "description": "Preview of registry value data"
+      },
+      "proc_pid": {
+        "type": "integer",
+        "required": false,
+        "description": "PID of process that modified the registry"
+      },
+      "proc_name": {
+        "type": "string",
+        "required": false,
+        "description": "Name of process that modified the registry"
+      }
+    },
+    "example": {
+      "host_id": "DESKTOP-ABC123",
+      "sentinel_version": "1.0.0",
+      "ts": "2025-09-03T03:02:21.123456Z",
+      "event_type": "modified",
+      "hive": "HKCU",
+      "key_path": "Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+      "value_name": "MalwareApp", 
+      "value_type": "REG_SZ",
+      "data_preview": "C:\\Temp\\malware.exe",
+      "proc_pid": 9999,
+      "proc_name": "malware.exe"
+    }
+  },
+  "NetworkEvent": {
+    "extends": "BaseEvent", 
+    "description": "Network connection event implementing schemas.md specification",
+    "fields": {
+      "event_type": {
+        "type": "enum",
+        "required": true,
+        "values": ["connection", "listen", "close"],
+        "description": "Type of network event"
+      },
+      "pid": {
+        "type": "integer",
+        "required": false,
+        "description": "Process ID associated with connection"
+      },
+      "proc_name": {
+        "type": "string",
+        "required": false,
+        "description": "Process name associated with connection"
+      },
+      "laddr_ip": {
+        "type": "string",
+        "required": false,
+        "format": "IP address",
+        "description": "Local IP address"
+      },
+      "laddr_port": {
+        "type": "integer",
+        "required": false,
+        "constraints": "0 <= port <= 65535",
+        "description": "Local port number"
+      },
+      "raddr_ip": {
+        "type": "string", 
+        "required": false,
+        "format": "IP address",
+        "description": "Remote IP address"
+      },
+      "raddr_port": {
+        "type": "integer",
+        "required": false,
+        "constraints": "0 <= port <= 65535",
+        "description": "Remote port number"
+      },
+      "proto": {
+        "type": "enum",
+        "required": true,
+        "values": ["TCP", "UDP", "OTHER"],
+        "description": "Network protocol"
+      },
+      "status": {
+        "type": "string",
+        "required": false,
+        "description": "Connection status (ESTABLISHED, LISTEN, etc.)"
+      }
+    },
+    "example": {
+      "host_id": "DESKTOP-ABC123",
+      "sentinel_version": "1.0.0",
+      "ts": "2025-09-03T03:02:21.123456Z", 
+      "event_type": "connection",
+      "pid": 1234,
+      "proc_name": "chrome.exe",
+      "laddr_ip": "192.168.1.100",
+      "laddr_port": 54321,
+      "raddr_ip": "93.184.216.34",
+      "raddr_port": 443,
+      "proto": "TCP",
+      "status": "ESTABLISHED"
+    }
+  },
+  "HealthMetric": {
+    "extends": "BaseEvent",
+    "description": "System health metrics implementing schemas.md specification", 
+    "fields": {
+      "cpu_pct": {
+        "type": "float",
+        "required": true,
+        "constraints": "0.0 <= cpu_pct <= 100.0",
+        "description": "CPU utilization percentage"
+      },
+      "ram_pct": {
+        "type": "float",
+        "required": true,
+        "constraints": "0.0 <= ram_pct <= 100.0", 
+        "description": "Memory utilization percentage"
+      },
+      "disk_pct_free": {
+        "type": "float",
+        "required": true,
+        "constraints": "0.0 <= disk_pct_free <= 100.0",
+        "description": "Disk free space percentage"
+      },
+      "temp_c": {
+        "type": "float",
+        "required": false,
+        "description": "System temperature in Celsius"
+      }
+    },
+    "example": {
+      "host_id": "DESKTOP-ABC123",
+      "sentinel_version": "1.0.0",
+      "ts": "2025-09-03T03:02:21.123456Z",
+      "cpu_pct": 25.5,
+      "ram_pct": 67.8,
+      "disk_pct_free": 15.2,
+      "temp_c": 45.0
+    }
+  },
+  "DetectionAlert": {
+    "extends": "BaseEvent",
+    "description": "Detection alert implementing alerts.md specification",
+    "fields": {
+      "id": {
+        "type": "string",
+        "required": true,
+        "format": "UUID",
+        "default": "str(uuid.uuid4())",
+        "description": "Unique alert identifier"
+      },
+      "severity": {
+        "type": "enum",
+        "required": true,
+        "values": ["low", "medium", "high"],
+        "description": "Alert severity level"
+      },
+      "category": {
+        "type": "enum",
+        "required": true,
+        "values": ["ransomware", "persistence", "process", "network", "health", "general"],
+        "description": "Alert category"
+      },
+      "tag": {
+        "type": "string",
+        "required": true,
+        "description": "Alert tag/rule identifier"
+      },
+      "entities": {
+        "type": "object",
+        "required": false,
+        "default": "{}",
+        "description": "Alert entities (processes, files, etc.)"
+      },
+      "confidence": {
+        "type": "float",
+        "required": false,
+        "default": 0.8,
+        "constraints": "0.0 <= confidence <= 1.0",
+        "description": "Detection confidence score"
+      },
+      "rationale": {
+        "type": "string",
+        "required": true,
+        "description": "Human-readable explanation of the alert"
+      },
+      "provenance": {
+        "type": "object",
+        "required": true,
+        "fields": {
+          "file": {"type": "string", "description": "Rule file name"},
+          "section": {"type": "string", "description": "Rule section"},
+          "lines": {"type": "string", "description": "Rule line numbers"}
+        },
+        "description": "Rule provenance information"
+      },
+      "suggested_actions": {
+        "type": "array",
+        "required": false,
+        "default": "[]",
+        "items": {"type": "string"},
+        "description": "Suggested response actions"
+      }
+    },
+    "example": {
+      "host_id": "DESKTOP-ABC123",
+      "sentinel_version": "1.0.0",
+      "ts": "2025-09-03T03:02:21.123456Z",
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "severity": "high",
+      "category": "ransomware", 
+      "tag": "RANSOM_FILE_RENAME_PATTERN",
+      "entities": {
+        "process": {"pid": 1234, "name": "malware.exe"},
+        "files": ["/path/to/encrypted.file"]
+      },
+      "confidence": 0.95,
+      "rationale": "Multiple files renamed with ransomware extension pattern",
+      "provenance": {
+        "file": "ransomware_detection.yaml",
+        "section": "file_rename_patterns",
+        "lines": "45-52"
+      },
+      "suggested_actions": ["terminate_process", "quarantine_directory"]
+    }
+  }
+}

@@ -1,0 +1,336 @@
+{% extends "base.html" %}
+
+{% block title %}Script & Process Monitoring - WatchLockAI Sentinel{% endblock %}
+{% block header %}Script & Process Monitoring{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col-md-6">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search processes..." id="process-search">
+            <button class="btn btn-outline-secondary" type="button" onclick="searchProcesses()">Search</button>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="d-flex gap-2">
+            <select class="form-select" id="process-filter">
+                <option value="">All Processes</option>
+                <option value="suspicious">Suspicious</option>
+                <option value="scripts">Scripts</option>
+                <option value="elevated">Elevated Privileges</option>
+            </select>
+            <button class="btn btn-primary" onclick="loadProcesses()">Refresh</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Process Summary -->
+    <div class="col-lg-4 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Process Summary</h5>
+            </div>
+            <div class="card-body">
+                <div id="process-summary">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Total Processes:</span>
+                        <span class="badge bg-primary" id="total-processes">0</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Suspicious:</span>
+                        <span class="badge bg-warning" id="suspicious-processes">0</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Script Executions:</span>
+                        <span class="badge bg-info" id="script-executions">0</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Elevated Privileges:</span>
+                        <span class="badge bg-danger" id="elevated-processes">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Process Events -->
+    <div class="col-lg-8 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Recent Process Events</h5>
+            </div>
+            <div class="card-body">
+                <div id="recent-processes">
+                    <p class="text-muted">Loading process events...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Running Processes -->
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">Running Processes</h5>
+                <span class="badge bg-secondary" id="running-count">0</span>
+            </div>
+            <div class="card-body">
+                <div id="running-processes">
+                    <p class="text-muted">Loading running processes...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Script Execution History -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-file-earmark-code me-2"></i>Script Executions
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="script-history">
+                    <p class="text-muted">Loading script execution history...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Suspicious Activity -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0 text-warning">
+                    <i class="bi bi-exclamation-triangle me-2"></i>Suspicious Activity
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="suspicious-activity">
+                    <p class="text-muted">Loading suspicious activity...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function formatTimestamp(isoString) {
+        try {
+            const date = new Date(isoString);
+            return date.toLocaleString();
+        } catch {
+            return 'Unknown';
+        }
+    }
+
+    function formatMemory(bytes) {
+        if (!bytes) return 'N/A';
+        const mb = bytes / (1024 * 1024);
+        return `${mb.toFixed(1)} MB`;
+    }
+
+    function getProcessIcon(processName) {
+        const name = processName.toLowerCase();
+        if (name.includes('powershell') || name.includes('cmd')) {
+            return 'bi-terminal';
+        } else if (name.includes('script') || name.endsWith('.ps1') || name.endsWith('.bat')) {
+            return 'bi-file-earmark-code';
+        } else if (name.includes('svchost') || name.includes('service')) {
+            return 'bi-gear';
+        } else {
+            return 'bi-app';
+        }
+    }
+
+    function getThreatLevelBadge(level) {
+        const badges = {
+            'high': 'bg-danger',
+            'medium': 'bg-warning',
+            'low': 'bg-info',
+            'normal': 'bg-success'
+        };
+        return badges[level] || 'bg-secondary';
+    }
+
+    async function loadProcesses() {
+        try {
+            // Since this is a demo, we'll show simulated data
+            // In real implementation, this would call /api/processes or similar
+            
+            // Simulated process data
+            const processEvents = [
+                {
+                    id: '1',
+                    name: 'powershell.exe',
+                    pid: 1234,
+                    timestamp: new Date().toISOString(),
+                    command_line: 'powershell.exe -ExecutionPolicy Bypass -File script.ps1',
+                    threat_level: 'medium',
+                    memory_usage: 52428800,
+                    cpu_usage: 5.2,
+                    user: 'administrator',
+                    parent_process: 'explorer.exe'
+                },
+                {
+                    id: '2',
+                    name: 'notepad.exe',
+                    pid: 2345,
+                    timestamp: new Date(Date.now() - 60000).toISOString(),
+                    command_line: 'notepad.exe C:\\temp\\suspicious.txt',
+                    threat_level: 'low',
+                    memory_usage: 10485760,
+                    cpu_usage: 0.1,
+                    user: 'user123',
+                    parent_process: 'explorer.exe'
+                },
+                {
+                    id: '3',
+                    name: 'cmd.exe',
+                    pid: 3456,
+                    timestamp: new Date(Date.now() - 120000).toISOString(),
+                    command_line: 'cmd.exe /c "net user admin P@ssw0rd /add"',
+                    threat_level: 'high',
+                    memory_usage: 8388608,
+                    cpu_usage: 0.5,
+                    user: 'system',
+                    parent_process: 'services.exe'
+                }
+            ];
+
+            // Update summary counts
+            document.getElementById('total-processes').textContent = '156';
+            document.getElementById('suspicious-processes').textContent = '2';
+            document.getElementById('script-executions').textContent = '5';
+            document.getElementById('elevated-processes').textContent = '12';
+            document.getElementById('running-count').textContent = processEvents.length;
+
+            // Update recent processes
+            const recentProcessesHtml = `
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover">
+                        <thead>
+                            <tr>
+                                <th>Process</th>
+                                <th>PID</th>
+                                <th>User</th>
+                                <th>Threat Level</th>
+                                <th>Memory</th>
+                                <th>CPU %</th>
+                                <th>Started</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${processEvents.map(proc => `
+                                <tr>
+                                    <td>
+                                        <i class="bi ${getProcessIcon(proc.name)} me-2"></i>
+                                        <strong>${proc.name}</strong>
+                                    </td>
+                                    <td><code>${proc.pid}</code></td>
+                                    <td>${proc.user}</td>
+                                    <td>
+                                        <span class="badge ${getThreatLevelBadge(proc.threat_level)}">
+                                            ${proc.threat_level}
+                                        </span>
+                                    </td>
+                                    <td>${formatMemory(proc.memory_usage)}</td>
+                                    <td>${proc.cpu_usage}%</td>
+                                    <td><small>${formatTimestamp(proc.timestamp)}</small></td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            document.getElementById('recent-processes').innerHTML = recentProcessesHtml;
+            document.getElementById('running-processes').innerHTML = recentProcessesHtml;
+
+            // Update script execution history
+            const scriptHistoryHtml = `
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <strong>script.ps1</strong><br>
+                                <small class="text-muted">powershell.exe -ExecutionPolicy Bypass</small>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge bg-warning">Medium Risk</span><br>
+                                <small class="text-muted">2 min ago</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <strong>backup.bat</strong><br>
+                                <small class="text-muted">cmd.exe /c backup.bat</small>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge bg-success">Normal</span><br>
+                                <small class="text-muted">15 min ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('script-history').innerHTML = scriptHistoryHtml;
+
+            // Update suspicious activity
+            const suspiciousActivityHtml = `
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <strong>cmd.exe</strong> (PID: 3456)<br>
+                                <small class="text-muted">Attempting to create admin user</small>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge bg-danger">High Risk</span><br>
+                                <small class="text-muted">5 min ago</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <strong>powershell.exe</strong> (PID: 1234)<br>
+                                <small class="text-muted">Bypassing execution policy</small>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge bg-warning">Medium Risk</span><br>
+                                <small class="text-muted">2 min ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('suspicious-activity').innerHTML = suspiciousActivityHtml;
+
+        } catch (error) {
+            console.error('Error loading processes:', error);
+            document.getElementById('recent-processes').innerHTML = '<p class="text-danger">Error loading process data</p>';
+        }
+    }
+
+    function searchProcesses() {
+        // Implement process search functionality
+        loadProcesses();
+    }
+
+    // Load processes on page load
+    loadProcesses();
+    
+    // Auto-refresh every 30 seconds
+    setInterval(loadProcesses, 30000);
+</script>
+{% endblock %}

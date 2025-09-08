@@ -1,0 +1,1 @@
+{"extracted_information": "The WEB CONTENT lists categories of Windows anti-debugging techniques implemented in the AntiDBG project. These categories are:", "features": ["Memory-based anti-debugging techniques", "CPU-based anti-debugging techniques", "Timing-based anti-debugging techniques", "Forced Exceptions-based anti-debugging techniques", "Other anti-debugging techniques"]}
