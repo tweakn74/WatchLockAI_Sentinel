@@ -13,39 +13,39 @@ from watchsleuth_engine import WatchSleuthForensicEngine, MFTAnalyzer, RegistryA
 
 def test_forensic_engine():
     '''Test the main forensic engine'''
-    print("🔍 Testing WatchSleuth Forensic Engine...")
+    print("[SEARCH] Testing WatchSleuth Forensic Engine...")
     
     # Create temporary case directory
     with tempfile.TemporaryDirectory() as temp_dir:
         engine = WatchSleuthForensicEngine(temp_dir)
         
         # Test 1: Start Investigation
-        print("\n1️⃣ Testing investigation creation...")
+        print("\n1⃣ Testing investigation creation...")
         case_id = engine.start_investigation(
             "Test Investigation",
             "Test Analyst", 
             "Testing WatchSleuth capabilities"
         )
-        print(f"✅ Created investigation: {case_id}")
+        print(f"[PASS] Created investigation: {case_id}")
         
         # Test 2: Add Evidence (create dummy file)
-        print("\n2️⃣ Testing evidence addition...")
+        print("\n2⃣ Testing evidence addition...")
         dummy_evidence = Path(temp_dir) / "test_evidence.txt"
         dummy_evidence.write_text("This is test evidence data")
         
         artifact_id = engine.add_evidence(str(dummy_evidence), "Test evidence file")
-        print(f"✅ Added evidence artifact: {artifact_id}")
+        print(f"[PASS] Added evidence artifact: {artifact_id}")
         
         # Test 3: Perform Analysis
-        print("\n3️⃣ Testing comprehensive analysis...")
+        print("\n3⃣ Testing comprehensive analysis...")
         results = engine.perform_comprehensive_analysis(case_id)
-        print(f"✅ Analysis complete - {len(results['findings'])} findings")
+        print(f"[PASS] Analysis complete - {len(results['findings'])} findings")
         
         # Test 4: Export Report
-        print("\n4️⃣ Testing report export...")
+        print("\n4⃣ Testing report export...")
         report_path = Path(temp_dir) / "test_report.json"
         success = engine.export_case_report(case_id, str(report_path))
-        print(f"✅ Report exported: {success}")
+        print(f"[PASS] Report exported: {success}")
         
         if report_path.exists():
             report_size = report_path.stat().st_size
@@ -53,7 +53,7 @@ def test_forensic_engine():
 
 def test_mft_analyzer():
     '''Test MFT analyzer with simulated data'''
-    print("\n🔍 Testing MFT Analyzer...")
+    print("\n[SEARCH] Testing MFT Analyzer...")
     
     analyzer = MFTAnalyzer()
     
@@ -66,14 +66,14 @@ def test_mft_analyzer():
         
         # Test MFT analysis
         records = analyzer.analyze_mft(temp_mft.name)
-        print(f"✅ Parsed {len(records)} MFT records")
+        print(f"[PASS] Parsed {len(records)} MFT records")
         
         # Cleanup
         os.unlink(temp_mft.name)
 
 def test_registry_analyzer():
     '''Test registry analyzer'''
-    print("\n🔍 Testing Registry Analyzer...")
+    print("\n[SEARCH] Testing Registry Analyzer...")
     
     analyzer = RegistryAnalyzer()
     
@@ -84,7 +84,7 @@ def test_registry_analyzer():
         
         # Test registry analysis
         analysis = analyzer.analyze_registry_hive(temp_reg.name)
-        print(f"✅ Registry analysis complete")
+        print(f"[PASS] Registry analysis complete")
         print(f"   Persistence mechanisms: {len(analysis['persistence_mechanisms'])}")
         print(f"   Suspicious entries: {len(analysis['suspicious_entries'])}")
         
@@ -93,7 +93,7 @@ def test_registry_analyzer():
 
 def test_timeline_creation():
     '''Test timeline creation'''
-    print("\n🔍 Testing Timeline Creation...")
+    print("\n[SEARCH] Testing Timeline Creation...")
     
     # Create sample timeline events
     events = [
@@ -115,7 +115,7 @@ def test_timeline_creation():
         }
     ]
     
-    print(f"✅ Created timeline with {len(events)} events")
+    print(f"[PASS] Created timeline with {len(events)} events")
     
     # Test event correlation
     from timeline_analysis import EventCorrelator
@@ -124,14 +124,14 @@ def test_timeline_creation():
     correlator.load_events(events)
     
     clusters = correlator.find_event_clusters(time_window_minutes=10)
-    print(f"✅ Found {len(clusters)} event clusters")
+    print(f"[PASS] Found {len(clusters)} event clusters")
     
     attack_analysis = correlator.analyze_attack_sequence()
-    print(f"✅ Attack sequence analysis: {len(attack_analysis['potential_attack_chains'])} chains")
+    print(f"[PASS] Attack sequence analysis: {len(attack_analysis['potential_attack_chains'])} chains")
 
 def run_all_tests():
     '''Run all forensic engine tests'''
-    print("🧪 WatchSleuth Forensic Engine Test Suite")
+    print("[U+1F9EA] WatchSleuth Forensic Engine Test Suite")
     print("=" * 50)
     
     try:
@@ -141,11 +141,11 @@ def run_all_tests():
         test_timeline_creation()
         
         print("\n" + "=" * 50)
-        print("✅ All tests completed successfully!")
-        print("\n🎯 WatchSleuth Forensic Engine is ready for use")
+        print("[PASS] All tests completed successfully!")
+        print("\n[TARGET] WatchSleuth Forensic Engine is ready for use")
         
     except Exception as e:
-        print(f"\n❌ Test failed: {e}")
+        print(f"\n[FAIL] Test failed: {e}")
 
 if __name__ == "__main__":
     run_all_tests()

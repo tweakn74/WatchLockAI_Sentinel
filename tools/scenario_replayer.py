@@ -46,7 +46,7 @@ class ScenarioReplayer:
             web_api_spec = importlib.util.find_spec("console.web_api")
             
             if not fastapi_spec or not web_api_spec:
-                print("⚠️  FastAPI or console.web_api not available - switching to dry-run mode")
+                print("[WARN]  FastAPI or console.web_api not available - switching to dry-run mode")
                 self.dry_run = True
                 return
             
@@ -58,11 +58,11 @@ class ScenarioReplayer:
             self.app = api.app
             self.test_client = TestClient(self.app)
             
-            print("✅ FastAPI TestClient initialized successfully")
+            print("[PASS] FastAPI TestClient initialized successfully")
             
         except Exception as e:
-            print(f"⚠️  Failed to initialize FastAPI TestClient: {e}")
-            print("🔄 Switching to dry-run mode")
+            print(f"[WARN]  Failed to initialize FastAPI TestClient: {e}")
+            print("[RELOAD] Switching to dry-run mode")
             self.dry_run = True
     
     def load_scenarios(self, file_path: str) -> List[Dict[str, Any]]:
@@ -78,12 +78,12 @@ class ScenarioReplayer:
                         scenario = json.loads(line)
                         scenarios.append(scenario)
                     except json.JSONDecodeError as e:
-                        print(f"⚠️  Invalid JSON on line {line_num} in {file_path}: {e}")
+                        print(f"[WARN]  Invalid JSON on line {line_num} in {file_path}: {e}")
         except FileNotFoundError:
-            print(f"❌ File not found: {file_path}")
+            print(f"[FAIL] File not found: {file_path}")
             return []
         except Exception as e:
-            print(f"❌ Error reading {file_path}: {e}")
+            print(f"[FAIL] Error reading {file_path}: {e}")
             return []
         
         return scenarios
@@ -113,7 +113,7 @@ class ScenarioReplayer:
         query_params = scenario.get("query_params", {})
         body = scenario.get("body")
         
-        print(f"🔍 DRY-RUN: {scenario.get('id', 'unknown')}")
+        print(f"[SEARCH] DRY-RUN: {scenario.get('id', 'unknown')}")
         print(f"   {method} {path}")
         if query_params:
             print(f"   Query: {query_params}")
@@ -188,16 +188,16 @@ class ScenarioReplayer:
         """Execute multiple scenarios"""
         results = []
         
-        print(f"🚀 Executing {len(scenarios)} scenarios...")
+        print(f"[START] Executing {len(scenarios)} scenarios...")
         if self.dry_run:
-            print("📋 DRY-RUN MODE - No actual requests will be made")
+            print("[PLAN] DRY-RUN MODE - No actual requests will be made")
         print()
         
         for i, scenario in enumerate(scenarios, 1):
             self.stats["total_scenarios"] += 1
             
             if verbose or (i % 100 == 0):
-                print(f"📊 Progress: {i}/{len(scenarios)} ({i/len(scenarios)*100:.1f}%)")
+                print(f"[BARS] Progress: {i}/{len(scenarios)} ({i/len(scenarios)*100:.1f}%)")
             
             result = self.replay_scenario(scenario)
             results.append(result)
@@ -205,12 +205,12 @@ class ScenarioReplayer:
             # Print result if verbose or if there's an error/unexpected result
             if verbose or result["status"] in ["error", "unexpected_status"]:
                 status_icon = {
-                    "success": "✅",
-                    "dry_run_complete": "🔍", 
-                    "unexpected_status": "⚠️",
-                    "error": "❌",
-                    "unknown": "❓"
-                }.get(result["status"], "❓")
+                    "success": "[PASS]",
+                    "dry_run_complete": "[SEARCH]", 
+                    "unexpected_status": "[WARN]",
+                    "error": "[FAIL]",
+                    "unknown": "[U+2753]"
+                }.get(result["status"], "[U+2753]")
                 
                 print(f"{status_icon} {result['scenario_id']} - {result['status']}")
                 if result.get("error"):
@@ -223,7 +223,7 @@ class ScenarioReplayer:
     def print_summary(self) -> None:
         """Print execution summary"""
         print("\n" + "="*60)
-        print("📊 SCENARIO REPLAY SUMMARY")
+        print("[BARS] SCENARIO REPLAY SUMMARY")
         print("="*60)
         print(f"Total Scenarios:    {self.stats['total_scenarios']:,}")
         print(f"Successful:         {self.stats['successful']:,}")
@@ -251,10 +251,10 @@ class ScenarioReplayer:
             with open(output_path, 'w', encoding='utf-8') as f:
                 json.dump(summary, f, indent=2, ensure_ascii=False)
             
-            print(f"💾 Results saved to: {output_path}")
+            print(f"[U+1F4BE] Results saved to: {output_path}")
             
         except Exception as e:
-            print(f"❌ Failed to save results: {e}")
+            print(f"[FAIL] Failed to save results: {e}")
 
 
 def main():
@@ -274,8 +274,8 @@ def main():
     scenarios_dir = os.path.join(repo_root, "DOCS", "scenarios")
     
     if not os.path.exists(scenarios_dir):
-        print(f"❌ Scenarios directory not found: {scenarios_dir}")
-        print("💡 Run scenario generator first: python tools/scenario_generator.py")
+        print(f"[FAIL] Scenarios directory not found: {scenarios_dir}")
+        print("[IDEA] Run scenario generator first: python tools/scenario_generator.py")
         sys.exit(1)
     
     # Initialize replayer
@@ -288,7 +288,7 @@ def main():
         if os.path.exists(args.file):
             scenario_files = [args.file]
         else:
-            print(f"❌ File not found: {args.file}")
+            print(f"[FAIL] File not found: {args.file}")
             sys.exit(1)
     elif args.category:
         if args.category == "all":
@@ -302,30 +302,30 @@ def main():
             if os.path.exists(category_file):
                 scenario_files = [category_file]
             else:
-                print(f"❌ Category file not found: {category_file}")
+                print(f"[FAIL] Category file not found: {category_file}")
                 available_categories = [f[:-6] for f in os.listdir(scenarios_dir) if f.endswith(".jsonl")]
                 print(f"Available categories: {', '.join(available_categories)}")
                 sys.exit(1)
     else:
-        print("❌ Must specify --category or --file")
+        print("[FAIL] Must specify --category or --file")
         parser.print_help()
         sys.exit(1)
     
     if not scenario_files:
-        print("❌ No scenario files found")
+        print("[FAIL] No scenario files found")
         sys.exit(1)
     
     # Load and execute scenarios
     all_scenarios = []
     for file_path in scenario_files:
-        print(f"📂 Loading scenarios from: {os.path.basename(file_path)}")
+        print(f"[U+1F4C2] Loading scenarios from: {os.path.basename(file_path)}")
         scenarios = replayer.load_scenarios(file_path)
         all_scenarios.extend(scenarios)
-        print(f"   📊 Loaded {len(scenarios)} scenarios")
+        print(f"   [BARS] Loaded {len(scenarios)} scenarios")
     
     # Apply limit if specified
     if args.limit and args.limit < len(all_scenarios):
-        print(f"🔢 Limiting to first {args.limit} scenarios")
+        print(f"[U+1F522] Limiting to first {args.limit} scenarios")
         all_scenarios = all_scenarios[:args.limit]
     
     # Execute scenarios

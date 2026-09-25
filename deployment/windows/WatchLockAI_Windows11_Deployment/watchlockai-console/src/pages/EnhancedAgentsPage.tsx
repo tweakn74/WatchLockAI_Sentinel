@@ -402,7 +402,7 @@ export function EnhancedAgentsPage() {
                   onClick={() => setSelectedAgent(null)}
                   className="text-2xl"
                 >
-                  ×
+                  x
                 </Button>
               </div>
               

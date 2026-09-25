@@ -45,7 +45,7 @@ class BulletproofInstallerTest:
             
             if result.returncode == 0:
                 version_info = result.stdout.strip()
-                self.log_test(f"✓ Python found: {version_info}", "SUCCESS")
+                self.log_test(f"[x] Python found: {version_info}", "SUCCESS")
                 
                 # Test Python execution
                 test_script = "print('Python execution test passed')"
@@ -53,21 +53,21 @@ class BulletproofInstallerTest:
                                            capture_output=True, text=True)
                 
                 if exec_result.returncode == 0:
-                    self.log_test("✓ Python execution test passed", "SUCCESS")
-                    self.test_results["Python"] = "✓ WORKING"
+                    self.log_test("[x] Python execution test passed", "SUCCESS")
+                    self.test_results["Python"] = "[x] WORKING"
                     return True
                 else:
-                    self.log_test("✗ Python execution test failed", "ERROR")
-                    self.test_results["Python"] = "✗ EXECUTION FAILED"
+                    self.log_test("[FAIL] Python execution test failed", "ERROR")
+                    self.test_results["Python"] = "[FAIL] EXECUTION FAILED"
                     return False
             else:
-                self.log_test("✗ Python not found", "ERROR")
-                self.test_results["Python"] = "✗ NOT FOUND"
+                self.log_test("[FAIL] Python not found", "ERROR")
+                self.test_results["Python"] = "[FAIL] NOT FOUND"
                 return False
                 
         except Exception as e:
-            self.log_test(f"✗ Python test error: {e}", "ERROR")
-            self.test_results["Python"] = f"✗ ERROR: {str(e)}"
+            self.log_test(f"[FAIL] Python test error: {e}", "ERROR")
+            self.test_results["Python"] = f"[FAIL] ERROR: {str(e)}"
             return False
     
     def test_internet_connectivity(self):
@@ -84,15 +84,15 @@ class BulletproofInstallerTest:
             try:
                 with urllib.request.urlopen(url, timeout=5) as response:
                     if response.getcode() == 200:
-                        self.log_test(f"✓ Internet connection verified via {url}", "SUCCESS")
-                        self.test_results["Internet"] = "✓ CONNECTED"
+                        self.log_test(f"[x] Internet connection verified via {url}", "SUCCESS")
+                        self.test_results["Internet"] = "[x] CONNECTED"
                         return True
             except Exception:
-                self.log_test(f"✗ Failed to connect to {url}", "ERROR")
+                self.log_test(f"[FAIL] Failed to connect to {url}", "ERROR")
                 continue
         
-        self.log_test("✗ No internet connection available", "ERROR")
-        self.test_results["Internet"] = "✗ NO CONNECTION"
+        self.log_test("[FAIL] No internet connection available", "ERROR")
+        self.test_results["Internet"] = "[FAIL] NO CONNECTION"
         return False
     
     def test_source_files(self):
@@ -108,15 +108,15 @@ class BulletproofInstallerTest:
         all_found = True
         for file_path in required_files:
             if file_path.exists():
-                self.log_test(f"✓ Found: {file_path.name}", "SUCCESS")
+                self.log_test(f"[x] Found: {file_path.name}", "SUCCESS")
             else:
-                self.log_test(f"✗ Missing: {file_path}", "ERROR")
+                self.log_test(f"[FAIL] Missing: {file_path}", "ERROR")
                 all_found = False
         
         if all_found:
-            self.test_results["SourceFiles"] = "✓ ALL PRESENT"
+            self.test_results["SourceFiles"] = "[x] ALL PRESENT"
         else:
-            self.test_results["SourceFiles"] = "✗ MISSING FILES"
+            self.test_results["SourceFiles"] = "[FAIL] MISSING FILES"
         
         return all_found
     
@@ -128,8 +128,8 @@ class BulletproofInstallerTest:
         installer_path = self.workspace / "WatchLockAI_Agent" / "installers" / "BULLETPROOF-Installer.ps1"
         
         if not installer_path.exists():
-            self.log_test("✗ Bulletproof installer not found", "ERROR")
-            self.test_results["AIBrain"] = "✗ INSTALLER MISSING"
+            self.log_test("[FAIL] Bulletproof installer not found", "ERROR")
+            self.test_results["AIBrain"] = "[FAIL] INSTALLER MISSING"
             return False
         
         # Create a temporary AI brain script to test
@@ -177,7 +177,7 @@ if __name__ == "__main__":
             with open(temp_ai_brain, 'w', encoding='utf-8') as f:
                 f.write(ai_brain_code)
             
-            self.log_test("✓ AI brain script created", "SUCCESS")
+            self.log_test("[x] AI brain script created", "SUCCESS")
             
             # Test AI responsiveness
             test_questions = [
@@ -193,29 +193,29 @@ if __name__ == "__main__":
                 ], capture_output=True, text=True, timeout=30)
                 
                 if result.returncode == 0 and len(result.stdout.strip()) > 10:
-                    self.log_test(f"✓ AI responded to {module} question", "SUCCESS")
+                    self.log_test(f"[x] AI responded to {module} question", "SUCCESS")
                     responsive_count += 1
                 else:
-                    self.log_test(f"✗ AI failed to respond to {module} question", "ERROR")
+                    self.log_test(f"[FAIL] AI failed to respond to {module} question", "ERROR")
             
             responsiveness = (responsive_count / len(test_questions)) * 100
             
             if responsiveness == 100:
-                self.log_test(f"✓ AI fully responsive (100%)", "SUCCESS")
-                self.test_results["AIBrain"] = "✓ FULLY RESPONSIVE"
+                self.log_test(f"[x] AI fully responsive (100%)", "SUCCESS")
+                self.test_results["AIBrain"] = "[x] FULLY RESPONSIVE"
                 return True
             elif responsiveness >= 80:
-                self.log_test(f"⚠ AI mostly responsive ({responsiveness}%)", "WARNING")
-                self.test_results["AIBrain"] = f"⚠ MOSTLY RESPONSIVE ({responsiveness}%)"
+                self.log_test(f"[WARN] AI mostly responsive ({responsiveness}%)", "WARNING")
+                self.test_results["AIBrain"] = f"[WARN] MOSTLY RESPONSIVE ({responsiveness}%)"
                 return True
             else:
-                self.log_test(f"✗ AI poorly responsive ({responsiveness}%)", "ERROR")
-                self.test_results["AIBrain"] = f"✗ POOR RESPONSIVENESS ({responsiveness}%)"
+                self.log_test(f"[FAIL] AI poorly responsive ({responsiveness}%)", "ERROR")
+                self.test_results["AIBrain"] = f"[FAIL] POOR RESPONSIVENESS ({responsiveness}%)"
                 return False
                 
         except Exception as e:
-            self.log_test(f"✗ AI brain test error: {e}", "ERROR")
-            self.test_results["AIBrain"] = f"✗ ERROR: {str(e)}"
+            self.log_test(f"[FAIL] AI brain test error: {e}", "ERROR")
+            self.test_results["AIBrain"] = f"[FAIL] ERROR: {str(e)}"
             return False
         finally:
             # Clean up
@@ -267,24 +267,24 @@ if __name__ == "__main__":
             with open(temp_server, 'w', encoding='utf-8') as f:
                 f.write(web_server_code)
             
-            self.log_test("✓ Web server script created", "SUCCESS")
+            self.log_test("[x] Web server script created", "SUCCESS")
             
             # Test server functionality
             result = subprocess.run([sys.executable, str(temp_server)], 
                                   capture_output=True, text=True, timeout=10)
             
             if result.returncode == 0:
-                self.log_test("✓ Web server test passed", "SUCCESS")
-                self.test_results["WebServer"] = "✓ FUNCTIONAL"
+                self.log_test("[x] Web server test passed", "SUCCESS")
+                self.test_results["WebServer"] = "[x] FUNCTIONAL"
                 return True
             else:
-                self.log_test(f"✗ Web server test failed: {result.stderr}", "ERROR")
-                self.test_results["WebServer"] = "✗ FAILED"
+                self.log_test(f"[FAIL] Web server test failed: {result.stderr}", "ERROR")
+                self.test_results["WebServer"] = "[FAIL] FAILED"
                 return False
                 
         except Exception as e:
-            self.log_test(f"✗ Web server test error: {e}", "ERROR")
-            self.test_results["WebServer"] = f"✗ ERROR: {str(e)}"
+            self.log_test(f"[FAIL] Web server test error: {e}", "ERROR")
+            self.test_results["WebServer"] = f"[FAIL] ERROR: {str(e)}"
             return False
         finally:
             if temp_server.exists():
@@ -314,7 +314,7 @@ if __name__ == "__main__":
                     passed_tests += 1
             except Exception as e:
                 self.log_test(f"Test {test_name} crashed: {e}", "ERROR")
-                self.test_results[test_name] = f"✗ CRASHED: {str(e)}"
+                self.test_results[test_name] = f"[FAIL] CRASHED: {str(e)}"
             
             self.log_test("", "INFO")  # Empty line
         
@@ -324,7 +324,7 @@ if __name__ == "__main__":
         self.log_test("═══════════════════════════════════════════════════════════════════", "INFO")
         
         for component, status in self.test_results.items():
-            level = "SUCCESS" if status.startswith("✓") else "WARNING" if status.startswith("⚠") else "ERROR"
+            level = "SUCCESS" if status.startswith("[x]") else "WARNING" if status.startswith("[WARN]") else "ERROR"
             self.log_test(f"{component.ljust(20)}: {status}", level)
         
         self.log_test("═══════════════════════════════════════════════════════════════════", "INFO")
@@ -332,11 +332,11 @@ if __name__ == "__main__":
         success_rate = (passed_tests / total_tests) * 100
         
         if success_rate == 100:
-            self.log_test(f"🎉 ALL TESTS PASSED ({passed_tests}/{total_tests}) - BULLETPROOF INSTALLER READY!", "SUCCESS")
+            self.log_test(f"[U+1F389] ALL TESTS PASSED ({passed_tests}/{total_tests}) - BULLETPROOF INSTALLER READY!", "SUCCESS")
         elif success_rate >= 80:
-            self.log_test(f"👍 MOST TESTS PASSED ({passed_tests}/{total_tests}) - {success_rate:.1f}% SUCCESS", "SUCCESS")
+            self.log_test(f"[+1] MOST TESTS PASSED ({passed_tests}/{total_tests}) - {success_rate:.1f}% SUCCESS", "SUCCESS")
         else:
-            self.log_test(f"❌ TESTS FAILED ({passed_tests}/{total_tests}) - {success_rate:.1f}% SUCCESS", "ERROR")
+            self.log_test(f"[FAIL] TESTS FAILED ({passed_tests}/{total_tests}) - {success_rate:.1f}% SUCCESS", "ERROR")
             self.log_test("Dependencies need to be resolved before installation", "ERROR")
         
         return success_rate >= 80

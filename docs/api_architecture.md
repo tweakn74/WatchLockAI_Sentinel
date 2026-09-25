@@ -136,7 +136,7 @@ POST /policy-management
 
 #### **Agent Communication Protocol**
 ```typescript
-// Agent → Console Communication
+// Agent -> Console Communication
 interface AgentMessage {
   type: "heartbeat" | "threat_detected" | "policy_update_ack";
   agent_id: string;
@@ -146,7 +146,7 @@ interface AgentMessage {
   signature: string; // Cryptographic signature for integrity
 }
 
-// Console → Agent Communication  
+// Console -> Agent Communication  
 interface ConsoleCommand {
   type: "deploy_policy" | "collect_evidence" | "isolate_system";
   target_agents: string[];

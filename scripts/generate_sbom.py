@@ -65,11 +65,11 @@ class SBOMGenerator:
             with open(output_path, 'w', encoding='utf-8') as f:
                 json.dump(manifest, f, indent=2, sort_keys=True)
                 
-            print(f"✅ SBOM manifest generated: {output_path}")
+            print(f"[PASS] SBOM manifest generated: {output_path}")
             return True
             
         except Exception as e:
-            print(f"❌ Failed to generate SBOM manifest: {e}")
+            print(f"[FAIL] Failed to generate SBOM manifest: {e}")
             return False
 
 

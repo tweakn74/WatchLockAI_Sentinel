@@ -445,7 +445,7 @@ Windows installation dry-run validation completed for WatchLockAI Sentinel v0.9.
 - **Logging:** Implemented
 
 ### Service Lifecycle Validation
-**Overall Status:** {lifecycle_validation['overall_status']} ✅
+**Overall Status:** {lifecycle_validation['overall_status']} [PASS]
 
 | Phase | Status | Notes |
 |-------|--------|-------|
@@ -457,27 +457,27 @@ Windows installation dry-run validation completed for WatchLockAI Sentinel v0.9.
 
 ## Installation Flow Validation
 
-### 1. Preparation Phase ✅
+### 1. Preparation Phase [PASS]
 - Python runtime validation
 - File system permissions check
 - Prerequisites verification
 
-### 2. Installation Phase ✅
+### 2. Installation Phase [PASS]
 - Application files deployment
 - Configuration setup
 - Directory structure creation
 
-### 3. Service Registration Phase ✅
+### 3. Service Registration Phase [PASS]
 - Windows Service creation
 - Service configuration
 - Startup type setting
 
-### 4. Service Management Phase ✅
+### 4. Service Management Phase [PASS]
 - Service start capability
 - Service stop capability
 - Service status monitoring
 
-### 5. Uninstallation Phase ✅
+### 5. Uninstallation Phase [PASS]
 - Service removal
 - File cleanup
 - Registry cleanup
@@ -513,17 +513,17 @@ Windows installation dry-run validation completed for WatchLockAI Sentinel v0.9.
 ### Installation Criteria
 | Criterion | Status | Notes |
 |-----------|--------|-------|
-| Scripts Present | ✅ | All required scripts available |
-| Error Handling | ✅ | Proper error handling implemented |
-| Admin Requirements | ✅ | Clearly documented and validated |
-| Service Lifecycle | ✅ | Complete install/uninstall cycle |
-| Security Model | ✅ | Appropriate privilege requirements |
+| Scripts Present | [PASS] | All required scripts available |
+| Error Handling | [PASS] | Proper error handling implemented |
+| Admin Requirements | [PASS] | Clearly documented and validated |
+| Service Lifecycle | [PASS] | Complete install/uninstall cycle |
+| Security Model | [PASS] | Appropriate privilege requirements |
 
 ### Recommendations for GA
-1. ✅ **Installation Scripts:** Ready for production use
-2. ✅ **Service Management:** Complete lifecycle validated
-3. ✅ **Error Handling:** Robust error scenarios covered
-4. ✅ **Documentation:** Clear installation instructions needed
+1. [PASS] **Installation Scripts:** Ready for production use
+2. [PASS] **Service Management:** Complete lifecycle validated
+3. [PASS] **Error Handling:** Robust error scenarios covered
+4. [PASS] **Documentation:** Clear installation instructions needed
 
 ## Command Reference
 
@@ -575,7 +575,7 @@ Expand-Archive watchlockai_sentinel-0.9.0-rc1_offline.zip
             return True
             
         except Exception as e:
-            print(f"❌ Failed to generate dry-run report: {e}")
+            print(f"[FAIL] Failed to generate dry-run report: {e}")
             return False
     
     def _generate_script_analysis_section(self, script_analyses: List[Dict]) -> str:
@@ -587,17 +587,17 @@ Expand-Archive watchlockai_sentinel-0.9.0-rc1_offline.zip
             simulation = sa["simulation"]
             
             if "error" in analysis:
-                sections.append(f"### {analysis['script']} ❌\n**Error:** {analysis['error']}")
+                sections.append(f"### {analysis['script']} [FAIL]\n**Error:** {analysis['error']}")
                 continue
             
-            admin_status = "🔒 Admin Required" if analysis.get("admin_required") else "👤 User Level"
+            admin_status = "[LOCK] Admin Required" if analysis.get("admin_required") else "[U+1F464] User Level"
             
-            sections.append(f"""### {analysis['script']} ✅
+            sections.append(f"""### {analysis['script']} [PASS]
 **Admin Required:** {admin_status}  
 **Service Operations:** {len(analysis.get('service_operations', []))} detected  
 **File Operations:** {len(analysis.get('file_operations', []))} detected  
-**Error Handling:** {'✅' if analysis.get('error_handling') else '❌'}  
-**Logging:** {'✅' if analysis.get('logging') else '❌'}
+**Error Handling:** {'[PASS]' if analysis.get('error_handling') else '[FAIL]'}  
+**Logging:** {'[PASS]' if analysis.get('logging') else '[FAIL]'}
 
 **Simulated Commands:**
 {chr(10).join(f"- `{cmd}`" for cmd in simulation.get('simulated_commands', [])[:5])}
@@ -627,11 +627,11 @@ def main():
     success = validator.generate_dryrun_report(output_path)
     
     if success:
-        print(f"✅ P6-005 Windows Install Dry-run completed successfully")
-        print(f"📄 Dry-run Report: {output_path}")
+        print(f"[PASS] P6-005 Windows Install Dry-run completed successfully")
+        print(f"[PAGE] Dry-run Report: {output_path}")
         return 0
     else:
-        print(f"❌ P6-005 Windows Install Dry-run failed")
+        print(f"[FAIL] P6-005 Windows Install Dry-run failed")
         return 1
 
 if __name__ == "__main__":

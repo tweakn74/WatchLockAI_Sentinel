@@ -59,12 +59,12 @@ def validate_imports(file_path: Path) -> Tuple[bool, str]:
 
 def run_pylance_gauntlet() -> None:
     """Run the comprehensive Pylance validation gauntlet."""
-    print("🛡️ PYLANCE GAUNTLET - SUPERHERO VALIDATION SYSTEM")
+    print("[SHIELD] PYLANCE GAUNTLET - SUPERHERO VALIDATION SYSTEM")
     print("=" * 60)
 
     # Find all Python files
     python_files = find_python_files(PROJECT_ROOT)
-    print(f"🔍 Found {len(python_files)} Python files to validate")
+    print(f"[SEARCH] Found {len(python_files)} Python files to validate")
     print()
 
     # Track issues
@@ -75,38 +75,38 @@ def run_pylance_gauntlet() -> None:
     # Validate each file
     for file_path in python_files:
         relative_path = file_path.relative_to(PROJECT_ROOT)
-        print(f"📄 Validating: {relative_path}")
+        print(f"[PAGE] Validating: {relative_path}")
 
         # Syntax validation
         syntax_ok, syntax_msg = validate_syntax(file_path)
         if not syntax_ok:
             syntax_issues.append((file_path, syntax_msg))
-            print(f"   ❌ Syntax Issue: {syntax_msg}")
+            print(f"   [FAIL] Syntax Issue: {syntax_msg}")
             continue
 
         # Import validation
         import_ok, import_msg = validate_imports(file_path)
         if not import_ok:
             import_issues.append((file_path, import_msg))
-            print(f"   ⚠️  Import Issue: {import_msg}")
+            print(f"   [WARN]  Import Issue: {import_msg}")
         else:
-            print("   ✅ Validated Successfully")
+            print("   [PASS] Validated Successfully")
 
         validated_files += 1
 
     # Summary
     print()
     print("=" * 60)
-    print("📊 PYLANCE GAUNTLET RESULTS")
+    print("[BARS] PYLANCE GAUNTLET RESULTS")
     print("=" * 60)
 
-    print(f"✅ Validated Files: {validated_files}/{len(python_files)}")
-    print(f"❌ Syntax Issues: {len(syntax_issues)}")
-    print(f"⚠️  Import Issues: {len(import_issues)}")
+    print(f"[PASS] Validated Files: {validated_files}/{len(python_files)}")
+    print(f"[FAIL] Syntax Issues: {len(syntax_issues)}")
+    print(f"[WARN]  Import Issues: {len(import_issues)}")
 
     # Report syntax issues
     if syntax_issues:
-        print("\n🔧 SYNTAX ISSUES DETECTED:")
+        print("\n[U+1F527] SYNTAX ISSUES DETECTED:")
         print("-" * 30)
         for file_path, error in syntax_issues:
             relative_path = file_path.relative_to(PROJECT_ROOT)
@@ -114,7 +114,7 @@ def run_pylance_gauntlet() -> None:
 
     # Report import issues
     if import_issues:
-        print("\n🔧 IMPORT ISSUES DETECTED:")
+        print("\n[U+1F527] IMPORT ISSUES DETECTED:")
         print("-" * 30)
         for file_path, error in import_issues:
             relative_path = file_path.relative_to(PROJECT_ROOT)
@@ -123,12 +123,12 @@ def run_pylance_gauntlet() -> None:
     # Overall status
     total_issues = len(syntax_issues) + len(import_issues)
     if total_issues == 0:
-        print("\n🎉 ALL PYLANCE ISSUES ELIMINATED!")
-        print("🦸 SUPERHERO-LEVEL CODE QUALITY ACHIEVED!")
+        print("\n[U+1F389] ALL PYLANCE ISSUES ELIMINATED!")
+        print("[U+1F9B8] SUPERHERO-LEVEL CODE QUALITY ACHIEVED!")
         return True
     else:
-        print(f"\n💥 {total_issues} PYLANCE ISSUES REMAIN")
-        print("🔧 CONTINUED SUPERHERO INTERVENTION REQUIRED")
+        print(f"\n[U+1F4A5] {total_issues} PYLANCE ISSUES REMAIN")
+        print("[U+1F527] CONTINUED SUPERHERO INTERVENTION REQUIRED")
         return False
 
 

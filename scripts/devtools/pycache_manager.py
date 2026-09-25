@@ -35,11 +35,11 @@ def scan_pycache():
                 source_name = file.stem.split(".")[0] + ".py"
                 source_path = file.parent.parent / source_name
                 if not source_path.exists():
-                    console.print(f"[yellow]Orphaned:[/yellow] {file} — source missing")
+                    console.print(f"[yellow]Orphaned:[/yellow] {file} -- source missing")
                     to_delete.append(file)
                     log_action(f"Orphaned .pyc scheduled for deletion: {file}")
                 elif source_path.stat().st_mtime > file.stat().st_mtime:
-                    console.print(f"[yellow]Stale:[/yellow] {file} — source is newer")
+                    console.print(f"[yellow]Stale:[/yellow] {file} -- source is newer")
                     to_delete.append(file)
                     log_action(f"Stale .pyc scheduled for deletion: {file}")
                 else:
@@ -76,7 +76,7 @@ def archive_folders(folders):
                     zipf.write(pyc_file, arcname=pyc_file.name)
             shutil.rmtree(folder)
             console.print(
-                f"[blue]Archived and removed:[/blue] {folder} → {archive_name.name}"
+                f"[blue]Archived and removed:[/blue] {folder} -> {archive_name.name}"
             )
             log_action(f"Archived {folder} to {archive_name.name}")
         except Exception as e:

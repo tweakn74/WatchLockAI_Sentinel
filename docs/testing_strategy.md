@@ -73,12 +73,12 @@ graph TB
 
 | Component | Unit Coverage | Integration Coverage | E2E Coverage | Missing |
 |---|---|---|---|---|
-| `app_core.bus` | ✓ Good | ✓ Basic | ✓ Basic | Error recovery, high load |
-| `collectors.*` | ✓ Basic | ✗ Missing | ✗ Missing | Cross-platform behavior |
-| `detection.*` | ✓ Basic | ✗ Missing | ✗ Missing | Rule engine integration |
-| `response.*` | ✓ Basic | ✗ Missing | ✗ Missing | Action execution validation |
-| `console.web_api` | ✗ Missing | ✗ Missing | ✗ Missing | API endpoint testing |
-| `service.*` | ✗ Missing | ✗ Missing | ✗ Missing | Service lifecycle |
+| `app_core.bus` | [x] Good | [x] Basic | [x] Basic | Error recovery, high load |
+| `collectors.*` | [x] Basic | [FAIL] Missing | [FAIL] Missing | Cross-platform behavior |
+| `detection.*` | [x] Basic | [FAIL] Missing | [FAIL] Missing | Rule engine integration |
+| `response.*` | [x] Basic | [FAIL] Missing | [FAIL] Missing | Action execution validation |
+| `console.web_api` | [FAIL] Missing | [FAIL] Missing | [FAIL] Missing | API endpoint testing |
+| `service.*` | [FAIL] Missing | [FAIL] Missing | [FAIL] Missing | Service lifecycle |
 
 ## Smoke Test Recipe
 
@@ -92,14 +92,14 @@ echo "Running smoke tests..."
 # 1. Import test
 python -c "
 import app_core.bus, collectors.fs_monitor, detection.rules_engine
-print('✓ All modules importable')
+print('[x] All modules importable')
 " || exit 1
 
 # 2. Configuration test
 python -c "
 from app_core.config import SentinelConfig
 config = SentinelConfig.load_from_file('config.yaml')
-print(f'✓ Config loads (version {config.version})')
+print(f'[x] Config loads (version {config.version})')
 " || exit 1
 
 # 3. Event bus test
@@ -112,7 +112,7 @@ async def test():
     bus = EventBus()
     event = HealthMetric(component='test', status='healthy', timestamp=1.0)
     await bus.publish(event)
-    print('✓ Event bus functional')
+    print('[x] Event bus functional')
 
 asyncio.run(test())
 " || exit 1
@@ -120,18 +120,18 @@ asyncio.run(test())
 # 4. Platform guard test
 python -c "
 import platform
-print(f'✓ Platform detected: {platform.system()}')
+print(f'[x] Platform detected: {platform.system()}')
 if platform.system() == 'Windows':
     try:
         import winreg
-        print('✓ Windows modules available')
+        print('[x] Windows modules available')
     except ImportError:
-        print('⚠ Windows modules missing (expected on non-Windows)')
+        print('[WARN] Windows modules missing (expected on non-Windows)')
 else:
-    print('✓ Platform guards active for non-Windows')
+    print('[x] Platform guards active for non-Windows')
 "
 
-echo "✓ All smoke tests passed"
+echo "[x] All smoke tests passed"
 ```
 
 ### Comprehensive Smoke Test
@@ -187,7 +187,7 @@ async def test_event_flow():
     
     assert len(alerts_received) == 1
     assert alerts_received[0].rule_id == "test_rule"
-    print("✓ Event flow test passed")
+    print("[x] Event flow test passed")
 
 def test_config_validation():
     """Test configuration loading and validation"""
@@ -197,9 +197,9 @@ def test_config_validation():
     try:
         config = SentinelConfig.load_from_file('config.yaml')
         assert config.version >= 1
-        print("✓ Valid config loads correctly")
+        print("[x] Valid config loads correctly")
     except Exception as e:
-        print(f"✗ Config loading failed: {e}")
+        print(f"[FAIL] Config loading failed: {e}")
         return False
     
     # Test invalid config
@@ -209,10 +209,10 @@ def test_config_validation():
     
     try:
         SentinelConfig.load_from_file(invalid_config_path)
-        print("✗ Invalid config should have failed")
+        print("[FAIL] Invalid config should have failed")
         return False
     except Exception:
-        print("✓ Invalid config properly rejected")
+        print("[x] Invalid config properly rejected")
     finally:
         Path(invalid_config_path).unlink()
     
@@ -228,18 +228,18 @@ def test_platform_guards():
     try:
         import collectors.reg_monitor
         if is_windows:
-            print("✓ Windows registry monitor available")
+            print("[x] Windows registry monitor available")
         else:
-            print("✓ Registry monitor loads with guards on non-Windows")
+            print("[x] Registry monitor loads with guards on non-Windows")
     except ImportError as e:
-        print(f"✗ Registry monitor import failed: {e}")
+        print(f"[FAIL] Registry monitor import failed: {e}")
         return False
     
     try:
         import service.service_wrapper
-        print("✓ Service wrapper loads with platform guards")
+        print("[x] Service wrapper loads with platform guards")
     except ImportError as e:
-        print(f"✗ Service wrapper import failed: {e}")
+        print(f"[FAIL] Service wrapper import failed: {e}")
         return False
     
     return True
@@ -256,29 +256,29 @@ async def main():
         await test_event_flow()
         tests_passed += 1
     except Exception as e:
-        print(f"✗ Event flow test failed: {e}")
+        print(f"[FAIL] Event flow test failed: {e}")
     
     # Test 2: Configuration
     try:
         if test_config_validation():
             tests_passed += 1
     except Exception as e:
-        print(f"✗ Config validation test failed: {e}")
+        print(f"[FAIL] Config validation test failed: {e}")
     
     # Test 3: Platform guards
     try:
         if test_platform_guards():
             tests_passed += 1
     except Exception as e:
-        print(f"✗ Platform guard test failed: {e}")
+        print(f"[FAIL] Platform guard test failed: {e}")
     
     print(f"\nSmoke test results: {tests_passed}/{total_tests} passed")
     
     if tests_passed == total_tests:
-        print("✓ All smoke tests passed - system ready")
+        print("[x] All smoke tests passed - system ready")
         return True
     else:
-        print("✗ Some smoke tests failed - investigate before proceeding")
+        print("[FAIL] Some smoke tests failed - investigate before proceeding")
         return False
 
 if __name__ == "__main__":

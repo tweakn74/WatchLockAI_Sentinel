@@ -342,21 +342,21 @@ def debug_configuration():
     
     try:
         config = load_config()
-        print("✓ Configuration loaded successfully")
+        print("[x] Configuration loaded successfully")
         
         # Validate configuration
         warnings = validate_config(config)
         if warnings:
-            print("⚠ Configuration warnings:")
+            print("[WARN] Configuration warnings:")
             for warning in warnings:
                 print(f"  - {warning}")
         else:
-            print("✓ Configuration validation passed")
+            print("[x] Configuration validation passed")
         
         # Check operational mode
         from config.operational_mode import get_mode
         mode = get_mode()
-        print(f"✓ Operational mode: {mode}")
+        print(f"[x] Operational mode: {mode}")
         
         # Check feature flags
         print("Feature flags:")
@@ -373,7 +373,7 @@ def debug_configuration():
             print(f"  {flag}: {value}")
             
     except Exception as e:
-        print(f"✗ Configuration error: {e}")
+        print(f"[FAIL] Configuration error: {e}")
         import traceback
         traceback.print_exc()
 
@@ -628,25 +628,25 @@ def validate_build():
         from app_core.bus import EventBus
         from app_core.schemas import FileEvent
         from app_core.config import load_config
-        print("✓ Core imports successful")
+        print("[x] Core imports successful")
     except ImportError as e:
-        print(f"✗ Core import failed: {e}")
+        print(f"[FAIL] Core import failed: {e}")
         return False
     
     # Check configuration loading
     try:
         config = load_config()
-        print("✓ Configuration loading successful")
+        print("[x] Configuration loading successful")
     except Exception as e:
-        print(f"✗ Configuration loading failed: {e}")
+        print(f"[FAIL] Configuration loading failed: {e}")
         return False
     
     # Check platform compatibility
     import sys
     if sys.version_info < (3, 10):
-        print(f"✗ Python version {sys.version} < 3.10")
+        print(f"[FAIL] Python version {sys.version} < 3.10")
         return False
-    print(f"✓ Python version {sys.version} OK")
+    print(f"[x] Python version {sys.version} OK")
     
     # Check optional dependencies
     optional_deps = [
@@ -658,11 +658,11 @@ def validate_build():
     for module, description in optional_deps:
         try:
             __import__(module)
-            print(f"✓ Optional dependency {module} available")
+            print(f"[x] Optional dependency {module} available")
         except ImportError:
-            print(f"⚠ Optional dependency {module} not available ({description})")
+            print(f"[WARN] Optional dependency {module} not available ({description})")
     
-    print("✓ Build validation completed")
+    print("[x] Build validation completed")
     return True
 
 if __name__ == "__main__":

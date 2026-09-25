@@ -64,9 +64,9 @@ def run_preflight():
     all_exist = True
     for d in required_dirs:
         if not os.path.exists(d):
-            print(f"❌ Missing directory: {d}")
+            print(f"[FAIL] Missing directory: {d}")
             all_exist = False
         else:
-            print(f"✅ {d} exists")
+            print(f"[PASS] {d} exists")
 
     return all_exist

@@ -447,18 +447,18 @@ def generate_markdown_report(matrix_data: Dict[str, Any], output_path: Path):
         
         for flag_name, flag_data in sorted(flags):
             security_emoji = {
-                'public': '🟢',
-                'sensitive': '🟡', 
-                'secret': '🔴',
-                'critical': '🚨'
+                'public': '[U+1F7E2]',
+                'sensitive': '[U+1F7E1]', 
+                'secret': '[U+1F534]',
+                'critical': '[ALERT]'
             }
             
-            md_content += f"#### {flag_name} {security_emoji.get(flag_data['security_classification'], '⚪')}\n\n"
+            md_content += f"#### {flag_name} {security_emoji.get(flag_data['security_classification'], '[U+26AA]')}\n\n"
             
             if flag_data['canonical_default']:
                 md_content += f"**Default:** `{flag_data['canonical_default']}`  \n"
             else:
-                md_content += "**Default:** ⚠️ No default value  \n"
+                md_content += "**Default:** [WARN] No default value  \n"
                 
             md_content += f"**Security:** {flag_data['security_classification']}  \n"
             md_content += f"**Used in:** {flag_data['usage_count']} locations across {len(flag_data['files_used_in'])} files  \n"

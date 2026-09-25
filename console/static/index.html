@@ -195,11 +195,11 @@
                     </div>
                     <div class="metric">
                         <span class="metric-name">Uptime</span>
-                        <span class="metric-value" id="uptime-value">—</span>
+                        <span class="metric-value" id="uptime-value">--</span>
                     </div>
                     <div class="metric">
                         <span class="metric-name">Last Check</span>
-                        <span class="metric-value" id="last-check">—</span>
+                        <span class="metric-value" id="last-check">--</span>
                     </div>
                 </div>
             </div>
@@ -210,15 +210,15 @@
                 <div id="system-metrics">
                     <div class="metric">
                         <span class="metric-name">CPU Usage</span>
-                        <span class="metric-value" id="cpu-value">—</span>
+                        <span class="metric-value" id="cpu-value">--</span>
                     </div>
                     <div class="metric">
                         <span class="metric-name">Memory Usage</span>
-                        <span class="metric-value" id="memory-value">—</span>
+                        <span class="metric-value" id="memory-value">--</span>
                     </div>
                     <div class="metric">
                         <span class="metric-name">Disk Usage</span>
-                        <span class="metric-value" id="disk-value">—</span>
+                        <span class="metric-value" id="disk-value">--</span>
                     </div>
                 </div>
             </div>
@@ -229,19 +229,19 @@
                 <div id="feature-status">
                     <div class="metric">
                         <span class="metric-name">Authentication</span>
-                        <span class="metric-value" id="auth-status">—</span>
+                        <span class="metric-value" id="auth-status">--</span>
                     </div>
                     <div class="metric">
                         <span class="metric-name">Admin API</span>
-                        <span class="metric-value" id="admin-status">—</span>
+                        <span class="metric-value" id="admin-status">--</span>
                     </div>
                     <div class="metric">
                         <span class="metric-name">Export</span>
-                        <span class="metric-value" id="export-status">—</span>
+                        <span class="metric-value" id="export-status">--</span>
                     </div>
                     <div class="metric">
                         <span class="metric-name">Backup</span>
-                        <span class="metric-value" id="backup-status">—</span>
+                        <span class="metric-value" id="backup-status">--</span>
                     </div>
                 </div>
             </div>
@@ -318,7 +318,7 @@
             if (error) {
                 indicator.className = 'status-indicator status-error';
                 value.textContent = 'Error: ' + error;
-                uptime.textContent = '—';
+                uptime.textContent = '--';
             } else if (healthData) {
                 const status = healthData.status?.toLowerCase() || 'unknown';
                 indicator.className = `status-indicator status-${status === 'ok' ? 'online' : 'warning'}`;

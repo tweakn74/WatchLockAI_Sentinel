@@ -48,7 +48,7 @@ class FullHarvestBuilder:
         
     def enumerate_files(self) -> Tuple[List[Path], List[Path]]:
         """Build stable, sorted file lists for source-only and everything packages"""
-        print(f"📁 Enumerating files from: {self.root_path}")
+        print(f"[U+1F4C1] Enumerating files from: {self.root_path}")
         
         all_files = []
         source_only_files = []
@@ -79,7 +79,7 @@ class FullHarvestBuilder:
         all_files.sort(key=str)
         source_only_files.sort(key=str)
         
-        print(f"📊 Enumerated {len(source_only_files)} source-only files, {len(all_files)} total files")
+        print(f"[BARS] Enumerated {len(source_only_files)} source-only files, {len(all_files)} total files")
         return source_only_files, all_files
         
     def calculate_file_hash(self, file_path: Path) -> Tuple[str, int]:
@@ -114,7 +114,7 @@ class FullHarvestBuilder:
                 }
                 total_size += size
             except Exception as e:
-                print(f"⚠️  Error processing {rel_path}: {e}")
+                print(f"[WARN]  Error processing {rel_path}: {e}")
                 
         manifest['total_size_bytes'] = total_size
         manifest['total_size_mb'] = round(total_size / 1024 / 1024, 2)
@@ -122,7 +122,7 @@ class FullHarvestBuilder:
         
     def create_deterministic_zip(self, file_list: List[Path], output_path: Path, description: str) -> str:
         """Create deterministic ZIP archive with sorted entries"""
-        print(f"📦 Creating {description}: {output_path}")
+        print(f"[PKG] Creating {description}: {output_path}")
         
         with zipfile.ZipFile(output_path, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as zf:
             for rel_path in file_list:
@@ -140,7 +140,7 @@ class FullHarvestBuilder:
                         
         # Calculate final archive hash
         sha256, size = self.calculate_file_hash(output_path)
-        print(f"✅ {description} complete: {size:,} bytes, SHA256={sha256[:16]}...")
+        print(f"[PASS] {description} complete: {size:,} bytes, SHA256={sha256[:16]}...")
         return sha256
         
     def split_large_zip(self, zip_path: Path, max_size_gb: float = 1.0) -> Dict:
@@ -149,10 +149,10 @@ class FullHarvestBuilder:
         zip_size = zip_path.stat().st_size
         
         if zip_size <= max_size_bytes:
-            print(f"📏 {zip_path.name} ({zip_size:,} bytes) is within size limit")
+            print(f"[U+1F4CF] {zip_path.name} ({zip_size:,} bytes) is within size limit")
             return {'parts': 0, 'index': None}
             
-        print(f"✂️  Splitting {zip_path.name} ({zip_size:,} bytes) into ≤{max_size_gb}GB parts")
+        print(f"[U+2702]  Splitting {zip_path.name} ({zip_size:,} bytes) into <={max_size_gb}GB parts")
         
         parts_info = {
             'original_file': str(zip_path.name),
@@ -181,7 +181,7 @@ class FullHarvestBuilder:
                     'sha256': sha256
                 })
                 
-                print(f"  📦 Part {part_num}: {part_path.name} ({size:,} bytes)")
+                print(f"  [PKG] Part {part_num}: {part_path.name} ({size:,} bytes)")
                 part_num += 1
                 
         # Write parts index
@@ -190,20 +190,20 @@ class FullHarvestBuilder:
             json.dump(parts_info, f, indent=2)
             
         parts_info['total_parts'] = len(parts_info['parts'])
-        print(f"✅ Split into {parts_info['total_parts']} parts, index: {index_path.name}")
+        print(f"[PASS] Split into {parts_info['total_parts']} parts, index: {index_path.name}")
         return {'parts': parts_info['total_parts'], 'index': str(index_path.name)}
 
 if __name__ == "__main__":
     builder = FullHarvestBuilder()
     
-    print("🚀 Full Harvest & Packaging v7.1 Builder")
+    print("[START] Full Harvest & Packaging v7.1 Builder")
     print("=" * 50)
     
     # Step 1: Enumerate files
     source_files, everything_files = builder.enumerate_files()
     
     # Step 2: Build manifests  
-    print("\n📋 Building file manifests...")
+    print("\n[PLAN] Building file manifests...")
     source_manifest = builder.build_manifest(source_files)
     everything_manifest = builder.build_manifest(everything_files)
     
@@ -211,7 +211,7 @@ if __name__ == "__main__":
     dist_path = builder.root_path / "dist"
     dist_path.mkdir(exist_ok=True)
     
-    print(f"\n📦 Creating archives in: {dist_path}")
+    print(f"\n[PKG] Creating archives in: {dist_path}")
     
     # Step 3: Create source-only package
     source_zip_path = dist_path / "source_only_v7_1.zip"
@@ -253,16 +253,16 @@ if __name__ == "__main__":
     with open(manifest_path, 'w') as f:
         json.dump(full_manifest, f, indent=2)
         
-    print(f"\n✅ Full harvest packaging complete!")
-    print(f"📄 Manifest: {manifest_path}")
-    print(f"📦 Source package: {source_zip_path.name} ({source_zip_path.stat().st_size:,} bytes)")
-    print(f"📦 Everything package: {everything_zip_path.name} ({everything_zip_path.stat().st_size:,} bytes)")
+    print(f"\n[PASS] Full harvest packaging complete!")
+    print(f"[PAGE] Manifest: {manifest_path}")
+    print(f"[PKG] Source package: {source_zip_path.name} ({source_zip_path.stat().st_size:,} bytes)")
+    print(f"[PKG] Everything package: {everything_zip_path.name} ({everything_zip_path.stat().st_size:,} bytes)")
     if split_info['parts'] > 0:
-        print(f"✂️  Split into {split_info['parts']} parts")
+        print(f"[U+2702]  Split into {split_info['parts']} parts")
         
     # Export file lists for other tools
     builder.source_files = source_files
     builder.everything_files = everything_files
     builder.file_manifest = full_manifest
     
-    print("\n🎯 Ready for verification and proof generation!")
+    print("\n[TARGET] Ready for verification and proof generation!")

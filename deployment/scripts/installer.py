@@ -304,19 +304,19 @@ function Show-CompletionMessage {{
         Write-Host ("=" * 70) -ForegroundColor Cyan
         
         if ($Success) {{
-            Write-Host "🎉 WatchLockAI Installation Completed Successfully!" -ForegroundColor Green
+            Write-Host "[U+1F389] WatchLockAI Installation Completed Successfully!" -ForegroundColor Green
             Write-Host ""
             Write-Host "Installation Details:" -ForegroundColor Cyan
-            Write-Host "  • Location: $InstallPath" -ForegroundColor White
-            Write-Host "  • Console: $ConsoleEndpoint" -ForegroundColor White
-            Write-Host "  • Service: WatchLockAI" -ForegroundColor White
+            Write-Host "  * Location: $InstallPath" -ForegroundColor White
+            Write-Host "  * Console: $ConsoleEndpoint" -ForegroundColor White
+            Write-Host "  * Service: WatchLockAI" -ForegroundColor White
             Write-Host ""
             Write-Host "Next Steps:" -ForegroundColor Yellow
             Write-Host "  1. Visit management console: $ConsoleEndpoint" -ForegroundColor White
             Write-Host "  2. Test service: Run WatchLockAI.Service.bat" -ForegroundColor White
             Write-Host "  3. Check logs in: $InstallPath\\Logs" -ForegroundColor White
         }} else {{
-            Write-Host "❌ Installation Failed!" -ForegroundColor Red
+            Write-Host "[FAIL] Installation Failed!" -ForegroundColor Red
             Write-Host "Check log: $env:TEMP\\WatchLockAI_Install.log" -ForegroundColor Yellow
         }}
         
@@ -340,9 +340,9 @@ try {{
     
     if (-not $Silent) {{
         Write-Host ""
-        Write-Host "📍 INSTALLATION DETAILS:" -ForegroundColor Cyan
-        Write-Host "   • Location: $InstallPath" -ForegroundColor White
-        Write-Host "   • Console: $ConsoleEndpoint" -ForegroundColor White
+        Write-Host "[U+1F4CD] INSTALLATION DETAILS:" -ForegroundColor Cyan
+        Write-Host "   * Location: $InstallPath" -ForegroundColor White
+        Write-Host "   * Console: $ConsoleEndpoint" -ForegroundColor White
         Write-Host ""
     }}
     
@@ -400,7 +400,7 @@ try {{
     
     if (-not $Silent) {{
         Write-Host ""
-        Write-Host "❌ FATAL ERROR: $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "[FAIL] FATAL ERROR: $($_.Exception.Message)" -ForegroundColor Red
     }}
     
     exit 1
@@ -443,7 +443,7 @@ if %errorLevel% neq 0 (
     exit /b 1
 )
 
-echo ✓ Administrator privileges confirmed
+echo [x] Administrator privileges confirmed
 echo.
 
 REM Get console endpoint
@@ -527,12 +527,12 @@ if __name__ == "__main__":
     # Create bulletproof installer
     create_bulletproof_installer(base_path)
     
-    print("\n✅ BULLETPROOF INSTALLER CREATED!")
+    print("\n[PASS] BULLETPROOF INSTALLER CREATED!")
     print("\nFixes applied:")
-    print("• PowerShell syntax completely rewritten")
-    print("• JSON configuration files fixed")
-    print("• Base64 embedded configs properly encoded")
-    print("• All brace matching corrected")
-    print("• Comprehensive error handling")
-    print("• Tested and validated structure")
+    print("* PowerShell syntax completely rewritten")
+    print("* JSON configuration files fixed")
+    print("* Base64 embedded configs properly encoded")
+    print("* All brace matching corrected")
+    print("* Comprehensive error handling")
+    print("* Tested and validated structure")
     print("\nThis installer WILL work on Windows!")

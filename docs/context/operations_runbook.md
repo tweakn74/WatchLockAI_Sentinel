@@ -1010,7 +1010,7 @@ The following diagram illustrates the Role-Based Access Control (RBAC) flow for 
 1. **Session-Based Authentication** (Primary)
    - Uses HTTP session cookies with secure attributes
    - Cookie must include: HttpOnly, Secure (HTTPS), SameSite=Lax/Strict
-   - Session timeout: ≤24 hours from issuance
+   - Session timeout: <=24 hours from issuance
    - Automatic logout clears cookies (Max-Age=0)
 
 2. **Token-Based Authentication** (Fallback)

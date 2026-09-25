@@ -4,7 +4,7 @@ from __future__ import annotations
 """Module: tools/sd_metadata_dump.py
 Auto-added docstring to aid static analysis and navigation.
 """
-# sd_metadata_dump.py  — self-installing edition
+# sd_metadata_dump.py  -- self-installing edition
 # Scans a folder for PNG/JPG/JPEG/WEBP, extracts Stable Diffusion PNG text chunks
 # and JPEG/WEBP EXIF, writes a CSV report + per-image _metadata.txt sidecars.
 

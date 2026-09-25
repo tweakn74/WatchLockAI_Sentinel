@@ -1,4 +1,4 @@
-# ML Scoring — Spec
+# ML Scoring -- Spec
 
 No model artifact is provided in this pack. Implement `detection/ml_scoring.py` with a typed interface:
 - function: score_behavior(signal: dict) -> Optional[tuple[float,str]]

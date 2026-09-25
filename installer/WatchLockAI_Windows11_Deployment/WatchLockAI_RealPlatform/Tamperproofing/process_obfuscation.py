@@ -116,7 +116,7 @@ class MemoryProtector:
 
 def main():
     '''Test obfuscation techniques'''
-    print("🥷 WatchLockAI Process Obfuscation")
+    print("[U+1F977] WatchLockAI Process Obfuscation")
     print("Advanced process hiding and protection")
     print()
     
@@ -133,8 +133,8 @@ def main():
     memory_protector.scramble_memory_layout()
     memory_protector.detect_memory_access()
     
-    print("✅ Process obfuscation active")
-    print("✅ Memory protection enabled")
+    print("[PASS] Process obfuscation active")
+    print("[PASS] Memory protection enabled")
     
 if __name__ == "__main__":
     main()

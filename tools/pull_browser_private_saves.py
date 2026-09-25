@@ -4,7 +4,7 @@ from __future__ import annotations
 """Module: tools/pull_browser_private_saves.py
 Auto-added docstring to aid static analysis and navigation.
 """
-# pull_perchance_attach.py — attach to an EXISTING Chrome tab and extract Perchance "private saves"
+# pull_perchance_attach.py -- attach to an EXISTING Chrome tab and extract Perchance "private saves"
 # No new windows. Reads localStorage/sessionStorage/<img> data URLs, tries IndexedDB too, writes files to Downloads.
 
 import os
@@ -174,7 +174,7 @@ def attach_driver():
         sys.exit(1)
     opts = Options()
     opts.add_experimental_option("debuggerAddress", addr)
-    # Important: NO Service(...) here; we’re attaching to your existing Chrome
+    # Important: NO Service(...) here; we're attaching to your existing Chrome
     return webdriver.Chrome(options=opts)
 
 

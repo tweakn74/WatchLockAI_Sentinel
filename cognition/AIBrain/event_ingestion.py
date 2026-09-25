@@ -280,7 +280,7 @@ class NetworkMonitor:
 
 def main():
     '''Main event collection service'''
-    print("🔍 Starting WatchLockAI Event Ingestion System...")
+    print("[SEARCH] Starting WatchLockAI Event Ingestion System...")
     
     # Initialize collectors
     windows_collector = WindowsEventCollector()
@@ -292,19 +292,19 @@ def main():
     powershell_monitor.start_monitoring()
     network_monitor.start_monitoring()
     
-    print("✅ Event collection started")
-    print("📡 Monitoring:")
+    print("[PASS] Event collection started")
+    print("[SCOUT] Monitoring:")
     print("   - Windows Event Logs")
     print("   - PowerShell Execution") 
     print("   - Network Connections")
     print()
-    print("🔄 Events will be sent to AI Brain for analysis...")
+    print("[RELOAD] Events will be sent to AI Brain for analysis...")
     
     try:
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
-        print("\n🛑 Stopping event collection...")
+        print("\n[U+1F6D1] Stopping event collection...")
         windows_collector.running = False
         powershell_monitor.running = False
         network_monitor.running = False

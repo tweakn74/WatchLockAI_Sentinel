@@ -21,16 +21,16 @@ def test_import(module_name: str, import_path: str) -> bool:
     """Test importing a module and report success or failure."""
     try:
         __import__(import_path)
-        print(f"✅ {module_name}: Import SUCCESS")
+        print(f"[PASS] {module_name}: Import SUCCESS")
         return True
     except Exception as e:
-        print(f"❌ {module_name}: Import FAILED - {e}")
+        print(f"[FAIL] {module_name}: Import FAILED - {e}")
         return False
 
 
 def run_import_tests():
     """Run comprehensive import tests for core consciousness components."""
-    print("🧠 CONSCIOUSNESS CORE IMPORT TEST")
+    print("[BRAIN] CONSCIOUSNESS CORE IMPORT TEST")
     print("=" * 50)
 
     # Test core dopamine components
@@ -70,17 +70,17 @@ def run_import_tests():
     # Summary
     print()
     print("=" * 50)
-    print("📊 IMPORT TEST RESULTS")
+    print("[BARS] IMPORT TEST RESULTS")
     print("=" * 50)
-    print(f"✅ Successful Imports: {success_count}/{total_count}")
+    print(f"[PASS] Successful Imports: {success_count}/{total_count}")
 
     if success_count == total_count:
-        print("\n🎉 ALL CORE MODULES IMPORT SUCCESSFULLY!")
-        print("🦸 CONSCIOUSNESS CORE IS BULLETPROOF!")
+        print("\n[U+1F389] ALL CORE MODULES IMPORT SUCCESSFULLY!")
+        print("[U+1F9B8] CONSCIOUSNESS CORE IS BULLETPROOF!")
         return True
     else:
-        print(f"\n💥 {total_count - success_count} MODULES FAILED TO IMPORT")
-        print("🔧 SUPERHERO INTERVENTION REQUIRED!")
+        print(f"\n[U+1F4A5] {total_count - success_count} MODULES FAILED TO IMPORT")
+        print("[U+1F527] SUPERHERO INTERVENTION REQUIRED!")
         return False
 
 

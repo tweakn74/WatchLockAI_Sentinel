@@ -174,12 +174,12 @@ class WatchLockAIHandler(BaseHTTPRequestHandler):
         elif 'help' in message_lower or 'what can you do' in message_lower:
             return """I'm your AI-powered cybersecurity assistant! I can help with:
 
-🛡️ **Threat Detection** - Real-time monitoring and analysis
-🔍 **Digital Forensics** - Investigate security incidents
-📊 **MITRE ATT&CK** - Map threats to attack frameworks
-🚨 **Incident Response** - Guide you through security incidents
-📈 **Compliance** - NIST, SOC 2, ISO 27001 reporting
-🔗 **Integration** - Connect with SIEM, EDR, SOAR platforms
+[SHIELD] **Threat Detection** - Real-time monitoring and analysis
+[SEARCH] **Digital Forensics** - Investigate security incidents
+[BARS] **MITRE ATT&CK** - Map threats to attack frameworks
+[ALERT] **Incident Response** - Guide you through security incidents
+[CHART] **Compliance** - NIST, SOC 2, ISO 27001 reporting
+[LINK] **Integration** - Connect with SIEM, EDR, SOAR platforms
 
 What would you like to explore?"""
         

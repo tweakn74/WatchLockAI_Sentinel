@@ -10,11 +10,11 @@ WatchLockAI Sentinel uses an event-driven architecture where components communic
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   Collectors    │    │  Detection      │    │   Response      │
 │                 │    │  Engines        │    │   Systems       │
-│ • FileSystem    │    │ • Rules Engine  │    │ • Alert Mgr     │
-│ • Process       │───▶│ • Behavioral    │───▶│ • Actions Mgr   │
-│ • Registry      │    │ • Threat Intel  │    │ • Playbooks     │
-│ • Network       │    │ • ML Scoring    │    │ • UI Tray       │
-│ • Health        │    │                 │    │                 │
+│ * FileSystem    │    │ * Rules Engine  │    │ * Alert Mgr     │
+│ * Process       │───>│ * Behavioral    │───>│ * Actions Mgr   │
+│ * Registry      │    │ * Threat Intel  │    │ * Playbooks     │
+│ * Network       │    │ * ML Scoring    │    │ * UI Tray       │
+│ * Health        │    │                 │    │                 │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
          │                       │                       │
          └───────────────────────┼───────────────────────┘
@@ -22,18 +22,18 @@ WatchLockAI Sentinel uses an event-driven architecture where components communic
                     ┌─────────────────┐
                     │   Event Bus     │
                     │                 │
-                    │ • Pub/Sub       │
-                    │ • Type Routing  │
-                    │ • History       │
-                    │ • Metrics       │
+                    │ * Pub/Sub       │
+                    │ * Type Routing  │
+                    │ * History       │
+                    │ * Metrics       │
                     └─────────────────┘
                                  │
                     ┌─────────────────┐
                     │   Web API       │
                     │                 │
-                    │ • REST Endpoints│
-                    │ • SSE Streaming │
-                    │ • Web Console   │
+                    │ * REST Endpoints│
+                    │ * SSE Streaming │
+                    │ * Web Console   │
                     └─────────────────┘
 ```
 

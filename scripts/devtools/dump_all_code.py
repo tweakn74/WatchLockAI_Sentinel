@@ -12,7 +12,7 @@ TARGETS = [
 log_path = Path("devagent_code_dump.txt")
 
 with log_path.open("w", encoding="utf-8") as log:
-    log.write("🧠 DevAgent Code Dump\n")
+    log.write("[BRAIN] DevAgent Code Dump\n")
     log.write("=" * 60 + "\n\n")
     for file in TARGETS:
         path = Path(file)
@@ -22,4 +22,4 @@ with log_path.open("w", encoding="utf-8") as log:
         else:
             log.write(f"\n# ===== {file} MISSING =====\n\n")
 
-print(f"\n✅ Code dump complete: {log_path.resolve()}")
+print(f"\n[PASS] Code dump complete: {log_path.resolve()}")

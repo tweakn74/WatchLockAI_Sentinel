@@ -18,17 +18,17 @@ from event_monitor import WindowsEventMonitor
 
 def test_account_discovery():
     '''Test account discovery functionality'''
-    print("\n🔍 Testing Account Discovery...")
+    print("\n[SEARCH] Testing Account Discovery...")
     
     discovery = AccountDiscovery()
     
     # Test database initialization
     assert os.path.exists(discovery.account_database)
-    print("✅ Account database initialized")
+    print("[PASS] Account database initialized")
     
     # Test account discovery methods (will be limited in Linux environment)
     accounts = discovery.discover_accounts()
-    print(f"✅ Account discovery completed (found {len(accounts)} accounts)")
+    print(f"[PASS] Account discovery completed (found {len(accounts)} accounts)")
     
     # Test suspicious account detection
     fake_account = {
@@ -40,46 +40,46 @@ def test_account_discovery():
     }
     
     discovery._analyze_for_hidden_accounts([fake_account])
-    print("✅ Hidden account analysis working")
+    print("[PASS] Hidden account analysis working")
 
 def test_behavior_analyzer():
     '''Test behavior analysis'''
-    print("\n🔍 Testing Behavior Analyzer...")
+    print("\n[SEARCH] Testing Behavior Analyzer...")
     
     analyzer = BehaviorAnalyzer()
     
     # Test database initialization
     assert os.path.exists(analyzer.behavior_database)
-    print("✅ Behavior database initialized")
+    print("[PASS] Behavior database initialized")
     
     # Test user profile creation
     profile = analyzer._create_user_profile("testuser")
     assert profile.username == "testuser"
-    print("✅ User profile creation working")
+    print("[PASS] User profile creation working")
     
     # Test login behavior analysis
     analyzer.analyze_login_behavior("testuser", "2024-01-01T09:00:00", "192.168.1.100")
-    print("✅ Login behavior analysis working")
+    print("[PASS] Login behavior analysis working")
     
     # Test process behavior analysis  
     analyzer.analyze_process_behavior("testuser", "notepad.exe", "notepad.exe document.txt")
-    print("✅ Process behavior analysis working")
+    print("[PASS] Process behavior analysis working")
     
     # Test privilege escalation detection
     old_privs = ["SeShutdownPrivilege"]
     new_privs = ["SeShutdownPrivilege", "SeDebugPrivilege"]
     analyzer.detect_privilege_escalation("testuser", old_privs, new_privs)
-    print("✅ Privilege escalation detection working")
+    print("[PASS] Privilege escalation detection working")
 
 def test_identity_correlation():
     '''Test identity correlation engine'''
-    print("\n🔍 Testing Identity Correlation...")
+    print("\n[SEARCH] Testing Identity Correlation...")
     
     engine = IdentityCorrelationEngine()
     
     # Test database initialization
     assert os.path.exists(engine.identity_database)
-    print("✅ Identity database initialized")
+    print("[PASS] Identity database initialized")
     
     # Test identity correlation
     user_info = {
@@ -92,29 +92,29 @@ def test_identity_correlation():
     identity_id1 = engine.correlate_identity("jdoe", user_info)
     identity_id2 = engine.correlate_identity("john.doe", user_info)  # Same user
     
-    print(f"✅ Identity correlation working")
-    print(f"   User 'jdoe' → {identity_id1}")
-    print(f"   User 'john.doe' → {identity_id2}")
+    print(f"[PASS] Identity correlation working")
+    print(f"   User 'jdoe' -> {identity_id1}")
+    print(f"   User 'john.doe' -> {identity_id2}")
 
 def test_event_monitor():
     '''Test Windows event monitoring'''
-    print("\n🔍 Testing Event Monitor...")
+    print("\n[SEARCH] Testing Event Monitor...")
     
     monitor = WindowsEventMonitor()
     
     # Test initialization
     assert monitor.monitored_events is not None
     assert 'Security' in monitor.monitored_events
-    print("✅ Event monitor initialized")
+    print("[PASS] Event monitor initialized")
     
     # Test event processing (with mock data)
     fake_event = "Sample event log entry for testing"
     monitor._process_event(fake_event, 4624)
-    print("✅ Event processing working")
+    print("[PASS] Event processing working")
 
 def test_configuration_loading():
     '''Test configuration management'''
-    print("\n🔍 Testing Configuration Loading...")
+    print("\n[SEARCH] Testing Configuration Loading...")
     
     # Create test config
     test_config = {
@@ -138,11 +138,11 @@ def test_configuration_loading():
     # Cleanup
     os.remove(config_file)
     
-    print("✅ Configuration loading test completed")
+    print("[PASS] Configuration loading test completed")
 
 def test_database_operations():
     '''Test database operations'''
-    print("\n🔍 Testing Database Operations...")
+    print("\n[SEARCH] Testing Database Operations...")
     
     # Test account database
     discovery = AccountDiscovery()
@@ -173,11 +173,11 @@ def test_database_operations():
     assert result is not None
     assert result[0] == 'testuser1'
     
-    print("✅ Database operations working")
+    print("[PASS] Database operations working")
 
 def test_integration():
     '''Test full system integration'''
-    print("\n🔧 Testing Integration...")
+    print("\n[U+1F527] Testing Integration...")
     
     # Test full system initialization
     sentinel = AccountSentinelCore()
@@ -192,11 +192,11 @@ def test_integration():
     assert 'config' in status
     assert 'components' in status
     
-    print("✅ Integration test completed")
+    print("[PASS] Integration test completed")
 
 def run_all_tests():
     '''Run all Account Sentinel tests'''
-    print("🧪 WatchLockAI Account Sentinel Test Suite")
+    print("[U+1F9EA] WatchLockAI Account Sentinel Test Suite")
     print("=" * 50)
     
     try:
@@ -209,19 +209,19 @@ def run_all_tests():
         test_integration()
         
         print("\n" + "=" * 50)
-        print("✅ All Account Sentinel tests completed successfully!")
-        print("\n👥 Account Sentinel is ready for deployment")
-        print("\n📋 Test Summary:")
-        print("   • Account Discovery - ✅ Working")
-        print("   • Behavior Analysis - ✅ Working")
-        print("   • Identity Correlation - ✅ Working")
-        print("   • Event Monitoring - ✅ Working")
-        print("   • Configuration Management - ✅ Working")
-        print("   • Database Operations - ✅ Working")
-        print("   • System Integration - ✅ Working")
+        print("[PASS] All Account Sentinel tests completed successfully!")
+        print("\n[U+1F465] Account Sentinel is ready for deployment")
+        print("\n[PLAN] Test Summary:")
+        print("   * Account Discovery - [PASS] Working")
+        print("   * Behavior Analysis - [PASS] Working")
+        print("   * Identity Correlation - [PASS] Working")
+        print("   * Event Monitoring - [PASS] Working")
+        print("   * Configuration Management - [PASS] Working")
+        print("   * Database Operations - [PASS] Working")
+        print("   * System Integration - [PASS] Working")
         
     except Exception as e:
-        print(f"\n❌ Test failed: {e}")
+        print(f"\n[FAIL] Test failed: {e}")
         import traceback
         traceback.print_exc()
 

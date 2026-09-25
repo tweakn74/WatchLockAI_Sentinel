@@ -389,7 +389,7 @@ export function EnhancedDashboard() {
                         </Badge>
                       </div>
                       <div className="text-sm text-gray-600">
-                        {agent.location} • {agent.os_type}
+                        {agent.location} * {agent.os_type}
                       </div>
                       <div className="text-xs text-gray-500 mt-1">
                         Security Score: {agent.security_score}%

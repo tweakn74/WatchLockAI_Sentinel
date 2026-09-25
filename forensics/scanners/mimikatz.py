@@ -44,11 +44,11 @@ class ForensicReport:
         for category, items in self.findings.items():
             header = category.replace("_", " ").title()
             if items:
-                print(f"✅ Possible {header} Found:")
+                print(f"[PASS] Possible {header} Found:")
                 for item in items:
                     print(f"  - {item}")
             else:
-                print(f"❌ No {header} Found.")
+                print(f"[FAIL] No {header} Found.")
         print("\n--- Scan Complete ---")
 
 
@@ -57,7 +57,7 @@ class ForensicReport:
 
 def scan_file_system(report: ForensicReport) -> None:
     """Scans common user directories for Mimikatz-related files."""
-    print("🔎 Performing file system scan for known Mimikatz artifacts...")
+    print("[SEARCH] Performing file system scan for known Mimikatz artifacts...")
     target_extensions = {".dmp", ".kirbi"}
     # Common Mimikatz executable names
     suspicious_names = {"mimikatz", "kiwi", "sekurlsa"}
@@ -98,7 +98,7 @@ def scan_file_system(report: ForensicReport) -> None:
 
 def scan_registry(report: ForensicReport) -> None:
     """Scans the Windows Registry for Mimikatz persistence mechanisms."""
-    print("📜 Checking Windows Registry for persistence mechanisms...")
+    print("[DOC] Checking Windows Registry for persistence mechanisms...")
     reg_paths = [
         # Run keys
         (winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\Microsoft\Windows\CurrentVersion\Run"),
@@ -143,7 +143,7 @@ def scan_registry(report: ForensicReport) -> None:
 def scan_event_logs(report: ForensicReport) -> None:
     """Scans PowerShell Event Logs for evidence of Mimikatz command execution."""
     print(
-        "⏳ Searching PowerShell event logs for historical activity (Event ID 4104)..."
+        "[U+23F3] Searching PowerShell event logs for historical activity (Event ID 4104)..."
     )
     log_names = ["Microsoft-Windows-PowerShell/Operational", "Security"]
 
@@ -211,7 +211,7 @@ def scan_event_logs(report: ForensicReport) -> None:
 
 def scan_processes(report: ForensicReport) -> None:
     """Scans running processes for suspicious activity."""
-    print("🔄 Checking running processes for suspicious activity...")
+    print("[RELOAD] Checking running processes for suspicious activity...")
     try:
         # Get list of running processes
         processes = win32process.EnumProcesses()
@@ -245,7 +245,7 @@ def scan_processes(report: ForensicReport) -> None:
 
 def scan_services(report: ForensicReport) -> None:
     """Scans Windows services for suspicious entries."""
-    print("⚙️  Checking Windows services for suspicious entries...")
+    print("[U+2699]  Checking Windows services for suspicious entries...")
     try:
         # Get handle to service control manager
         scm = win32service.OpenSCManager(

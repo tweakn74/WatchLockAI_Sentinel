@@ -12,7 +12,7 @@
 # - Runs Ruff (format+fix), Pyright, ESLint (or skips if missing), and PSSA.
 # - Loops adaptively: fixes -> (optional) suppress per policy -> (optional) heal -> re-check,
 #   stopping when clean or max iterations reached.
-# - Treats infra errors (missing tools / bad configs) as failures (won’t silently “pass”).
+# - Treats infra errors (missing tools / bad configs) as failures (won't silently "pass").
 #
 # Existing flags still work; new smart knobs:
 #   --self-drive              Enable adaptive escalation (on by default)
@@ -323,7 +323,7 @@ def run_ruff_collect(
         msg = str(it.get("message", ""))
         fname = Path(it.get("filename", ""))
         row = int(it.get("location", {}).get("row", 1))
-        # Treat as error-level for the loop’s purposes
+        # Treat as error-level for the loop's purposes
         errors += 1
         diags.append(RuffDiag(file=fname, line=row, code=code, message=msg))
     return (errors, warnings, res.code, diags)

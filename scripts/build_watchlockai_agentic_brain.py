@@ -12,7 +12,7 @@ from pathlib import Path
 def create_ai_brain_architecture():
     """Create the WatchLockAI AI Brain with agentic capabilities"""
     
-    print("🧠 Building WatchLockAI Agentic AI Brain...")
+    print("[BRAIN] Building WatchLockAI Agentic AI Brain...")
     
     # Create AI Brain directory structure
     brain_dir = Path("/workspace/WatchLockAI_RealPlatform")
@@ -549,7 +549,7 @@ def create_handler(brain):
 
 def main():
     '''Main entry point for WatchLockAI AI Brain'''
-    print("🧠 Starting WatchLockAI Agentic AI Brain...")
+    print("[BRAIN] Starting WatchLockAI Agentic AI Brain...")
     
     # Initialize AI Brain
     brain = AgenticAIBrain()
@@ -560,19 +560,19 @@ def main():
     handler = create_handler(brain)
     httpd = HTTPServer(('localhost', port), handler)
     
-    print(f"✅ WatchLockAI AI Brain running on http://localhost:{port}")
-    print("📡 Endpoints:")
+    print(f"[PASS] WatchLockAI AI Brain running on http://localhost:{port}")
+    print("[SCOUT] Endpoints:")
     print("   GET  /status  - Get AI brain status")
     print("   GET  /health  - Health check")
     print("   POST /analyze - Analyze security event")
     print("   POST /feedback - Provide learning feedback")
     print()
-    print("🔍 Ready for threat analysis...")
+    print("[SEARCH] Ready for threat analysis...")
     
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        print("\n🛑 Shutting down WatchLockAI AI Brain...")
+        print("\n[U+1F6D1] Shutting down WatchLockAI AI Brain...")
         httpd.shutdown()
         brain.memory_db.close()
 
@@ -1243,7 +1243,7 @@ class NetworkMonitor:
 
 def main():
     '''Main event collection service'''
-    print("🔍 Starting WatchLockAI Event Ingestion System...")
+    print("[SEARCH] Starting WatchLockAI Event Ingestion System...")
     
     # Initialize collectors
     windows_collector = WindowsEventCollector()
@@ -1255,19 +1255,19 @@ def main():
     powershell_monitor.start_monitoring()
     network_monitor.start_monitoring()
     
-    print("✅ Event collection started")
-    print("📡 Monitoring:")
+    print("[PASS] Event collection started")
+    print("[SCOUT] Monitoring:")
     print("   - Windows Event Logs")
     print("   - PowerShell Execution") 
     print("   - Network Connections")
     print()
-    print("🔄 Events will be sent to AI Brain for analysis...")
+    print("[RELOAD] Events will be sent to AI Brain for analysis...")
     
     try:
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
-        print("\n🛑 Stopping event collection...")
+        print("\n[U+1F6D1] Stopping event collection...")
         windows_collector.running = False
         powershell_monitor.running = False
         network_monitor.running = False
@@ -1306,13 +1306,13 @@ pywin32>=306  # For Windows Event Log access
     
     # 6. Create AI Brain Launcher
     launcher = """@echo off
-echo 🧠 Starting WatchLockAI Agentic AI Brain...
+echo [BRAIN] Starting WatchLockAI Agentic AI Brain...
 echo.
 
 :: Check if Python is available
 python --version >nul 2>&1
 if errorlevel 1 (
-    echo ❌ Python is not installed or not in PATH
+    echo [FAIL] Python is not installed or not in PATH
     echo Please install Python 3.8+ and add to PATH
     pause
     exit /b 1
@@ -1320,12 +1320,12 @@ if errorlevel 1 (
 
 :: Install requirements if needed
 if not exist "watchlockai_memory.db" (
-    echo 📦 Installing Python requirements...
+    echo [PKG] Installing Python requirements...
     pip install -r requirements.txt
 )
 
 :: Start AI Brain
-echo ✅ Launching WatchLockAI AI Brain...
+echo [PASS] Launching WatchLockAI AI Brain...
 python ai_brain_core.py
 
 pause
@@ -1350,36 +1350,36 @@ def test_ai_brain():
     '''Test WatchLockAI AI Brain functionality'''
     ai_brain_url = "http://localhost:9999"
     
-    print("🧠 Testing WatchLockAI AI Brain...")
+    print("[BRAIN] Testing WatchLockAI AI Brain...")
     
     # Test 1: Health Check
-    print("\n1️⃣ Testing health check...")
+    print("\n1⃣ Testing health check...")
     try:
         response = requests.get(f"{ai_brain_url}/health", timeout=5)
         if response.status_code == 200:
-            print("✅ AI Brain is healthy")
+            print("[PASS] AI Brain is healthy")
         else:
-            print("❌ AI Brain health check failed")
+            print("[FAIL] AI Brain health check failed")
             return
     except Exception as e:
-        print(f"❌ Cannot connect to AI Brain: {e}")
+        print(f"[FAIL] Cannot connect to AI Brain: {e}")
         return
     
     # Test 2: Status Check
-    print("\n2️⃣ Testing status endpoint...")
+    print("\n2⃣ Testing status endpoint...")
     try:
         response = requests.get(f"{ai_brain_url}/status", timeout=5)
         if response.status_code == 200:
             status = response.json()
-            print(f"✅ AI Brain Status: {status.get('status')}")
+            print(f"[PASS] AI Brain Status: {status.get('status')}")
             print(f"   Events analyzed today: {status.get('events_analyzed_today', 0)}")
         else:
-            print("❌ Status check failed")
+            print("[FAIL] Status check failed")
     except Exception as e:
-        print(f"❌ Status check error: {e}")
+        print(f"[FAIL] Status check error: {e}")
     
     # Test 3: Normal Event Analysis
-    print("\n3️⃣ Testing normal event analysis...")
+    print("\n3⃣ Testing normal event analysis...")
     normal_event = {
         "timestamp": datetime.now().isoformat(),
         "event_type": "user_login",
@@ -1396,16 +1396,16 @@ def test_ai_brain():
         response = requests.post(f"{ai_brain_url}/analyze", json=normal_event, timeout=5)
         if response.status_code == 200:
             analysis = response.json()
-            print(f"✅ Normal event analyzed")
+            print(f"[PASS] Normal event analyzed")
             print(f"   Threat detected: {analysis.get('threat_detected', False)}")
             print(f"   Threat level: {analysis.get('threat_level', 'unknown')}")
         else:
-            print("❌ Normal event analysis failed")
+            print("[FAIL] Normal event analysis failed")
     except Exception as e:
-        print(f"❌ Normal event analysis error: {e}")
+        print(f"[FAIL] Normal event analysis error: {e}")
     
     # Test 4: Suspicious Event Analysis
-    print("\n4️⃣ Testing suspicious event analysis...")
+    print("\n4⃣ Testing suspicious event analysis...")
     suspicious_event = {
         "timestamp": datetime.now().isoformat(),
         "event_type": "powershell_execution",
@@ -1423,18 +1423,18 @@ def test_ai_brain():
         response = requests.post(f"{ai_brain_url}/analyze", json=suspicious_event, timeout=5)
         if response.status_code == 200:
             analysis = response.json()
-            print(f"✅ Suspicious event analyzed")
+            print(f"[PASS] Suspicious event analyzed")
             print(f"   Threat detected: {analysis.get('threat_detected', False)}")
             print(f"   Threat level: {analysis.get('threat_level', 'unknown')}")
             print(f"   MITRE tactics: {analysis.get('mitre_tactics', [])}")
             print(f"   Narrative: {analysis.get('narrative', 'N/A')[:100]}...")
         else:
-            print("❌ Suspicious event analysis failed")
+            print("[FAIL] Suspicious event analysis failed")
     except Exception as e:
-        print(f"❌ Suspicious event analysis error: {e}")
+        print(f"[FAIL] Suspicious event analysis error: {e}")
     
     # Test 5: Credential Dumping Event
-    print("\n5️⃣ Testing credential dumping detection...")
+    print("\n5⃣ Testing credential dumping detection...")
     credential_event = {
         "timestamp": datetime.now().isoformat(),
         "event_type": "process_access",
@@ -1453,18 +1453,18 @@ def test_ai_brain():
         response = requests.post(f"{ai_brain_url}/analyze", json=credential_event, timeout=5)
         if response.status_code == 200:
             analysis = response.json()
-            print(f"✅ Credential dumping event analyzed")
+            print(f"[PASS] Credential dumping event analyzed")
             print(f"   Threat detected: {analysis.get('threat_detected', False)}")
             print(f"   Threat level: {analysis.get('threat_level', 'unknown')}")
             print(f"   Kill chain stage: {analysis.get('kill_chain_stage', 'unknown')}")
             print(f"   Recommended actions: {len(analysis.get('recommended_actions', []))} actions")
         else:
-            print("❌ Credential dumping analysis failed")
+            print("[FAIL] Credential dumping analysis failed")
     except Exception as e:
-        print(f"❌ Credential dumping analysis error: {e}")
+        print(f"[FAIL] Credential dumping analysis error: {e}")
     
     # Test 6: Penetration Testing Detection
-    print("\n6️⃣ Testing penetration testing detection...")
+    print("\n6⃣ Testing penetration testing detection...")
     pentest_event = {
         "timestamp": datetime.now().isoformat(),
         "event_type": "network_scan",
@@ -1483,15 +1483,15 @@ def test_ai_brain():
         response = requests.post(f"{ai_brain_url}/analyze", json=pentest_event, timeout=5)
         if response.status_code == 200:
             analysis = response.json()
-            print(f"✅ Penetration testing event analyzed")
+            print(f"[PASS] Penetration testing event analyzed")
             print(f"   Threat detected: {analysis.get('threat_detected', False)}")
             print(f"   Narrative: {analysis.get('narrative', 'N/A')[:100]}...")
         else:
-            print("❌ Penetration testing analysis failed")
+            print("[FAIL] Penetration testing analysis failed")
     except Exception as e:
-        print(f"❌ Penetration testing analysis error: {e}")
+        print(f"[FAIL] Penetration testing analysis error: {e}")
     
-    print("\n🎉 AI Brain testing completed!")
+    print("\n[U+1F389] AI Brain testing completed!")
     print("\nThe WatchLockAI Agentic AI Brain is functioning correctly.")
 
 if __name__ == "__main__":
@@ -1504,7 +1504,7 @@ if __name__ == "__main__":
     # 8. Create README
     readme = """# WatchLockAI - Agentic AI Brain
 
-## 🧠 Overview
+## [BRAIN] Overview
 
 The WatchLockAI Agentic AI Brain is the core intelligence system for autonomous threat detection and response. It implements:
 
@@ -1514,7 +1514,7 @@ The WatchLockAI Agentic AI Brain is the core intelligence system for autonomous 
 - **Fog-of-War Memory** - Staged memory model for efficient processing
 - **Agentic Decision Making** - Autonomous threat assessment and response recommendations
 
-## 🚀 Quick Start
+## [START] Quick Start
 
 1. **Install Requirements**:
    ```bash
@@ -1535,14 +1535,14 @@ The WatchLockAI Agentic AI Brain is the core intelligence system for autonomous 
    python test_ai_brain.py
    ```
 
-## 📡 API Endpoints
+## [SCOUT] API Endpoints
 
 - `GET /health` - Health check
 - `GET /status` - AI Brain status and statistics
 - `POST /analyze` - Analyze security event
 - `POST /feedback` - Provide learning feedback
 
-## 🔍 Event Analysis
+## [SEARCH] Event Analysis
 
 The AI Brain analyzes security events using multiple techniques:
 
@@ -1565,7 +1565,7 @@ Detects authorized security testing:
 - Red team frameworks
 - Security simulation platforms
 
-## 🧮 Machine Learning
+## [U+1F9EE] Machine Learning
 
 Uses advanced ML techniques:
 - **Isolation Forest** for anomaly detection
@@ -1573,14 +1573,14 @@ Uses advanced ML techniques:
 - **Behavioral Baselining** with continuous learning
 - **Adaptive Thresholds** based on environment
 
-## 🔒 Security Features
+## [LOCK] Security Features
 
 - **Tamperproof Design** - Self-monitoring and protection
 - **Encrypted Communication** - Secure API endpoints
 - **Audit Logging** - Complete analysis trail
 - **Memory Protection** - Fog-of-war data handling
 
-## 📊 Example Usage
+## [BARS] Example Usage
 
 ```python
 import requests
@@ -1604,7 +1604,7 @@ print(f"Threat detected: {analysis['threat_detected']}")
 print(f"Narrative: {analysis['narrative']}")
 ```
 
-## 🏗️ Architecture
+## [U+1F3D7] Architecture
 
 ```
 ┌─────────────────────────────────────────┐
@@ -1626,7 +1626,7 @@ print(f"Narrative: {analysis['narrative']}")
 └─────────────────────────────────────────┘
 ```
 
-## 🔧 Configuration
+## [U+1F527] Configuration
 
 The AI Brain is self-configuring but can be tuned:
 
@@ -1635,7 +1635,7 @@ The AI Brain is self-configuring but can be tuned:
 - **Memory Layers**: Automatic fog-of-war management
 - **ML Models**: Auto-training with minimum 10 samples
 
-## 📈 Monitoring
+## [CHART] Monitoring
 
 Monitor AI Brain health:
 - Check `/status` endpoint for statistics
@@ -1643,7 +1643,7 @@ Monitor AI Brain health:
 - Monitor memory usage and database size
 - Track threat detection accuracy
 
-## 🚀 Production Deployment
+## [START] Production Deployment
 
 For production use:
 1. Configure reverse proxy (nginx/IIS)
@@ -1661,20 +1661,20 @@ For production use:
     with open(ai_brain_dir / "README.md", "w", encoding="utf-8") as f:
         f.write(readme)
     
-    print("✅ WatchLockAI Agentic AI Brain created!")
-    print(f"📁 Location: {ai_brain_dir}")
+    print("[PASS] WatchLockAI Agentic AI Brain created!")
+    print(f"[U+1F4C1] Location: {ai_brain_dir}")
     print()
-    print("🎯 Core Components Created:")
-    print("   • ai_brain_core.py - Main AI intelligence system")
-    print("   • behavioral_engine.py - Advanced behavioral analysis")
-    print("   • event_ingestion.py - Windows event collection")
-    print("   • mitre_knowledge_base.json - MITRE ATT&CK integration")
-    print("   • test_ai_brain.py - Comprehensive testing")
-    print("   • start_ai_brain.bat - Easy launcher")
-    print("   • requirements.txt - Python dependencies")
-    print("   • README.md - Complete documentation")
+    print("[TARGET] Core Components Created:")
+    print("   * ai_brain_core.py - Main AI intelligence system")
+    print("   * behavioral_engine.py - Advanced behavioral analysis")
+    print("   * event_ingestion.py - Windows event collection")
+    print("   * mitre_knowledge_base.json - MITRE ATT&CK integration")
+    print("   * test_ai_brain.py - Comprehensive testing")
+    print("   * start_ai_brain.bat - Easy launcher")
+    print("   * requirements.txt - Python dependencies")
+    print("   * README.md - Complete documentation")
     print()
-    print("🚀 Next Steps:")
+    print("[START] Next Steps:")
     print("   1. Install requirements: pip install -r requirements.txt")
     print("   2. Start AI Brain: python ai_brain_core.py")
     print("   3. Test functionality: python test_ai_brain.py")

@@ -336,7 +336,7 @@ export function LiveThreatFeed({
                           <div className="flex items-center space-x-2 text-xs text-gray-500">
                             <Clock className="w-3 h-3" />
                             <span>{formatTimeAgo(threat.timestamp)}</span>
-                            <span>•</span>
+                            <span>*</span>
                             <span className={config.textColor}>
                               {threat.severity.toUpperCase()}
                             </span>

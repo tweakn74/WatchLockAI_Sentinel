@@ -6,20 +6,20 @@
 
 ## Executive Summary
 
-Ground truth metric recomputation from filesystem and code analysis. **Status:** ✅ All metrics within acceptable bounds.
+Ground truth metric recomputation from filesystem and code analysis. **Status:** [PASS] All metrics within acceptable bounds.
 
 ## Claimed vs Computed Metrics
 
 | Metric | Claimed | Computed | Delta | Status |
 |--------|---------|----------|-------|--------|
-| **Routes** | N/A | 12 | N/A | ➖ N/A |
-| **Schemas** | N/A | 48 | N/A | ➖ N/A |
-| **Scenarios** | N/A | 5000 | N/A | ➖ N/A |
-| **Schema Samples** | N/A | 0 | N/A | ➖ N/A |
-| **Adrs** | N/A | 0 | N/A | ➖ N/A |
-| **Sdk Files** | N/A | 0 | N/A | ➖ N/A |
-| **Tool Files** | N/A | 27 | N/A | ➖ N/A |
-| **Test Files** | N/A | 46 | N/A | ➖ N/A |
+| **Routes** | N/A | 12 | N/A | [U+2796] N/A |
+| **Schemas** | N/A | 48 | N/A | [U+2796] N/A |
+| **Scenarios** | N/A | 5000 | N/A | [U+2796] N/A |
+| **Schema Samples** | N/A | 0 | N/A | [U+2796] N/A |
+| **Adrs** | N/A | 0 | N/A | [U+2796] N/A |
+| **Sdk Files** | N/A | 0 | N/A | [U+2796] N/A |
+| **Tool Files** | N/A | 27 | N/A | [U+2796] N/A |
+| **Test Files** | N/A | 46 | N/A | [U+2796] N/A |
 
 ## Route Details
 

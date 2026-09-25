@@ -11,7 +11,7 @@ from pathlib import Path
 def create_watchsleuth_forensics():
     """Create the WatchSleuth Forensic Engine"""
     
-    print("🔍 Building WatchSleuth Forensic Engine...")
+    print("[SEARCH] Building WatchSleuth Forensic Engine...")
     
     # Create Forensics directory
     forensics_dir = Path("/workspace/WatchLockAI_RealPlatform/WatchSleuth")
@@ -871,7 +871,7 @@ class WatchSleuthForensicEngine:
 
 def main():
     '''Main entry point for WatchSleuth Forensic Engine'''
-    print("🔍 WatchSleuth Forensic Engine")
+    print("[SEARCH] WatchSleuth Forensic Engine")
     print("Advanced Digital Forensics and Incident Investigation")
     print()
     
@@ -885,19 +885,19 @@ def main():
         "Sample forensic investigation for testing"
     )
     
-    print(f"✅ Started investigation: {case_id}")
+    print(f"[PASS] Started investigation: {case_id}")
     print()
-    print("🎯 Available capabilities:")
-    print("   • MFT Analysis - NTFS file system forensics")
-    print("   • Shadow Copy Analysis - VSS snapshot examination")
-    print("   • Deleted File Carving - Recover deleted files")
-    print("   • Registry Analysis - Windows registry forensics")
-    print("   • Email Forensics - PST/EML/MSG analysis")
-    print("   • Browser Forensics - Web activity reconstruction")
-    print("   • Timeline Analysis - Event correlation and sequencing")
-    print("   • Comprehensive Reporting - Detailed investigation reports")
+    print("[TARGET] Available capabilities:")
+    print("   * MFT Analysis - NTFS file system forensics")
+    print("   * Shadow Copy Analysis - VSS snapshot examination")
+    print("   * Deleted File Carving - Recover deleted files")
+    print("   * Registry Analysis - Windows registry forensics")
+    print("   * Email Forensics - PST/EML/MSG analysis")
+    print("   * Browser Forensics - Web activity reconstruction")
+    print("   * Timeline Analysis - Event correlation and sequencing")
+    print("   * Comprehensive Reporting - Detailed investigation reports")
     print()
-    print("📊 To use WatchSleuth:")
+    print("[BARS] To use WatchSleuth:")
     print("   1. engine.add_evidence('file_path', 'description')")
     print("   2. engine.perform_comprehensive_analysis(case_id)")
     print("   3. engine.export_case_report(case_id, 'report.json')")
@@ -924,20 +924,20 @@ from watchsleuth_engine import WatchSleuthForensicEngine, MFTAnalyzer, RegistryA
 
 def mft_analysis(mft_file: str, output_file: str = None):
     '''Analyze MFT file'''
-    print(f"🔍 Analyzing MFT file: {mft_file}")
+    print(f"[SEARCH] Analyzing MFT file: {mft_file}")
     
     analyzer = MFTAnalyzer()
     records = analyzer.analyze_mft(mft_file)
     
-    print(f"✅ Analyzed {len(records)} MFT records")
+    print(f"[PASS] Analyzed {len(records)} MFT records")
     
     if output_file:
         with open(output_file, 'w') as f:
             json.dump(records, f, indent=2)
-        print(f"📄 Results saved to: {output_file}")
+        print(f"[PAGE] Results saved to: {output_file}")
     else:
         # Print summary
-        print("\\n📊 MFT Analysis Summary:")
+        print("\\n[BARS] MFT Analysis Summary:")
         print(f"   Total Records: {len(records)}")
         
         # Show recent files
@@ -948,42 +948,42 @@ def mft_analysis(mft_file: str, output_file: str = None):
 
 def registry_analysis(hive_file: str, output_file: str = None):
     '''Analyze Windows registry hive'''
-    print(f"🔍 Analyzing registry hive: {hive_file}")
+    print(f"[SEARCH] Analyzing registry hive: {hive_file}")
     
     analyzer = RegistryAnalyzer()
     analysis = analyzer.analyze_registry_hive(hive_file)
     
-    print(f"✅ Registry analysis complete")
+    print(f"[PASS] Registry analysis complete")
     
     if output_file:
         with open(output_file, 'w') as f:
             json.dump(analysis, f, indent=2)
-        print(f"📄 Results saved to: {output_file}")
+        print(f"[PAGE] Results saved to: {output_file}")
     else:
         # Print summary
-        print("\\n📊 Registry Analysis Summary:")
+        print("\\n[BARS] Registry Analysis Summary:")
         print(f"   Persistence Mechanisms: {len(analysis['persistence_mechanisms'])}")
         print(f"   Suspicious Entries: {len(analysis['suspicious_entries'])}")
         
         for entry in analysis['suspicious_entries'][:5]:
-            print(f"     ⚠️  {entry['pattern']} - {entry['risk_level']}")
+            print(f"     [WARN]  {entry['pattern']} - {entry['risk_level']}")
 
 def browser_analysis(history_db: str, browser_type: str = 'chrome', output_file: str = None):
     '''Analyze browser history'''
-    print(f"🔍 Analyzing {browser_type} history: {history_db}")
+    print(f"[SEARCH] Analyzing {browser_type} history: {history_db}")
     
     forensics = BrowserForensics()
     analysis = forensics.analyze_browser_history(browser_type, history_db)
     
-    print(f"✅ Browser analysis complete")
+    print(f"[PASS] Browser analysis complete")
     
     if output_file:
         with open(output_file, 'w') as f:
             json.dump(analysis, f, indent=2)
-        print(f"📄 Results saved to: {output_file}")
+        print(f"[PAGE] Results saved to: {output_file}")
     else:
         # Print summary
-        print("\\n📊 Browser Analysis Summary:")
+        print("\\n[BARS] Browser Analysis Summary:")
         print(f"   Total Visits: {analysis.get('visit_count', 0)}")
         print(f"   Suspicious URLs: {len(analysis.get('suspicious_urls', []))}")
         
@@ -994,7 +994,7 @@ def browser_analysis(history_db: str, browser_type: str = 'chrome', output_file:
 
 def full_investigation(evidence_dir: str, case_name: str, investigator: str):
     '''Perform full forensic investigation'''
-    print(f"🔍 Starting full investigation: {case_name}")
+    print(f"[SEARCH] Starting full investigation: {case_name}")
     print(f"   Investigator: {investigator}")
     print(f"   Evidence Directory: {evidence_dir}")
     
@@ -1013,30 +1013,30 @@ def full_investigation(evidence_dir: str, case_name: str, investigator: str):
             try:
                 artifact_id = engine.add_evidence(str(file_path), f"Evidence file: {file_path.name}")
                 evidence_count += 1
-                print(f"   📄 Added evidence: {file_path.name}")
+                print(f"   [PAGE] Added evidence: {file_path.name}")
             except Exception as e:
-                print(f"   ❌ Failed to add {file_path.name}: {e}")
+                print(f"   [FAIL] Failed to add {file_path.name}: {e}")
     
-    print(f"\\n✅ Added {evidence_count} evidence files")
+    print(f"\\n[PASS] Added {evidence_count} evidence files")
     
     # Perform comprehensive analysis
-    print("\\n🔬 Performing comprehensive analysis...")
+    print("\\n[U+1F52C] Performing comprehensive analysis...")
     results = engine.perform_comprehensive_analysis(case_id)
     
     # Export report
     report_path = f"investigation_report_{case_id}.json"
     if engine.export_case_report(case_id, report_path):
-        print(f"\\n📄 Investigation report: {report_path}")
+        print(f"\\n[PAGE] Investigation report: {report_path}")
     
     # Print summary
-    print("\\n📊 Investigation Summary:")
+    print("\\n[BARS] Investigation Summary:")
     print(f"   Case ID: {case_id}")
     print(f"   Evidence Files: {evidence_count}")
     print(f"   Timeline Events: {len(results.get('timeline', []))}")
     print(f"   Key Findings: {len(results.get('findings', []))}")
     
     for finding in results.get('findings', []):
-        print(f"     🔍 {finding}")
+        print(f"     [SEARCH] {finding}")
 
 def main():
     '''Main CLI interface'''
@@ -1166,7 +1166,7 @@ class TimelineVisualizer:
     def create_timeline_chart(self, output_file: str, hours: int = 24):
         '''Create visual timeline chart'''
         if not self.events:
-            print("❌ No timeline data loaded")
+            print("[FAIL] No timeline data loaded")
             return
             
         # Convert to DataFrame
@@ -1199,12 +1199,12 @@ class TimelineVisualizer:
         plt.savefig(output_file, dpi=300, bbox_inches='tight')
         plt.close()
         
-        print(f"✅ Timeline chart saved: {output_file}")
+        print(f"[PASS] Timeline chart saved: {output_file}")
         
     def create_activity_heatmap(self, output_file: str):
         '''Create activity heatmap by hour and day'''
         if not self.events:
-            print("❌ No timeline data loaded")
+            print("[FAIL] No timeline data loaded")
             return
             
         # Convert to DataFrame
@@ -1229,7 +1229,7 @@ class TimelineVisualizer:
         plt.savefig(output_file, dpi=300, bbox_inches='tight')
         plt.close()
         
-        print(f"✅ Activity heatmap saved: {output_file}")
+        print(f"[PASS] Activity heatmap saved: {output_file}")
 
 class EventCorrelator:
     '''Correlate and analyze relationships between timeline events'''
@@ -1317,17 +1317,17 @@ class EventCorrelator:
 
 def main():
     '''Main timeline analysis interface'''
-    print("📊 WatchSleuth Timeline Analysis Tools")
+    print("[BARS] WatchSleuth Timeline Analysis Tools")
     print()
     
     # Example usage
-    print("🎯 Available tools:")
-    print("   • Timeline Visualization - Create visual timeline charts")
-    print("   • Activity Heatmaps - Show activity patterns by time")
-    print("   • Event Correlation - Find related events and attack patterns")
-    print("   • Attack Sequence Analysis - Identify potential attack chains")
+    print("[TARGET] Available tools:")
+    print("   * Timeline Visualization - Create visual timeline charts")
+    print("   * Activity Heatmaps - Show activity patterns by time")
+    print("   * Event Correlation - Find related events and attack patterns")
+    print("   * Attack Sequence Analysis - Identify potential attack chains")
     print()
-    print("📋 Usage examples:")
+    print("[PLAN] Usage examples:")
     print("   visualizer = TimelineVisualizer()")
     print("   visualizer.load_timeline_data('timeline.json')")
     print("   visualizer.create_timeline_chart('timeline.png')")
@@ -1390,39 +1390,39 @@ from watchsleuth_engine import WatchSleuthForensicEngine, MFTAnalyzer, RegistryA
 
 def test_forensic_engine():
     '''Test the main forensic engine'''
-    print("🔍 Testing WatchSleuth Forensic Engine...")
+    print("[SEARCH] Testing WatchSleuth Forensic Engine...")
     
     # Create temporary case directory
     with tempfile.TemporaryDirectory() as temp_dir:
         engine = WatchSleuthForensicEngine(temp_dir)
         
         # Test 1: Start Investigation
-        print("\\n1️⃣ Testing investigation creation...")
+        print("\\n1⃣ Testing investigation creation...")
         case_id = engine.start_investigation(
             "Test Investigation",
             "Test Analyst", 
             "Testing WatchSleuth capabilities"
         )
-        print(f"✅ Created investigation: {case_id}")
+        print(f"[PASS] Created investigation: {case_id}")
         
         # Test 2: Add Evidence (create dummy file)
-        print("\\n2️⃣ Testing evidence addition...")
+        print("\\n2⃣ Testing evidence addition...")
         dummy_evidence = Path(temp_dir) / "test_evidence.txt"
         dummy_evidence.write_text("This is test evidence data")
         
         artifact_id = engine.add_evidence(str(dummy_evidence), "Test evidence file")
-        print(f"✅ Added evidence artifact: {artifact_id}")
+        print(f"[PASS] Added evidence artifact: {artifact_id}")
         
         # Test 3: Perform Analysis
-        print("\\n3️⃣ Testing comprehensive analysis...")
+        print("\\n3⃣ Testing comprehensive analysis...")
         results = engine.perform_comprehensive_analysis(case_id)
-        print(f"✅ Analysis complete - {len(results['findings'])} findings")
+        print(f"[PASS] Analysis complete - {len(results['findings'])} findings")
         
         # Test 4: Export Report
-        print("\\n4️⃣ Testing report export...")
+        print("\\n4⃣ Testing report export...")
         report_path = Path(temp_dir) / "test_report.json"
         success = engine.export_case_report(case_id, str(report_path))
-        print(f"✅ Report exported: {success}")
+        print(f"[PASS] Report exported: {success}")
         
         if report_path.exists():
             report_size = report_path.stat().st_size
@@ -1430,7 +1430,7 @@ def test_forensic_engine():
 
 def test_mft_analyzer():
     '''Test MFT analyzer with simulated data'''
-    print("\\n🔍 Testing MFT Analyzer...")
+    print("\\n[SEARCH] Testing MFT Analyzer...")
     
     analyzer = MFTAnalyzer()
     
@@ -1443,14 +1443,14 @@ def test_mft_analyzer():
         
         # Test MFT analysis
         records = analyzer.analyze_mft(temp_mft.name)
-        print(f"✅ Parsed {len(records)} MFT records")
+        print(f"[PASS] Parsed {len(records)} MFT records")
         
         # Cleanup
         os.unlink(temp_mft.name)
 
 def test_registry_analyzer():
     '''Test registry analyzer'''
-    print("\\n🔍 Testing Registry Analyzer...")
+    print("\\n[SEARCH] Testing Registry Analyzer...")
     
     analyzer = RegistryAnalyzer()
     
@@ -1461,7 +1461,7 @@ def test_registry_analyzer():
         
         # Test registry analysis
         analysis = analyzer.analyze_registry_hive(temp_reg.name)
-        print(f"✅ Registry analysis complete")
+        print(f"[PASS] Registry analysis complete")
         print(f"   Persistence mechanisms: {len(analysis['persistence_mechanisms'])}")
         print(f"   Suspicious entries: {len(analysis['suspicious_entries'])}")
         
@@ -1470,7 +1470,7 @@ def test_registry_analyzer():
 
 def test_timeline_creation():
     '''Test timeline creation'''
-    print("\\n🔍 Testing Timeline Creation...")
+    print("\\n[SEARCH] Testing Timeline Creation...")
     
     # Create sample timeline events
     events = [
@@ -1492,7 +1492,7 @@ def test_timeline_creation():
         }
     ]
     
-    print(f"✅ Created timeline with {len(events)} events")
+    print(f"[PASS] Created timeline with {len(events)} events")
     
     # Test event correlation
     from timeline_analysis import EventCorrelator
@@ -1501,14 +1501,14 @@ def test_timeline_creation():
     correlator.load_events(events)
     
     clusters = correlator.find_event_clusters(time_window_minutes=10)
-    print(f"✅ Found {len(clusters)} event clusters")
+    print(f"[PASS] Found {len(clusters)} event clusters")
     
     attack_analysis = correlator.analyze_attack_sequence()
-    print(f"✅ Attack sequence analysis: {len(attack_analysis['potential_attack_chains'])} chains")
+    print(f"[PASS] Attack sequence analysis: {len(attack_analysis['potential_attack_chains'])} chains")
 
 def run_all_tests():
     '''Run all forensic engine tests'''
-    print("🧪 WatchSleuth Forensic Engine Test Suite")
+    print("[U+1F9EA] WatchSleuth Forensic Engine Test Suite")
     print("=" * 50)
     
     try:
@@ -1518,11 +1518,11 @@ def run_all_tests():
         test_timeline_creation()
         
         print("\\n" + "=" * 50)
-        print("✅ All tests completed successfully!")
-        print("\\n🎯 WatchSleuth Forensic Engine is ready for use")
+        print("[PASS] All tests completed successfully!")
+        print("\\n[TARGET] WatchSleuth Forensic Engine is ready for use")
         
     except Exception as e:
-        print(f"\\n❌ Test failed: {e}")
+        print(f"\\n[FAIL] Test failed: {e}")
 
 if __name__ == "__main__":
     run_all_tests()
@@ -1534,11 +1534,11 @@ if __name__ == "__main__":
     # 7. Create README
     readme = """# WatchSleuth Forensic Engine
 
-## 🔍 Overview
+## [SEARCH] Overview
 
 WatchSleuth is an advanced digital forensics and incident investigation engine inspired by Autopsy/Sleuthkit functionality with AI-enhanced analysis capabilities. It provides comprehensive forensic analysis tools for Windows environments.
 
-## 🎯 Core Capabilities
+## [TARGET] Core Capabilities
 
 ### **File System Forensics**
 - **MFT Analysis** - Master File Table parsing and timeline reconstruction
@@ -1560,7 +1560,7 @@ WatchSleuth is an advanced digital forensics and incident investigation engine i
 - **Attack Pattern Detection** - MITRE ATT&CK-based attack sequence identification
 - **Chain of Custody** - Complete evidence handling and documentation
 
-## 🚀 Quick Start
+## [START] Quick Start
 
 ### **Installation**
 ```bash
@@ -1594,7 +1594,7 @@ results = engine.perform_comprehensive_analysis(case_id)
 engine.export_case_report(case_id, "investigation_report.json")
 ```
 
-## 🛠️ Forensic Tools
+## [TOOL] Forensic Tools
 
 ### **Command Line Interface**
 ```bash
@@ -1628,7 +1628,7 @@ clusters = correlator.find_event_clusters(time_window_minutes=5)
 attack_analysis = correlator.analyze_attack_sequence()
 ```
 
-## 📊 Analysis Capabilities
+## [BARS] Analysis Capabilities
 
 ### **MFT (Master File Table) Analysis**
 - File creation, modification, access timestamps
@@ -1654,7 +1654,7 @@ attack_analysis = correlator.analyze_attack_sequence()
 - Communication pattern analysis
 - Phishing email detection
 
-## 🎯 Investigation Workflow
+## [TARGET] Investigation Workflow
 
 ### **1. Case Initialization**
 ```python
@@ -1684,7 +1684,7 @@ results = engine.perform_comprehensive_analysis(case_id)
 engine.export_case_report(case_id, "final_report.json")
 ```
 
-## 📈 Advanced Features
+## [CHART] Advanced Features
 
 ### **AI-Enhanced Analysis**
 - Behavioral pattern recognition
@@ -1703,7 +1703,7 @@ engine.export_case_report(case_id, "final_report.json")
 - Network relationship graphs
 - Attack vector visualizations
 
-## 🔧 Configuration
+## [U+1F527] Configuration
 
 ### **Evidence Templates**
 ```json
@@ -1728,13 +1728,13 @@ All evidence handling includes:
 - Complete audit trail
 - Evidence integrity validation
 
-## 🧪 Testing
+## [U+1F9EA] Testing
 
 ```bash
 python test_forensics.py
 ```
 
-## 📝 Case Report Format
+## [U+1F4DD] Case Report Format
 
 ```json
 {
@@ -1760,14 +1760,14 @@ python test_forensics.py
 }
 ```
 
-## 🔒 Security Considerations
+## [LOCK] Security Considerations
 
 - All evidence handling maintains chain of custody
 - Hash verification for integrity validation
 - Secure evidence storage and access controls
 - Audit logging of all forensic activities
 
-## 🤝 Integration with WatchLockAI
+## [SYNC] Integration with WatchLockAI
 
 WatchSleuth integrates seamlessly with the WatchLockAI ecosystem:
 - **Real-time Analysis** - Live forensic artifact collection during incident response
@@ -1783,29 +1783,29 @@ WatchSleuth integrates seamlessly with the WatchLockAI ecosystem:
     with open(forensics_dir / "README.md", "w", encoding="utf-8") as f:
         f.write(readme)
     
-    print("✅ WatchSleuth Forensic Engine created!")
-    print(f"📁 Location: {forensics_dir}")
+    print("[PASS] WatchSleuth Forensic Engine created!")
+    print(f"[U+1F4C1] Location: {forensics_dir}")
     print()
-    print("🎯 Core Components Created:")
-    print("   • watchsleuth_engine.py - Main forensic analysis engine")
-    print("   • forensic_tools.py - Command-line interface tools")
-    print("   • timeline_analysis.py - Timeline visualization and correlation")
-    print("   • test_forensics.py - Comprehensive test suite")
-    print("   • evidence_templates.json - Evidence collection templates")
-    print("   • requirements.txt - Python dependencies")
-    print("   • README.md - Complete documentation")
+    print("[TARGET] Core Components Created:")
+    print("   * watchsleuth_engine.py - Main forensic analysis engine")
+    print("   * forensic_tools.py - Command-line interface tools")
+    print("   * timeline_analysis.py - Timeline visualization and correlation")
+    print("   * test_forensics.py - Comprehensive test suite")
+    print("   * evidence_templates.json - Evidence collection templates")
+    print("   * requirements.txt - Python dependencies")
+    print("   * README.md - Complete documentation")
     print()
-    print("🔍 Forensic Capabilities:")
-    print("   • MFT Analysis - NTFS file system forensics")
-    print("   • Registry Analysis - Windows registry examination")
-    print("   • Shadow Copy Analysis - VSS snapshot processing")
-    print("   • Deleted File Carving - File recovery from unallocated space")
-    print("   • Email Forensics - PST/EML/MSG analysis")
-    print("   • Browser Forensics - Web activity reconstruction")
-    print("   • Timeline Analysis - Event correlation and sequencing")
-    print("   • Attack Pattern Detection - MITRE-based analysis")
+    print("[SEARCH] Forensic Capabilities:")
+    print("   * MFT Analysis - NTFS file system forensics")
+    print("   * Registry Analysis - Windows registry examination")
+    print("   * Shadow Copy Analysis - VSS snapshot processing")
+    print("   * Deleted File Carving - File recovery from unallocated space")
+    print("   * Email Forensics - PST/EML/MSG analysis")
+    print("   * Browser Forensics - Web activity reconstruction")
+    print("   * Timeline Analysis - Event correlation and sequencing")
+    print("   * Attack Pattern Detection - MITRE-based analysis")
     print()
-    print("🚀 Ready for forensic investigations!")
+    print("[START] Ready for forensic investigations!")
     
     return str(forensics_dir)
 

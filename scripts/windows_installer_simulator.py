@@ -24,7 +24,7 @@ class WindowsSimulator:
         os.makedirs(self.temp_dir, exist_ok=True)
         os.makedirs(self.system32, exist_ok=True)
         
-        print(f"📁 Created Windows simulation environment:")
+        print(f"[U+1F4C1] Created Windows simulation environment:")
         print(f"   Program Files: {self.program_files}")
         print(f"   Temp: {self.temp_dir}")
         print(f"   System32: {self.system32}")
@@ -45,10 +45,10 @@ class WindowsSimulator:
             linux_path = linux_path.replace("\\", "/")
             
             os.makedirs(linux_path, exist_ok=True)
-            print(f"✅ Created directory: {linux_path}")
+            print(f"[PASS] Created directory: {linux_path}")
             return True
         except Exception as e:
-            print(f"❌ Failed to create directory {path}: {e}")
+            print(f"[FAIL] Failed to create directory {path}: {e}")
             return False
 
     def simulate_echo_to_file(self, content, filepath):
@@ -64,10 +64,10 @@ class WindowsSimulator:
             
             with open(linux_path, 'w') as f:
                 f.write(content)
-            print(f"✅ Created file: {linux_path}")
+            print(f"[PASS] Created file: {linux_path}")
             return True
         except Exception as e:
-            print(f"❌ Failed to create file {filepath}: {e}")
+            print(f"[FAIL] Failed to create file {filepath}: {e}")
             return False
 
     def simulate_if_exist(self, path):
@@ -79,7 +79,7 @@ class WindowsSimulator:
 
     def run_batch_simulation(self, batch_file_path):
         """Simulate running a Windows batch file"""
-        print(f"\n🔄 Simulating Windows batch execution: {batch_file_path}")
+        print(f"\n[RELOAD] Simulating Windows batch execution: {batch_file_path}")
         print("=" * 60)
         
         try:
@@ -104,10 +104,10 @@ class WindowsSimulator:
                     total_operations += 1
                     result = self.simulate_net_session()
                     if result == 0:
-                        print(f"[{i:3d}] ✅ Administrator check: PASSED")
+                        print(f"[{i:3d}] [PASS] Administrator check: PASSED")
                         success_count += 1
                     else:
-                        print(f"[{i:3d}] ❌ Administrator check: FAILED")
+                        print(f"[{i:3d}] [FAIL] Administrator check: FAILED")
                     continue
                 
                 if line.startswith('mkdir') or 'mkdir' in line:
@@ -125,7 +125,7 @@ class WindowsSimulator:
                 if 'echo' in line and '>' in line:
                     total_operations += 1
                     # This is a complex operation, just count as success for now
-                    print(f"[{i:3d}] ✅ File creation operation")
+                    print(f"[{i:3d}] [PASS] File creation operation")
                     success_count += 1
                     continue
                 
@@ -136,30 +136,30 @@ class WindowsSimulator:
                     if match:
                         path = match.group(1)
                         if self.simulate_if_exist(path):
-                            print(f"[{i:3d}] ✅ File exists check: PASSED for {path}")
+                            print(f"[{i:3d}] [PASS] File exists check: PASSED for {path}")
                             success_count += 1
                         else:
-                            print(f"[{i:3d}] ❌ File exists check: FAILED for {path}")
+                            print(f"[{i:3d}] [FAIL] File exists check: FAILED for {path}")
                     continue
                 
                 if line.startswith('echo'):
                     # Just print echo statements
                     echo_text = line[4:].strip()
-                    print(f"[{i:3d}] 📢 {echo_text}")
+                    print(f"[{i:3d}] [U+1F4E2] {echo_text}")
                     continue
                 
                 # For other commands, just note them
                 if line and not line.startswith(':') and 'pause' not in line:
-                    print(f"[{i:3d}] 📝 Command: {line[:50]}...")
+                    print(f"[{i:3d}] [U+1F4DD] Command: {line[:50]}...")
             
             print("\n" + "=" * 60)
-            print(f"🎯 SIMULATION RESULTS:")
+            print(f"[TARGET] SIMULATION RESULTS:")
             print(f"   Operations simulated: {total_operations}")
             print(f"   Successful: {success_count}")
             print(f"   Success rate: {(success_count/total_operations*100):.1f}%" if total_operations > 0 else "No operations")
             
             # Check what was actually created
-            print(f"\n📁 CREATED FILES AND DIRECTORIES:")
+            print(f"\n[U+1F4C1] CREATED FILES AND DIRECTORIES:")
             watchlockai_dir = f"{self.program_files}/WatchLockAI"
             if os.path.exists(watchlockai_dir):
                 for root, dirs, files in os.walk(watchlockai_dir):
@@ -175,13 +175,13 @@ class WindowsSimulator:
             return success_count >= total_operations * 0.8  # 80% success threshold
             
         except Exception as e:
-            print(f"❌ Simulation failed: {e}")
+            print(f"[FAIL] Simulation failed: {e}")
             return False
 
 def test_installer_in_windows_sim():
     """Test the WatchLockAI installer in Windows simulation"""
     
-    print("🎮 WINDOWS INSTALLER SIMULATION TEST")
+    print("[U+1F3AE] WINDOWS INSTALLER SIMULATION TEST")
     print("=" * 50)
     
     sim = WindowsSimulator()
@@ -190,17 +190,17 @@ def test_installer_in_windows_sim():
     simple_installer = "/workspace/WatchLockAI_Agent/Super-Simple-Installer.bat"
     
     if os.path.exists(simple_installer):
-        print(f"\n🎯 Testing: Super-Simple-Installer.bat")
+        print(f"\n[TARGET] Testing: Super-Simple-Installer.bat")
         result = sim.run_batch_simulation(simple_installer)
         
         if result:
-            print("\n🎉 SIMULATION PASSED!")
+            print("\n[U+1F389] SIMULATION PASSED!")
             print("The installer would likely work on real Windows!")
         else:
-            print("\n⚠️ SIMULATION ISSUES DETECTED")
+            print("\n[WARN] SIMULATION ISSUES DETECTED")
             print("The installer might have problems on real Windows")
     else:
-        print(f"❌ Installer not found: {simple_installer}")
+        print(f"[FAIL] Installer not found: {simple_installer}")
     
     return result
 
@@ -210,11 +210,11 @@ if __name__ == "__main__":
         
         print(f"\n{'='*50}")
         if success:
-            print("🏆 CONCLUSION: High confidence the installer will work on Windows!")
+            print("[U+1F3C6] CONCLUSION: High confidence the installer will work on Windows!")
         else:
-            print("🔧 CONCLUSION: Installer needs fixes before Windows deployment")
+            print("[U+1F527] CONCLUSION: Installer needs fixes before Windows deployment")
         
     except KeyboardInterrupt:
-        print("\n\n❌ Simulation interrupted by user")
+        print("\n\n[FAIL] Simulation interrupted by user")
     except Exception as e:
-        print(f"\n\n❌ Simulation failed: {e}")
+        print(f"\n\n[FAIL] Simulation failed: {e}")

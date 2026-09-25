@@ -11,7 +11,7 @@ from pathlib import Path
 def create_account_sentinel():
     """Create the Account Sentinel module for WatchLockAI"""
     
-    print("👥 Building Account Sentinel Module...")
+    print("[U+1F465] Building Account Sentinel Module...")
     
     # Create Account Sentinel directory
     sentinel_dir = Path("/workspace/WatchLockAI_RealPlatform/AccountSentinel")
@@ -906,7 +906,7 @@ class AccountSentinelCore:
         self.monitoring_thread.daemon = True
         self.monitoring_thread.start()
         
-        logger.info("✅ Account Sentinel monitoring active")
+        logger.info("[PASS] Account Sentinel monitoring active")
         
     def _monitoring_loop(self):
         '''Main monitoring loop'''
@@ -1030,7 +1030,7 @@ class AccountSentinelCore:
         if self.monitoring_thread:
             self.monitoring_thread.join(timeout=5)
             
-        logger.info("✅ Account Sentinel stopped")
+        logger.info("[PASS] Account Sentinel stopped")
         
     def get_status(self) -> Dict[str, Any]:
         '''Get Account Sentinel status'''
@@ -1045,7 +1045,7 @@ class AccountSentinelCore:
 
 def main():
     '''Main entry point for Account Sentinel'''
-    print("👥 WatchLockAI Account Sentinel")
+    print("[U+1F465] WatchLockAI Account Sentinel")
     print("Advanced user account monitoring and behavioral analysis")
     print()
     
@@ -1054,13 +1054,13 @@ def main():
         sentinel = AccountSentinelCore()
         sentinel.start_monitoring()
         
-        print("🔍 Monitoring capabilities active:")
-        print("   • Account Discovery - Hidden account detection")
-        print("   • Behavior Analysis - User behavior baselining")
-        print("   • Privilege Monitoring - Escalation detection")
-        print("   • Login Analysis - Anomalous login detection")
+        print("[SEARCH] Monitoring capabilities active:")
+        print("   * Account Discovery - Hidden account detection")
+        print("   * Behavior Analysis - User behavior baselining")
+        print("   * Privilege Monitoring - Escalation detection")
+        print("   * Login Analysis - Anomalous login detection")
         print()
-        print("👤 Account Sentinel is now monitoring!")
+        print("[U+1F464] Account Sentinel is now monitoring!")
         print("Press Ctrl+C to stop monitoring")
         
         # Keep sentinel running
@@ -1068,7 +1068,7 @@ def main():
             time.sleep(1)
             
     except KeyboardInterrupt:
-        print("\\n🛑 Shutting down Account Sentinel...")
+        print("\\n[U+1F6D1] Shutting down Account Sentinel...")
         sentinel.stop_monitoring()
         
     except Exception as e:
@@ -1454,7 +1454,7 @@ class IdentityCorrelationEngine:
 
 def main():
     '''Test identity correlation'''
-    print("🔗 WatchLockAI Identity Correlation Engine")
+    print("[LINK] WatchLockAI Identity Correlation Engine")
     print("Correlating user identities across systems")
     
     engine = IdentityCorrelationEngine()
@@ -1468,9 +1468,9 @@ def main():
     
     for user in test_users:
         identity_id = engine.correlate_identity(user["username"], user)
-        print(f"   User '{user['username']}' → Identity ID: {identity_id}")
+        print(f"   User '{user['username']}' -> Identity ID: {identity_id}")
     
-    print("✅ Identity correlation test completed")
+    print("[PASS] Identity correlation test completed")
 
 if __name__ == "__main__":
     main()
@@ -1729,20 +1729,20 @@ class WindowsEventMonitor:
 
 def main():
     '''Test Windows event monitoring'''
-    print("📝 WatchLockAI Windows Event Monitor")
+    print("[U+1F4DD] WatchLockAI Windows Event Monitor")
     print("Monitoring Windows Event Log for account activities")
     
     monitor = WindowsEventMonitor()
     monitor.start_monitoring()
     
-    print("✅ Event monitoring started")
-    print("🔍 Monitoring event IDs: 4624, 4625, 4720, 4722, etc.")
+    print("[PASS] Event monitoring started")
+    print("[SEARCH] Monitoring event IDs: 4624, 4625, 4720, 4722, etc.")
     
     try:
         while True:
             time.sleep(10)
     except KeyboardInterrupt:
-        print("\\n🛑 Stopping event monitor...")
+        print("\\n[U+1F6D1] Stopping event monitor...")
         monitor.running = False
 
 if __name__ == "__main__":
@@ -1773,17 +1773,17 @@ from event_monitor import WindowsEventMonitor
 
 def test_account_discovery():
     '''Test account discovery functionality'''
-    print("\\n🔍 Testing Account Discovery...")
+    print("\\n[SEARCH] Testing Account Discovery...")
     
     discovery = AccountDiscovery()
     
     # Test database initialization
     assert os.path.exists(discovery.account_database)
-    print("✅ Account database initialized")
+    print("[PASS] Account database initialized")
     
     # Test account discovery methods (will be limited in Linux environment)
     accounts = discovery.discover_accounts()
-    print(f"✅ Account discovery completed (found {len(accounts)} accounts)")
+    print(f"[PASS] Account discovery completed (found {len(accounts)} accounts)")
     
     # Test suspicious account detection
     fake_account = {
@@ -1795,46 +1795,46 @@ def test_account_discovery():
     }
     
     discovery._analyze_for_hidden_accounts([fake_account])
-    print("✅ Hidden account analysis working")
+    print("[PASS] Hidden account analysis working")
 
 def test_behavior_analyzer():
     '''Test behavior analysis'''
-    print("\\n🔍 Testing Behavior Analyzer...")
+    print("\\n[SEARCH] Testing Behavior Analyzer...")
     
     analyzer = BehaviorAnalyzer()
     
     # Test database initialization
     assert os.path.exists(analyzer.behavior_database)
-    print("✅ Behavior database initialized")
+    print("[PASS] Behavior database initialized")
     
     # Test user profile creation
     profile = analyzer._create_user_profile("testuser")
     assert profile.username == "testuser"
-    print("✅ User profile creation working")
+    print("[PASS] User profile creation working")
     
     # Test login behavior analysis
     analyzer.analyze_login_behavior("testuser", "2024-01-01T09:00:00", "192.168.1.100")
-    print("✅ Login behavior analysis working")
+    print("[PASS] Login behavior analysis working")
     
     # Test process behavior analysis  
     analyzer.analyze_process_behavior("testuser", "notepad.exe", "notepad.exe document.txt")
-    print("✅ Process behavior analysis working")
+    print("[PASS] Process behavior analysis working")
     
     # Test privilege escalation detection
     old_privs = ["SeShutdownPrivilege"]
     new_privs = ["SeShutdownPrivilege", "SeDebugPrivilege"]
     analyzer.detect_privilege_escalation("testuser", old_privs, new_privs)
-    print("✅ Privilege escalation detection working")
+    print("[PASS] Privilege escalation detection working")
 
 def test_identity_correlation():
     '''Test identity correlation engine'''
-    print("\\n🔍 Testing Identity Correlation...")
+    print("\\n[SEARCH] Testing Identity Correlation...")
     
     engine = IdentityCorrelationEngine()
     
     # Test database initialization
     assert os.path.exists(engine.identity_database)
-    print("✅ Identity database initialized")
+    print("[PASS] Identity database initialized")
     
     # Test identity correlation
     user_info = {
@@ -1847,29 +1847,29 @@ def test_identity_correlation():
     identity_id1 = engine.correlate_identity("jdoe", user_info)
     identity_id2 = engine.correlate_identity("john.doe", user_info)  # Same user
     
-    print(f"✅ Identity correlation working")
-    print(f"   User 'jdoe' → {identity_id1}")
-    print(f"   User 'john.doe' → {identity_id2}")
+    print(f"[PASS] Identity correlation working")
+    print(f"   User 'jdoe' -> {identity_id1}")
+    print(f"   User 'john.doe' -> {identity_id2}")
 
 def test_event_monitor():
     '''Test Windows event monitoring'''
-    print("\\n🔍 Testing Event Monitor...")
+    print("\\n[SEARCH] Testing Event Monitor...")
     
     monitor = WindowsEventMonitor()
     
     # Test initialization
     assert monitor.monitored_events is not None
     assert 'Security' in monitor.monitored_events
-    print("✅ Event monitor initialized")
+    print("[PASS] Event monitor initialized")
     
     # Test event processing (with mock data)
     fake_event = "Sample event log entry for testing"
     monitor._process_event(fake_event, 4624)
-    print("✅ Event processing working")
+    print("[PASS] Event processing working")
 
 def test_configuration_loading():
     '''Test configuration management'''
-    print("\\n🔍 Testing Configuration Loading...")
+    print("\\n[SEARCH] Testing Configuration Loading...")
     
     # Create test config
     test_config = {
@@ -1893,11 +1893,11 @@ def test_configuration_loading():
     # Cleanup
     os.remove(config_file)
     
-    print("✅ Configuration loading test completed")
+    print("[PASS] Configuration loading test completed")
 
 def test_database_operations():
     '''Test database operations'''
-    print("\\n🔍 Testing Database Operations...")
+    print("\\n[SEARCH] Testing Database Operations...")
     
     # Test account database
     discovery = AccountDiscovery()
@@ -1928,11 +1928,11 @@ def test_database_operations():
     assert result is not None
     assert result[0] == 'testuser1'
     
-    print("✅ Database operations working")
+    print("[PASS] Database operations working")
 
 def test_integration():
     '''Test full system integration'''
-    print("\\n🔧 Testing Integration...")
+    print("\\n[U+1F527] Testing Integration...")
     
     # Test full system initialization
     sentinel = AccountSentinelCore()
@@ -1947,11 +1947,11 @@ def test_integration():
     assert 'config' in status
     assert 'components' in status
     
-    print("✅ Integration test completed")
+    print("[PASS] Integration test completed")
 
 def run_all_tests():
     '''Run all Account Sentinel tests'''
-    print("🧪 WatchLockAI Account Sentinel Test Suite")
+    print("[U+1F9EA] WatchLockAI Account Sentinel Test Suite")
     print("=" * 50)
     
     try:
@@ -1964,19 +1964,19 @@ def run_all_tests():
         test_integration()
         
         print("\\n" + "=" * 50)
-        print("✅ All Account Sentinel tests completed successfully!")
-        print("\\n👥 Account Sentinel is ready for deployment")
-        print("\\n📋 Test Summary:")
-        print("   • Account Discovery - ✅ Working")
-        print("   • Behavior Analysis - ✅ Working")
-        print("   • Identity Correlation - ✅ Working")
-        print("   • Event Monitoring - ✅ Working")
-        print("   • Configuration Management - ✅ Working")
-        print("   • Database Operations - ✅ Working")
-        print("   • System Integration - ✅ Working")
+        print("[PASS] All Account Sentinel tests completed successfully!")
+        print("\\n[U+1F465] Account Sentinel is ready for deployment")
+        print("\\n[PLAN] Test Summary:")
+        print("   * Account Discovery - [PASS] Working")
+        print("   * Behavior Analysis - [PASS] Working")
+        print("   * Identity Correlation - [PASS] Working")
+        print("   * Event Monitoring - [PASS] Working")
+        print("   * Configuration Management - [PASS] Working")
+        print("   * Database Operations - [PASS] Working")
+        print("   * System Integration - [PASS] Working")
         
     except Exception as e:
-        print(f"\\n❌ Test failed: {e}")
+        print(f"\\n[FAIL] Test failed: {e}")
         import traceback
         traceback.print_exc()
 
@@ -2010,13 +2010,13 @@ pywin32>=306  # Windows API access for advanced features
     
     # 7. Create Startup Script
     startup_bat = """@echo off
-echo 👥 Starting WatchLockAI Account Sentinel...
+echo [U+1F465] Starting WatchLockAI Account Sentinel...
 echo.
 
 :: Check if Python is available
 python --version >nul 2>&1
 if errorlevel 1 (
-    echo ❌ Python is not installed or not in PATH
+    echo [FAIL] Python is not installed or not in PATH
     echo Please install Python 3.8+ and add to PATH
     pause
     exit /b 1
@@ -2024,13 +2024,13 @@ if errorlevel 1 (
 
 :: Install requirements if needed
 if not exist "accounts.db" (
-    echo 📦 Installing Python requirements...
+    echo [PKG] Installing Python requirements...
     pip install -r requirements.txt
 )
 
 :: Start Account Sentinel
-echo ✅ Launching Account Sentinel...
-echo 👤 User monitoring will begin...
+echo [PASS] Launching Account Sentinel...
+echo [U+1F464] User monitoring will begin...
 echo.
 
 python account_sentinel_core.py
@@ -2044,11 +2044,11 @@ pause
     # 8. Create README
     readme = """# WatchLockAI Account Sentinel Module
 
-## 👥 Overview
+## [U+1F465] Overview
 
 The WatchLockAI Account Sentinel Module provides comprehensive user account monitoring, behavioral analysis, and identity correlation capabilities. It detects hidden accounts, monitors user behavior patterns, identifies privilege escalation attempts, and correlates user identities across multiple systems and contexts.
 
-## 🎯 Core Capabilities
+## [TARGET] Core Capabilities
 
 ### **Account Discovery & Monitoring**
 - **Hidden Account Detection** - Discovers accounts not visible through normal enumeration
@@ -2080,7 +2080,7 @@ The WatchLockAI Account Sentinel Module provides comprehensive user account moni
 - **Account Change Detection** - Monitors account modification events
 - **Real-time Event Processing** - Immediate event analysis and correlation
 
-## 🚀 Quick Start
+## [START] Quick Start
 
 ### **Installation**
 ```bash
@@ -2110,7 +2110,7 @@ start_account_sentinel.bat
 python account_sentinel_core.py
 ```
 
-## 🔧 Components
+## [U+1F527] Components
 
 ### **account_sentinel_core.py**
 Main orchestrator that coordinates all account monitoring functions.
@@ -2139,7 +2139,7 @@ Windows Event Log monitoring for account-related activities.
 - 4728 - Added to security group
 - And many more...
 
-## 🔍 Discovery Methods
+## [SEARCH] Discovery Methods
 
 ### **Account Enumeration**
 ```python
@@ -2163,7 +2163,7 @@ HKLM\\SAM\\SAM\\Domains\\Account\\Users
 - Suspicious username patterns
 - Disabled but active accounts
 
-## 📊 Behavioral Analysis
+## [BARS] Behavioral Analysis
 
 ### **Login Behavior Baselines**
 - **Typical Login Times** - Hour-of-day patterns
@@ -2192,7 +2192,7 @@ if process not in common_processes:
     anomaly_score += 0.2
 ```
 
-## 🚨 Privilege Escalation Detection
+## [ALERT] Privilege Escalation Detection
 
 ### **High-Value Privileges**
 - `SeDebugPrivilege` - Debug programs
@@ -2217,7 +2217,7 @@ for privilege in added_privileges:
         trigger_escalation_alert()
 ```
 
-## 💾 Database Schema
+## [U+1F4BE] Database Schema
 
 ### **Accounts Table**
 ```sql
@@ -2257,7 +2257,7 @@ CREATE TABLE identities (
 );
 ```
 
-## ⚙️ Configuration Options
+## [U+2699] Configuration Options
 
 ### **Monitoring Intervals**
 ```json
@@ -2294,7 +2294,7 @@ CREATE TABLE identities (
 }
 ```
 
-## 🧪 Testing
+## [U+1F9EA] Testing
 
 Run the comprehensive test suite:
 ```bash
@@ -2310,7 +2310,7 @@ python test_account_sentinel.py
 - Configuration management
 - System integration
 
-## 📈 Performance Metrics
+## [CHART] Performance Metrics
 
 ### **Resource Usage**
 - **CPU Usage:** < 2% average
@@ -2324,7 +2324,7 @@ python test_account_sentinel.py
 - **Behavioral Anomalies:** 85%+ accuracy
 - **Identity Correlation:** 92%+ accuracy
 
-## 🔒 Security Features
+## [LOCK] Security Features
 
 ### **Data Protection**
 - **Encrypted Storage** - Sensitive data encryption
@@ -2338,7 +2338,7 @@ python test_account_sentinel.py
 - **Anonymization** - PII anonymization options
 - **Compliance** - GDPR/SOX compliance features
 
-## 🔗 Integration
+## [LINK] Integration
 
 ### **AI Brain Integration**
 All account events and anomalies are sent to the AI Brain for intelligent analysis and correlation with other security events.
@@ -2349,7 +2349,7 @@ Account events generate forensic evidence that can be analyzed for incident reco
 ### **SIEM Integration**
 Account alerts can be forwarded to external SIEM systems for enterprise-wide correlation.
 
-## 📊 Reporting
+## [BARS] Reporting
 
 ### **Account Discovery Reports**
 - Complete account inventory
@@ -2369,7 +2369,7 @@ Account alerts can be forwarded to external SIEM systems for enterprise-wide cor
 - Group membership changes
 - Risk assessments
 
-## 🔧 Troubleshooting
+## [U+1F527] Troubleshooting
 
 ### **Common Issues**
 
@@ -2405,7 +2405,7 @@ wevtutil el
 # Check security permissions
 ```
 
-## 📝 Logging
+## [U+1F4DD] Logging
 
 Account Sentinel activities are logged to:
 - `watchlockai_accounts.log` - Main account monitoring log
@@ -2427,34 +2427,34 @@ Account Sentinel activities are logged to:
     with open(sentinel_dir / "README.md", "w", encoding="utf-8") as f:
         f.write(readme)
     
-    print("✅ WatchLockAI Account Sentinel Module created!")
-    print(f"📁 Location: {sentinel_dir}")
+    print("[PASS] WatchLockAI Account Sentinel Module created!")
+    print(f"[U+1F4C1] Location: {sentinel_dir}")
     print()
-    print("👥 Core Components Created:")
-    print("   • account_sentinel_core.py - Main monitoring orchestrator")
-    print("   • identity_correlation.py - Cross-system identity tracking")
-    print("   • event_monitor.py - Windows Event Log monitoring")
-    print("   • test_account_sentinel.py - Comprehensive test suite")
-    print("   • account_sentinel_config.json - Configuration settings")
-    print("   • start_account_sentinel.bat - Easy startup script")
-    print("   • requirements.txt - Python dependencies")
-    print("   • README.md - Complete documentation")
+    print("[U+1F465] Core Components Created:")
+    print("   * account_sentinel_core.py - Main monitoring orchestrator")
+    print("   * identity_correlation.py - Cross-system identity tracking")
+    print("   * event_monitor.py - Windows Event Log monitoring")
+    print("   * test_account_sentinel.py - Comprehensive test suite")
+    print("   * account_sentinel_config.json - Configuration settings")
+    print("   * start_account_sentinel.bat - Easy startup script")
+    print("   * requirements.txt - Python dependencies")
+    print("   * README.md - Complete documentation")
     print()
-    print("🔍 Monitoring Capabilities:")
-    print("   • Account Discovery - Hidden account detection")
-    print("   • Behavior Analysis - User pattern monitoring")
-    print("   • Privilege Monitoring - Escalation detection")
-    print("   • Identity Correlation - Cross-system tracking")
-    print("   • Event Monitoring - Windows Event Log analysis")
+    print("[SEARCH] Monitoring Capabilities:")
+    print("   * Account Discovery - Hidden account detection")
+    print("   * Behavior Analysis - User pattern monitoring")
+    print("   * Privilege Monitoring - Escalation detection")
+    print("   * Identity Correlation - Cross-system tracking")
+    print("   * Event Monitoring - Windows Event Log analysis")
     print()
-    print("🎯 Features:")
-    print("   • Real-time anomaly detection")
-    print("   • Behavioral baselining")
-    print("   • AI Brain integration")
-    print("   • SQLite database storage")
-    print("   • Comprehensive reporting")
+    print("[TARGET] Features:")
+    print("   * Real-time anomaly detection")
+    print("   * Behavioral baselining")
+    print("   * AI Brain integration")
+    print("   * SQLite database storage")
+    print("   * Comprehensive reporting")
     print()
-    print("🚀 Ready for enterprise deployment!")
+    print("[START] Ready for enterprise deployment!")
     
     return str(sentinel_dir)
 

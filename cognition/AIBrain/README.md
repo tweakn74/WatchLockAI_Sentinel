@@ -1,6 +1,6 @@
 # WatchLockAI - Agentic AI Brain
 
-## 🧠 Overview
+## [BRAIN] Overview
 
 The WatchLockAI Agentic AI Brain is the core intelligence system for autonomous threat detection and response. It implements:
 
@@ -10,7 +10,7 @@ The WatchLockAI Agentic AI Brain is the core intelligence system for autonomous 
 - **Fog-of-War Memory** - Staged memory model for efficient processing
 - **Agentic Decision Making** - Autonomous threat assessment and response recommendations
 
-## 🚀 Quick Start
+## [START] Quick Start
 
 1. **Install Requirements**:
    ```bash
@@ -31,14 +31,14 @@ The WatchLockAI Agentic AI Brain is the core intelligence system for autonomous 
    python test_ai_brain.py
    ```
 
-## 📡 API Endpoints
+## [SCOUT] API Endpoints
 
 - `GET /health` - Health check
 - `GET /status` - AI Brain status and statistics
 - `POST /analyze` - Analyze security event
 - `POST /feedback` - Provide learning feedback
 
-## 🔍 Event Analysis
+## [SEARCH] Event Analysis
 
 The AI Brain analyzes security events using multiple techniques:
 
@@ -61,7 +61,7 @@ Detects authorized security testing:
 - Red team frameworks
 - Security simulation platforms
 
-## 🧮 Machine Learning
+## [U+1F9EE] Machine Learning
 
 Uses advanced ML techniques:
 - **Isolation Forest** for anomaly detection
@@ -69,14 +69,14 @@ Uses advanced ML techniques:
 - **Behavioral Baselining** with continuous learning
 - **Adaptive Thresholds** based on environment
 
-## 🔒 Security Features
+## [LOCK] Security Features
 
 - **Tamperproof Design** - Self-monitoring and protection
 - **Encrypted Communication** - Secure API endpoints
 - **Audit Logging** - Complete analysis trail
 - **Memory Protection** - Fog-of-war data handling
 
-## 📊 Example Usage
+## [BARS] Example Usage
 
 ```python
 import requests
@@ -100,7 +100,7 @@ print(f"Threat detected: {analysis['threat_detected']}")
 print(f"Narrative: {analysis['narrative']}")
 ```
 
-## 🏗️ Architecture
+## [U+1F3D7] Architecture
 
 ```
 ┌─────────────────────────────────────────┐
@@ -122,7 +122,7 @@ print(f"Narrative: {analysis['narrative']}")
 └─────────────────────────────────────────┘
 ```
 
-## 🔧 Configuration
+## [U+1F527] Configuration
 
 The AI Brain is self-configuring but can be tuned:
 
@@ -131,7 +131,7 @@ The AI Brain is self-configuring but can be tuned:
 - **Memory Layers**: Automatic fog-of-war management
 - **ML Models**: Auto-training with minimum 10 samples
 
-## 📈 Monitoring
+## [CHART] Monitoring
 
 Monitor AI Brain health:
 - Check `/status` endpoint for statistics
@@ -139,7 +139,7 @@ Monitor AI Brain health:
 - Monitor memory usage and database size
 - Track threat detection accuracy
 
-## 🚀 Production Deployment
+## [START] Production Deployment
 
 For production use:
 1. Configure reverse proxy (nginx/IIS)

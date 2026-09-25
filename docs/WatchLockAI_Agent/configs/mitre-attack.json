@@ -1,0 +1,63 @@
+{
+  "MitreAttackMatrix": {
+    "Version": "v13.1",
+    "LastUpdated": "2025-01-01T00:00:00Z",
+    "Techniques": {
+      "T1059.001": {
+        "Name": "PowerShell",
+        "Tactic": "Execution",
+        "Description": "Adversaries may abuse PowerShell commands and scripts for execution",
+        "DetectionPatterns": [
+          "powershell",
+          "-encodedcommand",
+          "-noprofile",
+          "-windowstyle hidden",
+          "invoke-expression",
+          "downloadstring"
+        ],
+        "Severity": "Medium",
+        "Enabled": true
+      },
+      "T1218.011": {
+        "Name": "Rundll32",
+        "Tactic": "Defense Evasion",
+        "Description": "Adversaries may abuse rundll32.exe to proxy execution of malicious code",
+        "DetectionPatterns": [
+          "rundll32.exe",
+          "javascript:",
+          "vbscript:",
+          "shell32.dll",
+          "advpack.dll"
+        ],
+        "Severity": "High",
+        "Enabled": true
+      },
+      "T1055": {
+        "Name": "Process Injection",
+        "Tactic": "Defense Evasion",
+        "Description": "Adversaries may inject code into processes in order to evade process-based defenses",
+        "DetectionPatterns": [
+          "CreateRemoteThread",
+          "SetWindowsHookEx",
+          "QueueUserAPC",
+          "NtMapViewOfSection"
+        ],
+        "Severity": "High",
+        "Enabled": true
+      },
+      "T1003": {
+        "Name": "OS Credential Dumping",
+        "Tactic": "Credential Access",
+        "Description": "Adversaries may attempt to dump credentials to obtain account login information",
+        "DetectionPatterns": [
+          "lsass.exe",
+          "sekurlsa",
+          "mimikatz",
+          "procdump"
+        ],
+        "Severity": "Critical",
+        "Enabled": true
+      }
+    }
+  }
+}

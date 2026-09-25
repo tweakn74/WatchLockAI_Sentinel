@@ -15,7 +15,7 @@ from windows_agent_core import WindowsAgentCore, FileSystemMonitor, ProcessMonit
 
 def test_file_system_monitor():
     '''Test file system monitoring'''
-    print("\n🔍 Testing File System Monitor...")
+    print("\n[SEARCH] Testing File System Monitor...")
     
     monitor = FileSystemMonitor()
     
@@ -24,7 +24,7 @@ def test_file_system_monitor():
         temp_file.write(b'Test executable content')
         temp_path = temp_file.name
         
-    print(f"✅ Created test file: {temp_path}")
+    print(f"[PASS] Created test file: {temp_path}")
     
     # Test file analysis
     stat_info = os.stat(temp_path)
@@ -32,16 +32,16 @@ def test_file_system_monitor():
     
     # Cleanup
     os.unlink(temp_path)
-    print("✅ File system monitor test completed")
+    print("[PASS] File system monitor test completed")
 
 def test_process_monitor():
     '''Test process monitoring'''
-    print("\n🔍 Testing Process Monitor...")
+    print("\n[SEARCH] Testing Process Monitor...")
     
     monitor = ProcessMonitor()
     monitor._update_process_list()
     
-    print(f"✅ Process monitor initialized with {len(monitor.known_processes)} processes")
+    print(f"[PASS] Process monitor initialized with {len(monitor.known_processes)} processes")
     
     # Test suspicious process detection
     fake_proc_info = {
@@ -53,11 +53,11 @@ def test_process_monitor():
     }
     
     monitor._analyze_new_process(fake_proc_info)
-    print("✅ Process monitor test completed")
+    print("[PASS] Process monitor test completed")
 
 def test_network_monitor():
     '''Test network monitoring'''
-    print("\n🔍 Testing Network Monitor...")
+    print("\n[SEARCH] Testing Network Monitor...")
     
     monitor = NetworkMonitor()
     
@@ -68,11 +68,11 @@ def test_network_monitor():
         is_suspicious = monitor._is_suspicious_ip(ip)
         print(f"   IP {ip}: {'Suspicious' if is_suspicious else 'Normal'}")
         
-    print("✅ Network monitor test completed")
+    print("[PASS] Network monitor test completed")
 
 def test_agent_configuration():
     '''Test agent configuration loading'''
-    print("\n🔍 Testing Agent Configuration...")
+    print("\n[SEARCH] Testing Agent Configuration...")
     
     # Create test config
     test_config = {
@@ -97,11 +97,11 @@ def test_agent_configuration():
     
     # Cleanup
     os.remove(config_file)
-    print("✅ Agent configuration test completed")
+    print("[PASS] Agent configuration test completed")
 
 def test_agent_status():
     '''Test agent status functionality'''
-    print("\n🔍 Testing Agent Status...")
+    print("\n[SEARCH] Testing Agent Status...")
     
     agent = WindowsAgentCore()
     
@@ -109,11 +109,11 @@ def test_agent_status():
     status = agent.get_agent_status()
     assert status['status'] == 'not_started'
     
-    print("✅ Agent status test completed")
+    print("[PASS] Agent status test completed")
 
 def test_event_reporting():
     '''Test event reporting to AI Brain'''
-    print("\n🔍 Testing Event Reporting...")
+    print("\n[SEARCH] Testing Event Reporting...")
     
     # Test with mock AI Brain (should fail gracefully)
     monitor = FileSystemMonitor("http://localhost:9998")  # Non-existent endpoint
@@ -122,11 +122,11 @@ def test_event_reporting():
     fake_stat = type('stat', (), {'st_size': 1024, 'st_mtime': time.time()})()
     monitor._analyze_file_change("C:\\test\\file.exe", fake_stat)
     
-    print("✅ Event reporting test completed")
+    print("[PASS] Event reporting test completed")
 
 def test_browser_monitor():
     '''Test browser monitoring'''
-    print("\n🔍 Testing Browser Monitor...")
+    print("\n[SEARCH] Testing Browser Monitor...")
     
     from browser_monitor import BrowserMonitor
     
@@ -145,11 +145,11 @@ def test_browser_monitor():
     for browser, url_data in test_urls:
         monitor._analyze_url(browser, url_data)
         
-    print("✅ Browser monitor test completed")
+    print("[PASS] Browser monitor test completed")
 
 def run_integration_test():
     '''Run integration test with all components'''
-    print("\n🔧 Running Integration Test...")
+    print("\n[U+1F527] Running Integration Test...")
     
     # Test full agent startup (without actually starting monitoring)
     agent = WindowsAgentCore()
@@ -160,11 +160,11 @@ def run_integration_test():
     assert agent.network_monitor is not None
     assert agent.registry_monitor is not None
     
-    print("✅ Integration test completed")
+    print("[PASS] Integration test completed")
 
 def run_all_tests():
     '''Run all agent tests'''
-    print("🧪 WatchLockAI Windows Agent Test Suite")
+    print("[U+1F9EA] WatchLockAI Windows Agent Test Suite")
     print("=" * 50)
     
     try:
@@ -178,11 +178,11 @@ def run_all_tests():
         run_integration_test()
         
         print("\n" + "=" * 50)
-        print("✅ All tests completed successfully!")
-        print("\n🎯 WatchLockAI Windows Agent is ready for deployment")
+        print("[PASS] All tests completed successfully!")
+        print("\n[TARGET] WatchLockAI Windows Agent is ready for deployment")
         
     except Exception as e:
-        print(f"\n❌ Test failed: {e}")
+        print(f"\n[FAIL] Test failed: {e}")
         import traceback
         traceback.print_exc()
 

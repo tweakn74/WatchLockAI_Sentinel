@@ -549,7 +549,7 @@ class CommunicationTester:
                 result = await test()
                 results.append(result)
                 
-                status = "✅ PASS" if result.success else "❌ FAIL"
+                status = "[PASS] PASS" if result.success else "[FAIL] FAIL"
                 logger.info(f"{status} {result.test_name}: {result.message} ({result.duration:.2f}s)")
                 
                 if result.details:
@@ -566,7 +566,7 @@ class CommunicationTester:
                     message=f"Test execution failed: {str(e)}"
                 )
                 results.append(error_result)
-                logger.error(f"❌ FAIL {test.__name__}: {str(e)}")
+                logger.error(f"[FAIL] FAIL {test.__name__}: {str(e)}")
         
         return results
     
@@ -584,9 +584,9 @@ class CommunicationTester:
         print(f"Success Rate: {(passed/total)*100:.1f}%")
         
         if passed == total:
-            print("\\n🎉 All communication tests passed! Agent-Console communication is working correctly.")
+            print("\\n[U+1F389] All communication tests passed! Agent-Console communication is working correctly.")
         else:
-            print("\\n⚠️  Some tests failed. Please review the issues above.")
+            print("\\n[WARN]  Some tests failed. Please review the issues above.")
             
             failed_tests = [r for r in results if not r.success]
             print("\\nFailed Tests:")
@@ -1056,14 +1056,14 @@ class SecurityIntegrationTester:
         for test in tests:
             try:
                 result = test()
-                status = "✅ PASS" if result["success"] else "❌ FAIL"
+                status = "[PASS] PASS" if result["success"] else "[FAIL] FAIL"
                 logger.info(f"{status} {result['test']}: {result['message']}")
                 
                 if not result["success"]:
                     logger.error(f"Failure details: {result.get('details', 'No additional details')}")
             
             except Exception as e:
-                logger.error(f"❌ FAIL {test.__name__}: Test execution failed: {str(e)}")
+                logger.error(f"[FAIL] FAIL {test.__name__}: Test execution failed: {str(e)}")
                 self.test_results.append({
                     "test": test.__name__,
                     "success": False,
@@ -1084,10 +1084,10 @@ class SecurityIntegrationTester:
         print(f"Success Rate: {(passed/total)*100:.1f}%")
         
         if passed == total:
-            print("\\n🎉 All security integration tests passed!")
+            print("\\n[U+1F389] All security integration tests passed!")
             print("   WatchLockAI agent is ready for Windows security API integration.")
         else:
-            print("\\n⚠️  Some tests failed. Security integrations may need attention.")
+            print("\\n[WARN]  Some tests failed. Security integrations may need attention.")
             
             failed_tests = [r for r in self.test_results if not r["success"]]
             print("\\nFailed Tests:")
@@ -1360,9 +1360,9 @@ class WatchLockAITestRunner:
                 results[suite_name] = suite_result
                 
                 if suite_result["success"]:
-                    logger.info(f"✅ {suite_name}: PASSED")
+                    logger.info(f"[PASS] {suite_name}: PASSED")
                 else:
-                    logger.error(f"❌ {suite_name}: FAILED")
+                    logger.error(f"[FAIL] {suite_name}: FAILED")
                     overall_success = False
                     
                     # Log error details
@@ -1372,7 +1372,7 @@ class WatchLockAITestRunner:
                         logger.error(f"   Stderr: {suite_result['stderr']}")
             
             except Exception as e:
-                logger.error(f"❌ {suite_name}: EXECUTION FAILED - {str(e)}")
+                logger.error(f"[FAIL] {suite_name}: EXECUTION FAILED - {str(e)}")
                 results[suite_name] = {
                     "test_suite": suite_name,
                     "success": False,
@@ -1419,17 +1419,17 @@ class WatchLockAITestRunner:
         
         print("\\nTest Suite Results:")
         for suite_name, result in summary['test_results'].items():
-            status = "✅ PASS" if result['success'] else "❌ FAIL"
+            status = "[PASS] PASS" if result['success'] else "[FAIL] FAIL"
             print(f"  {status} {suite_name}")
             
             if not result['success'] and 'error' in result:
                 print(f"    Error: {result['error']}")
         
         if summary['overall_success']:
-            print("\\n🎉 ALL TESTS PASSED!")
+            print("\\n[U+1F389] ALL TESTS PASSED!")
             print("   WatchLockAI platform is ready for deployment.")
         else:
-            print("\\n⚠️  SOME TESTS FAILED!")
+            print("\\n[WARN]  SOME TESTS FAILED!")
             print("   Please review failed tests before deployment.")
         
         print("\\nTest artifacts saved to:", self.test_output_dir)
@@ -1515,13 +1515,13 @@ REM Check exit code
 if %errorlevel% equ 0 (
     echo.
     echo =====================================
-    echo ✅ ALL TESTS PASSED!
+    echo [PASS] ALL TESTS PASSED!
     echo WatchLockAI platform is ready for deployment.
     echo =====================================
 ) else (
     echo.
     echo =====================================
-    echo ❌ SOME TESTS FAILED!
+    echo [FAIL] SOME TESTS FAILED!
     echo Please review test results before deployment.
     echo =====================================
 )

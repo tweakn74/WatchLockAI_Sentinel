@@ -1,4 +1,4 @@
-# Registry Monitor — Spec (Windows only)
+# Registry Monitor -- Spec (Windows only)
 
 Purpose: Watch common persistence keys.
 

@@ -11,7 +11,7 @@ from pathlib import Path
 def create_windows_agent_core():
     """Create the Windows Agent Core monitoring system"""
     
-    print("🖥️ Building Windows Agent Core...")
+    print("[U+1F5A5] Building Windows Agent Core...")
     
     # Create Agent directory
     agent_dir = Path("/workspace/WatchLockAI_RealPlatform/WindowsAgent")
@@ -720,7 +720,7 @@ class WindowsAgentCore:
         # Start status reporting
         self._start_status_reporting()
         
-        logger.info("✅ WatchLockAI Windows Agent started successfully")
+        logger.info("[PASS] WatchLockAI Windows Agent started successfully")
         
     def _start_status_reporting(self):
         '''Start periodic status reporting'''
@@ -778,7 +778,7 @@ class WindowsAgentCore:
         self.network_monitor.running = False
         self.registry_monitor.running = False
         
-        logger.info("✅ WatchLockAI Windows Agent stopped")
+        logger.info("[PASS] WatchLockAI Windows Agent stopped")
         
     def get_agent_status(self) -> Dict[str, Any]:
         '''Get current agent status'''
@@ -801,7 +801,7 @@ class WindowsAgentCore:
 
 def main():
     '''Main entry point for Windows Agent'''
-    print("🖥️ WatchLockAI Windows Agent Core")
+    print("[U+1F5A5] WatchLockAI Windows Agent Core")
     print("Real-time monitoring and protection for Windows systems")
     print()
     
@@ -810,13 +810,13 @@ def main():
         agent = WindowsAgentCore()
         agent.start_agent()
         
-        print("🔄 Monitoring active:")
-        print("   • File System - Real-time file monitoring")
-        print("   • Processes - Process creation/termination tracking")
-        print("   • Network - Connection monitoring and analysis")
-        print("   • Registry - Registry change detection")
+        print("[RELOAD] Monitoring active:")
+        print("   * File System - Real-time file monitoring")
+        print("   * Processes - Process creation/termination tracking")
+        print("   * Network - Connection monitoring and analysis")
+        print("   * Registry - Registry change detection")
         print()
-        print("📡 Sending events to AI Brain for analysis...")
+        print("[SCOUT] Sending events to AI Brain for analysis...")
         print("Press Ctrl+C to stop the agent")
         
         # Keep agent running
@@ -824,7 +824,7 @@ def main():
             time.sleep(1)
             
     except KeyboardInterrupt:
-        print("\\n🛑 Shutting down Windows Agent...")
+        print("\\n[U+1F6D1] Shutting down Windows Agent...")
         agent.stop_agent()
         
     except Exception as e:
@@ -975,7 +975,7 @@ if WINDOWS_SERVICE_AVAILABLE:
 def install_service():
     '''Install WatchLockAI as Windows service'''
     if not WINDOWS_SERVICE_AVAILABLE:
-        print("❌ Windows service functionality requires pywin32")
+        print("[FAIL] Windows service functionality requires pywin32")
         print("   Install with: pip install pywin32")
         return False
         
@@ -986,52 +986,52 @@ def install_service():
             WatchLockAIWindowsService._svc_display_name_,
             description=WatchLockAIWindowsService._svc_description_
         )
-        print("✅ WatchLockAI service installed successfully")
+        print("[PASS] WatchLockAI service installed successfully")
         return True
     except Exception as e:
-        print(f"❌ Service installation failed: {e}")
+        print(f"[FAIL] Service installation failed: {e}")
         return False
 
 def uninstall_service():
     '''Uninstall WatchLockAI Windows service'''
     if not WINDOWS_SERVICE_AVAILABLE:
-        print("❌ Windows service functionality requires pywin32")
+        print("[FAIL] Windows service functionality requires pywin32")
         return False
         
     try:
         win32serviceutil.RemoveService(WatchLockAIWindowsService._svc_name_)
-        print("✅ WatchLockAI service uninstalled successfully")
+        print("[PASS] WatchLockAI service uninstalled successfully")
         return True
     except Exception as e:
-        print(f"❌ Service uninstallation failed: {e}")
+        print(f"[FAIL] Service uninstallation failed: {e}")
         return False
 
 def start_service():
     '''Start WatchLockAI service'''
     if not WINDOWS_SERVICE_AVAILABLE:
-        print("❌ Windows service functionality requires pywin32")
+        print("[FAIL] Windows service functionality requires pywin32")
         return False
         
     try:
         win32serviceutil.StartService(WatchLockAIWindowsService._svc_name_)
-        print("✅ WatchLockAI service started")
+        print("[PASS] WatchLockAI service started")
         return True
     except Exception as e:
-        print(f"❌ Service start failed: {e}")
+        print(f"[FAIL] Service start failed: {e}")
         return False
 
 def stop_service():
     '''Stop WatchLockAI service'''
     if not WINDOWS_SERVICE_AVAILABLE:
-        print("❌ Windows service functionality requires pywin32")
+        print("[FAIL] Windows service functionality requires pywin32")
         return False
         
     try:
         win32serviceutil.StopService(WatchLockAIWindowsService._svc_name_)
-        print("✅ WatchLockAI service stopped")
+        print("[PASS] WatchLockAI service stopped")
         return True
     except Exception as e:
-        print(f"❌ Service stop failed: {e}")
+        print(f"[FAIL] Service stop failed: {e}")
         return False
 
 def main():
@@ -1049,12 +1049,12 @@ def main():
             stop_service()
         elif command == 'console':
             # Run as console application
-            print("🖥️ Running WatchLockAI Agent in console mode...")
+            print("[U+1F5A5] Running WatchLockAI Agent in console mode...")
             service = WatchLockAIService()
             try:
                 service.start_service()
             except KeyboardInterrupt:
-                print("\\n🛑 Stopping agent...")
+                print("\\n[U+1F6D1] Stopping agent...")
                 service.stop_service()
         else:
             print("Usage: agent_service.py [install|uninstall|start|stop|console]")
@@ -1063,7 +1063,7 @@ def main():
         if WINDOWS_SERVICE_AVAILABLE:
             win32serviceutil.HandleCommandLine(WatchLockAIWindowsService)
         else:
-            print("❌ Windows service functionality requires pywin32")
+            print("[FAIL] Windows service functionality requires pywin32")
             print("   Install with: pip install pywin32")
             print("   Or run with: python agent_service.py console")
 
@@ -1287,20 +1287,20 @@ class BrowserMonitor:
 
 def main():
     '''Test browser monitoring'''
-    print("🌐 WatchLockAI Browser Monitor")
+    print("[U+1F310] WatchLockAI Browser Monitor")
     print("Monitoring browser activities for security threats")
     
     monitor = BrowserMonitor()
     monitor.start_monitoring()
     
-    print("✅ Browser monitoring started")
-    print("🔍 Monitoring browsers:", list(monitor.browser_paths.keys()))
+    print("[PASS] Browser monitoring started")
+    print("[SEARCH] Monitoring browsers:", list(monitor.browser_paths.keys()))
     
     try:
         while True:
             time.sleep(10)
     except KeyboardInterrupt:
-        print("\\n🛑 Stopping browser monitor...")
+        print("\\n[U+1F6D1] Stopping browser monitor...")
         monitor.running = False
 
 if __name__ == "__main__":
@@ -1328,7 +1328,7 @@ from windows_agent_core import WindowsAgentCore, FileSystemMonitor, ProcessMonit
 
 def test_file_system_monitor():
     '''Test file system monitoring'''
-    print("\\n🔍 Testing File System Monitor...")
+    print("\\n[SEARCH] Testing File System Monitor...")
     
     monitor = FileSystemMonitor()
     
@@ -1337,7 +1337,7 @@ def test_file_system_monitor():
         temp_file.write(b'Test executable content')
         temp_path = temp_file.name
         
-    print(f"✅ Created test file: {temp_path}")
+    print(f"[PASS] Created test file: {temp_path}")
     
     # Test file analysis
     stat_info = os.stat(temp_path)
@@ -1345,16 +1345,16 @@ def test_file_system_monitor():
     
     # Cleanup
     os.unlink(temp_path)
-    print("✅ File system monitor test completed")
+    print("[PASS] File system monitor test completed")
 
 def test_process_monitor():
     '''Test process monitoring'''
-    print("\\n🔍 Testing Process Monitor...")
+    print("\\n[SEARCH] Testing Process Monitor...")
     
     monitor = ProcessMonitor()
     monitor._update_process_list()
     
-    print(f"✅ Process monitor initialized with {len(monitor.known_processes)} processes")
+    print(f"[PASS] Process monitor initialized with {len(monitor.known_processes)} processes")
     
     # Test suspicious process detection
     fake_proc_info = {
@@ -1366,11 +1366,11 @@ def test_process_monitor():
     }
     
     monitor._analyze_new_process(fake_proc_info)
-    print("✅ Process monitor test completed")
+    print("[PASS] Process monitor test completed")
 
 def test_network_monitor():
     '''Test network monitoring'''
-    print("\\n🔍 Testing Network Monitor...")
+    print("\\n[SEARCH] Testing Network Monitor...")
     
     monitor = NetworkMonitor()
     
@@ -1381,11 +1381,11 @@ def test_network_monitor():
         is_suspicious = monitor._is_suspicious_ip(ip)
         print(f"   IP {ip}: {'Suspicious' if is_suspicious else 'Normal'}")
         
-    print("✅ Network monitor test completed")
+    print("[PASS] Network monitor test completed")
 
 def test_agent_configuration():
     '''Test agent configuration loading'''
-    print("\\n🔍 Testing Agent Configuration...")
+    print("\\n[SEARCH] Testing Agent Configuration...")
     
     # Create test config
     test_config = {
@@ -1410,11 +1410,11 @@ def test_agent_configuration():
     
     # Cleanup
     os.remove(config_file)
-    print("✅ Agent configuration test completed")
+    print("[PASS] Agent configuration test completed")
 
 def test_agent_status():
     '''Test agent status functionality'''
-    print("\\n🔍 Testing Agent Status...")
+    print("\\n[SEARCH] Testing Agent Status...")
     
     agent = WindowsAgentCore()
     
@@ -1422,11 +1422,11 @@ def test_agent_status():
     status = agent.get_agent_status()
     assert status['status'] == 'not_started'
     
-    print("✅ Agent status test completed")
+    print("[PASS] Agent status test completed")
 
 def test_event_reporting():
     '''Test event reporting to AI Brain'''
-    print("\\n🔍 Testing Event Reporting...")
+    print("\\n[SEARCH] Testing Event Reporting...")
     
     # Test with mock AI Brain (should fail gracefully)
     monitor = FileSystemMonitor("http://localhost:9998")  # Non-existent endpoint
@@ -1435,11 +1435,11 @@ def test_event_reporting():
     fake_stat = type('stat', (), {'st_size': 1024, 'st_mtime': time.time()})()
     monitor._analyze_file_change("C:\\\\test\\\\file.exe", fake_stat)
     
-    print("✅ Event reporting test completed")
+    print("[PASS] Event reporting test completed")
 
 def test_browser_monitor():
     '''Test browser monitoring'''
-    print("\\n🔍 Testing Browser Monitor...")
+    print("\\n[SEARCH] Testing Browser Monitor...")
     
     from browser_monitor import BrowserMonitor
     
@@ -1458,11 +1458,11 @@ def test_browser_monitor():
     for browser, url_data in test_urls:
         monitor._analyze_url(browser, url_data)
         
-    print("✅ Browser monitor test completed")
+    print("[PASS] Browser monitor test completed")
 
 def run_integration_test():
     '''Run integration test with all components'''
-    print("\\n🔧 Running Integration Test...")
+    print("\\n[U+1F527] Running Integration Test...")
     
     # Test full agent startup (without actually starting monitoring)
     agent = WindowsAgentCore()
@@ -1473,11 +1473,11 @@ def run_integration_test():
     assert agent.network_monitor is not None
     assert agent.registry_monitor is not None
     
-    print("✅ Integration test completed")
+    print("[PASS] Integration test completed")
 
 def run_all_tests():
     '''Run all agent tests'''
-    print("🧪 WatchLockAI Windows Agent Test Suite")
+    print("[U+1F9EA] WatchLockAI Windows Agent Test Suite")
     print("=" * 50)
     
     try:
@@ -1491,11 +1491,11 @@ def run_all_tests():
         run_integration_test()
         
         print("\\n" + "=" * 50)
-        print("✅ All tests completed successfully!")
-        print("\\n🎯 WatchLockAI Windows Agent is ready for deployment")
+        print("[PASS] All tests completed successfully!")
+        print("\\n[TARGET] WatchLockAI Windows Agent is ready for deployment")
         
     except Exception as e:
-        print(f"\\n❌ Test failed: {e}")
+        print(f"\\n[FAIL] Test failed: {e}")
         import traceback
         traceback.print_exc()
 
@@ -1530,13 +1530,13 @@ pywin32>=306  # Windows service support and registry access
     
     # 7. Create Startup Scripts
     startup_bat = """@echo off
-echo 🖥️ Starting WatchLockAI Windows Agent...
+echo [U+1F5A5] Starting WatchLockAI Windows Agent...
 echo.
 
 :: Check if Python is available
 python --version >nul 2>&1
 if errorlevel 1 (
-    echo ❌ Python is not installed or not in PATH
+    echo [FAIL] Python is not installed or not in PATH
     echo Please install Python 3.8+ and add to PATH
     pause
     exit /b 1
@@ -1544,12 +1544,12 @@ if errorlevel 1 (
 
 :: Install requirements if needed
 if not exist "watchlockai_agent.log" (
-    echo 📦 Installing Python requirements...
+    echo [PKG] Installing Python requirements...
     pip install -r requirements.txt
 )
 
 :: Start agent
-echo ✅ Launching WatchLockAI Agent...
+echo [PASS] Launching WatchLockAI Agent...
 python windows_agent_core.py
 
 pause
@@ -1561,11 +1561,11 @@ pause
     # 8. Create README
     readme = """# WatchLockAI Windows Agent Core
 
-## 🖥️ Overview
+## [U+1F5A5] Overview
 
 The WatchLockAI Windows Agent Core provides real-time monitoring and protection for Windows systems. It monitors file system activities, process execution, network connections, and registry changes to detect and respond to security threats.
 
-## 🎯 Core Capabilities
+## [TARGET] Core Capabilities
 
 ### **Real-time Monitoring**
 - **File System Monitor** - Track file creation, modification, and deletion
@@ -1580,7 +1580,7 @@ The WatchLockAI Windows Agent Core provides real-time monitoring and protection 
 - **Behavioral Analysis** - Machine learning-based anomaly detection
 - **Real-time Response** - Automated threat response actions
 
-## 🚀 Quick Start
+## [START] Quick Start
 
 ### **Installation**
 ```bash
@@ -1623,7 +1623,7 @@ python agent_service.py stop
 python agent_service.py uninstall
 ```
 
-## 🔍 Monitoring Components
+## [SEARCH] Monitoring Components
 
 ### **File System Monitor**
 - Monitors critical system directories
@@ -1683,7 +1683,7 @@ python agent_service.py uninstall
 - Mozilla Firefox
 - Microsoft Edge
 
-## 🔧 Configuration Options
+## [U+1F527] Configuration Options
 
 ### **Monitoring Settings**
 ```json
@@ -1719,7 +1719,7 @@ python agent_service.py uninstall
 }
 ```
 
-## 📊 Event Types
+## [BARS] Event Types
 
 ### **File System Events**
 - `file_created` - New file created
@@ -1740,7 +1740,7 @@ python agent_service.py uninstall
 - `registry_modified` - Registry key/value changed
 - `registry_suspicious` - Suspicious registry activity
 
-## 🔒 Security Features
+## [LOCK] Security Features
 
 ### **Tamper Protection**
 - Self-monitoring capabilities
@@ -1754,7 +1754,7 @@ python agent_service.py uninstall
 - Background operation
 - Silent monitoring mode
 
-## 🧪 Testing
+## [U+1F9EA] Testing
 
 ```bash
 python test_agent.py
@@ -1769,7 +1769,7 @@ python test_agent.py
 - Browser monitoring
 - Integration tests
 
-## 📈 Performance
+## [CHART] Performance
 
 ### **Resource Usage**
 - **CPU Usage:** < 5% average
@@ -1783,7 +1783,7 @@ python test_agent.py
 - Configurable monitoring intensity
 - Optimized for 24/7 operation
 
-## 🔧 Troubleshooting
+## [U+1F527] Troubleshooting
 
 ### **Common Issues**
 
@@ -1817,7 +1817,7 @@ curl http://localhost:9999/health
 # Verify ai_brain_url in agent_config.json
 ```
 
-## 🔄 Integration with WatchLockAI
+## [RELOAD] Integration with WatchLockAI
 
 The Windows Agent integrates seamlessly with other WatchLockAI components:
 
@@ -1826,7 +1826,7 @@ The Windows Agent integrates seamlessly with other WatchLockAI components:
 - **Management Console** - Centralized monitoring and control
 - **Tamperproofing** - Protected against disable attempts
 
-## 📝 Logging
+## [U+1F4DD] Logging
 
 Agent activities are logged to:
 - `watchlockai_agent.log` - Main agent log
@@ -1847,34 +1847,34 @@ Agent activities are logged to:
     with open(agent_dir / "README.md", "w", encoding="utf-8") as f:
         f.write(readme)
     
-    print("✅ WatchLockAI Windows Agent Core created!")
-    print(f"📁 Location: {agent_dir}")
+    print("[PASS] WatchLockAI Windows Agent Core created!")
+    print(f"[U+1F4C1] Location: {agent_dir}")
     print()
-    print("🎯 Core Components Created:")
-    print("   • windows_agent_core.py - Main agent with all monitors")
-    print("   • agent_service.py - Windows service wrapper")
-    print("   • browser_monitor.py - Browser activity monitoring")
-    print("   • test_agent.py - Comprehensive test suite")
-    print("   • agent_config.json - Configuration settings")
-    print("   • start_agent.bat - Easy startup script")
-    print("   • requirements.txt - Python dependencies")
-    print("   • README.md - Complete documentation")
+    print("[TARGET] Core Components Created:")
+    print("   * windows_agent_core.py - Main agent with all monitors")
+    print("   * agent_service.py - Windows service wrapper")
+    print("   * browser_monitor.py - Browser activity monitoring")
+    print("   * test_agent.py - Comprehensive test suite")
+    print("   * agent_config.json - Configuration settings")
+    print("   * start_agent.bat - Easy startup script")
+    print("   * requirements.txt - Python dependencies")
+    print("   * README.md - Complete documentation")
     print()
-    print("🔍 Monitoring Capabilities:")
-    print("   • File System - Real-time file activity tracking")
-    print("   • Process Monitor - Process creation/termination detection")
-    print("   • Network Monitor - Connection and traffic analysis")
-    print("   • Registry Monitor - Registry change detection")
-    print("   • Browser Monitor - Web browsing security analysis")
+    print("[SEARCH] Monitoring Capabilities:")
+    print("   * File System - Real-time file activity tracking")
+    print("   * Process Monitor - Process creation/termination detection")
+    print("   * Network Monitor - Connection and traffic analysis")
+    print("   * Registry Monitor - Registry change detection")
+    print("   * Browser Monitor - Web browsing security analysis")
     print()
-    print("🔧 Features:")
-    print("   • Windows Service support")
-    print("   • AI Brain integration")
-    print("   • Real-time threat detection")
-    print("   • Configurable monitoring")
-    print("   • Low resource footprint")
+    print("[U+1F527] Features:")
+    print("   * Windows Service support")
+    print("   * AI Brain integration")
+    print("   * Real-time threat detection")
+    print("   * Configurable monitoring")
+    print("   * Low resource footprint")
     print()
-    print("🚀 Ready for Windows deployment!")
+    print("[START] Ready for Windows deployment!")
     
     return str(agent_dir)
 

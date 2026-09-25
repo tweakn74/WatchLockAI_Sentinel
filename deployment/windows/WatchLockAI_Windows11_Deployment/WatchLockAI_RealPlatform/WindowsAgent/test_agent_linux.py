@@ -40,14 +40,14 @@ sys.modules['winreg'] = MockWinreg()
 # Now import our components
 try:
     from windows_agent_core import FileSystemMonitor, ProcessMonitor, NetworkMonitor
-    print("✅ Successfully imported agent components")
+    print("[PASS] Successfully imported agent components")
 except ImportError as e:
-    print(f"❌ Import error: {e}")
+    print(f"[FAIL] Import error: {e}")
     exit(1)
 
 def test_file_system_monitor():
     '''Test file system monitoring'''
-    print("\n🔍 Testing File System Monitor...")
+    print("\n[SEARCH] Testing File System Monitor...")
     
     monitor = FileSystemMonitor()
     
@@ -56,7 +56,7 @@ def test_file_system_monitor():
         temp_file.write(b'Test executable content')
         temp_path = temp_file.name
         
-    print(f"✅ Created test file: {temp_path}")
+    print(f"[PASS] Created test file: {temp_path}")
     
     # Test file analysis
     stat_info = os.stat(temp_path)
@@ -64,15 +64,15 @@ def test_file_system_monitor():
     
     # Cleanup
     os.unlink(temp_path)
-    print("✅ File system monitor test completed")
+    print("[PASS] File system monitor test completed")
 
 def test_process_monitor():
     '''Test process monitoring'''
-    print("\n🔍 Testing Process Monitor...")
+    print("\n[SEARCH] Testing Process Monitor...")
     
     monitor = ProcessMonitor()
     
-    print(f"✅ Process monitor initialized")
+    print(f"[PASS] Process monitor initialized")
     
     # Test suspicious process detection
     fake_proc_info = {
@@ -84,11 +84,11 @@ def test_process_monitor():
     }
     
     monitor._analyze_new_process(fake_proc_info)
-    print("✅ Process monitor test completed")
+    print("[PASS] Process monitor test completed")
 
 def test_network_monitor():
     '''Test network monitoring'''
-    print("\n🔍 Testing Network Monitor...")
+    print("\n[SEARCH] Testing Network Monitor...")
     
     monitor = NetworkMonitor()
     
@@ -99,11 +99,11 @@ def test_network_monitor():
         is_suspicious = monitor._is_suspicious_ip(ip)
         print(f"   IP {ip}: {'Suspicious' if is_suspicious else 'Normal'}")
         
-    print("✅ Network monitor test completed")
+    print("[PASS] Network monitor test completed")
 
 def test_agent_configuration():
     '''Test agent configuration loading'''
-    print("\n🔍 Testing Agent Configuration...")
+    print("\n[SEARCH] Testing Agent Configuration...")
     
     # Test config loading with mock
     from windows_agent_core import WindowsAgentCore
@@ -131,11 +131,11 @@ def test_agent_configuration():
     
     # Cleanup
     os.remove(config_file)
-    print("✅ Agent configuration test completed")
+    print("[PASS] Agent configuration test completed")
 
 def test_event_reporting():
     '''Test event reporting to AI Brain'''
-    print("\n🔍 Testing Event Reporting...")
+    print("\n[SEARCH] Testing Event Reporting...")
     
     # Test with mock AI Brain (should fail gracefully)
     monitor = FileSystemMonitor("http://localhost:9998")  # Non-existent endpoint
@@ -144,11 +144,11 @@ def test_event_reporting():
     fake_stat = type('stat', (), {'st_size': 1024, 'st_mtime': time.time()})()
     monitor._analyze_file_change("/tmp/test/file.exe", fake_stat)
     
-    print("✅ Event reporting test completed")
+    print("[PASS] Event reporting test completed")
 
 def test_browser_monitor():
     '''Test browser monitoring'''
-    print("\n🔍 Testing Browser Monitor...")
+    print("\n[SEARCH] Testing Browser Monitor...")
     
     from browser_monitor import BrowserMonitor
     
@@ -167,11 +167,11 @@ def test_browser_monitor():
     for browser, url_data in test_urls:
         monitor._analyze_url(browser, url_data)
         
-    print("✅ Browser monitor test completed")
+    print("[PASS] Browser monitor test completed")
 
 def test_hash_calculation():
     '''Test file hash calculation'''
-    print("\n🔍 Testing Hash Calculation...")
+    print("\n[SEARCH] Testing Hash Calculation...")
     
     monitor = FileSystemMonitor()
     
@@ -188,11 +188,11 @@ def test_hash_calculation():
     
     # Cleanup
     os.unlink(temp_path)
-    print(f"✅ Hash calculation test completed (hash: {file_hash[:8]}...)")
+    print(f"[PASS] Hash calculation test completed (hash: {file_hash[:8]}...)")
 
 def run_integration_test():
     '''Run integration test with all components'''
-    print("\n🔧 Running Integration Test...")
+    print("\n[U+1F527] Running Integration Test...")
     
     # Test full agent startup (without actually starting monitoring)
     from windows_agent_core import WindowsAgentCore
@@ -204,11 +204,11 @@ def run_integration_test():
     assert agent.network_monitor is not None
     assert agent.registry_monitor is not None
     
-    print("✅ Integration test completed")
+    print("[PASS] Integration test completed")
 
 def run_all_tests():
     '''Run all agent tests'''
-    print("🧪 WatchLockAI Windows Agent Test Suite (Linux Environment)")
+    print("[U+1F9EA] WatchLockAI Windows Agent Test Suite (Linux Environment)")
     print("=" * 60)
     
     try:
@@ -222,20 +222,20 @@ def run_all_tests():
         run_integration_test()
         
         print("\n" + "=" * 60)
-        print("✅ All tests completed successfully!")
-        print("\n🎯 WatchLockAI Windows Agent is ready for deployment")
-        print("\n📋 Test Summary:")
-        print("   • File System Monitor - ✅ Working")
-        print("   • Process Monitor - ✅ Working") 
-        print("   • Network Monitor - ✅ Working")
-        print("   • Configuration System - ✅ Working")
-        print("   • Event Reporting - ✅ Working")
-        print("   • Browser Monitor - ✅ Working")
-        print("   • Hash Calculation - ✅ Working")
-        print("   • Integration - ✅ Working")
+        print("[PASS] All tests completed successfully!")
+        print("\n[TARGET] WatchLockAI Windows Agent is ready for deployment")
+        print("\n[PLAN] Test Summary:")
+        print("   * File System Monitor - [PASS] Working")
+        print("   * Process Monitor - [PASS] Working") 
+        print("   * Network Monitor - [PASS] Working")
+        print("   * Configuration System - [PASS] Working")
+        print("   * Event Reporting - [PASS] Working")
+        print("   * Browser Monitor - [PASS] Working")
+        print("   * Hash Calculation - [PASS] Working")
+        print("   * Integration - [PASS] Working")
         
     except Exception as e:
-        print(f"\n❌ Test failed: {e}")
+        print(f"\n[FAIL] Test failed: {e}")
         import traceback
         traceback.print_exc()
 

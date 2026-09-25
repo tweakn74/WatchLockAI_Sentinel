@@ -415,12 +415,12 @@ function Show-CompletionMessage {
         Write-Host ("=" * 70) -ForegroundColor $ColorInfo
         
         if ($Success) {
-            Write-Host "🎉 WatchLockAI Installation Completed Successfully!" -ForegroundColor $ColorSuccess
+            Write-Host "[U+1F389] WatchLockAI Installation Completed Successfully!" -ForegroundColor $ColorSuccess
             Write-Host ""
             Write-Host "Installation Details:" -ForegroundColor $ColorInfo
-            Write-Host "  • Installation Path: $InstallPath" -ForegroundColor White
-            Write-Host "  • Console Endpoint: $ConsoleEndpoint" -ForegroundColor White
-            Write-Host "  • Service Name: $ServiceName" -ForegroundColor White
+            Write-Host "  * Installation Path: $InstallPath" -ForegroundColor White
+            Write-Host "  * Console Endpoint: $ConsoleEndpoint" -ForegroundColor White
+            Write-Host "  * Service Name: $ServiceName" -ForegroundColor White
             Write-Host ""
             Write-Host "Next Steps:" -ForegroundColor $ColorWarning
             Write-Host "  1. WatchLockAI agent is now protecting this system" -ForegroundColor White
@@ -430,7 +430,7 @@ function Show-CompletionMessage {
             Write-Host ""
             Write-Host "Management Console: $ConsoleEndpoint" -ForegroundColor $ColorInfo
         } else {
-            Write-Host "❌ WatchLockAI Installation Failed!" -ForegroundColor $ColorError
+            Write-Host "[FAIL] WatchLockAI Installation Failed!" -ForegroundColor $ColorError
             Write-Host ""
             Write-Host "Please check the installation log for details:" -ForegroundColor $ColorWarning
             Write-Host "  Log file: $env:TEMP\\WatchLockAI_Install.log" -ForegroundColor White
@@ -456,12 +456,12 @@ try {
         if ($uninstallSuccess) {
             Write-InstallerLog "WatchLockAI uninstalled successfully" "SUCCESS"
             if (-not $Silent) {
-                Write-Host "✓ WatchLockAI has been uninstalled successfully." -ForegroundColor $ColorSuccess
+                Write-Host "[x] WatchLockAI has been uninstalled successfully." -ForegroundColor $ColorSuccess
             }
         } else {
             Write-InstallerLog "Uninstallation failed" "ERROR"
             if (-not $Silent) {
-                Write-Host "✗ Uninstallation encountered errors. Please check the log." -ForegroundColor $ColorError
+                Write-Host "[FAIL] Uninstallation encountered errors. Please check the log." -ForegroundColor $ColorError
             }
         }
         
@@ -475,10 +475,10 @@ try {
     
     if (-not $Silent) {
         Write-Host ""
-        Write-Host "📍 INSTALLATION DETAILS:" -ForegroundColor $ColorInfo
-        Write-Host "   • Location: $InstallPath" -ForegroundColor White
-        Write-Host "   • Drive: $($InstallPath.Substring(0,3))" -ForegroundColor White
-        Write-Host "   • Console: $ConsoleEndpoint" -ForegroundColor White
+        Write-Host "[U+1F4CD] INSTALLATION DETAILS:" -ForegroundColor $ColorInfo
+        Write-Host "   * Location: $InstallPath" -ForegroundColor White
+        Write-Host "   * Drive: $($InstallPath.Substring(0,3))" -ForegroundColor White
+        Write-Host "   * Console: $ConsoleEndpoint" -ForegroundColor White
         Write-Host ""
     }
     
@@ -542,7 +542,7 @@ try {
     
     if (-not $Silent) {
         Write-Host ""
-        Write-Host "❌ FATAL ERROR: $($_.Exception.Message)" -ForegroundColor $ColorError
+        Write-Host "[FAIL] FATAL ERROR: $($_.Exception.Message)" -ForegroundColor $ColorError
         Write-Host "Installation cannot continue." -ForegroundColor $ColorError
     }
     
@@ -625,6 +625,6 @@ if __name__ == "__main__":
     
     print("Creating completely clean PowerShell installer...")
     create_clean_installer(base_path)
-    print("\n✅ Clean installer created successfully!")
+    print("\n[PASS] Clean installer created successfully!")
     print("\nThis installer has been completely rewritten with proper PowerShell syntax.")
     print("No more syntax errors - ready to use!")

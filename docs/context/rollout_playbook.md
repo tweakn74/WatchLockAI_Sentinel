@@ -1,6 +1,6 @@
 # WatchLockAI Sentinel GA Rollout & Rollback Playbook
 
-**Version:** 0.9.0-rc1 → 1.0.0-GA  
+**Version:** 0.9.0-rc1 -> 1.0.0-GA  
 **Document Version:** 1.0  
 **Last Updated:** 2025-09-06  
 **Owner:** Release Engineering Team  
@@ -63,12 +63,12 @@ This playbook defines the staged rollout strategy for WatchLockAI Sentinel Gener
 #### Go/No-Go Criteria (D-7)
 | Criterion | Requirement | Status |
 |-----------|-------------|---------|
-| Security Posture | Score ≥ 85/100, 0 CRITICAL issues | ⚪ |
-| Performance Baseline | P95 < 500ms, RPS ≥ 10 req/sec | ⚪ |
-| Test Coverage | All critical paths validated | ⚪ |
-| Infrastructure Ready | Canary and prod environments prepared | ⚪ |
-| Rollback Validated | Rollback procedures tested and verified | ⚪ |
-| Team Readiness | On-call coverage and escalation paths confirmed | ⚪ |
+| Security Posture | Score >= 85/100, 0 CRITICAL issues | [U+26AA] |
+| Performance Baseline | P95 < 500ms, RPS >= 10 req/sec | [U+26AA] |
+| Test Coverage | All critical paths validated | [U+26AA] |
+| Infrastructure Ready | Canary and prod environments prepared | [U+26AA] |
+| Rollback Validated | Rollback procedures tested and verified | [U+26AA] |
+| Team Readiness | On-call coverage and escalation paths confirmed | [U+26AA] |
 
 ### Phase 1: Internal Canary (D-6 to D-1)
 
@@ -447,12 +447,12 @@ Next update: [TIME]
 #### GA Release Scorecard
 | Metric | Target | Actual | Status |
 |--------|--------|---------|---------|
-| Rollout Duration | < 24 hours | TBD | ⚪ |
-| SLO Compliance | 100% maintained | TBD | ⚪ |
-| Rollback Events | 0 unplanned | TBD | ⚪ |
-| Security Incidents | 0 critical | TBD | ⚪ |
-| Customer Impact | 0 escalations | TBD | ⚪ |
-| Feature Adoption | > 80% core features | TBD | ⚪ |
+| Rollout Duration | < 24 hours | TBD | [U+26AA] |
+| SLO Compliance | 100% maintained | TBD | [U+26AA] |
+| Rollback Events | 0 unplanned | TBD | [U+26AA] |
+| Security Incidents | 0 critical | TBD | [U+26AA] |
+| Customer Impact | 0 escalations | TBD | [U+26AA] |
+| Feature Adoption | > 80% core features | TBD | [U+26AA] |
 
 ## Lessons Learned Template
 

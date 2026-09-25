@@ -1,10 +1,10 @@
 # WatchSleuth Forensic Engine
 
-## 🔍 Overview
+## [SEARCH] Overview
 
 WatchSleuth is an advanced digital forensics and incident investigation engine inspired by Autopsy/Sleuthkit functionality with AI-enhanced analysis capabilities. It provides comprehensive forensic analysis tools for Windows environments.
 
-## 🎯 Core Capabilities
+## [TARGET] Core Capabilities
 
 ### **File System Forensics**
 - **MFT Analysis** - Master File Table parsing and timeline reconstruction
@@ -26,7 +26,7 @@ WatchSleuth is an advanced digital forensics and incident investigation engine i
 - **Attack Pattern Detection** - MITRE ATT&CK-based attack sequence identification
 - **Chain of Custody** - Complete evidence handling and documentation
 
-## 🚀 Quick Start
+## [START] Quick Start
 
 ### **Installation**
 ```bash
@@ -60,7 +60,7 @@ results = engine.perform_comprehensive_analysis(case_id)
 engine.export_case_report(case_id, "investigation_report.json")
 ```
 
-## 🛠️ Forensic Tools
+## [TOOL] Forensic Tools
 
 ### **Command Line Interface**
 ```bash
@@ -94,7 +94,7 @@ clusters = correlator.find_event_clusters(time_window_minutes=5)
 attack_analysis = correlator.analyze_attack_sequence()
 ```
 
-## 📊 Analysis Capabilities
+## [BARS] Analysis Capabilities
 
 ### **MFT (Master File Table) Analysis**
 - File creation, modification, access timestamps
@@ -120,7 +120,7 @@ attack_analysis = correlator.analyze_attack_sequence()
 - Communication pattern analysis
 - Phishing email detection
 
-## 🎯 Investigation Workflow
+## [TARGET] Investigation Workflow
 
 ### **1. Case Initialization**
 ```python
@@ -150,7 +150,7 @@ results = engine.perform_comprehensive_analysis(case_id)
 engine.export_case_report(case_id, "final_report.json")
 ```
 
-## 📈 Advanced Features
+## [CHART] Advanced Features
 
 ### **AI-Enhanced Analysis**
 - Behavioral pattern recognition
@@ -169,7 +169,7 @@ engine.export_case_report(case_id, "final_report.json")
 - Network relationship graphs
 - Attack vector visualizations
 
-## 🔧 Configuration
+## [U+1F527] Configuration
 
 ### **Evidence Templates**
 ```json
@@ -194,13 +194,13 @@ All evidence handling includes:
 - Complete audit trail
 - Evidence integrity validation
 
-## 🧪 Testing
+## [U+1F9EA] Testing
 
 ```bash
 python test_forensics.py
 ```
 
-## 📝 Case Report Format
+## [U+1F4DD] Case Report Format
 
 ```json
 {
@@ -226,14 +226,14 @@ python test_forensics.py
 }
 ```
 
-## 🔒 Security Considerations
+## [LOCK] Security Considerations
 
 - All evidence handling maintains chain of custody
 - Hash verification for integrity validation
 - Secure evidence storage and access controls
 - Audit logging of all forensic activities
 
-## 🤝 Integration with WatchLockAI
+## [SYNC] Integration with WatchLockAI
 
 WatchSleuth integrates seamlessly with the WatchLockAI ecosystem:
 - **Real-time Analysis** - Live forensic artifact collection during incident response

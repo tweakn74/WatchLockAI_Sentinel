@@ -143,7 +143,7 @@ function Test-Prerequisites {{
         Write-InstallerLog "WARNING: .NET Runtime not detected. WatchLockAI includes self-contained runtime." "WARNING"
     }}
     
-    Write-InstallerLog "✓ Prerequisites check passed" "SUCCESS"
+    Write-InstallerLog "[x] Prerequisites check passed" "SUCCESS"
     return $true
 }}
 
@@ -159,7 +159,7 @@ function New-InstallationDirectories {{
         foreach ($dir in $subDirs) {{
             $fullPath = Join-Path $InstallPath $dir
             New-Item -ItemType Directory -Path $fullPath -Force | Out-Null
-            Write-InstallerLog "✓ Created directory: $dir" "SUCCESS"
+            Write-InstallerLog "[x] Created directory: $dir" "SUCCESS"
         }}
         
         return $true
@@ -199,7 +199,7 @@ function Install-ConfigurationFiles {{
             }}
             
             $content | Out-File -FilePath $filePath -Encoding UTF8
-            Write-InstallerLog "✓ Installed configuration: $file" "SUCCESS"
+            Write-InstallerLog "[x] Installed configuration: $file" "SUCCESS"
         }}
         
         return $true
@@ -231,12 +231,12 @@ pause
         $serviceExePath = Join-Path $InstallPath "WatchLockAI.Service.bat"
         $placeholderContent | Out-File -FilePath $serviceExePath -Encoding ASCII
         
-        Write-InstallerLog "✓ Service executable prepared" "SUCCESS"
+        Write-InstallerLog "[x] Service executable prepared" "SUCCESS"
         
         # Note: In production, you would install the actual Windows service here
         # sc.exe create $ServiceName binPath= "`"$serviceExePath`"" DisplayName= "$ProductName" start= auto
         
-        Write-InstallerLog "✓ Windows Service installation completed" "SUCCESS"
+        Write-InstallerLog "[x] Windows Service installation completed" "SUCCESS"
         return $true
         
     }} catch {{
@@ -266,7 +266,7 @@ function Set-SecurityPermissions {{
         $acl.SetAccessRuleProtection($true, $false)
         Set-Acl -Path $InstallPath -AclObject $acl
         
-        Write-InstallerLog "✓ Security permissions configured" "SUCCESS"
+        Write-InstallerLog "[x] Security permissions configured" "SUCCESS"
         return $true
         
     }} catch {{
@@ -288,7 +288,7 @@ function Install-FirewallRules {{
         }}
         
         New-NetFirewallRule -DisplayName $ruleName -Direction Outbound -Action Allow -Protocol TCP -RemotePort 443,80 | Out-Null
-        Write-InstallerLog "✓ Firewall rule created: $ruleName" "SUCCESS"
+        Write-InstallerLog "[x] Firewall rule created: $ruleName" "SUCCESS"
         
         return $true
         
@@ -305,9 +305,9 @@ function Register-EventLogSource {{
         # Create WatchLockAI event log source
         if (-not [System.Diagnostics.EventLog]::SourceExists($ServiceName)) {{
             New-EventLog -LogName "Application" -Source $ServiceName
-            Write-InstallerLog "✓ Event Log source registered" "SUCCESS"
+            Write-InstallerLog "[x] Event Log source registered" "SUCCESS"
         }} else {{
-            Write-InstallerLog "✓ Event Log source already exists" "SUCCESS"
+            Write-InstallerLog "[x] Event Log source already exists" "SUCCESS"
         }}
         
         return $true
@@ -342,9 +342,9 @@ function Test-Installation {{
     }}
     
     if ($isValid) {{
-        Write-InstallerLog "✓ Installation validation passed" "SUCCESS"
+        Write-InstallerLog "[x] Installation validation passed" "SUCCESS"
     }} else {{
-        Write-InstallerLog "✗ Installation validation failed" "ERROR"
+        Write-InstallerLog "[FAIL] Installation validation failed" "ERROR"
     }}
     
     return $isValid
@@ -362,7 +362,7 @@ function Uninstall-WatchLockAI {{
             $firewallRules = Get-NetFirewallRule -DisplayName "WatchLockAI*" -ErrorAction SilentlyContinue
             foreach ($rule in $firewallRules) {{
                 Remove-NetFirewallRule -DisplayName $rule.DisplayName
-                Write-InstallerLog "✓ Removed firewall rule: $($rule.DisplayName)" "SUCCESS"
+                Write-InstallerLog "[x] Removed firewall rule: $($rule.DisplayName)" "SUCCESS"
             }}
         }} catch {{
             Write-InstallerLog "WARNING: Failed to remove some firewall rules" "WARNING"
@@ -372,7 +372,7 @@ function Uninstall-WatchLockAI {{
         try {{
             if ([System.Diagnostics.EventLog]::SourceExists($ServiceName)) {{
                 Remove-EventLog -Source $ServiceName
-                Write-InstallerLog "✓ Event Log source removed" "SUCCESS"
+                Write-InstallerLog "[x] Event Log source removed" "SUCCESS"
             }}
         }} catch {{
             Write-InstallerLog "WARNING: Failed to remove Event Log source" "WARNING"
@@ -387,13 +387,13 @@ function Uninstall-WatchLockAI {{
             
             if ($confirmation -eq "y" -or $confirmation -eq "Y" -or $Silent) {{
                 Remove-Item -Path $InstallPath -Recurse -Force
-                Write-InstallerLog "✓ Installation directory removed" "SUCCESS"
+                Write-InstallerLog "[x] Installation directory removed" "SUCCESS"
             }} else {{
                 Write-InstallerLog "Installation directory preserved: $InstallPath" "INFO"
             }}
         }}
         
-        Write-InstallerLog "✓ WatchLockAI uninstallation completed" "SUCCESS"
+        Write-InstallerLog "[x] WatchLockAI uninstallation completed" "SUCCESS"
         return $true
         
     }} catch {{
@@ -410,12 +410,12 @@ function Show-CompletionMessage {{
         Write-Host "=" * 70 -ForegroundColor $ColorInfo
         
         if ($Success) {{
-            Write-Host "🎉 WatchLockAI Installation Completed Successfully!" -ForegroundColor $ColorSuccess
+            Write-Host "[U+1F389] WatchLockAI Installation Completed Successfully!" -ForegroundColor $ColorSuccess
             Write-Host ""
             Write-Host "Installation Details:" -ForegroundColor $ColorInfo
-            Write-Host "  • Installation Path: $InstallPath" -ForegroundColor White
-            Write-Host "  • Console Endpoint: $ConsoleEndpoint" -ForegroundColor White
-            Write-Host "  • Service Name: $ServiceName" -ForegroundColor White
+            Write-Host "  * Installation Path: $InstallPath" -ForegroundColor White
+            Write-Host "  * Console Endpoint: $ConsoleEndpoint" -ForegroundColor White
+            Write-Host "  * Service Name: $ServiceName" -ForegroundColor White
             Write-Host ""
             Write-Host "Next Steps:" -ForegroundColor $ColorWarning
             Write-Host "  1. WatchLockAI agent is now protecting this system" -ForegroundColor White
@@ -425,7 +425,7 @@ function Show-CompletionMessage {{
             Write-Host ""
             Write-Host "Management Console: $ConsoleEndpoint" -ForegroundColor $ColorInfo
         }} else {{
-            Write-Host "❌ WatchLockAI Installation Failed!" -ForegroundColor $ColorError
+            Write-Host "[FAIL] WatchLockAI Installation Failed!" -ForegroundColor $ColorError
             Write-Host ""
             Write-Host "Please check the installation log for details:" -ForegroundColor $ColorWarning
             Write-Host "  Log file: $env:TEMP\\WatchLockAI_Install.log" -ForegroundColor White
@@ -454,12 +454,12 @@ try {{
         if ($uninstallSuccess) {{
             Write-InstallerLog "WatchLockAI uninstalled successfully" "SUCCESS"
             if (-not $Silent) {{
-                Write-Host "✓ WatchLockAI has been uninstalled successfully." -ForegroundColor $ColorSuccess
+                Write-Host "[x] WatchLockAI has been uninstalled successfully." -ForegroundColor $ColorSuccess
             }}
         }} else {{
             Write-InstallerLog "Uninstallation failed" "ERROR"
             if (-not $Silent) {{
-                Write-Host "✗ Uninstallation encountered errors. Please check the log." -ForegroundColor $ColorError
+                Write-Host "[FAIL] Uninstallation encountered errors. Please check the log." -ForegroundColor $ColorError
             }}
         }}
         
@@ -501,14 +501,14 @@ try {{
             $stepResult = & $step.Function
             
             if ($stepResult) {{
-                Write-InstallerLog "✓ $stepName completed successfully" "SUCCESS"
+                Write-InstallerLog "[x] $stepName completed successfully" "SUCCESS"
             }} else {{
-                Write-InstallerLog "✗ $stepName failed" "ERROR"
+                Write-InstallerLog "[FAIL] $stepName failed" "ERROR"
                 $overallSuccess = $false
                 break
             }}
         }} catch {{
-            Write-InstallerLog "✗ $stepName failed with exception: $($_.Exception.Message)" "ERROR"
+            Write-InstallerLog "[FAIL] $stepName failed with exception: $($_.Exception.Message)" "ERROR"
             $overallSuccess = $false
             break
         }}
@@ -531,7 +531,7 @@ try {{
     
     if (-not $Silent) {{
         Write-Host ""
-        Write-Host "❌ FATAL ERROR: $($_.Exception.Message)" -ForegroundColor $ColorError
+        Write-Host "[FAIL] FATAL ERROR: $($_.Exception.Message)" -ForegroundColor $ColorError
         Write-Host "Installation cannot continue." -ForegroundColor $ColorError
     }}
     
@@ -723,7 +723,7 @@ This installer package contains everything needed to install WatchLockAI Endpoin
 
 ### Files in This Package
 
-1. **WatchLockAI-Installer.bat** ⭐ **START HERE** 
+1. **WatchLockAI-Installer.bat** [STAR] **START HERE** 
    - Main installer file - run this one!
    - User-friendly batch file that guides you through installation
    - Automatically handles administrator privileges
@@ -744,7 +744,7 @@ This installer package contains everything needed to install WatchLockAI Endpoin
 1. **Right-click** on `WatchLockAI-Installer.bat`
 2. Select **"Run as administrator"**
 3. Follow the prompts
-4. Done! ✅
+4. Done! [PASS]
 
 ### For IT Administrators
 ```powershell
@@ -760,14 +760,14 @@ This installer package contains everything needed to install WatchLockAI Endpoin
 
 ## What Happens During Installation
 
-1. ✅ Checks system requirements (Windows 10/11, Administrator rights)
-2. ✅ Creates installation directories
-3. ✅ Installs configuration files with your console endpoint
-4. ✅ Sets up Windows service (placeholder in demo)
-5. ✅ Configures security permissions
-6. ✅ Creates firewall rules for console communication
-7. ✅ Registers Windows Event Log source
-8. ✅ Validates installation
+1. [PASS] Checks system requirements (Windows 10/11, Administrator rights)
+2. [PASS] Creates installation directories
+3. [PASS] Installs configuration files with your console endpoint
+4. [PASS] Sets up Windows service (placeholder in demo)
+5. [PASS] Configures security permissions
+6. [PASS] Creates firewall rules for console communication
+7. [PASS] Registers Windows Event Log source
+8. [PASS] Validates installation
 
 ## After Installation
 
@@ -811,9 +811,9 @@ if __name__ == "__main__":
     create_installation_guide(base_path)
     create_readme_for_installer(base_path)
     
-    print("\n✅ Unified installer created successfully!")
+    print("\n[PASS] Unified installer created successfully!")
     print("\nFiles created:")
-    print("1. WatchLockAI-Installer.bat  ⭐ MAIN INSTALLER - Run this one!")
+    print("1. WatchLockAI-Installer.bat  [STAR] MAIN INSTALLER - Run this one!")
     print("2. WatchLockAI-Installer.ps1  (PowerShell script)")
     print("3. INSTALLATION_GUIDE.md      (Detailed instructions)")
     print("4. README_INSTALLER.md        (Quick start guide)")

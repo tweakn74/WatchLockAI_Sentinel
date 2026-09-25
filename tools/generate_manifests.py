@@ -155,7 +155,7 @@ AstDocNode = Union[ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionD
 
 def _docstring_of(node: AstDocNode) -> str:
     ds = ast.get_docstring(node)
-    return ds.strip() if ds else "(No docstring found — describe capability manually)"
+    return ds.strip() if ds else "(No docstring found -- describe capability manually)"
 
 
 def _is_helper(name: str) -> bool:
@@ -260,7 +260,7 @@ def write_manifest(
 
     if not scan.functions and not scan.classes:
         report_lines.append(
-            f"[WARNING] {py_path.name} has no functions/classes — manual review required."
+            f"[WARNING] {py_path.name} has no functions/classes -- manual review required."
         )
 
     with manifest_path.open("w", encoding="utf-8", newline="\n") as f:

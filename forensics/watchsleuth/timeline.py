@@ -27,7 +27,7 @@ class TimelineVisualizer:
     def create_timeline_chart(self, output_file: str, hours: int = 24):
         '''Create visual timeline chart'''
         if not self.events:
-            print("❌ No timeline data loaded")
+            print("[FAIL] No timeline data loaded")
             return
             
         # Convert to DataFrame
@@ -60,12 +60,12 @@ class TimelineVisualizer:
         plt.savefig(output_file, dpi=300, bbox_inches='tight')
         plt.close()
         
-        print(f"✅ Timeline chart saved: {output_file}")
+        print(f"[PASS] Timeline chart saved: {output_file}")
         
     def create_activity_heatmap(self, output_file: str):
         '''Create activity heatmap by hour and day'''
         if not self.events:
-            print("❌ No timeline data loaded")
+            print("[FAIL] No timeline data loaded")
             return
             
         # Convert to DataFrame
@@ -90,7 +90,7 @@ class TimelineVisualizer:
         plt.savefig(output_file, dpi=300, bbox_inches='tight')
         plt.close()
         
-        print(f"✅ Activity heatmap saved: {output_file}")
+        print(f"[PASS] Activity heatmap saved: {output_file}")
 
 class EventCorrelator:
     '''Correlate and analyze relationships between timeline events'''
@@ -178,17 +178,17 @@ class EventCorrelator:
 
 def main():
     '''Main timeline analysis interface'''
-    print("📊 WatchSleuth Timeline Analysis Tools")
+    print("[BARS] WatchSleuth Timeline Analysis Tools")
     print()
     
     # Example usage
-    print("🎯 Available tools:")
-    print("   • Timeline Visualization - Create visual timeline charts")
-    print("   • Activity Heatmaps - Show activity patterns by time")
-    print("   • Event Correlation - Find related events and attack patterns")
-    print("   • Attack Sequence Analysis - Identify potential attack chains")
+    print("[TARGET] Available tools:")
+    print("   * Timeline Visualization - Create visual timeline charts")
+    print("   * Activity Heatmaps - Show activity patterns by time")
+    print("   * Event Correlation - Find related events and attack patterns")
+    print("   * Attack Sequence Analysis - Identify potential attack chains")
     print()
-    print("📋 Usage examples:")
+    print("[PLAN] Usage examples:")
     print("   visualizer = TimelineVisualizer()")
     print("   visualizer.load_timeline_data('timeline.json')")
     print("   visualizer.create_timeline_chart('timeline.png')")

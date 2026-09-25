@@ -24,7 +24,7 @@ def create_backup(file_path: Path) -> Path:
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
     backup_path = file_path.with_suffix(f"{file_path.suffix}.{timestamp}.bak")
     shutil.copy2(file_path, backup_path)
-    print(f"✅ BACKUP: {backup_path}")
+    print(f"[PASS] BACKUP: {backup_path}")
     return backup_path
 
 def apply_chart_components_fixes(file_path: Path) -> List[str]:
@@ -32,10 +32,10 @@ def apply_chart_components_fixes(file_path: Path) -> List[str]:
     changes = []
 
     if not file_path.exists():
-        print(f"❌ ERROR: File not found: {file_path}")
+        print(f"[FAIL] ERROR: File not found: {file_path}")
         return changes
 
-    print(f"🎯 TARGETING: {file_path}")
+    print(f"[TARGET] TARGETING: {file_path}")
     create_backup(file_path)
 
     content = file_path.read_text(encoding="utf-8")
@@ -110,9 +110,9 @@ def apply_chart_components_fixes(file_path: Path) -> List[str]:
 
     if content != original:
         file_path.write_text(content, encoding="utf-8")
-        print(f"✅ SUCCESS: Applied {len(changes)} fixes to chart_components.py")
+        print(f"[PASS] SUCCESS: Applied {len(changes)} fixes to chart_components.py")
     else:
-        print("ℹ️  INFO: No changes needed for chart_components.py")
+        print("ℹ  INFO: No changes needed for chart_components.py")
 
     return changes
 
@@ -121,10 +121,10 @@ def apply_ensemble_methods_fixes(file_path: Path) -> List[str]:
     changes = []
 
     if not file_path.exists():
-        print(f"❌ ERROR: File not found: {file_path}")
+        print(f"[FAIL] ERROR: File not found: {file_path}")
         return changes
 
-    print(f"🎯 TARGETING: {file_path}")
+    print(f"[TARGET] TARGETING: {file_path}")
     create_backup(file_path)
 
     content = file_path.read_text(encoding="utf-8")
@@ -182,15 +182,15 @@ def apply_ensemble_methods_fixes(file_path: Path) -> List[str]:
 
     if content != original:
         file_path.write_text(content, encoding="utf-8")
-        print(f"✅ SUCCESS: Applied {len(changes)} fixes to ensemble_methods.py")
+        print(f"[PASS] SUCCESS: Applied {len(changes)} fixes to ensemble_methods.py")
     else:
-        print("ℹ️  INFO: No changes needed for ensemble_methods.py")
+        print("ℹ  INFO: No changes needed for ensemble_methods.py")
 
     return changes
 
 def main() -> int:
     """Execute nuclear type assertion fixes."""
-    print("🚀 GENERAL PATTON'S NUCLEAR TYPE ASSERTION STRIKE")
+    print("[START] GENERAL PATTON'S NUCLEAR TYPE ASSERTION STRIKE")
     print("=" * 60)
     print("Mission: Eliminate persistent Pylance type violations")
     print("Strategy: Surgical type assertions with runtime safety")
@@ -211,23 +211,23 @@ def main() -> int:
     all_changes.extend(ensemble_changes)
 
     print()
-    print("📊 MISSION SUMMARY:")
+    print("[BARS] MISSION SUMMARY:")
     if all_changes:
-        print(f"✅ Total fixes applied: {len(all_changes)}")
+        print(f"[PASS] Total fixes applied: {len(all_changes)}")
         for change in all_changes:
-            print(f"   • {change}")
+            print(f"   * {change}")
     else:
-        print("ℹ️  No changes were needed")
+        print("ℹ  No changes were needed")
 
     print()
-    print("🎯 NEXT STEPS:")
+    print("[TARGET] NEXT STEPS:")
     print("1. Restart VS Code completely")
     print("2. Check Problems panel (Ctrl+Shift+M)")
     print("3. Verify zero Pylance violations")
     print("4. If issues persist, check backup files")
 
     print()
-    print("🏆 MISSION STATUS: COMPLETE")
+    print("[U+1F3C6] MISSION STATUS: COMPLETE")
     return 0
 
 if __name__ == "__main__":

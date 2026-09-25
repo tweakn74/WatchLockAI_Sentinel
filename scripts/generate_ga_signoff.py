@@ -363,13 +363,13 @@ class GASignoffGenerator:
             with open(output_path, 'w', encoding='utf-8') as f:
                 f.write(content)
             
-            print(f"✅ GA Sign-off document generated: {output_path}")
-            print(f"🎯 GA Readiness: {assessment['readiness_score']:.1f}% - {assessment['recommendation']}")
+            print(f"[PASS] GA Sign-off document generated: {output_path}")
+            print(f"[TARGET] GA Readiness: {assessment['readiness_score']:.1f}% - {assessment['recommendation']}")
             
             return True
             
         except Exception as e:
-            print(f"❌ Failed to generate GA sign-off: {e}")
+            print(f"[FAIL] Failed to generate GA sign-off: {e}")
             return False
     
     def _generate_signoff_content(self, components: Dict, assessment: Dict) -> str:
@@ -377,17 +377,17 @@ class GASignoffGenerator:
         
         # Status emojis
         status_emoji = {
-            "GO FOR GA": "🟢",
-            "GO FOR GA WITH MONITORING": "🟡", 
-            "ADDRESS ISSUES BEFORE GA": "🟠",
-            "NOT READY FOR GA": "🔴"
+            "GO FOR GA": "[U+1F7E2]",
+            "GO FOR GA WITH MONITORING": "[U+1F7E1]", 
+            "ADDRESS ISSUES BEFORE GA": "[U+1F7E0]",
+            "NOT READY FOR GA": "[U+1F534]"
         }
         
-        recommendation_emoji = status_emoji.get(assessment["recommendation"], "❓")
+        recommendation_emoji = status_emoji.get(assessment["recommendation"], "[U+2753]")
         
         content = f"""# WatchLockAI Sentinel GA Sign-off Assessment
 
-**Version:** {self.version} → {self.ga_version}  
+**Version:** {self.version} -> {self.ga_version}  
 **Assessment Date:** {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')}  
 **Readiness Score:** {assessment['readiness_score']:.1f}/100  
 **Recommendation:** {recommendation_emoji} **{assessment['recommendation']}**  
@@ -401,19 +401,19 @@ WatchLockAI Sentinel Release Candidate {self.version} has undergone comprehensiv
 
 ## P6 Deliverables Assessment
 
-### P6-001: RC Soak & Performance Baseline ✅
+### P6-001: RC Soak & Performance Baseline [PASS]
 {self._format_performance_section(components['performance'])}
 
-### P6-002: SBOM & License Attestation ✅  
+### P6-002: SBOM & License Attestation [PASS]  
 {self._format_sbom_section(components['sbom'])}
 
-### P6-003: Security Posture ✅
+### P6-003: Security Posture [PASS]
 {self._format_security_section(components['security'])}
 
-### P6-004: Release Artifacts Packaging ✅
+### P6-004: Release Artifacts Packaging [PASS]
 {self._format_packaging_section(components['packaging'])}
 
-### P6-005: Install/Uninstall E2E Validation ✅
+### P6-005: Install/Uninstall E2E Validation [PASS]
 {self._format_windows_section(components['windows'])}
 
 ### Enhanced Verifier Validation
@@ -423,16 +423,16 @@ WatchLockAI Sentinel Release Candidate {self.version} has undergone comprehensiv
 
 | Component | Status | Score | Notes |
 |-----------|--------|-------|-------|
-| Performance Baseline | {'✅ PASS' if assessment['component_scores']['performance'] else '❌ FAIL'} | {components['performance'].get('summary', 'N/A')} | P6-001 |
-| Security Posture | {'✅ PASS' if assessment['component_scores']['security'] else '❌ FAIL'} | {components['security'].get('summary', 'N/A')} | P6-003 |
-| SBOM & Licensing | {'✅ PASS' if assessment['component_scores']['sbom_license'] else '❌ FAIL'} | {'Complete' if assessment['component_scores']['sbom_license'] else 'Incomplete'} | P6-002 |
-| Release Packaging | {'✅ PASS' if assessment['component_scores']['packaging'] else '❌ FAIL'} | {len(components['packaging'].get('packages', []))} packages | P6-004 |
-| Windows Deployment | {'✅ PASS' if assessment['component_scores']['windows'] else '❌ FAIL'} | {'Validated' if assessment['component_scores']['windows'] else 'Issues found'} | P6-005 |
-| Verifier Compliance | {'✅ PASS' if assessment['component_scores']['verifier'] else '❌ FAIL'} | {'All checks pass' if assessment['component_scores']['verifier'] else 'Checks failing'} | Enhanced |
+| Performance Baseline | {'[PASS] PASS' if assessment['component_scores']['performance'] else '[FAIL] FAIL'} | {components['performance'].get('summary', 'N/A')} | P6-001 |
+| Security Posture | {'[PASS] PASS' if assessment['component_scores']['security'] else '[FAIL] FAIL'} | {components['security'].get('summary', 'N/A')} | P6-003 |
+| SBOM & Licensing | {'[PASS] PASS' if assessment['component_scores']['sbom_license'] else '[FAIL] FAIL'} | {'Complete' if assessment['component_scores']['sbom_license'] else 'Incomplete'} | P6-002 |
+| Release Packaging | {'[PASS] PASS' if assessment['component_scores']['packaging'] else '[FAIL] FAIL'} | {len(components['packaging'].get('packages', []))} packages | P6-004 |
+| Windows Deployment | {'[PASS] PASS' if assessment['component_scores']['windows'] else '[FAIL] FAIL'} | {'Validated' if assessment['component_scores']['windows'] else 'Issues found'} | P6-005 |
+| Verifier Compliance | {'[PASS] PASS' if assessment['component_scores']['verifier'] else '[FAIL] FAIL'} | {'All checks pass' if assessment['component_scores']['verifier'] else 'Checks failing'} | Enhanced |
 
 ## Rollout Readiness
 
-### Rollout Playbook Status ✅
+### Rollout Playbook Status [PASS]
 - **Playbook Created:** DOCS/rollout_playbook.md
 - **Phases Defined:** 5-phase staged rollout (D-10 to D+7)
 - **Feature Flags:** Configured for progressive enablement
@@ -440,10 +440,10 @@ WatchLockAI Sentinel Release Candidate {self.version} has undergone comprehensiv
 - **SLO Definitions:** 99.9% uptime, P95 < 500ms, <0.1% error rate
 
 ### Deployment Infrastructure
-- **Canary Capability:** ✅ Ready
-- **Blue-Green Deployment:** ✅ Ready  
-- **Monitoring & Alerting:** ✅ Configured
-- **Rollback Automation:** ✅ < 5 minute RTO
+- **Canary Capability:** [PASS] Ready
+- **Blue-Green Deployment:** [PASS] Ready  
+- **Monitoring & Alerting:** [PASS] Configured
+- **Rollback Automation:** [PASS] < 5 minute RTO
 
 ## Risk Assessment
 
@@ -478,30 +478,30 @@ WatchLockAI Sentinel Release Candidate {self.version} has undergone comprehensiv
 # P6: GA Readiness & Rollout - Final Report
 
 **Sprint:** P6: GA Readiness & Rollout  
-**Version:** 0.9.0-rc1 → 1.0.0-GA  
-**Status:** COMPLETE ✅  
+**Version:** 0.9.0-rc1 -> 1.0.0-GA  
+**Status:** COMPLETE [PASS]  
 **GA Recommendation:** {assessment['recommendation']}  
 **Readiness Score:** {assessment['readiness_score']:.1f}/100
 
 ## P6 Deliverables Completed
 
-**P6-001:** ✅ RC Soak & Performance Baseline - {components['performance'].get('summary', 'N/A')}
-**P6-002:** ✅ SBOM & License Attestation - {components['sbom'].get('files_scanned', 0)} files scanned, stdlib-only runtime
-**P6-003:** ✅ Security Posture Assessment - {components['security'].get('summary', 'N/A')}  
-**P6-004:** ✅ Release Artifacts Packaging - {len(components['packaging'].get('packages', []))} packages with SHA256 verification
-**P6-005:** ✅ Windows Install Validation - Service lifecycle and deployment scripts validated
-**P6-006:** ✅ Rollout & Rollback Playbook - 5-phase staged deployment with automated rollback
-**P6-007:** ✅ GA Sign-off Gate - Comprehensive readiness assessment completed
+**P6-001:** [PASS] RC Soak & Performance Baseline - {components['performance'].get('summary', 'N/A')}
+**P6-002:** [PASS] SBOM & License Attestation - {components['sbom'].get('files_scanned', 0)} files scanned, stdlib-only runtime
+**P6-003:** [PASS] Security Posture Assessment - {components['security'].get('summary', 'N/A')}  
+**P6-004:** [PASS] Release Artifacts Packaging - {len(components['packaging'].get('packages', []))} packages with SHA256 verification
+**P6-005:** [PASS] Windows Install Validation - Service lifecycle and deployment scripts validated
+**P6-006:** [PASS] Rollout & Rollback Playbook - 5-phase staged deployment with automated rollback
+**P6-007:** [PASS] GA Sign-off Gate - Comprehensive readiness assessment completed
 
 ## Enhanced Verifier Status
-{f"✅ All verifier checks PASS" if components['verifier'].get('passed') else f"❌ Verifier checks FAILING"}
+{f"[PASS] All verifier checks PASS" if components['verifier'].get('passed') else f"[FAIL] Verifier checks FAILING"}
 
 ## GA Readiness Assessment
-- **Performance:** {'✅ READY' if assessment['component_scores']['performance'] else '❌ ISSUES'}
-- **Security:** {'✅ READY' if assessment['component_scores']['security'] else '❌ ISSUES'}  
-- **Compliance:** {'✅ READY' if assessment['component_scores']['sbom_license'] else '❌ INCOMPLETE'}
-- **Packaging:** {'✅ READY' if assessment['component_scores']['packaging'] else '❌ INCOMPLETE'}
-- **Deployment:** {'✅ READY' if assessment['component_scores']['windows'] else '❌ ISSUES'}
+- **Performance:** {'[PASS] READY' if assessment['component_scores']['performance'] else '[FAIL] ISSUES'}
+- **Security:** {'[PASS] READY' if assessment['component_scores']['security'] else '[FAIL] ISSUES'}  
+- **Compliance:** {'[PASS] READY' if assessment['component_scores']['sbom_license'] else '[FAIL] INCOMPLETE'}
+- **Packaging:** {'[PASS] READY' if assessment['component_scores']['packaging'] else '[FAIL] INCOMPLETE'}
+- **Deployment:** {'[PASS] READY' if assessment['component_scores']['windows'] else '[FAIL] ISSUES'}
 
 ## Final Recommendation
 {recommendation_emoji} **{assessment['recommendation']}** - WatchLockAI Sentinel {self.version} {'is ready for General Availability release' if 'GO FOR GA' in assessment['recommendation'] else 'requires additional work before GA release'}
@@ -523,43 +523,43 @@ WatchLockAI Sentinel Release Candidate {self.version} has undergone comprehensiv
     def _format_performance_section(self, perf_data: Dict) -> str:
         """Format the performance section."""
         if not perf_data.get("available"):
-            return "❌ **Status:** Performance baseline not available"
+            return "[FAIL] **Status:** Performance baseline not available"
         
-        return f"""✅ **Status:** Performance baseline established  
+        return f"""[PASS] **Status:** Performance baseline established  
 **Metrics:** {perf_data.get('summary', 'N/A')}  
-**GA Ready:** {'✅ YES' if perf_data.get('ga_ready') else '❌ NO'}  
+**GA Ready:** {'[PASS] YES' if perf_data.get('ga_ready') else '[FAIL] NO'}  
 **Report:** {perf_data.get('path', 'N/A')}"""
     
     def _format_security_section(self, sec_data: Dict) -> str:
         """Format the security section."""
         if not sec_data.get("available"):
-            return "❌ **Status:** Security posture assessment not available"
+            return "[FAIL] **Status:** Security posture assessment not available"
         
-        return f"""✅ **Status:** Security posture assessed  
+        return f"""[PASS] **Status:** Security posture assessed  
 **Score:** {sec_data.get('security_score', 0)}/100 ({sec_data.get('posture_level', 'UNKNOWN')})  
 **Critical Issues:** {sec_data.get('critical_issues', 'N/A')}  
 **High Issues:** {sec_data.get('high_issues', 'N/A')}  
-**GA Ready:** {'✅ YES' if sec_data.get('ga_ready') else '❌ NO'}"""
+**GA Ready:** {'[PASS] YES' if sec_data.get('ga_ready') else '[FAIL] NO'}"""
     
     def _format_sbom_section(self, sbom_data: Dict) -> str:
         """Format the SBOM section."""
-        return f"""✅ **Status:** SBOM and license attestation complete  
+        return f"""[PASS] **Status:** SBOM and license attestation complete  
 **Files Scanned:** {sbom_data.get('files_scanned', 'N/A')}  
 **Runtime Dependencies:** {sbom_data.get('runtime_deps_count', 'N/A')} stdlib modules  
 **Optional Dependencies:** {sbom_data.get('optional_dependencies', 'N/A')} (import-gated)  
-**Import Gating:** {'✅ Compliant' if sbom_data.get('import_gating_compliant') else '❌ Non-compliant'}  
-**License Compliance:** {'✅ Commercial compatible, zero GPL/AGPL' if sbom_data.get('commercial_compatible') else '❌ Issues detected'}"""
+**Import Gating:** {'[PASS] Compliant' if sbom_data.get('import_gating_compliant') else '[FAIL] Non-compliant'}  
+**License Compliance:** {'[PASS] Commercial compatible, zero GPL/AGPL' if sbom_data.get('commercial_compatible') else '[FAIL] Issues detected'}"""
     
     def _format_packaging_section(self, pkg_data: Dict) -> str:
         """Format the packaging section."""
         packages = pkg_data.get("packages", [])
         
         if not packages:
-            return "❌ **Status:** No release packages found"
+            return "[FAIL] **Status:** No release packages found"
         
         package_list = "\\n".join(f"  - {pkg['filename']} ({pkg['size_mb']} MB) - SHA256: {pkg['sha256'][:16]}..." for pkg in packages)
         
-        return f"""✅ **Status:** Release artifacts packaged and verified  
+        return f"""[PASS] **Status:** Release artifacts packaged and verified  
 **Packages Created:** {len(packages)}  
 {package_list}  
 **Integrity:** SHA256SUMS generated for all packages"""
@@ -567,30 +567,30 @@ WatchLockAI Sentinel Release Candidate {self.version} has undergone comprehensiv
     def _format_windows_section(self, win_data: Dict) -> str:
         """Format the Windows section.""" 
         if not win_data.get("available"):
-            return "❌ **Status:** Windows installation validation not available"
+            return "[FAIL] **Status:** Windows installation validation not available"
         
-        return f"""✅ **Status:** Windows installation validation complete  
-**Service Lifecycle:** {'✅ Validated' if win_data.get('lifecycle_validated') else '❌ Issues found'}  
-**Scripts Analysis:** {'✅ Complete' if win_data.get('scripts_analyzed') else '❌ Incomplete'}  
-**Security Validation:** {'✅ Passed' if win_data.get('security_validated') else '❌ Failed'}  
-**GA Ready:** {'✅ YES' if win_data.get('ga_ready') else '❌ NO'}"""
+        return f"""[PASS] **Status:** Windows installation validation complete  
+**Service Lifecycle:** {'[PASS] Validated' if win_data.get('lifecycle_validated') else '[FAIL] Issues found'}  
+**Scripts Analysis:** {'[PASS] Complete' if win_data.get('scripts_analyzed') else '[FAIL] Incomplete'}  
+**Security Validation:** {'[PASS] Passed' if win_data.get('security_validated') else '[FAIL] Failed'}  
+**GA Ready:** {'[PASS] YES' if win_data.get('ga_ready') else '[FAIL] NO'}"""
     
     def _format_verifier_section(self, verifier_data: Dict) -> str:
         """Format the verifier section."""
         if not verifier_data.get("ran"):
-            return f"❌ **Status:** Verifier check failed - {verifier_data.get('error', 'Unknown error')}"
+            return f"[FAIL] **Status:** Verifier check failed - {verifier_data.get('error', 'Unknown error')}"
         
-        return f"""{'✅ **Status:** All verifier checks PASS' if verifier_data.get('passed') else '❌ **Status:** Verifier checks FAILING'}  
+        return f"""{'[PASS] **Status:** All verifier checks PASS' if verifier_data.get('passed') else '[FAIL] **Status:** Verifier checks FAILING'}  
 **Exit Code:** {verifier_data.get('exit_code', 'N/A')}  
 **Enhanced Checks:** Session hygiene, SSE correctness, rotation/redaction, export gating, API freezer  
-**P6 Compliance:** {'✅ Verified' if verifier_data.get('passed') else '❌ Issues detected'}"""
+**P6 Compliance:** {'[PASS] Verified' if verifier_data.get('passed') else '[FAIL] Issues detected'}"""
     
     def _format_risk_section(self, blockers: List[str]) -> str:
         """Format the risk section."""
         if not blockers:
-            return "✅ **No critical blockers identified**"
+            return "[PASS] **No critical blockers identified**"
         
-        return "❌ **Critical Blockers:**\\n" + "\\n".join(f"- {blocker}" for blocker in blockers)
+        return "[FAIL] **Critical Blockers:**\\n" + "\\n".join(f"- {blocker}" for blocker in blockers)
     
     def _generate_recommendation_details(self, assessment: Dict) -> str:
         """Generate detailed recommendation text."""
@@ -665,11 +665,11 @@ def main():
     success = generator.generate_ga_signoff(output_path)
     
     if success:
-        print(f"\\n✅ P6-007 GA Sign-off Gate completed successfully")
-        print(f"📄 GA Sign-off: {output_path}")
+        print(f"\\n[PASS] P6-007 GA Sign-off Gate completed successfully")
+        print(f"[PAGE] GA Sign-off: {output_path}")
         return 0
     else:
-        print(f"\\n❌ P6-007 GA Sign-off Gate failed")
+        print(f"\\n[FAIL] P6-007 GA Sign-off Gate failed")
         return 1
 
 if __name__ == "__main__":

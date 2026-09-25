@@ -31,7 +31,7 @@ class EnhancedWindowsSimulator:
         os.makedirs(self.program_files, exist_ok=True)
         os.makedirs(self.temp_dir, exist_ok=True)
         
-        print(f"🗂️ Windows Test Environment Created:")
+        print(f"[U+1F5C2] Windows Test Environment Created:")
         print(f"   Base: {self.base_dir}")
         print(f"   Program Files: {self.program_files}")
         print(f"   Install Target: {self.install_path}")
@@ -77,7 +77,7 @@ class EnhancedWindowsSimulator:
 
     def simulate_batch_execution(self, batch_file):
         """Enhanced batch file simulation"""
-        print(f"\\n🚀 ENHANCED SIMULATION: {os.path.basename(batch_file)}")
+        print(f"\\n[START] ENHANCED SIMULATION: {os.path.basename(batch_file)}")
         print("=" * 70)
         
         with open(batch_file, 'r') as f:
@@ -93,15 +93,15 @@ class EnhancedWindowsSimulator:
         }
         
         # Phase 1: Administrator Check
-        print("\\n📋 PHASE 1: Administrator Privileges")
+        print("\\n[PLAN] PHASE 1: Administrator Privileges")
         for line in lines:
             if 'net session' in line:
                 results["admin_check"] = True
-                print("✅ Administrator check: SIMULATED PASS")
+                print("[PASS] Administrator check: SIMULATED PASS")
                 break
         
         # Phase 2: Directory Creation
-        print("\\n📋 PHASE 2: Directory Creation")
+        print("\\n[PLAN] PHASE 2: Directory Creation")
         mkdir_patterns = [
             r'mkdir\\s+"([^"]+)"',
             r'mkdir\\s+([^\\s]+)',
@@ -120,13 +120,13 @@ class EnhancedWindowsSimulator:
                     success, msg = self.execute_mkdir(path)
                     if success:
                         results["directories_created"].append(path)
-                        print(f"✅ {msg}")
+                        print(f"[PASS] {msg}")
                     else:
                         results["errors"].append(f"mkdir: {msg}")
-                        print(f"❌ {msg}")
+                        print(f"[FAIL] {msg}")
         
         # Phase 3: Configuration File Creation
-        print("\\n📋 PHASE 3: Configuration Files")
+        print("\\n[PLAN] PHASE 3: Configuration Files")
         
         # Simulate JSON config creation
         config_files = {
@@ -149,13 +149,13 @@ class EnhancedWindowsSimulator:
                 with open(config_path, 'w') as f:
                     json.dump(config, f, indent=2)
                 results["files_created"].append(filename)
-                print(f"✅ Created: {filename}")
+                print(f"[PASS] Created: {filename}")
             except Exception as e:
                 results["errors"].append(f"{filename}: {e}")
-                print(f"❌ Failed: {filename} - {e}")
+                print(f"[FAIL] Failed: {filename} - {e}")
         
         # Phase 4: Service File Creation
-        print("\\n📋 PHASE 4: Service Files")
+        print("\\n[PLAN] PHASE 4: Service Files")
         service_content = '''@echo off
 title WatchLockAI Endpoint Security Service
 
@@ -176,13 +176,13 @@ pause >nul'''
         success, msg = self.execute_echo_to_file(service_content, service_path)
         if success:
             results["files_created"].append("WatchLockAI-Service.bat")
-            print(f"✅ {msg}")
+            print(f"[PASS] {msg}")
         else:
             results["errors"].append(f"Service file: {msg}")
-            print(f"❌ {msg}")
+            print(f"[FAIL] {msg}")
         
         # Phase 5: Validation
-        print("\\n📋 PHASE 5: Installation Validation")
+        print("\\n[PLAN] PHASE 5: Installation Validation")
         validation_checks = [
             (self.install_path, "Main directory"),
             (f"{self.install_path}/Config", "Config directory"),
@@ -194,17 +194,17 @@ pause >nul'''
         for path, description in validation_checks:
             if os.path.exists(path):
                 results["validations_passed"].append(description)
-                print(f"✅ {description}: EXISTS")
+                print(f"[PASS] {description}: EXISTS")
             else:
                 results["errors"].append(f"Missing: {description}")
-                print(f"❌ {description}: MISSING")
+                print(f"[FAIL] {description}: MISSING")
         
         return results
 
     def generate_test_report(self, results):
         """Generate comprehensive test report"""
         print("\\n" + "=" * 70)
-        print("📊 COMPREHENSIVE TEST REPORT")
+        print("[BARS] COMPREHENSIVE TEST REPORT")
         print("=" * 70)
         
         # Calculate scores
@@ -224,25 +224,25 @@ pause >nul'''
         
         score = (passed_checks / total_checks) * 100
         
-        print(f"🎯 OVERALL SCORE: {score:.1f}% ({passed_checks}/{total_checks})")
+        print(f"[TARGET] OVERALL SCORE: {score:.1f}% ({passed_checks}/{total_checks})")
         print()
         
-        print("✅ SUCCESSES:")
+        print("[PASS] SUCCESSES:")
         if results["admin_check"]:
-            print("   • Administrator privilege check")
+            print("   * Administrator privilege check")
         if results["directories_created"]:
-            print(f"   • Created {len(results['directories_created'])} directories")
+            print(f"   * Created {len(results['directories_created'])} directories")
         if results["files_created"]:
-            print(f"   • Created {len(results['files_created'])} configuration files")
+            print(f"   * Created {len(results['files_created'])} configuration files")
         if results["validations_passed"]:
-            print(f"   • Passed {len(results['validations_passed'])} validation checks")
+            print(f"   * Passed {len(results['validations_passed'])} validation checks")
         
         if results["errors"]:
-            print("\\n❌ ERRORS:")
+            print("\\n[FAIL] ERRORS:")
             for error in results["errors"]:
-                print(f"   • {error}")
+                print(f"   * {error}")
         
-        print(f"\\n📁 INSTALLATION STRUCTURE:")
+        print(f"\\n[U+1F4C1] INSTALLATION STRUCTURE:")
         if os.path.exists(self.install_path):
             for root, dirs, files in os.walk(self.install_path):
                 level = root.replace(self.install_path, '').count(os.sep)
@@ -252,13 +252,13 @@ pause >nul'''
                 for file in files:
                     print(f"{subindent}{file}")
         else:
-            print("   ❌ No installation directory created")
+            print("   [FAIL] No installation directory created")
         
         return score >= 80  # 80% threshold for "working"
 
 def main():
     """Main testing function"""
-    print("🔬 ENHANCED WINDOWS INSTALLER TESTING")
+    print("[U+1F52C] ENHANCED WINDOWS INSTALLER TESTING")
     print("=" * 50)
     
     sim = EnhancedWindowsSimulator()
@@ -266,7 +266,7 @@ def main():
     installer_path = "/workspace/WatchLockAI_Agent/Super-Simple-Installer.bat"
     
     if not os.path.exists(installer_path):
-        print(f"❌ Installer not found: {installer_path}")
+        print(f"[FAIL] Installer not found: {installer_path}")
         return False
     
     # Run simulation
@@ -277,11 +277,11 @@ def main():
     
     print("\\n" + "=" * 50)
     if success:
-        print("🎉 CONCLUSION: Installer has HIGH PROBABILITY of working on Windows!")
-        print("💡 The simulation shows the installer logic is sound.")
+        print("[U+1F389] CONCLUSION: Installer has HIGH PROBABILITY of working on Windows!")
+        print("[IDEA] The simulation shows the installer logic is sound.")
     else:
-        print("⚠️ CONCLUSION: Installer needs improvements before Windows deployment.")
-        print("💡 Review the errors above and fix the installer logic.")
+        print("[WARN] CONCLUSION: Installer needs improvements before Windows deployment.")
+        print("[IDEA] Review the errors above and fix the installer logic.")
     
     return success
 

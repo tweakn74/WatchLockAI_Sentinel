@@ -1,4 +1,4 @@
-# Alerts — Spec
+# Alerts -- Spec
 
 Outputs:
 - JSONL at `logs/alerts.jsonl`

@@ -105,11 +105,11 @@ class ReleasePackager:
                                     arcname = str(file_path.relative_to(self.repo_root))
                                     zf.write(file_path, arcname)
             
-            print(f"✅ Source package created: {package_path}")
+            print(f"[PASS] Source package created: {package_path}")
             return True, str(package_path)
             
         except Exception as e:
-            print(f"❌ Failed to create source package: {e}")
+            print(f"[FAIL] Failed to create source package: {e}")
             return False, ""
     
     def create_offline_bundle(self) -> Tuple[bool, str]:
@@ -128,7 +128,7 @@ class ReleasePackager:
             ps_script = self.repo_root / "scripts" / "make_offline_bundle.ps1"
             
             if not ps_script.exists():
-                print("⚠️ Offline bundle script not found, creating manual bundle...")
+                print("[WARN] Offline bundle script not found, creating manual bundle...")
                 return self._create_manual_bundle(bundle_path)
             
             # Run PowerShell script if available
@@ -149,22 +149,22 @@ class ReleasePackager:
                     )
                     
                     if result.returncode == 0:
-                        print(f"✅ Offline bundle created: {bundle_path}")
+                        print(f"[PASS] Offline bundle created: {bundle_path}")
                         return True, str(bundle_path)
                     else:
-                        print(f"⚠️ PowerShell script failed: {result.stderr}")
+                        print(f"[WARN] PowerShell script failed: {result.stderr}")
                         return self._create_manual_bundle(bundle_path)
                         
                 except Exception as e:
-                    print(f"⚠️ PowerShell execution failed: {e}")
+                    print(f"[WARN] PowerShell execution failed: {e}")
                     return self._create_manual_bundle(bundle_path)
             else:
                 # Non-Windows: create manual bundle
-                print("⚠️ PowerShell not available on this platform, creating manual bundle...")
+                print("[WARN] PowerShell not available on this platform, creating manual bundle...")
                 return self._create_manual_bundle(bundle_path)
                 
         except Exception as e:
-            print(f"❌ Failed to create offline bundle: {e}")
+            print(f"[FAIL] Failed to create offline bundle: {e}")
             return False, ""
     
     def _create_manual_bundle(self, bundle_path: Path) -> Tuple[bool, str]:
@@ -247,19 +247,19 @@ def main():
         print("Starting WatchLockAI Sentinel...")
         app = SentinelWebAPI()
         
-        print("✅ WatchLockAI Sentinel started successfully")
-        print("🌐 Access the console at: http://localhost:8080")
+        print("[PASS] WatchLockAI Sentinel started successfully")
+        print("[U+1F310] Access the console at: http://localhost:8080")
         
         # Start the application (this would normally start uvicorn)
-        print("📝 Note: In offline mode, manual uvicorn startup may be required")
+        print("[U+1F4DD] Note: In offline mode, manual uvicorn startup may be required")
         print("   Run: python -m uvicorn console.web_api:app --host 0.0.0.0 --port 8080")
         
     except ImportError as e:
-        print(f"❌ Import error: {e}")
+        print(f"[FAIL] Import error: {e}")
         print("Please ensure all dependencies are available")
         return 1
     except Exception as e:
-        print(f"❌ Startup error: {e}")
+        print(f"[FAIL] Startup error: {e}")
         return 1
     
     return 0
@@ -282,11 +282,11 @@ if __name__ == "__main__":
             # Cleanup temp directory
             shutil.rmtree(temp_dir)
             
-            print(f"✅ Manual offline bundle created: {bundle_path}")
+            print(f"[PASS] Manual offline bundle created: {bundle_path}")
             return True, str(bundle_path)
             
         except Exception as e:
-            print(f"❌ Failed to create manual bundle: {e}")
+            print(f"[FAIL] Failed to create manual bundle: {e}")
             return False, ""
     
     def calculate_sha256(self, file_path: str) -> str:
@@ -335,11 +335,11 @@ if __name__ == "__main__":
                         f.write(f"{sha256}  {filename}\\n")
                         print(f"  {filename}: {sha256}")
             
-            print(f"✅ SHA256SUMS generated: {checksums_path}")
+            print(f"[PASS] SHA256SUMS generated: {checksums_path}")
             return True
             
         except Exception as e:
-            print(f"❌ Failed to generate checksums: {e}")
+            print(f"[FAIL] Failed to generate checksums: {e}")
             return False
     
     def create_verification_evidence(self, package_paths: List[str]) -> bool:
@@ -388,17 +388,17 @@ WatchLockAI Sentinel {self.version} release artifacts have been successfully cre
 
 ### Packaging Process
 
-1. **Source Package Creation:** ✅ Complete
+1. **Source Package Creation:** [PASS] Complete
    - Included essential source files and directories
    - Excluded build artifacts and caches
    - Applied compression for distribution
 
-2. **Offline Bundle Creation:** ✅ Complete
+2. **Offline Bundle Creation:** [PASS] Complete
    - {'PowerShell script execution' if os.name == 'nt' else 'Manual bundle creation'}
    - Bootstrap script for offline initialization
    - Self-contained installation package
 
-3. **Integrity Verification:** ✅ Complete
+3. **Integrity Verification:** [PASS] Complete
    - SHA256 checksums calculated for all packages
    - SHA256SUMS file generated for verification
    - Evidence recorded for Anti-Skip compliance
@@ -430,11 +430,11 @@ python tools/verify_minimax_claims.py
             with open(evidence_path, 'w', encoding='utf-8') as f:
                 f.write(content)
             
-            print(f"✅ Packaging evidence recorded: {evidence_path}")
+            print(f"[PASS] Packaging evidence recorded: {evidence_path}")
             return True
             
         except Exception as e:
-            print(f"❌ Failed to record packaging evidence: {e}")
+            print(f"[FAIL] Failed to record packaging evidence: {e}")
             return False
 
 def main():
@@ -464,22 +464,22 @@ def main():
         created_packages.append(bundle_path)
     
     if not created_packages:
-        print("❌ No packages were created successfully")
+        print("[FAIL] No packages were created successfully")
         return 1
     
     # 3. Generate checksums
     success = packager.generate_checksums(created_packages)
     if not success:
-        print("⚠️ Failed to generate checksums")
+        print("[WARN] Failed to generate checksums")
     
     # 4. Record evidence
     success = packager.create_verification_evidence(created_packages)
     if not success:
-        print("⚠️ Failed to record verification evidence")
+        print("[WARN] Failed to record verification evidence")
     
-    print(f"\\n✅ P6-004 Release Artifacts Packaging completed")
-    print(f"📦 Packages: {len(created_packages)} created")
-    print(f"📁 Location: {packager.dist_dir}")
+    print(f"\\n[PASS] P6-004 Release Artifacts Packaging completed")
+    print(f"[PKG] Packages: {len(created_packages)} created")
+    print(f"[U+1F4C1] Location: {packager.dist_dir}")
     
     return 0
 

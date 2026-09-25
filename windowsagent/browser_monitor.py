@@ -210,20 +210,20 @@ class BrowserMonitor:
 
 def main():
     '''Test browser monitoring'''
-    print("🌐 WatchLockAI Browser Monitor")
+    print("[U+1F310] WatchLockAI Browser Monitor")
     print("Monitoring browser activities for security threats")
     
     monitor = BrowserMonitor()
     monitor.start_monitoring()
     
-    print("✅ Browser monitoring started")
-    print("🔍 Monitoring browsers:", list(monitor.browser_paths.keys()))
+    print("[PASS] Browser monitoring started")
+    print("[SEARCH] Monitoring browsers:", list(monitor.browser_paths.keys()))
     
     try:
         while True:
             time.sleep(10)
     except KeyboardInterrupt:
-        print("\n🛑 Stopping browser monitor...")
+        print("\n[U+1F6D1] Stopping browser monitor...")
         monitor.running = False
 
 if __name__ == "__main__":

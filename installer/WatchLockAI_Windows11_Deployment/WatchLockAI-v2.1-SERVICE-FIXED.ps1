@@ -564,10 +564,10 @@ $statusItem.Text = "Show Status (ACTIVATED)"
 $statusItem.Add_Click({
     try {
         $response = Invoke-RestMethod -Uri "http://localhost:9999/status" -TimeoutSec 3
-        $message = "WatchLockAI Status - FULLY ACTIVATED:`n`nAI Brain: $($response.status)`nUptime: $($response.uptime)`nModules: $($response.modules)`nVersion: $($response.version)`n`nLicense: ACTIVATED ✓`nFull Functionality: ENABLED ✓"
+        $message = "WatchLockAI Status - FULLY ACTIVATED:`n`nAI Brain: $($response.status)`nUptime: $($response.uptime)`nModules: $($response.modules)`nVersion: $($response.version)`n`nLicense: ACTIVATED [x]`nFull Functionality: ENABLED [x]"
         [System.Windows.Forms.MessageBox]::Show($message, "WatchLockAI Status - ACTIVATED", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
     } catch {
-        $message = "WatchLockAI Status:`n`nService: INSTALLED ✓`nLicense: ACTIVATED ✓`nAI Brain: Starting...`n`nNote: AI Brain may be initializing"
+        $message = "WatchLockAI Status:`n`nService: INSTALLED [x]`nLicense: ACTIVATED [x]`nAI Brain: Starting...`n`nNote: AI Brain may be initializing"
         [System.Windows.Forms.MessageBox]::Show($message, "WatchLockAI Status", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
     }
 })
@@ -575,7 +575,7 @@ $statusItem.Add_Click({
 $scanItem = New-Object System.Windows.Forms.ToolStripMenuItem
 $scanItem.Text = "Quick Threat Scan (FULL)"
 $scanItem.Add_Click({
-    [System.Windows.Forms.MessageBox]::Show("Full threat scan initiated and completed.`n`nResults:`n✓ System integrity: CLEAN`n✓ Network activity: NORMAL`n✓ Process behavior: CLEAN`n✓ File system: CLEAN`n`nNo threats detected. System is secure.", "Full Threat Scan - Complete", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+    [System.Windows.Forms.MessageBox]::Show("Full threat scan initiated and completed.`n`nResults:`n[x] System integrity: CLEAN`n[x] Network activity: NORMAL`n[x] Process behavior: CLEAN`n[x] File system: CLEAN`n`nNo threats detected. System is secure.", "Full Threat Scan - Complete", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
 })
 
 $logsItem = New-Object System.Windows.Forms.ToolStripMenuItem
@@ -593,7 +593,7 @@ $logsItem.Add_Click({
 $settingsItem = New-Object System.Windows.Forms.ToolStripMenuItem
 $settingsItem.Text = "Settings (FULL ACCESS)"
 $settingsItem.Add_Click({
-    [System.Windows.Forms.MessageBox]::Show("WatchLockAI v2.1 Settings:`n`n✓ License Status: ACTIVATED`n✓ Real-time Protection: ENABLED`n✓ AI Brain: OPERATIONAL`n✓ Threat Detection: ACTIVE`n✓ Forensics Engine: READY`n✓ MITRE ATT&CK: LOADED`n`nAll features are fully activated and operational.", "Settings - Full Access", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+    [System.Windows.Forms.MessageBox]::Show("WatchLockAI v2.1 Settings:`n`n[x] License Status: ACTIVATED`n[x] Real-time Protection: ENABLED`n[x] AI Brain: OPERATIONAL`n[x] Threat Detection: ACTIVE`n[x] Forensics Engine: READY`n[x] MITRE ATT&CK: LOADED`n`nAll features are fully activated and operational.", "Settings - Full Access", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
 })
 
 $separatorItem = New-Object System.Windows.Forms.ToolStripSeparator
@@ -601,7 +601,7 @@ $separatorItem = New-Object System.Windows.Forms.ToolStripSeparator
 $aboutItem = New-Object System.Windows.Forms.ToolStripMenuItem
 $aboutItem.Text = "About WatchLockAI v2.1"
 $aboutItem.Add_Click({
-    $aboutText = "WatchLockAI v2.1 - ACTIVATED EDITION`n`nAI-Powered Cybersecurity Platform`n`nSTATUS: FULLY ACTIVATED ✓`n`nFeatures:`n✓ Real-time AI threat detection`n✓ ChatGPT-style security assistant`n✓ MITRE ATT&CK integration`n✓ Digital forensics engine`n✓ Compliance management`n✓ Enterprise integrations`n`nLicense: FULL LICENSE ACTIVATED`nSupport: Premium Support Enabled`n`nAll functionality is unlocked and operational."
+    $aboutText = "WatchLockAI v2.1 - ACTIVATED EDITION`n`nAI-Powered Cybersecurity Platform`n`nSTATUS: FULLY ACTIVATED [x]`n`nFeatures:`n[x] Real-time AI threat detection`n[x] ChatGPT-style security assistant`n[x] MITRE ATT&CK integration`n[x] Digital forensics engine`n[x] Compliance management`n[x] Enterprise integrations`n`nLicense: FULL LICENSE ACTIVATED`nSupport: Premium Support Enabled`n`nAll functionality is unlocked and operational."
     [System.Windows.Forms.MessageBox]::Show($aboutText, "About WatchLockAI v2.1 - ACTIVATED", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
 })
 
@@ -688,12 +688,12 @@ function Main {
     Write-Host "================================================================" -ForegroundColor Green
     Write-Host ""
     Write-Host "FIXES IN v2.1:" -ForegroundColor Cyan
-    Write-Host "  🔧 FIXED: Error 1053 service timeout issue" -ForegroundColor Green
-    Write-Host "  🔧 FIXED: Proper Windows service implementation" -ForegroundColor Green
-    Write-Host "  🔧 FIXED: Service control manager communication" -ForegroundColor Green
-    Write-Host "  🔧 FIXED: Activation requirements bypassed" -ForegroundColor Green
-    Write-Host "  🔧 ENHANCED: Robust error handling and recovery" -ForegroundColor Green
-    Write-Host "  🔧 ENHANCED: Full functionality without licensing" -ForegroundColor Green
+    Write-Host "  [U+1F527] FIXED: Error 1053 service timeout issue" -ForegroundColor Green
+    Write-Host "  [U+1F527] FIXED: Proper Windows service implementation" -ForegroundColor Green
+    Write-Host "  [U+1F527] FIXED: Service control manager communication" -ForegroundColor Green
+    Write-Host "  [U+1F527] FIXED: Activation requirements bypassed" -ForegroundColor Green
+    Write-Host "  [U+1F527] ENHANCED: Robust error handling and recovery" -ForegroundColor Green
+    Write-Host "  [U+1F527] ENHANCED: Full functionality without licensing" -ForegroundColor Green
     Write-Host ""
     
     # Check admin rights
@@ -783,28 +783,28 @@ function Main {
     Write-Host ""
     Write-Host "================================================================" -ForegroundColor Green
     if ($success) {
-        Write-Host "        🎉 INSTALLATION COMPLETED SUCCESSFULLY! 🎉" -ForegroundColor Green
-        Write-Host "        🔧 ERROR 1053 PERMANENTLY FIXED! 🔧" -ForegroundColor Green
+        Write-Host "        [U+1F389] INSTALLATION COMPLETED SUCCESSFULLY! [U+1F389]" -ForegroundColor Green
+        Write-Host "        [U+1F527] ERROR 1053 PERMANENTLY FIXED! [U+1F527]" -ForegroundColor Green
     } else {
-        Write-Host "        ⚠️  INSTALLATION COMPLETED WITH ISSUES ⚠️" -ForegroundColor Yellow
+        Write-Host "        [WARN]  INSTALLATION COMPLETED WITH ISSUES [WARN]" -ForegroundColor Yellow
     }
     Write-Host "================================================================" -ForegroundColor Green
     Write-Host ""
     
-    Write-Host "✅ Windows Service: FIXED and RUNNING" -ForegroundColor Green
-    Write-Host "✅ AI Brain: OPERATIONAL" -ForegroundColor Green
-    Write-Host "✅ System Tray: ACTIVATED (no license required)" -ForegroundColor Green
-    Write-Host "✅ Console: https://sn2cnaszh2.space.minimax.io" -ForegroundColor Green
-    Write-Host "✅ Auto-Start: CONFIGURED" -ForegroundColor Green
+    Write-Host "[PASS] Windows Service: FIXED and RUNNING" -ForegroundColor Green
+    Write-Host "[PASS] AI Brain: OPERATIONAL" -ForegroundColor Green
+    Write-Host "[PASS] System Tray: ACTIVATED (no license required)" -ForegroundColor Green
+    Write-Host "[PASS] Console: https://sn2cnaszh2.space.minimax.io" -ForegroundColor Green
+    Write-Host "[PASS] Auto-Start: CONFIGURED" -ForegroundColor Green
     Write-Host ""
-    Write-Host "🎯 WHAT TO DO NEXT:" -ForegroundColor White
+    Write-Host "[TARGET] WHAT TO DO NEXT:" -ForegroundColor White
     Write-Host "   1. Look for WatchLockAI shield icon in system tray" -ForegroundColor White
     Write-Host "   2. Right-click tray icon for ACTIVATED menu options" -ForegroundColor White
     Write-Host "   3. Double-click tray icon to open enhanced console" -ForegroundColor White
     Write-Host "   4. Login with: admin@watchlockai.com / admin123" -ForegroundColor White
     Write-Host "   5. Start chatting with WatchLockAI!" -ForegroundColor White
     Write-Host ""
-    Write-Host "🔧 SERVICE STATUS:" -ForegroundColor Cyan
+    Write-Host "[U+1F527] SERVICE STATUS:" -ForegroundColor Cyan
     
     # Display final service status
     try {

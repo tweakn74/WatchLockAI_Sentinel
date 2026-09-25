@@ -95,9 +95,9 @@ def auto_repair_headers(files):
             header = f"""# File: {filename}\n# Location: {file.parent}\n# Developer: Craig & GPT-4\n# Version: 0.1.0\n# Last Modified: {datetime.now().strftime("%Y-%m-%d")}\n# Purpose: [ADD PURPOSE HERE]\n\n"""
             if not content.strip().startswith("# File"):
                 file.write_text(header + content, encoding="utf-8")
-                console.print(f"[green]✔ Repaired header:[/green] {filename}")
+                console.print(f"[green][x] Repaired header:[/green] {filename}")
         except Exception as e:
-            console.print(f"[red]❌ Failed to repair {file.name}: {e}[/red]")
+            console.print(f"[red][FAIL] Failed to repair {file.name}: {e}[/red]")
 
 
 def delete_orphans(orphans):
@@ -105,14 +105,14 @@ def delete_orphans(orphans):
         try:
             backup_file(file)
             file.unlink()
-            console.print(f"[blue]🗑 Removed orphaned:[/blue] {file.name}")
+            console.print(f"[blue][U+1F5D1] Removed orphaned:[/blue] {file.name}")
         except Exception as e:
-            console.print(f"[red]❌ Failed to delete {file.name}: {e}[/red]")
+            console.print(f"[red][FAIL] Failed to delete {file.name}: {e}[/red]")
 
 
 def run_self_upgrade():
     console.print(
-        "\n[bold magenta]🔍 Running Self-Upgrade Diagnostic...[/bold magenta]"
+        "\n[bold magenta][SEARCH] Running Self-Upgrade Diagnostic...[/bold magenta]"
     )
 
     headers, versions = scan_python_headers()
@@ -137,7 +137,7 @@ def run_self_upgrade():
         console.print("[yellow]Cleaning up orphaned memory files...[/yellow]")
         delete_orphans(orphans)
 
-    console.print("\n[bold green]✅ Self-upgrade pass complete.[/bold green]\n")
+    console.print("\n[bold green][PASS] Self-upgrade pass complete.[/bold green]\n")
 
 
 if __name__ == "__main__":

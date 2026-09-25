@@ -28,7 +28,7 @@ class PylanceIssueFixer:
 
     def fix_type_conversion_issues(self) -> None:
         """Fix type conversion issues in portfolio optimization."""
-        print("🔧 Fixing type conversion issues...")
+        print("[U+1F527] Fixing type conversion issues...")
 
         # Fix the float conversion issue in mean_variance.py
         mean_variance_file = (
@@ -46,11 +46,11 @@ class PylanceIssueFixer:
                 content = re.sub(old_pattern, new_pattern, content)
                 mean_variance_file.write_text(content, encoding="utf-8")
                 self.fixes_applied.append("Fixed type conversion in mean_variance.py")
-                print("  ✅ Fixed marginal_risk type conversion")
+                print("  [PASS] Fixed marginal_risk type conversion")
 
     def fix_unused_import_suppressions(self) -> None:
         """Ensure all unused imports are properly suppressed."""
-        print("🔧 Adding missing noqa suppressions...")
+        print("[U+1F527] Adding missing noqa suppressions...")
 
         # Files with intentional unused imports that need suppression
         files_to_fix = [
@@ -93,7 +93,7 @@ class PylanceIssueFixer:
 
     def fix_duplicate_noqa_comments(self) -> None:
         """Fix duplicate noqa comments."""
-        print("🔧 Fixing duplicate noqa comments...")
+        print("[U+1F527] Fixing duplicate noqa comments...")
 
         compliance_dashboard = (
             self.repo_root / "src/trading_brain/compliance/compliance_dashboard.py"
@@ -109,11 +109,11 @@ class PylanceIssueFixer:
 
             compliance_dashboard.write_text(content, encoding="utf-8")
             self.fixes_applied.append("Fixed duplicate noqa in compliance_dashboard.py")
-            print("  ✅ Fixed duplicate noqa comment")
+            print("  [PASS] Fixed duplicate noqa comment")
 
     def fix_unreachable_code_issues(self) -> None:
         """Fix unreachable code issues."""
-        print("🔧 Fixing unreachable code issues...")
+        print("[U+1F527] Fixing unreachable code issues...")
 
         # Fix dashboard export component
         export_component = self.repo_root / "src/frontend/dashboard_export_component.py"
@@ -131,7 +131,7 @@ class PylanceIssueFixer:
             self.fixes_applied.append(
                 "Fixed unreachable code in dashboard_export_component.py",
             )
-            print("  ✅ Fixed unreachable code warning")
+            print("  [PASS] Fixed unreachable code warning")
 
         # Fix backtesting fees unreachable code
         fees_file = self.repo_root / "src/trading_brain/backtesting/fees.py"
@@ -146,7 +146,7 @@ class PylanceIssueFixer:
 
             fees_file.write_text(content, encoding="utf-8")
             self.fixes_applied.append("Fixed unreachable code in backtesting/fees.py")
-            print("  ✅ Fixed unreachable code in fees.py")
+            print("  [PASS] Fixed unreachable code in fees.py")
 
         # Fix agents base unreachable code
         agents_base = self.repo_root / "src/agents/base.py"
@@ -161,11 +161,11 @@ class PylanceIssueFixer:
 
             agents_base.write_text(content, encoding="utf-8")
             self.fixes_applied.append("Fixed unreachable code in agents/base.py")
-            print("  ✅ Fixed unreachable code in agents/base.py")
+            print("  [PASS] Fixed unreachable code in agents/base.py")
 
     def fix_optional_dependency_warnings(self) -> None:
         """Fix optional dependency import warnings."""
-        print("🔧 Fixing optional dependency import warnings...")
+        print("[U+1F527] Fixing optional dependency import warnings...")
 
         # These are intentional optional dependencies with graceful fallbacks
         # Add proper noqa suppressions
@@ -205,11 +205,11 @@ class PylanceIssueFixer:
                 self.fixes_applied.append(
                     f"Fixed optional dependency warning for {import_name} in {file_path}",
                 )
-                print(f"  ✅ Fixed {import_name} import warning")
+                print(f"  [PASS] Fixed {import_name} import warning")
 
     def run_all_fixes(self) -> None:
         """Run all systematic fixes."""
-        print("🚀 Starting systematic Pylance issue resolution...")
+        print("[START] Starting systematic Pylance issue resolution...")
         print("=" * 60)
 
         self.fix_type_conversion_issues()
@@ -218,17 +218,17 @@ class PylanceIssueFixer:
         self.fix_unreachable_code_issues()
         self.fix_optional_dependency_warnings()
 
-        print("\n📊 Summary of fixes applied:")
+        print("\n[BARS] Summary of fixes applied:")
         for fix in self.fixes_applied:
-            print(f"  ✅ {fix}")
+            print(f"  [PASS] {fix}")
 
-        print(f"\n🎯 Total fixes applied: {len(self.fixes_applied)}")
-        print("\n✨ Remaining issues should be:")
+        print(f"\n[TARGET] Total fixes applied: {len(self.fixes_applied)}")
+        print("\n[SPARK] Remaining issues should be:")
         print("  - Unused parameter warnings (already suppressed)")
         print("  - Optional dependency import warnings (gracefully handled)")
         print("  - Intentional unused imports (already suppressed)")
 
-        print("\n🏆 Enterprise-grade Pylance compliance achieved!")
+        print("\n[U+1F3C6] Enterprise-grade Pylance compliance achieved!")
 
 
 def main():

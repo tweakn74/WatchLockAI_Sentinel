@@ -44,7 +44,7 @@
 - Console UI: `/console/`, `/console/info`
 
 ### Changed
-- **FastAPI Route Introspection**: Fixed Flask→FastAPI mismatch in API contract checking
+- **FastAPI Route Introspection**: Fixed Flask->FastAPI mismatch in API contract checking
 - **Feature Flag Architecture**: All new features default OFF for non-breaking deployment
 - **Verifier Enhancements**: Added P3 invariant checks and enhanced validation rules
 - **Service Integration**: Enhanced Windows service wrapper with installer/uninstaller scripts

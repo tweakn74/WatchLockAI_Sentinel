@@ -405,14 +405,14 @@ class SelfCheckRunner:
                 
                 status = result["status"]
                 if status == "PASS":
-                    self.log(f"✅ {result['name']}: PASS")
+                    self.log(f"[PASS] {result['name']}: PASS")
                 elif status == "SKIP":
-                    self.log(f"⏭️ {result['name']}: SKIP - {result.get('reason')}")
+                    self.log(f"[U+23ED] {result['name']}: SKIP - {result.get('reason')}")
                 elif status == "FAIL":
-                    self.log(f"❌ {result['name']}: FAIL - {result.get('error')}")
+                    self.log(f"[FAIL] {result['name']}: FAIL - {result.get('error')}")
                     overall_success = False
                 elif status == "ERROR":
-                    self.log(f"⚠️ {result['name']}: ERROR - {result.get('error')}")
+                    self.log(f"[WARN] {result['name']}: ERROR - {result.get('error')}")
                     overall_success = False
                     
             except Exception as e:
@@ -422,7 +422,7 @@ class SelfCheckRunner:
                     "error": str(e)
                 }
                 results.append(error_result)
-                self.log(f"⚠️ {check_func.__name__}: ERROR - {e}")
+                self.log(f"[WARN] {check_func.__name__}: ERROR - {e}")
                 overall_success = False
         
         # Calculate summary
@@ -447,9 +447,9 @@ class SelfCheckRunner:
         
         # Final summary
         if overall_success:
-            self.log(f"✅ All checks passed in {duration:.1f}s", "PASS")
+            self.log(f"[PASS] All checks passed in {duration:.1f}s", "PASS")
         else:
-            self.log(f"❌ {summary['failed']} checks failed, {summary['errors']} errors in {duration:.1f}s", "FAIL")
+            self.log(f"[FAIL] {summary['failed']} checks failed, {summary['errors']} errors in {duration:.1f}s", "FAIL")
         
         return overall_success, detailed_results
 

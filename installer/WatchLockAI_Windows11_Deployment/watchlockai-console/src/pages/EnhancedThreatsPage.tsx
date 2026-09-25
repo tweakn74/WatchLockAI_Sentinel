@@ -401,7 +401,7 @@ export function EnhancedThreatsPage() {
                   onClick={() => setSelectedThreat(null)}
                   className="text-2xl"
                 >
-                  ×
+                  x
                 </Button>
               </div>
               

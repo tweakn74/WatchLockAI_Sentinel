@@ -1,4 +1,4 @@
-# File System Monitor — Spec
+# File System Monitor -- Spec
 
 Purpose: Observe user-configured directories for create/modify/delete/rename. 
 Prefer OS notifications via watchdog; fallback to polling.
@@ -21,4 +21,4 @@ Behavior:
 
 Performance:
 - Debounce rapid rename pairs (rename emits 'renamed' with old_path).
-- Backpressure-safe: queue → app_core.bus (async).
+- Backpressure-safe: queue -> app_core.bus (async).

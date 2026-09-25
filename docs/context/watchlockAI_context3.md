@@ -16,7 +16,7 @@ comprehensive threat detection, investigation, and response capabilities.
 
 The platform's key competitive advantages include:
 
-•
+*
 
 Autonomous AI-Powered Threat Detection: The platform's core AI brain, with
 
@@ -24,7 +24,7 @@ its local LLM integration, enables real-time behavioral analysis and threat
 
 detection without relying on traditional signatures.
 
-•
+*
 
 Real-time MITRE ATT&CK Mapping: All detected threats are mapped to the
 
@@ -32,7 +32,7 @@ MITRE ATT&CK framework in real-time, providing a standardized and actionable
 
 understanding of adversary tactics and techniques.
 
-•
+*
 
 Tamperproof Self-Protection: The endpoint agent is equipped with advanced
 
@@ -40,7 +40,7 @@ tamperproofing and anti-evasion mechanisms to protect itself from being
 
 disabled or bypassed by attackers.
 
-•
+*
 
 Integrated Digital Forensics: The platform includes a powerful digital forensics
 
@@ -48,7 +48,7 @@ engine that automates the collection and analysis of forensic evidence, enabling
 
 rapid and effective incident investigation.
 
-•
+*
 
 Multi-Tenant Cloud Management: The web-based management console
 
@@ -62,7 +62,7 @@ security of all endpoints across an organization.
 
 WatchLockAI delivers significant business value by:
 
-•
+*
 
 Reducing the risk of a data breach: The platform's advanced threat detection
 
@@ -70,7 +70,7 @@ and response capabilities help to prevent data breaches and minimize their
 
 impact.
 
-•
+*
 
 Improving security operations efficiency: By automating many of the tasks
 
@@ -78,7 +78,7 @@ involved in threat detection, investigation, and response, WatchLockAI frees up
 
 security analysts to focus on more strategic initiatives.
 
-•
+*
 
 Reducing the total cost of ownership (TCO): WatchLockAI consolidates
 
@@ -86,7 +86,7 @@ multiple endpoint security capabilities into a single platform, reducing the nee
 
 for multiple point solutions and lowering the overall TCO.
 
-•
+*
 
 Enhancing compliance: The platform's comprehensive logging and reporting
 
@@ -98,7 +98,7 @@ WatchLockAI is designed to help organizations meet their compliance requirements
 
 for a variety of frameworks, including:
 
-•
+*
 
 NIST Cybersecurity Framework: The platform's capabilities map directly to the
 
@@ -106,13 +106,13 @@ five functions of the NIST Cybersecurity Framework: Identify, Protect, Detect,
 
 Respond, and Recover.
 
-•
+*
 
 SOC 2: WatchLockAI helps organizations to meet the SOC 2 requirements for
 
 security, availability, processing integrity, confidentiality, and privacy.
 
-•
+*
 
 ISO 27001: The platform's security controls are aligned with the ISO 27001
 
@@ -134,7 +134,7 @@ management, and lowers the overall operational overhead.
 
 WatchLockAI helps to reduce risk by:
 
-•
+*
 
 Decreasing the likelihood of a successful attack: The platform's advanced
 
@@ -142,13 +142,13 @@ threat detection and prevention capabilities make it more difficult for attacker
 
 to compromise endpoints.
 
-•
+*
 
 Minimizing the impact of a breach: The platform's rapid response capabilities
 
 help to contain breaches and minimize their impact.
 
-•
+*
 
 Improving the organization's security posture: The platform's comprehensive
 
@@ -398,25 +398,25 @@ The   following   are   some   of   the   key   threats   to   the   WatchLockAI
 
 security controls that are in place to mitigate them:
 
-•
+*
 
 Malware: The platform's real-time threat detection engine is designed to detect
 
 and block malware.
 
-•
+*
 
 Insider Threats: The platform's behavioral baselining and anomaly detection
 
 capabilities can help to detect insider threats.
 
-•
+*
 
 Denial-of-Service (DoS) Attacks: The platform's tamperproofing mechanisms
 
 help to protect it from DoS attacks.
 
-•
+*
 
 Data Breaches: The platform's data encryption and access control mechanisms
 
@@ -432,13 +432,13 @@ large enterprises.
 
 Scalability:
 
-•
+*
 
 Endpoint Agent: The endpoint agent is designed to be lightweight and have a
 
 minimal impact on system performance.
 
-•
+*
 
 Management Console: The management console is designed to be horizontally
 
@@ -448,15 +448,15 @@ Performance:
 
 The platform has been tested to meet the following performance requirements:
 
-•
+*
 
 CPU Usage: < 5% average, < 15% peak during active scanning
 
-•
+*
 
 Memory Usage: < 256MB baseline, < 512MB during investigation
 
-•
+*
 
 Disk Space: < 100MB installation, < 1GB for logs and cache
 
@@ -468,19 +468,19 @@ The WatchLockAI platform is designed to integrate with a wide range of enterpris
 
 security tools, including:
 
-•
+*
 
 SIEM: Splunk, QRadar, ArcSight
 
-•
+*
 
 EDR: CrowdStrike, SentinelOne
 
-•
+*
 
 SOAR: Phantom, Demisto
 
-•
+*
 
 Network Security: Palo Alto Networks, Cisco, Netskope
 
@@ -510,25 +510,25 @@ All communication between the agent and the console is encrypted using TLS.
 
 Windows Endpoint Agent:
 
-•
+*
 
 Operating System: Windows 11 (Pro, Enterprise)
 
-•
+*
 
 Processor: 2 GHz dual-core processor or better
 
-•
+*
 
 RAM: 8 GB (16 GB recommended)
 
-•
+*
 
 Disk Space: 1 GB of free disk space
 
 9 / 20
 
-•
+*
 
 .NET Framework: .NET 8
 
@@ -604,25 +604,25 @@ WatchLockAI   agent   is   installed.   The   following   are   some   general  
 
 guidelines:
 
-•
+*
 
 Disable Unnecessary Services: Disable any unnecessary Windows services to
 
 reduce the attack surface.
 
-•
+*
 
 Apply Security Patches: Keep the operating system and all applications up to
 
 date with the latest security patches.
 
-•
+*
 
 Use a Host-based Firewall: Use a host-based firewall to restrict network access
 
 to the endpoint.
 
-•
+*
 
 Implement a Strong Password Policy: Enforce a strong password policy for all
 
@@ -636,19 +636,19 @@ installation   and   test   the   functionality   of   the   platform.   The   f
 
 recommended validation and testing procedures:
 
-•
+*
 
 Verify Agent Communication: Verify that the endpoint agents are
 
 communicating with the management console.
 
-•
+*
 
 Test Threat Detection: Test the threat detection capabilities of the platform by
 
 detonating a sample of malware on a test endpoint.
 
-•
+*
 
 Test Incident Response: Test the incident response capabilities of the platform
 
@@ -658,7 +658,7 @@ by creating a test incident and following the incident response workflow.
 
 The following are some common installation issues and their resolutions:
 
-•
+*
 
 Agent Fails to Install: If the agent fails to install, check the installation logs for
 
@@ -666,7 +666,7 @@ errors. The logs are located in the  %TEMP%  directory.
 
 11 / 20
 
-•
+*
 
 Agent Fails to Connect to the Console: If the agent fails to connect to the
 
@@ -774,7 +774,7 @@ WatchLockAI platform. The following are some recommended backup and disaster
 
 recovery procedures:
 
-•
+*
 
 Back up the Management Console: The management console should be
 
@@ -782,7 +782,7 @@ backed up regularly to protect against data loss.
 
 13 / 20
 
-•
+*
 
 Have a Failover Plan: Have a failover plan in place in case the primary
 
@@ -796,13 +796,13 @@ patches and updates. The following are some recommended security maintenance
 
 and update procedures:
 
-•
+*
 
 Update the Management Console: The management console should be
 
 updated regularly to ensure that it has the latest security features.
 
-•
+*
 
 Update the Endpoint Agents: The endpoint agents should be updated
 
@@ -816,7 +816,7 @@ be used to investigate security incidents. The following are some recommended lo
 
 analysis and forensic procedures:
 
-•
+*
 
 Analyze the Audit Logs: The audit logs provide a record of all activity on the
 
@@ -824,7 +824,7 @@ WatchLockAI platform. These logs can be used to track user activity and
 
 investigate security incidents.
 
-•
+*
 
 Use the Forensic Engine: The forensic engine can be used to collect and
 
@@ -844,27 +844,27 @@ programmatic access to the platform's data and capabilities. The API is organize
 
 into the following categories:
 
-•
+*
 
 Alerts: Get information about alerts, update the status of alerts, and take
 
 response actions.
 
-•
+*
 
 Devices: Get information about devices, manage device settings, and take
 
 response actions.
 
-•
+*
 
 Users: Get information about users and manage user accounts.
 
-•
+*
 
 Policies: Create, read, update, and delete policies.
 
-•
+*
 
 Organizations: Create, read, update, and delete organizations.
 
@@ -924,17 +924,17 @@ The following SDKs and libraries are available for interacting with the WatchLoc
 
 API:
 
-•
+*
 
 Python: The  falconpy  SDK provides a convenient way to interact with the
 
 WatchLockAI API in Python.
 
-•
+*
 
 Go: A Go SDK is available on GitHub.
 
-•
+*
 
 PowerShell: A PowerShell module is available on the PowerShell Gallery.
 
@@ -982,7 +982,7 @@ print(response)
 
 6.1. Security Configuration Recommendations
 
-•
+*
 
 Enforce Multi-Factor Authentication (MFA): Enforce MFA for all users to add an
 
@@ -990,19 +990,19 @@ extra layer of security to the management console.
 
 17 / 20
 
-•
+*
 
 Use a Strong Password Policy: Enforce a strong password policy for all users to
 
 protect against password-guessing attacks.
 
-•
+*
 
 Restrict Access to the Management Console: Restrict access to the
 
 management console to authorized users only.
 
-•
+*
 
 Use a Web Application Firewall (WAF): Use a WAF to protect the management
 
@@ -1010,19 +1010,19 @@ console from web-based attacks.
 
 6.2. Threat Detection Tuning Guidelines
 
-•
+*
 
 Customize Threat Detection Rules: Customize the threat detection rules to
 
 meet the specific needs of your organization.
 
-•
+*
 
 Reduce False Positives: Tune the threat detection rules to reduce the number
 
 of false positives.
 
-•
+*
 
 Stay Up to Date with the Latest Threats: Stay up to date with the latest threats
 
@@ -1030,13 +1030,13 @@ and update the threat detection rules accordingly.
 
 6.3. Incident Response Playbooks
 
-•
+*
 
 Develop Incident Response Playbooks: Develop incident response playbooks
 
 for common security incidents, such as malware infections and data breaches.
 
-•
+*
 
 Test the Incident Response Playbooks: Regularly test the incident response
 
@@ -1044,13 +1044,13 @@ playbooks to ensure that they are effective.
 
 6.4. Compliance Reporting Procedures
 
-•
+*
 
 Generate Compliance Reports: Generate compliance reports to demonstrate
 
 compliance with industry regulations, such as NIST, SOC 2, and ISO 27001.
 
-•
+*
 
 Review Compliance Reports: Regularly review the compliance reports to
 
@@ -1058,7 +1058,7 @@ identify any areas of non-compliance.
 
 6.5. Security Audit and Assessment Guidelines
 
-•
+*
 
 Conduct Regular Security Audits: Conduct regular security audits to identify
 
@@ -1066,7 +1066,7 @@ and address any security vulnerabilities.
 
 18 / 20
 
-•
+*
 
 Perform Penetration Testing: Perform penetration testing to identify and
 
@@ -1074,19 +1074,19 @@ exploit any security vulnerabilities.
 
 6.6. Penetration Testing Recommendations
 
-•
+*
 
 Use a Reputable Penetration Testing Company: Use a reputable penetration
 
 testing company to perform the penetration test.
 
-•
+*
 
 Define the Scope of the Penetration Test: Define the scope of the penetration
 
 test to ensure that all critical assets are tested.
 
-•
+*
 
 Remediate Any Findings: Remediate any findings from the penetration test in a
 
@@ -1096,7 +1096,7 @@ timely manner.
 
 7.1. Common Issues and Resolution Procedures
 
-•
+*
 
 Agent Not Reporting to the Console: If an agent is not reporting to the
 
@@ -1104,13 +1104,13 @@ console, check the agent's logs for errors. The logs are located in the
 
 %PROGRAMDATA%\WatchLockAI\Logs  directory.
 
-•
+*
 
 False Positives: If you are experiencing a high number of false positives, you
 
 can tune the threat detection rules to reduce the number of false positives.
 
-•
+*
 
 Performance Issues: If you are experiencing performance issues, you can use
 
@@ -1120,13 +1120,13 @@ address any performance bottlenecks.
 
 7.2. Log Analysis and Diagnostic Procedures
 
-•
+*
 
 Agent Logs: The agent logs contain detailed information about the agent's
 
 activity. These logs can be used to troubleshoot a variety of issues.
 
-•
+*
 
 Console Logs: The console logs contain detailed information about the
 
@@ -1136,19 +1136,19 @@ console's activity. These logs can be used to troubleshoot a variety of issues.
 
 7.3. Performance Troubleshooting Guidelines
 
-•
+*
 
 Check for Resource Contention: Check for resource contention on the
 
 endpoint, such as high CPU usage or memory usage.
 
-•
+*
 
 Check for Network Latency: Check for network latency between the agent and
 
 the console.
 
-•
+*
 
 Check for Database Performance Issues: Check for database performance
 
@@ -1160,21 +1160,21 @@ If you need assistance with the WatchLockAI platform, you can contact our suppor
 
 team.
 
-•
+*
 
 Email: support@watchlockai.com
 
-•
+*
 
 Phone: 1-800-555-1212
 
 7.5. Known Limitations and Workarounds
 
-•
+*
 
 The platform does not currently support macOS or Linux endpoints.
 
-•
+*
 
 The platform does not currently support integration with all EDR and SIEM
 

@@ -209,13 +209,13 @@ Only now, after progressing through the first six phases, can intruders take act
 
 The Cyber Kill Chain provides a strategic framework that maps well to MITRE ATT&CK tactics:
 
-- **Reconnaissance** → ATT&CK Reconnaissance (TA0043)
-- **Weaponization** → ATT&CK Resource Development (TA0042)
-- **Delivery** → ATT&CK Initial Access (TA0001)
-- **Exploitation** → ATT&CK Execution (TA0002), Privilege Escalation (TA0004)
-- **Installation** → ATT&CK Persistence (TA0003), Defense Evasion (TA0005)
-- **Command & Control** → ATT&CK Command and Control (TA0011)
-- **Actions on Objectives** → ATT&CK Collection (TA0009), Exfiltration (TA0010), Impact (TA0040)
+- **Reconnaissance** -> ATT&CK Reconnaissance (TA0043)
+- **Weaponization** -> ATT&CK Resource Development (TA0042)
+- **Delivery** -> ATT&CK Initial Access (TA0001)
+- **Exploitation** -> ATT&CK Execution (TA0002), Privilege Escalation (TA0004)
+- **Installation** -> ATT&CK Persistence (TA0003), Defense Evasion (TA0005)
+- **Command & Control** -> ATT&CK Command and Control (TA0011)
+- **Actions on Objectives** -> ATT&CK Collection (TA0009), Exfiltration (TA0010), Impact (TA0040)
 
 ---
 

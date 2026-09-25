@@ -50,7 +50,7 @@ def restore_interactively(target_path: Path, dry_run: bool = False):
             mtime = f.stat().st_mtime
         except Exception:
             mtime = 0
-        console.print(f"  [{idx}] {f.name} — {mtime:.0f}")
+        console.print(f"  [{idx}] {f.name} -- {mtime:.0f}")
 
     selection = IntPrompt.ask("Select a version to restore (index)", default=0)
     try:

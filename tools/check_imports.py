@@ -18,11 +18,11 @@ def check_imports():
     for module in modules_to_check:
         try:
             __import__(module)
-            results[module] = "✅ OK"
-            print(f"{module}: ✅ OK")
+            results[module] = "[PASS] OK"
+            print(f"{module}: [PASS] OK")
         except Exception as e:
-            results[module] = f"❌ ERROR: {e}"
-            print(f"{module}: ❌ ERROR: {e}")
+            results[module] = f"[FAIL] ERROR: {e}"
+            print(f"{module}: [FAIL] ERROR: {e}")
 
     return results
 
@@ -35,8 +35,8 @@ if __name__ == "__main__":
 
     failed_imports = [module for module, result in results.items() if "ERROR" in result]
     if failed_imports:
-        print(f"\n💥 {len(failed_imports)} modules failed to import")
+        print(f"\n[U+1F4A5] {len(failed_imports)} modules failed to import")
         exit(1)
     else:
-        print("\n🎉 All modules imported successfully!")
+        print("\n[U+1F389] All modules imported successfully!")
         exit(0)

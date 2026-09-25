@@ -37,8 +37,8 @@ if ($osVersion.Major -lt 10) {
     exit 1
 }
 
-Write-Host "✓ Administrator privileges confirmed" -ForegroundColor Green
-Write-Host "✓ Windows version compatible: $($osVersion)" -ForegroundColor Green
+Write-Host "[x] Administrator privileges confirmed" -ForegroundColor Green
+Write-Host "[x] Windows version compatible: $($osVersion)" -ForegroundColor Green
 
 try {
     # Create installation directory
@@ -54,7 +54,7 @@ try {
     New-Item -ItemType Directory -Path $logsDir -Force | Out-Null
     New-Item -ItemType Directory -Path $evidenceDir -Force | Out-Null
     
-    Write-Host "✓ Installation directories created" -ForegroundColor Green
+    Write-Host "[x] Installation directories created" -ForegroundColor Green
     
     # Copy service executable (assuming it's in the same directory as this script)
     $serviceExe = "WatchLockAI.Service.exe"
@@ -63,7 +63,7 @@ try {
     
     if (Test-Path $sourceExe) {
         Copy-Item $sourceExe $targetExe -Force
-        Write-Host "✓ Service executable copied" -ForegroundColor Green
+        Write-Host "[x] Service executable copied" -ForegroundColor Green
     } else {
         Write-Warning "Service executable not found: $sourceExe"
     }
@@ -89,7 +89,7 @@ try {
     
     $configFile = Join-Path $configDir "appsettings.json"
     $configContent | Out-File -FilePath $configFile -Encoding UTF8
-    Write-Host "✓ Configuration file created" -ForegroundColor Green
+    Write-Host "[x] Configuration file created" -ForegroundColor Green
     
     # Install Windows Service
     Write-Host "Installing Windows Service..." -ForegroundColor Yellow
@@ -111,7 +111,7 @@ try {
     # Create new service
     $createResult = sc.exe create $serviceName binPath= "`"$targetExe`"" DisplayName= "$serviceDisplayName" start= auto
     if ($LASTEXITCODE -eq 0) {
-        Write-Host "✓ Windows Service created" -ForegroundColor Green
+        Write-Host "[x] Windows Service created" -ForegroundColor Green
         
         # Set service description
         sc.exe description $serviceName "$serviceDescription"
@@ -119,7 +119,7 @@ try {
         # Configure service recovery actions
         sc.exe failure $serviceName reset= 86400 actions= restart/30000/restart/60000/restart/120000
         
-        Write-Host "✓ Service recovery configured" -ForegroundColor Green
+        Write-Host "[x] Service recovery configured" -ForegroundColor Green
     } else {
         Write-Error "Failed to create Windows Service: $createResult"
         exit 1
@@ -136,7 +136,7 @@ try {
     foreach ($rule in $firewallRules) {
         try {
             New-NetFirewallRule -DisplayName $rule.Name -Direction $rule.Direction -Action $rule.Action -Protocol $rule.Protocol -RemotePort $rule.RemotePort -LocalPort $rule.LocalPort -ErrorAction SilentlyContinue
-            Write-Host "✓ Firewall rule created: $($rule.Name)" -ForegroundColor Green
+            Write-Host "[x] Firewall rule created: $($rule.Name)" -ForegroundColor Green
         } catch {
             Write-Warning "Failed to create firewall rule: $($rule.Name)"
         }
@@ -160,13 +160,13 @@ try {
     $acl.SetAccessRuleProtection($true, $false)
     Set-Acl -Path $InstallPath -AclObject $acl
     
-    Write-Host "✓ Security permissions configured" -ForegroundColor Green
+    Write-Host "[x] Security permissions configured" -ForegroundColor Green
     
     # Create Windows Event Log source
     Write-Host "Creating Windows Event Log source..." -ForegroundColor Yellow
     try {
         New-EventLog -LogName "Application" -Source "WatchLockAI" -ErrorAction SilentlyContinue
-        Write-Host "✓ Event Log source created" -ForegroundColor Green
+        Write-Host "[x] Event Log source created" -ForegroundColor Green
     } catch {
         Write-Warning "Event Log source may already exist or failed to create"
     }
@@ -185,7 +185,7 @@ try {
     } while ($service.Status -ne "Running" -and $timer -lt $timeout)
     
     if ($service.Status -eq "Running") {
-        Write-Host "✓ WatchLockAI service started successfully" -ForegroundColor Green
+        Write-Host "[x] WatchLockAI service started successfully" -ForegroundColor Green
     } else {
         Write-Warning "Service start timeout - please check service status manually"
     }
@@ -266,7 +266,7 @@ try {
             } while ($service.Status -ne "Stopped" -and $timer -lt $timeout)
             
             if ($service.Status -eq "Stopped") {
-                Write-Host "✓ Service stopped" -ForegroundColor Green
+                Write-Host "[x] Service stopped" -ForegroundColor Green
             } else {
                 Write-Warning "Service stop timeout - forcing termination"
                 # Force kill any remaining processes
@@ -278,7 +278,7 @@ try {
         Write-Host "Removing Windows Service..." -ForegroundColor Yellow
         $deleteResult = sc.exe delete $serviceName
         if ($LASTEXITCODE -eq 0) {
-            Write-Host "✓ Windows Service removed" -ForegroundColor Green
+            Write-Host "[x] Windows Service removed" -ForegroundColor Green
         } else {
             Write-Warning "Failed to remove service: $deleteResult"
         }
@@ -292,7 +292,7 @@ try {
     foreach ($ruleName in $firewallRules) {
         try {
             Remove-NetFirewallRule -DisplayName $ruleName -ErrorAction SilentlyContinue
-            Write-Host "✓ Removed firewall rule: $ruleName" -ForegroundColor Green
+            Write-Host "[x] Removed firewall rule: $ruleName" -ForegroundColor Green
         } catch {
             Write-Warning "Failed to remove firewall rule: $ruleName"
         }
@@ -302,7 +302,7 @@ try {
     Write-Host "Removing Event Log source..." -ForegroundColor Yellow
     try {
         Remove-EventLog -Source "WatchLockAI" -ErrorAction SilentlyContinue
-        Write-Host "✓ Event Log source removed" -ForegroundColor Green
+        Write-Host "[x] Event Log source removed" -ForegroundColor Green
     } catch {
         Write-Warning "Failed to remove Event Log source"
     }
@@ -322,7 +322,7 @@ try {
         
         try {
             Remove-Item -Path $installPath -Recurse -Force
-            Write-Host "✓ Installation directory removed" -ForegroundColor Green
+            Write-Host "[x] Installation directory removed" -ForegroundColor Green
         } catch {
             Write-Warning "Failed to remove installation directory: $($_.Exception.Message)"
             Write-Host "Manual removal may be required: $installPath" -ForegroundColor Yellow
@@ -333,7 +333,7 @@ try {
     Write-Host "Cleaning registry entries..." -ForegroundColor Yellow
     try {
         Remove-Item -Path "HKLM:\\SOFTWARE\\WatchLockAI" -Recurse -Force -ErrorAction SilentlyContinue
-        Write-Host "✓ Registry entries cleaned" -ForegroundColor Green
+        Write-Host "[x] Registry entries cleaned" -ForegroundColor Green
     } catch {
         Write-Warning "Failed to clean some registry entries"
     }

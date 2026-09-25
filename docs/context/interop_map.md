@@ -21,9 +21,9 @@ The system follows an event-driven architecture using an internal async event bu
 
 ### Core Dependency Chains
 ```
-app.py → app_core, detection, service, ui
-service.service_wrapper → app_core, collectors, console, detection, response
-console.web_api → console, detection
+app.py -> app_core, detection, service, ui
+service.service_wrapper -> app_core, collectors, console, detection, response
+console.web_api -> console, detection
 ```
 
 ### Potential Cycles Detected
@@ -64,16 +64,16 @@ console.web_api → console, detection
 
 | Method | Path | Handler | Model In/Out | Issues |
 |--------|------|---------|--------------|---------|
-| GET | `/api/status` | `get_status()` | → `StatusResponse` | ✅ Clean |
-| GET | `/api/alerts` | `get_alerts()` | → `AlertSummary` | ✅ Clean |
-| GET | `/api/detections` | `get_detections()` | → `DetectionResponse` | ⚠️ Optional query params |
-| POST | `/api/actions/pause` | `pause_monitoring()` | `duration_minutes: int` → `dict` | ⚠️ Non-standard response |
-| POST | `/api/actions/resume` | `resume_monitoring()` | → `dict` | ⚠️ Non-standard response |
-| GET | `/api/ti/search` | `search_threat_intelligence()` | `query: str, limit: int` → `dict` | ⚠️ Non-standard response |
-| GET | `/api/policies` | `get_policies()` | → `dict` | ⚠️ Non-standard response |
-| POST | `/api/policies` | `set_policies()` | `dict` → `dict` | ⚠️ Non-standard response |
-| GET | `/api/operational_mode` | `get_operational_mode()` | → `GetModeResponse` | ✅ Clean (new) |
-| PUT | `/api/operational_mode` | `set_operational_mode()` | `SetModeRequest` → `GetModeResponse` | ✅ Clean (new) |
+| GET | `/api/status` | `get_status()` | -> `StatusResponse` | [PASS] Clean |
+| GET | `/api/alerts` | `get_alerts()` | -> `AlertSummary` | [PASS] Clean |
+| GET | `/api/detections` | `get_detections()` | -> `DetectionResponse` | [WARN] Optional query params |
+| POST | `/api/actions/pause` | `pause_monitoring()` | `duration_minutes: int` -> `dict` | [WARN] Non-standard response |
+| POST | `/api/actions/resume` | `resume_monitoring()` | -> `dict` | [WARN] Non-standard response |
+| GET | `/api/ti/search` | `search_threat_intelligence()` | `query: str, limit: int` -> `dict` | [WARN] Non-standard response |
+| GET | `/api/policies` | `get_policies()` | -> `dict` | [WARN] Non-standard response |
+| POST | `/api/policies` | `set_policies()` | `dict` -> `dict` | [WARN] Non-standard response |
+| GET | `/api/operational_mode` | `get_operational_mode()` | -> `GetModeResponse` | [PASS] Clean (new) |
+| PUT | `/api/operational_mode` | `set_operational_mode()` | `SetModeRequest` -> `GetModeResponse` | [PASS] Clean (new) |
 
 ### API Route Issues
 1. **Inconsistent response models**: Mix of Pydantic models and raw dicts
@@ -85,10 +85,10 @@ console.web_api → console, detection
 
 | Task Name | Start Order | Stop Order | Cancellation | Location |
 |-----------|-------------|------------|--------------|----------|
-| `EventBus._worker()` | 1 (bus.start) | 4 (bus.stop) | ✅ Graceful | `app_core/bus.py:92` |
-| `SentinelService.start()` | 2 (service init) | 3 (service stop) | ✅ Graceful | `service/service_wrapper.py:210` |
-| `SentinelWebAPI.server` | 3 (after service) | 2 (before service) | ⚠️ Basic | `console/web_api.py:370` |
-| `TrayApp` (optional) | 4 (UI optional) | 1 (UI first) | ⚠️ Thread-based | `app.py:90` |
+| `EventBus._worker()` | 1 (bus.start) | 4 (bus.stop) | [PASS] Graceful | `app_core/bus.py:92` |
+| `SentinelService.start()` | 2 (service init) | 3 (service stop) | [PASS] Graceful | `service/service_wrapper.py:210` |
+| `SentinelWebAPI.server` | 3 (after service) | 2 (before service) | [WARN] Basic | `console/web_api.py:370` |
+| `TrayApp` (optional) | 4 (UI optional) | 1 (UI first) | [WARN] Thread-based | `app.py:90` |
 
 ### Background Task Issues
 1. **Startup dependency**: No explicit dependency management between tasks
@@ -100,16 +100,16 @@ console.web_api → console, detection
 
 | Key | Owner Module | Default | Duplicates | Notes |
 |-----|-------------|---------|------------|--------|
-| `operational.mode` | `app_core.config:98` | `"observe"` | ✅ Single source | New persistent storage |
-| `operational.current_mode` | `app_core.config:101` | Dynamic | ⚠️ Property | Reads from `config/operational_mode.json` |
-| `responses.allow_destructive_actions` | `app_core.config:92` | `False` | ✅ Single source | Response gating |
-| `monitoring.file_system.enabled` | `app_core.config:16` | `True` | ✅ Single source | Collector control |
-| `monitoring.processes.enabled` | `app_core.config:29` | `True` | ✅ Single source | Collector control |
-| `monitoring.registry.enabled` | `app_core.config:37` | `True` | ✅ Single source | Collector control |
-| `monitoring.network.enabled` | `app_core.config:49` | `True` | ✅ Single source | Collector control |
-| `health.enabled` | `app_core.config:59` | `True` | ✅ Single source | Health monitoring |
-| `rag.mode` | `app_core.config:79` | `"embeddings"` | ✅ Single source | Knowledge indexing |
-| `service.install_on_setup` | `app_core.config:119` | `True` | ✅ Single source | Windows service |
+| `operational.mode` | `app_core.config:98` | `"observe"` | [PASS] Single source | New persistent storage |
+| `operational.current_mode` | `app_core.config:101` | Dynamic | [WARN] Property | Reads from `config/operational_mode.json` |
+| `responses.allow_destructive_actions` | `app_core.config:92` | `False` | [PASS] Single source | Response gating |
+| `monitoring.file_system.enabled` | `app_core.config:16` | `True` | [PASS] Single source | Collector control |
+| `monitoring.processes.enabled` | `app_core.config:29` | `True` | [PASS] Single source | Collector control |
+| `monitoring.registry.enabled` | `app_core.config:37` | `True` | [PASS] Single source | Collector control |
+| `monitoring.network.enabled` | `app_core.config:49` | `True` | [PASS] Single source | Collector control |
+| `health.enabled` | `app_core.config:59` | `True` | [PASS] Single source | Health monitoring |
+| `rag.mode` | `app_core.config:79` | `"embeddings"` | [PASS] Single source | Knowledge indexing |
+| `service.install_on_setup` | `app_core.config:119` | `True` | [PASS] Single source | Windows service |
 
 ### Config Surface Issues
 1. **Dual mode access**: `operational.mode` vs `operational.current_mode` creates confusion
@@ -121,12 +121,12 @@ console.web_api → console, detection
 
 | Path | Guard Present? | File:Line | Notes |
 |------|---------------|-----------|--------|
-| Windows service APIs | ✅ YES | `service/service_wrapper.py:13-21` | `try/except ImportError` |
-| Registry monitoring | ❌ NO | `collectors/reg_monitor.py` | Needs `platform.system()` check |
-| Windows event logging | ⚠️ PARTIAL | `app_core/logging_setup.py` | Comment mentions platform check |
-| Process termination | ❌ NO | `response/actions.py:83` | Uses `psutil` without platform guards |
-| Service installation | ❌ NO | `service/service_wrapper.py:400+` | Windows-specific operations |
-| Tray application | ❌ NO | `ui/tray_app.py` | Windows/GUI-specific |
+| Windows service APIs | [PASS] YES | `service/service_wrapper.py:13-21` | `try/except ImportError` |
+| Registry monitoring | [FAIL] NO | `collectors/reg_monitor.py` | Needs `platform.system()` check |
+| Windows event logging | [WARN] PARTIAL | `app_core/logging_setup.py` | Comment mentions platform check |
+| Process termination | [FAIL] NO | `response/actions.py:83` | Uses `psutil` without platform guards |
+| Service installation | [FAIL] NO | `service/service_wrapper.py:400+` | Windows-specific operations |
+| Tray application | [FAIL] NO | `ui/tray_app.py` | Windows/GUI-specific |
 
 ### Platform-Guard Issues (Critical P0 Fixes Needed)
 1. **Registry collector**: `collectors/reg_monitor.py` will fail on Linux CI - needs platform check

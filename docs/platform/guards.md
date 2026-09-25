@@ -20,7 +20,7 @@ else:
 ## Windows-Only Surfaces
 
 ### Registry Monitoring (`collectors/reg_monitor.py`)
-- **Guard Status**: ✅ Fully Guarded
+- **Guard Status**: [PASS] Fully Guarded
 - **Windows Dependencies**: `winreg` module
 - **Linux Behavior**: Module loads but all operations become no-ops
 - **Guard Implementation**:
@@ -43,7 +43,7 @@ else:
 - **Fallback Behavior**: Registry events never generated on Linux
 
 ### Windows Service Integration (`service/service_wrapper.py`)
-- **Guard Status**: ✅ Fully Guarded  
+- **Guard Status**: [PASS] Fully Guarded  
 - **Windows Dependencies**: `servicemanager`, `win32event`, `win32service`, `win32serviceutil`
 - **Linux Behavior**: Service functions return error messages and `False`
 - **Guard Implementation**:
@@ -66,7 +66,7 @@ else:
 - **Fallback Behavior**: All service functions print error message and return `False`
 
 ### Process Termination (`response/actions.py`)
-- **Guard Status**: ⚠️ Partially Guarded
+- **Guard Status**: [WARN] Partially Guarded
 - **Platform Differences**: Different timeouts and error handling for Windows vs Unix
 - **Guard Implementation**:
   ```python
@@ -81,28 +81,28 @@ else:
 ## Cross-Platform Monitoring Components
 
 ### File System Monitoring (`collectors/fs_monitor.py`)
-- **Guard Status**: ✅ Cross-Platform
+- **Guard Status**: [PASS] Cross-Platform
 - **Dependencies**: `watchdog` library (cross-platform)
 - **Platform Handling**: Uses `watchdog.observers.Observer` which handles platform differences internally
 - **Path Handling**: Supports both Windows (`C:\Path\`) and Unix (`/path/`) path formats
 
 ### Process Monitoring (`collectors/proc_monitor.py`)
-- **Guard Status**: ✅ Cross-Platform
+- **Guard Status**: [PASS] Cross-Platform
 - **Dependencies**: `psutil` library (cross-platform)
 - **Platform Handling**: `psutil` abstracts platform differences for process enumeration and info
 
 ### Network Monitoring (`collectors/net_monitor.py`)
-- **Guard Status**: ✅ Cross-Platform
+- **Guard Status**: [PASS] Cross-Platform
 - **Dependencies**: `psutil` library (cross-platform)
 - **Platform Handling**: `psutil.net_connections()` works across platforms with consistent interface
 
 ### Health Monitoring (`collectors/health_monitor.py`)
-- **Guard Status**: ✅ Cross-Platform
+- **Guard Status**: [PASS] Cross-Platform
 - **Dependencies**: `psutil` library (cross-platform)
 - **Platform Handling**: CPU, memory, disk metrics work consistently across platforms
 
 ## Web Console and APIs (`console/`)
-- **Guard Status**: ✅ Cross-Platform
+- **Guard Status**: [PASS] Cross-Platform
 - **Dependencies**: `FastAPI`, `uvicorn` (cross-platform)
 - **Platform Handling**: All REST API endpoints work identically on Windows and Linux
 
@@ -114,13 +114,13 @@ else:
 - **E2E Tests**: Limited functionality on Linux (no registry monitoring, no Windows service)
 
 ### Expected Linux Behavior
-1. **Application Startup**: ✅ Fully functional
-2. **Web Console**: ✅ Fully functional at `http://localhost:8080`
-3. **File/Process/Network Monitoring**: ✅ Fully functional
-4. **Health Monitoring**: ✅ Fully functional
-5. **Registry Monitoring**: ❌ No events generated (expected)
-6. **Windows Service**: ❌ Installation/management functions fail (expected)
-7. **Detection/Response**: ⚠️ Limited (depends on available events)
+1. **Application Startup**: [PASS] Fully functional
+2. **Web Console**: [PASS] Fully functional at `http://localhost:8080`
+3. **File/Process/Network Monitoring**: [PASS] Fully functional
+4. **Health Monitoring**: [PASS] Fully functional
+5. **Registry Monitoring**: [FAIL] No events generated (expected)
+6. **Windows Service**: [FAIL] Installation/management functions fail (expected)
+7. **Detection/Response**: [WARN] Limited (depends on available events)
 
 ### Linux Startup Warnings (Expected)
 ```

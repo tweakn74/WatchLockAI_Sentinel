@@ -309,7 +309,7 @@ export const VersionPage: React.FC = () => {
               WatchLockAI Security Suite v{versionData.current.version}
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              Build {versionData.current.build} • {versionData.current.name}
+              Build {versionData.current.build} * {versionData.current.name}
             </p>
             <p className="text-sm text-gray-500 dark:text-gray-500">
               Released: {new Date(versionData.current.date).toLocaleDateString()}
@@ -386,7 +386,7 @@ export const VersionPage: React.FC = () => {
                         Version {version.version} - {version.name}
                       </h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Build {version.build} • Released {new Date(version.date).toLocaleDateString()}
+                        Build {version.build} * Released {new Date(version.date).toLocaleDateString()}
                       </p>
                     </div>
                   </div>
@@ -450,7 +450,7 @@ export const VersionPage: React.FC = () => {
                           {backup.backup_id}
                         </p>
                         <p className="text-sm text-gray-500 dark:text-gray-400">
-                          Version {backup.source_version} • {backup.files_count} files
+                          Version {backup.source_version} * {backup.files_count} files
                         </p>
                         <p className="text-sm text-gray-500 dark:text-gray-400">
                           {backup.description}

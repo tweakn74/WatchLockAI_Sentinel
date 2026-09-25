@@ -36,7 +36,7 @@ def create_init_manifest(root_dir: str):
     Walks a directory tree and creates a manifest of __init__.py files,
     highlighting directories that are missing one.
     """
-    print(f"🔍 Analyzing packages in: {os.path.abspath(root_dir)}\n")
+    print(f"[SEARCH] Analyzing packages in: {os.path.abspath(root_dir)}\n")
 
     missing_inits = []
     found_inits = []
@@ -72,12 +72,12 @@ def create_init_manifest(root_dir: str):
     print("--- `__init__.py` Manifest ---")
 
     if found_inits:
-        print("\n✅ Found `__init__.py` in the following packages:")
+        print("\n[PASS] Found `__init__.py` in the following packages:")
         for path in sorted(found_inits):
             print(f"   - {path}")
 
     if missing_inits:
-        print("\n⚠️  WARNING: Missing `__init__.py` in these directories:")
+        print("\n[WARN]  WARNING: Missing `__init__.py` in these directories:")
         for path in sorted(missing_inits):
             print(f"   - {path}  <-- ACTION REQUIRED")
         print("\nThese directories may not be treated as regular packages.")

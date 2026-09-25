@@ -178,7 +178,7 @@ def generate_security_posture_report(analysis, output_path: Path):
 
 ## Scan Error
 
-❌ **Security scan failed:** {analysis['error']}
+[FAIL] **Security scan failed:** {analysis['error']}
 
 Please resolve the scanning issue and run the security posture assessment again.
 
@@ -195,19 +195,19 @@ Please resolve the scanning issue and run the security posture assessment again.
     
     # Generate full report
     posture_emoji = {
-        "EXCELLENT": "🟢",
-        "GOOD": "🟡", 
-        "FAIR": "🟠",
-        "POOR": "🔴",
-        "CRITICAL": "💀"
+        "EXCELLENT": "[U+1F7E2]",
+        "GOOD": "[U+1F7E1]", 
+        "FAIR": "[U+1F7E0]",
+        "POOR": "[U+1F534]",
+        "CRITICAL": "[U+1F480]"
     }
     
-    status_emoji = posture_emoji.get(analysis["posture_level"], "❓")
+    status_emoji = posture_emoji.get(analysis["posture_level"], "[U+2753]")
     
     # GA readiness assessment
     severity_counts = analysis.get("severity_breakdown", analysis.get("severity_counts", {}))
     ga_ready = severity_counts.get("CRITICAL", 0) == 0 and severity_counts.get("HIGH", 0) == 0
-    ga_status = "✅ GA READY" if ga_ready else "⚠️ REVIEW REQUIRED"
+    ga_status = "[PASS] GA READY" if ga_ready else "[WARN] REVIEW REQUIRED"
     
     # Create detailed findings breakdown
     findings_by_category = {}
@@ -250,35 +250,35 @@ WatchLockAI Sentinel v0.9.0-rc1 security posture assessment completed with **{an
 
 ## P6-003 Enhanced Security Checks Status
 
-### ✅ Hardcoded Secrets Detection
+### [PASS] Hardcoded Secrets Detection
 - **Rules:** SEC001, SEC002, SEC017, SEC023
 - **Coverage:** Passwords, API keys, AWS/GCP/Azure credentials, environment variables
-- **Status:** {'✅ PASS' if severity_counts.get('CRITICAL', 0) == 0 else '❌ ISSUES FOUND'}
+- **Status:** {'[PASS] PASS' if severity_counts.get('CRITICAL', 0) == 0 else '[FAIL] ISSUES FOUND'}
 
-### ✅ Access Control & ACL Validation  
+### [PASS] Access Control & ACL Validation  
 - **Rules:** SEC018, SEC024
 - **Coverage:** Wildcard ACLs, excessive permissions
-- **Status:** {'✅ PASS' if sum(1 for f in analysis['findings'] if f.get('rule_id') in ['SEC018', 'SEC024']) == 0 else '❌ ISSUES FOUND'}
+- **Status:** {'[PASS] PASS' if sum(1 for f in analysis['findings'] if f.get('rule_id') in ['SEC018', 'SEC024']) == 0 else '[FAIL] ISSUES FOUND'}
 
-### ✅ File System Security
+### [PASS] File System Security
 - **Rules:** SEC005, SEC019
 - **Coverage:** World-writable permissions, filesystem security
-- **Status:** {'✅ PASS' if sum(1 for f in analysis['findings'] if f.get('rule_id') in ['SEC005', 'SEC019']) == 0 else '❌ ISSUES FOUND'}
+- **Status:** {'[PASS] PASS' if sum(1 for f in analysis['findings'] if f.get('rule_id') in ['SEC005', 'SEC019']) == 0 else '[FAIL] ISSUES FOUND'}
 
-### ✅ Cookie Security Flags
+### [PASS] Cookie Security Flags
 - **Rules:** SEC020, SEC021, SEC022
 - **Coverage:** HttpOnly, Secure, SameSite attributes
-- **Status:** {'✅ PASS' if sum(1 for f in analysis['findings'] if f.get('rule_id') in ['SEC020', 'SEC021', 'SEC022']) == 0 else '❌ ISSUES FOUND'}
+- **Status:** {'[PASS] PASS' if sum(1 for f in analysis['findings'] if f.get('rule_id') in ['SEC020', 'SEC021', 'SEC022']) == 0 else '[FAIL] ISSUES FOUND'}
 
 ## GA Readiness Assessment
 
 ### Security Gate Criteria
 | Criterion | Target | Actual | Status |
 |-----------|---------|---------|---------|
-| Critical Issues | 0 | {severity_counts.get('CRITICAL', 0)} | {'✅' if severity_counts.get('CRITICAL', 0) == 0 else '❌'} |
-| High Severity Issues | ≤ 2 | {severity_counts.get('HIGH', 0)} | {'✅' if severity_counts.get('HIGH', 0) <= 2 else '❌'} |
-| Security Score | ≥ 85 | {analysis['security_score']} | {'✅' if analysis['security_score'] >= 85 else '❌'} |
-| Clean File Rate | ≥ 90% | {((analysis['files_scanned'] - analysis['files_with_issues']) / max(analysis['files_scanned'], 1) * 100):.1f}% | {'✅' if ((analysis['files_scanned'] - analysis['files_with_issues']) / max(analysis['files_scanned'], 1) * 100) >= 90 else '❌'} |
+| Critical Issues | 0 | {severity_counts.get('CRITICAL', 0)} | {'[PASS]' if severity_counts.get('CRITICAL', 0) == 0 else '[FAIL]'} |
+| High Severity Issues | <= 2 | {severity_counts.get('HIGH', 0)} | {'[PASS]' if severity_counts.get('HIGH', 0) <= 2 else '[FAIL]'} |
+| Security Score | >= 85 | {analysis['security_score']} | {'[PASS]' if analysis['security_score'] >= 85 else '[FAIL]'} |
+| Clean File Rate | >= 90% | {((analysis['files_scanned'] - analysis['files_with_issues']) / max(analysis['files_scanned'], 1) * 100):.1f}% | {'[PASS]' if ((analysis['files_scanned'] - analysis['files_with_issues']) / max(analysis['files_scanned'], 1) * 100) >= 90 else '[FAIL]'} |
 
 ### Recommendations
 
@@ -286,7 +286,7 @@ WatchLockAI Sentinel v0.9.0-rc1 security posture assessment completed with **{an
 
 ## Detailed Findings
 
-{generate_detailed_findings(findings_by_category) if analysis['total_findings'] > 0 else '✅ No security issues detected - All scanned files passed security validation.'}
+{generate_detailed_findings(findings_by_category) if analysis['total_findings'] > 0 else '[PASS] No security issues detected - All scanned files passed security validation.'}
 
 ---
 *Generated by WatchLockAI Sentinel Security Posture Generator (P6-003)*
@@ -303,7 +303,7 @@ WatchLockAI Sentinel v0.9.0-rc1 security posture assessment completed with **{an
 def generate_category_analysis(category_breakdown, findings_by_category):
     """Generate analysis by security category."""
     if not category_breakdown:
-        return "✅ No security categories with findings detected."
+        return "[PASS] No security categories with findings detected."
     
     analysis = []
     for category, count in sorted(category_breakdown.items()):
@@ -316,11 +316,11 @@ def generate_category_analysis(category_breakdown, findings_by_category):
         
         # Risk assessment
         if any(finding.get("severity") in ["CRITICAL", "HIGH"] for finding in findings_by_category.get(category, [])):
-            risk_level = "🔴 HIGH RISK"
+            risk_level = "[U+1F534] HIGH RISK"
         elif any(finding.get("severity") == "MEDIUM" for finding in findings_by_category.get(category, [])):
-            risk_level = "🟡 MEDIUM RISK"
+            risk_level = "[U+1F7E1] MEDIUM RISK"
         else:
-            risk_level = "🟢 LOW RISK"
+            risk_level = "[U+1F7E2] LOW RISK"
         
         analysis.append(f"- **{category}:** {count} findings ({severity_text}) - {risk_level}")
     
@@ -333,19 +333,19 @@ def generate_recommendations(analysis):
     severity_counts = analysis.get("severity_breakdown", analysis.get("severity_counts", {}))
     
     if severity_counts.get('CRITICAL', 0) > 0:
-        recommendations.append("🚨 **IMMEDIATE ACTION REQUIRED:** Resolve all CRITICAL security issues before GA release")
+        recommendations.append("[ALERT] **IMMEDIATE ACTION REQUIRED:** Resolve all CRITICAL security issues before GA release")
     
     if severity_counts.get('HIGH', 0) > 2:
-        recommendations.append("⚠️ **HIGH PRIORITY:** Address HIGH severity findings to meet GA security criteria")
+        recommendations.append("[WARN] **HIGH PRIORITY:** Address HIGH severity findings to meet GA security criteria")
     
     if analysis['security_score'] < 85:
-        recommendations.append(f"📈 **IMPROVE SCORE:** Current score ({analysis['security_score']}) below GA threshold (85)")
+        recommendations.append(f"[CHART] **IMPROVE SCORE:** Current score ({analysis['security_score']}) below GA threshold (85)")
     
     if analysis['files_with_issues'] / max(analysis['files_scanned'], 1) > 0.1:
-        recommendations.append("🧹 **CODE CLEANUP:** High percentage of files contain security issues")
+        recommendations.append("[U+1F9F9] **CODE CLEANUP:** High percentage of files contain security issues")
     
     if not recommendations:
-        recommendations.append("✅ **SECURITY POSTURE EXCELLENT:** All GA security criteria met")
+        recommendations.append("[PASS] **SECURITY POSTURE EXCELLENT:** All GA security criteria met")
     
     return "\\n".join(recommendations)
 
@@ -360,7 +360,7 @@ def generate_detailed_findings(findings_by_category):
         details.append("")
         
         for finding in findings[:5]:  # Limit to first 5 findings per category
-            severity_emoji = {"CRITICAL": "💀", "HIGH": "🔴", "MEDIUM": "🟡", "LOW": "🔵"}.get(finding.get("severity"), "❓")
+            severity_emoji = {"CRITICAL": "[U+1F480]", "HIGH": "[U+1F534]", "MEDIUM": "[U+1F7E1]", "LOW": "[U+1F535]"}.get(finding.get("severity"), "[U+2753]")
             details.append(f"- {severity_emoji} **{finding.get('rule_id')}:** {finding.get('description')}")
             details.append(f"  - File: `{finding.get('file', 'Unknown')}`")
             details.append(f"  - Line: {finding.get('line', 'N/A')}")
@@ -385,20 +385,20 @@ def main():
     success, findings_data = run_security_scan(repo_root)
     
     if not success:
-        print(f"❌ Security scan failed: {findings_data.get('error', 'Unknown error')}")
+        print(f"[FAIL] Security scan failed: {findings_data.get('error', 'Unknown error')}")
         return 1
     
-    print("✅ Security scan completed")
+    print("[PASS] Security scan completed")
     
     # Analyze findings
     print("Analyzing security findings...")
     analysis = analyze_findings(findings_data)
     
     if "error" in analysis:
-        print(f"❌ Analysis failed: {analysis['error']}")
+        print(f"[FAIL] Analysis failed: {analysis['error']}")
         return 1
     
-    print(f"✅ Analysis completed - {analysis['total_findings']} findings, score: {analysis['security_score']}/100")
+    print(f"[PASS] Analysis completed - {analysis['total_findings']} findings, score: {analysis['security_score']}/100")
     print(f"Debug - Severity breakdown: {analysis.get('severity_breakdown', 'Missing')}")
     
     # Generate report
@@ -408,12 +408,12 @@ def main():
     success = generate_security_posture_report(analysis, output_path)
     
     if success:
-        print(f"✅ P6-003 Security Posture Report completed successfully")
-        print(f"📄 Security Posture: {output_path}")
-        print(f"🎯 Security Score: {analysis['security_score']}/100 ({analysis['posture_level']})")
+        print(f"[PASS] P6-003 Security Posture Report completed successfully")
+        print(f"[PAGE] Security Posture: {output_path}")
+        print(f"[TARGET] Security Score: {analysis['security_score']}/100 ({analysis['posture_level']})")
         return 0
     else:
-        print(f"❌ P6-003 Security Posture Report failed")
+        print(f"[FAIL] P6-003 Security Posture Report failed")
         return 1
 
 if __name__ == "__main__":

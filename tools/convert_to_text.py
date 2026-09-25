@@ -179,7 +179,7 @@ def convert_one(src: Path) -> Tuple[Optional[Path], str]:
         out_path = relative_output_path(src)
         if needs_write(out_path, text):
             out_path.write_text(text, encoding="utf-8", newline="\n")
-            return out_path, f"OK  → {src}  ->  {out_path}"
+            return out_path, f"OK  -> {src}  ->  {out_path}"
         else:
             return out_path, f"OK  (no change) {src}"
     except Exception as e:

@@ -28,19 +28,19 @@ def main():
         print("Starting WatchLockAI Sentinel...")
         app = SentinelWebAPI()
         
-        print("✅ WatchLockAI Sentinel started successfully")
-        print("🌐 Access the console at: http://localhost:8080")
+        print("[PASS] WatchLockAI Sentinel started successfully")
+        print("[U+1F310] Access the console at: http://localhost:8080")
         
         # Start the application (this would normally start uvicorn)
-        print("📝 Note: In offline mode, manual uvicorn startup may be required")
+        print("[U+1F4DD] Note: In offline mode, manual uvicorn startup may be required")
         print("   Run: python -m uvicorn console.web_api:app --host 0.0.0.0 --port 8080")
         
     except ImportError as e:
-        print(f"❌ Import error: {e}")
+        print(f"[FAIL] Import error: {e}")
         print("Please ensure all dependencies are available")
         return 1
     except Exception as e:
-        print(f"❌ Startup error: {e}")
+        print(f"[FAIL] Startup error: {e}")
         return 1
     
     return 0

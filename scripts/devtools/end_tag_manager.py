@@ -48,7 +48,7 @@ def append_end_tag(file_path: Path):
         log_change(file_path, "Appended end tag")
         console.print(f"[green]Fixed:[/green] {file_path.relative_to(PROJECT_ROOT)}")
     except Exception as e:
-        console.print(f"[red]Failed to update {file_path.name} — {e}[/red]")
+        console.print(f"[red]Failed to update {file_path.name} -- {e}[/red]")
 
 
 def log_change(file_path: Path, action: str):

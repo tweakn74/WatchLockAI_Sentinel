@@ -63,7 +63,7 @@ def find_matches(lines, keyword, category=None):
 def mark_tasks(lines, matches):
     changed = False
     for i, title, score, cat in matches:
-        print(f"\n[FOUND in '{cat}'] → {title}  (Similarity: {score:.2f})")
+        print(f"\n[FOUND in '{cat}'] -> {title}  (Similarity: {score:.2f})")
         confirm = input("Mark this task as done? (y/n): ").strip().lower()
         if confirm == "y":
             lines[i] = lines[i].replace("- [ ]", "- [x]", 1)

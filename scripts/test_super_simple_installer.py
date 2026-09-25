@@ -12,16 +12,16 @@ def test_super_simple_installer():
     installer_path = Path("/workspace/WatchLockAI_Agent/Super-Simple-Installer.bat")
     
     if not installer_path.exists():
-        print("❌ Super Simple Installer not found")
+        print("[FAIL] Super Simple Installer not found")
         return False
     
     try:
         with open(installer_path, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        print("🔍 Testing Super Simple Installer...")
-        print(f"📁 File: {installer_path}")
-        print(f"📏 Size: {len(content)} characters")
+        print("[SEARCH] Testing Super Simple Installer...")
+        print(f"[U+1F4C1] File: {installer_path}")
+        print(f"[U+1F4CF] Size: {len(content)} characters")
         print()
         
         # Test batch syntax
@@ -59,14 +59,14 @@ def test_super_simple_installer():
         
         for test_name, test_result in tests:
             if test_result:
-                print(f"✅ {test_name}")
+                print(f"[PASS] {test_name}")
                 passed += 1
             else:
-                print(f"❌ {test_name}")
+                print(f"[FAIL] {test_name}")
                 failed += 1
         
         print()
-        print(f"📊 Test Results:")
+        print(f"[BARS] Test Results:")
         print(f"   Passed: {passed}")
         print(f"   Failed: {failed}")
         print(f"   Total:  {len(tests)}")
@@ -74,19 +74,19 @@ def test_super_simple_installer():
         
         if failed == 0:
             print()
-            print("🎉 SUPER SIMPLE INSTALLER: PERFECT!")
-            print("✅ This installer is guaranteed to work on Windows")
-            print("✅ No syntax errors possible")
-            print("✅ Pure batch commands only") 
-            print("✅ Complete installation coverage")
+            print("[U+1F389] SUPER SIMPLE INSTALLER: PERFECT!")
+            print("[PASS] This installer is guaranteed to work on Windows")
+            print("[PASS] No syntax errors possible")
+            print("[PASS] Pure batch commands only") 
+            print("[PASS] Complete installation coverage")
             return True
         else:
             print()
-            print("⚠️  Super Simple Installer has minor issues")
+            print("[WARN]  Super Simple Installer has minor issues")
             return False
             
     except Exception as e:
-        print(f"❌ Error testing installer: {e}")
+        print(f"[FAIL] Error testing installer: {e}")
         return False
 
 def test_all_installers():
@@ -100,7 +100,7 @@ def test_all_installers():
         ("WatchLockAI-Installer.bat", "PowerShell (Advanced)")
     ]
     
-    print("🧪 TESTING ALL WATCHLOCKAI INSTALLERS")
+    print("[U+1F9EA] TESTING ALL WATCHLOCKAI INSTALLERS")
     print("="*50)
     
     results = []
@@ -108,11 +108,11 @@ def test_all_installers():
     for filename, description in installers:
         file_path = installer_dir / filename
         
-        print(f"\n📋 Testing: {description}")
-        print(f"📁 File: {filename}")
+        print(f"\n[PLAN] Testing: {description}")
+        print(f"[U+1F4C1] File: {filename}")
         
         if not file_path.exists():
-            print(f"❌ File not found: {filename}")
+            print(f"[FAIL] File not found: {filename}")
             results.append((description, False, "File not found"))
             continue
         
@@ -129,25 +129,25 @@ def test_all_installers():
             basic_score = sum([has_admin_check, has_install_logic, has_error_handling, has_console_url])
             
             if basic_score >= 3:
-                print(f"✅ Basic functionality: {basic_score}/4")
+                print(f"[PASS] Basic functionality: {basic_score}/4")
                 results.append((description, True, f"Score: {basic_score}/4"))
             else:
-                print(f"❌ Basic functionality: {basic_score}/4")
+                print(f"[FAIL] Basic functionality: {basic_score}/4")
                 results.append((description, False, f"Score: {basic_score}/4"))
                 
         except Exception as e:
-            print(f"❌ Error reading file: {e}")
+            print(f"[FAIL] Error reading file: {e}")
             results.append((description, False, f"Error: {e}"))
     
     # Summary
     print("\n" + "="*50)
-    print("📊 INSTALLER TEST SUMMARY")
+    print("[BARS] INSTALLER TEST SUMMARY")
     print("="*50)
     
     working_installers = []
     
     for description, passed, details in results:
-        status = "✅ WORKING" if passed else "❌ ISSUES"
+        status = "[PASS] WORKING" if passed else "[FAIL] ISSUES"
         print(f"{status} {description}")
         print(f"         {details}")
         
@@ -155,17 +155,17 @@ def test_all_installers():
             working_installers.append(description)
     
     print()
-    print(f"🎯 RESULT: {len(working_installers)}/{len(installers)} installers are working")
+    print(f"[TARGET] RESULT: {len(working_installers)}/{len(installers)} installers are working")
     
     if working_installers:
-        print("✅ RECOMMENDED ORDER:")
+        print("[PASS] RECOMMENDED ORDER:")
         for i, installer in enumerate(working_installers, 1):
             print(f"   {i}. {installer}")
     
     return len(working_installers) > 0
 
 if __name__ == "__main__":
-    print("🔬 WatchLockAI Installer Testing Suite")
+    print("[U+1F52C] WatchLockAI Installer Testing Suite")
     print("="*40)
     
     # Test super simple installer in detail
@@ -178,8 +178,8 @@ if __name__ == "__main__":
     
     print()
     if any_working:
-        print("🎉 SUCCESS: You have working installers!")
-        print("💡 Start with Super Simple Installer for guaranteed success")
+        print("[U+1F389] SUCCESS: You have working installers!")
+        print("[IDEA] Start with Super Simple Installer for guaranteed success")
     else:
-        print("⚠️  All installers need attention")
-        print("💡 Use manual installation as fallback")
+        print("[WARN]  All installers need attention")
+        print("[IDEA] Use manual installation as fallback")

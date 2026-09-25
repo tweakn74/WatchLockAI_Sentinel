@@ -118,21 +118,21 @@ def monitor_service_health(client):
         
         if health['ok']:
             uptime = health.get('uptime_s', 0)
-            print(f"✓ Service healthy (uptime: {uptime}s)")
+            print(f"[x] Service healthy (uptime: {uptime}s)")
             
             # Check individual components
             components = health.get('components', {})
             for component, status in components.items():
                 if isinstance(status, dict):
                     running = status.get('running', False)
-                    print(f"  {component}: {'✓' if running else '✗'}")
+                    print(f"  {component}: {'[x]' if running else '[FAIL]'}")
                 else:
                     print(f"  {component}: {status}")
         else:
-            print("✗ Service unhealthy")
+            print("[FAIL] Service unhealthy")
             
     except SentinelAPIError as e:
-        print(f"✗ Health check failed: {e}")
+        print(f"[FAIL] Health check failed: {e}")
 
 # Usage
 client = SentinelClient(base_url="http://localhost:8080")
@@ -283,7 +283,7 @@ def monitor_anomaly_scores(client, threshold=0.8):
         print(f"Current anomaly score: {current_score:.3f}")
         
         if current_score > threshold:
-            print(f"⚠️ HIGH ANOMALY ALERT: Score {current_score:.3f} exceeds threshold {threshold}")
+            print(f"[WARN] HIGH ANOMALY ALERT: Score {current_score:.3f} exceeds threshold {threshold}")
             
             # Get additional context
             details = anomaly_data.get('details', {})
@@ -294,7 +294,7 @@ def monitor_anomaly_scores(client, threshold=0.8):
                 for factor in contributing_factors:
                     print(f"  - {factor}")
         else:
-            print(f"✓ Anomaly score within normal range")
+            print(f"[x] Anomaly score within normal range")
         
         return anomaly_data
         
@@ -329,12 +329,12 @@ def manage_configuration(client):
         # Verify service still healthy after reload
         health = client.get_health()
         if health['ok']:
-            print("✓ Service healthy after configuration reload")
+            print("[x] Service healthy after configuration reload")
         else:
-            print("✗ Service unhealthy after configuration reload")
+            print("[FAIL] Service unhealthy after configuration reload")
             
     except SentinelAuthError:
-        print("✗ Admin authentication required for configuration management")
+        print("[FAIL] Admin authentication required for configuration management")
     except Exception as e:
         print(f"Configuration management failed: {e}")
 
@@ -359,7 +359,7 @@ def backup_restore_operations(client):
         backup_id = backup_result.get('backup_id')
         
         if backup_id:
-            print(f"✓ Backup created successfully: {backup_id}")
+            print(f"[x] Backup created successfully: {backup_id}")
             
             # In a real scenario, you might restore from a different backup
             # This is just for demonstration - don't restore immediately in production!
@@ -369,10 +369,10 @@ def backup_restore_operations(client):
                 restore_result = client.restore_system(backup_id)
                 print(f"Restore result: {restore_result}")
         else:
-            print("✗ Backup creation failed")
+            print("[FAIL] Backup creation failed")
             
     except SentinelAuthError:
-        print("✗ Admin authentication required for backup operations")
+        print("[FAIL] Admin authentication required for backup operations")
     except Exception as e:
         print(f"Backup operations failed: {e}")
 
@@ -418,7 +418,7 @@ def manage_plugins(client):
                 print("No safe test plugins available for execution")
                 
     except SentinelAuthError:
-        print("✗ Admin authentication required for plugin management")
+        print("[FAIL] Admin authentication required for plugin management")
     except Exception as e:
         print(f"Plugin management failed: {e}")
 
@@ -457,16 +457,16 @@ def run_performance_analysis(client):
         if 'response_time_ms' in detailed_probe:
             response_time = detailed_probe['response_time_ms']
             if response_time < 100:
-                print(f"✓ Excellent response time: {response_time}ms")
+                print(f"[x] Excellent response time: {response_time}ms")
             elif response_time < 500:
-                print(f"✓ Good response time: {response_time}ms")
+                print(f"[x] Good response time: {response_time}ms")
             else:
-                print(f"⚠️ High response time: {response_time}ms")
+                print(f"[WARN] High response time: {response_time}ms")
         
         return performance_data
         
     except SentinelAuthError:
-        print("✗ Admin authentication required for performance monitoring")
+        print("[FAIL] Admin authentication required for performance monitoring")
         return {}
     except Exception as e:
         print(f"Performance analysis failed: {e}")
@@ -490,7 +490,7 @@ def chaos_engineering_test(client):
         print(f"Chaos status: {chaos_status}")
         
         if chaos_status.get('active'):
-            print("⚠️ Chaos test already running")
+            print("[WARN] Chaos test already running")
             return
         
         # Run a mild chaos test
@@ -510,17 +510,17 @@ def chaos_engineering_test(client):
                 if health['ok']:
                     print(f"  {i*5+5}s: System still healthy during chaos")
                 else:
-                    print(f"  {i*5+5}s: ⚠️ System degraded during chaos")
+                    print(f"  {i*5+5}s: [WARN] System degraded during chaos")
             except Exception as e:
-                print(f"  {i*5+5}s: ✗ Health check failed: {e}")
+                print(f"  {i*5+5}s: [FAIL] Health check failed: {e}")
         
         # Check final status
         final_status = client.get_chaos_status()
         if not final_status.get('active'):
-            print("✓ Chaos test completed, system recovered")
+            print("[x] Chaos test completed, system recovered")
         
     except SentinelAuthError:
-        print("✗ Admin authentication required for chaos engineering")
+        print("[FAIL] Admin authentication required for chaos engineering")
     except Exception as e:
         print(f"Chaos engineering test failed: {e}")
 
@@ -539,7 +539,7 @@ client = SentinelClient(
 def stream_events_basic(client, duration_seconds=60):
     """Basic event streaming example."""
     if not SSE_AVAILABLE:
-        print("✗ sseclient-py required for streaming functionality")
+        print("[FAIL] sseclient-py required for streaming functionality")
         return
     
     print(f"Streaming events for {duration_seconds} seconds...")
@@ -576,14 +576,14 @@ if SSE_AVAILABLE:
 def stream_events_advanced(client):
     """Advanced event streaming with processing and filtering."""
     if not SSE_AVAILABLE:
-        print("✗ sseclient-py required for streaming functionality")
+        print("[FAIL] sseclient-py required for streaming functionality")
         return
     
     event_processors = {
-        'alert': lambda e: print(f"🚨 ALERT: {e.get('message', 'No message')}"),
-        'detection': lambda e: print(f"🔍 DETECTION: {e.get('rule_name', 'Unknown rule')}"),
-        'health': lambda e: print(f"💚 HEALTH: {e.get('status', 'Unknown status')}"),
-        'metric': lambda e: print(f"📊 METRIC: {e.get('name', 'Unknown metric')} = {e.get('value', 'No value')}")
+        'alert': lambda e: print(f"[ALERT] ALERT: {e.get('message', 'No message')}"),
+        'detection': lambda e: print(f"[SEARCH] DETECTION: {e.get('rule_name', 'Unknown rule')}"),
+        'health': lambda e: print(f"[U+1F49A] HEALTH: {e.get('status', 'Unknown status')}"),
+        'metric': lambda e: print(f"[BARS] METRIC: {e.get('name', 'Unknown metric')} = {e.get('value', 'No value')}")
     }
     
     try:
@@ -595,15 +595,15 @@ def stream_events_advanced(client):
             if event_type in event_processors:
                 event_processors[event_type](event)
             else:
-                print(f"❓ UNKNOWN: {event_type} - {event}")
+                print(f"[U+2753] UNKNOWN: {event_type} - {event}")
             
             # Add custom business logic here
             if event_type == 'alert' and event.get('severity') == 'critical':
                 # Handle critical alerts
-                print(f"🚨 CRITICAL ALERT HANDLER: {event}")
+                print(f"[ALERT] CRITICAL ALERT HANDLER: {event}")
             
     except KeyboardInterrupt:
-        print("\n⏹️ Stream processing stopped by user")
+        print("\n[STOP] Stream processing stopped by user")
     except Exception as e:
         print(f"Advanced streaming failed: {e}")
 
@@ -634,23 +634,23 @@ def robust_api_calls(client):
             print(f"Executing: {name}")
             result = operation()
             results[name] = {"status": "success", "data": result}
-            print(f"  ✓ Success")
+            print(f"  [x] Success")
             
         except SentinelAuthError as e:
             results[name] = {"status": "auth_error", "error": str(e)}
-            print(f"  🔒 Auth Error: {e}")
+            print(f"  [LOCK] Auth Error: {e}")
             
         except SentinelRateLimitError as e:
             results[name] = {"status": "rate_limit", "error": str(e)}
-            print(f"  ⏱️ Rate Limited: {e}")
+            print(f"  [U+23F1] Rate Limited: {e}")
             
         except SentinelAPIError as e:
             results[name] = {"status": "api_error", "error": str(e)}
-            print(f"  ✗ API Error: {e}")
+            print(f"  [FAIL] API Error: {e}")
             
         except Exception as e:
             results[name] = {"status": "unexpected_error", "error": str(e)}
-            print(f"  💥 Unexpected Error: {e}")
+            print(f"  [U+1F4A5] Unexpected Error: {e}")
     
     return results
 
@@ -667,34 +667,34 @@ def retry_with_backoff(client, operation_name, operation_func, max_attempts=3):
         try:
             print(f"Attempt {attempt + 1}/{max_attempts}: {operation_name}")
             result = operation_func()
-            print(f"  ✓ Success on attempt {attempt + 1}")
+            print(f"  [x] Success on attempt {attempt + 1}")
             return result
             
         except SentinelRateLimitError as e:
             if attempt < max_attempts - 1:
                 wait_time = (2 ** attempt) * 1  # Exponential backoff: 1s, 2s, 4s
-                print(f"  ⏱️ Rate limited, waiting {wait_time}s before retry...")
+                print(f"  [U+23F1] Rate limited, waiting {wait_time}s before retry...")
                 time.sleep(wait_time)
             else:
-                print(f"  ✗ Max retries reached, giving up")
+                print(f"  [FAIL] Max retries reached, giving up")
                 raise
                 
         except SentinelAPIError as e:
             if e.status_code and e.status_code >= 500:  # Server errors
                 if attempt < max_attempts - 1:
                     wait_time = (2 ** attempt) * 0.5  # Shorter backoff for server errors
-                    print(f"  🔄 Server error, retrying in {wait_time}s...")
+                    print(f"  [RELOAD] Server error, retrying in {wait_time}s...")
                     time.sleep(wait_time)
                 else:
-                    print(f"  ✗ Max retries reached for server error")
+                    print(f"  [FAIL] Max retries reached for server error")
                     raise
             else:
                 # Client errors (4xx) - don't retry
-                print(f"  ✗ Client error, not retrying: {e}")
+                print(f"  [FAIL] Client error, not retrying: {e}")
                 raise
                 
         except Exception as e:
-            print(f"  💥 Unexpected error: {e}")
+            print(f"  [U+1F4A5] Unexpected error: {e}")
             raise
 
 # Usage examples
@@ -748,9 +748,9 @@ def batch_alert_processing(client, batch_size=100):
                 
                 # Example: Count by severity
                 if severity == 'critical':
-                    print(f"⚠️ Critical alert: {alert_type} at {timestamp}")
+                    print(f"[WARN] Critical alert: {alert_type} at {timestamp}")
                 elif severity == 'high':
-                    print(f"🔶 High alert: {alert_type} at {timestamp}")
+                    print(f"[U+1F536] High alert: {alert_type} at {timestamp}")
                 
                 processed_count += 1
             
@@ -815,9 +815,9 @@ def continuous_health_monitoring(client, check_interval=30, duration_minutes=60)
             health_history.append(health_record)
             
             if health['ok']:
-                print(f"✓ Check {check_count}: Healthy (uptime: {health.get('uptime_s', 0)}s)")
+                print(f"[x] Check {check_count}: Healthy (uptime: {health.get('uptime_s', 0)}s)")
             else:
-                print(f"✗ Check {check_count}: UNHEALTHY")
+                print(f"[FAIL] Check {check_count}: UNHEALTHY")
                 
                 # Trigger additional diagnostics on health failure
                 try:
@@ -827,7 +827,7 @@ def continuous_health_monitoring(client, check_interval=30, duration_minutes=60)
                     print(f"  Diagnostic check failed: {diag_error}")
             
         except Exception as e:
-            print(f"✗ Check {check_count}: Health check failed - {e}")
+            print(f"[FAIL] Check {check_count}: Health check failed - {e}")
             health_record = {
                 'timestamp': timestamp,
                 'check_number': check_count,
@@ -878,10 +878,10 @@ def full_api_integration_test(base_url, admin_token=None):
         client = SentinelClient(base_url=base_url)
         health = client.get_health()
         test_results['tests']['connectivity'] = {'status': 'pass', 'data': health}
-        print("✓ Basic connectivity: PASS")
+        print("[x] Basic connectivity: PASS")
     except Exception as e:
         test_results['tests']['connectivity'] = {'status': 'fail', 'error': str(e)}
-        print(f"✗ Basic connectivity: FAIL - {e}")
+        print(f"[FAIL] Basic connectivity: FAIL - {e}")
     
     # Test authenticated endpoints
     print("\n=== Authentication Tests ===")
@@ -890,13 +890,13 @@ def full_api_integration_test(base_url, admin_token=None):
             admin_client = SentinelClient(base_url=base_url, admin_token=admin_token)
             config = admin_client.get_admin_config_schema()
             test_results['tests']['admin_auth'] = {'status': 'pass', 'data': config}
-            print("✓ Admin authentication: PASS")
+            print("[x] Admin authentication: PASS")
         except Exception as e:
             test_results['tests']['admin_auth'] = {'status': 'fail', 'error': str(e)}
-            print(f"✗ Admin authentication: FAIL - {e}")
+            print(f"[FAIL] Admin authentication: FAIL - {e}")
     else:
         test_results['tests']['admin_auth'] = {'status': 'skip', 'reason': 'No admin token provided'}
-        print("⏭️ Admin authentication: SKIP - No token provided")
+        print("[U+23ED] Admin authentication: SKIP - No token provided")
     
     # Test API endpoints
     print("\n=== API Endpoint Tests ===")
@@ -913,10 +913,10 @@ def full_api_integration_test(base_url, admin_token=None):
         try:
             result = test_func(client)
             test_results['tests'][endpoint] = {'status': 'pass', 'data': result}
-            print(f"✓ {endpoint}: PASS")
+            print(f"[x] {endpoint}: PASS")
         except Exception as e:
             test_results['tests'][endpoint] = {'status': 'fail', 'error': str(e)}
-            print(f"✗ {endpoint}: FAIL - {e}")
+            print(f"[FAIL] {endpoint}: FAIL - {e}")
     
     # Generate summary
     total_tests = len(test_results['tests'])
@@ -997,7 +997,7 @@ def create_production_client(config_file="sentinel_config.json"):
     if not validation['connectivity']:
         raise ConnectionError(f"Failed to connect to {config['base_url']}")
     
-    print(f"✓ Connected to {config['base_url']}")
+    print(f"[x] Connected to {config['base_url']}")
     print(f"  Connectivity: {validation['connectivity']}")
     print(f"  Authentication: {validation['authentication']}")
     print(f"  Admin Access: {validation['admin_access']}")
@@ -1120,19 +1120,19 @@ class SentinelMonitoringService:
         metrics = self.collect_metrics()
         if metrics:
             health_ok = metrics['health'].get('ok', False)
-            print(f"  Health: {'✓' if health_ok else '✗'}")
+            print(f"  Health: {'[x]' if health_ok else '[FAIL]'}")
         
         # Check alerts
         total_alerts, critical_alerts = self.check_alerts()
         if critical_alerts > 0:
-            print(f"  🚨 {critical_alerts} critical alerts detected")
+            print(f"  [ALERT] {critical_alerts} critical alerts detected")
         
         # Check anomaly score
         try:
             anomaly_data = self.client.get_anomaly_score()
             score = anomaly_data.get('score', 0.0)
             if score > self.config['anomaly_threshold']:
-                print(f"  ⚠️ High anomaly score: {score:.3f}")
+                print(f"  [WARN] High anomaly score: {score:.3f}")
         except:
             pass  # Anomaly detection might not be available
     
@@ -1165,7 +1165,7 @@ class SentinelMonitoringService:
 # Usage
 def email_alert_callback(alert_data):
     """Example alert callback for email notifications."""
-    print(f"📧 EMAIL ALERT: {alert_data['critical_count']} critical alerts")
+    print(f"[U+1F4E7] EMAIL ALERT: {alert_data['critical_count']} critical alerts")
     # Implement actual email sending here
 
 # Create and start monitoring service

@@ -117,7 +117,7 @@ class TestIntegrationSmoke:
 
     @pytest.mark.asyncio
     async def test_event_bus_flow(self) -> None:
-        """Test event bus producer→consumer flow."""
+        """Test event bus producer->consumer flow."""
         # Create event bus
         event_bus = EventBus()
         

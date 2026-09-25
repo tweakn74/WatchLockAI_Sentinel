@@ -2,7 +2,7 @@
 
 **Generated:** 3,133 scenarios  
 **Target:** 5,000 scenarios  
-**Status:** ⚠️ BELOW TARGET
+**Status:** [WARN] BELOW TARGET
 
 ## Summary Statistics
 

@@ -1,4 +1,4 @@
-# Rules & Policy — Authoritative Definitions
+# Rules & Policy -- Authoritative Definitions
 
 Evaluation: Subscribe to event bus, maintain small rolling windows in-memory. 
 Each alert must include `rationale` and `provenance` (this file + section heading).
@@ -10,7 +10,7 @@ config:
   burst_window_sec: 10
   min_suspicious_events: 120
   min_entropy: 7.2           # only if entropy present
-  diverse_extensions: true   # ≥ 15 distinct new extensions in window
+  diverse_extensions: true   # >= 15 distinct new extensions in window
 logic:
   - maintain a deque of FileEvent within window
   - count created/modified events; if >= min_suspicious_events AND

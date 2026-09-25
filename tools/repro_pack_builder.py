@@ -33,7 +33,7 @@ class ReproPackBuilder:
         
     def build_complete_pack(self) -> None:
         """Build complete reproducibility pack"""
-        print("🔄 Building Reproducibility Pack v4.0...")
+        print("[RELOAD] Building Reproducibility Pack v4.0...")
         
         # Create directory structure
         self._create_directories()
@@ -48,18 +48,18 @@ class ReproPackBuilder:
         # Generate manifest
         self._generate_manifest()
         
-        print(f"✅ Reproducibility pack complete: {self.repro_dir}")
+        print(f"[PASS] Reproducibility pack complete: {self.repro_dir}")
     
     def _create_directories(self) -> None:
         """Create repro directory structure"""
         subdirs = ["config", "payloads", "microbench", "scripts", "output"]
         for subdir in subdirs:
             os.makedirs(os.path.join(self.repro_dir, subdir), exist_ok=True)
-        print("📁 Created directory structure")
+        print("[U+1F4C1] Created directory structure")
     
     def _create_seeded_configs(self) -> None:
         """Create deterministic configuration files"""
-        print("⚙️  Creating seeded configurations...")
+        print("[U+2699]  Creating seeded configurations...")
         
         # Base configuration with fixed seeds
         base_config = {
@@ -133,7 +133,7 @@ class ReproPackBuilder:
         # Copy existing configs with seeds applied
         self._copy_and_seed_existing_configs()
         
-        print(f"   ✅ Created seeded configs")
+        print(f"   [PASS] Created seeded configs")
     
     def _copy_and_seed_existing_configs(self) -> None:
         """Copy existing configs and apply deterministic seeds"""
@@ -172,7 +172,7 @@ class ReproPackBuilder:
     
     def _copy_golden_payloads(self) -> None:
         """Copy golden test payloads"""
-        print("🥇 Copying golden payloads...")
+        print("[U+1F947] Copying golden payloads...")
         
         golden_dir = os.path.join(self.repo_root, "tests", "golden")
         if os.path.exists(golden_dir):
@@ -187,7 +187,7 @@ class ReproPackBuilder:
         # Create additional seeded payloads
         self._create_seeded_payloads()
         
-        print(f"   ✅ Copied golden payloads")
+        print(f"   [PASS] Copied golden payloads")
     
     def _create_seeded_payloads(self) -> None:
         """Create additional seeded test payloads"""
@@ -226,7 +226,7 @@ class ReproPackBuilder:
     
     def _create_microbench_seeds(self) -> None:
         """Create microbenchmark seed data"""
-        print("⚡ Creating microbench seeds...")
+        print("[SYS] Creating microbench seeds...")
         
         # Copy existing perf data
         perf_files = [
@@ -273,11 +273,11 @@ class ReproPackBuilder:
         
         self._add_to_manifest(bench_config_path, "Microbenchmark configuration")
         
-        print(f"   ✅ Created microbench seeds")
+        print(f"   [PASS] Created microbench seeds")
     
     def _create_execution_scripts(self) -> None:
         """Create execution scripts"""
-        print("📜 Creating execution scripts...")
+        print("[DOC] Creating execution scripts...")
         
         # PowerShell script (Windows)
         ps1_script = '''# Credits Overdrive v4.0 - Reproducibility Pack Execution Script
@@ -289,7 +289,7 @@ param(
     [string]$OutputDir = "repro/output"
 )
 
-Write-Host "🔄 Credits Overdrive v4.0 - Reproducibility Pack" -ForegroundColor Cyan
+Write-Host "[RELOAD] Credits Overdrive v4.0 - Reproducibility Pack" -ForegroundColor Cyan
 Write-Host "===============================================" -ForegroundColor Cyan
 
 # Set deterministic environment
@@ -315,7 +315,7 @@ function Write-Log {
 
 function Run-Command {
     param($Command, $Description)
-    Write-Log "🔧 $Description"
+    Write-Log "[U+1F527] $Description"
     if ($DryRun) {
         Write-Log "   DRY-RUN: $Command"
         return $true
@@ -324,18 +324,18 @@ function Run-Command {
     try {
         $Output = Invoke-Expression $Command 2>&1
         if ($LASTEXITCODE -eq 0) {
-            Write-Log "   ✅ Success"
+            Write-Log "   [PASS] Success"
             if ($Verbose) {
                 $Output | Out-File -FilePath "$OutputDir/$(($Description -replace ' ', '_').ToLower()).out" -Encoding UTF8
             }
             return $true
         } else {
-            Write-Log "   ❌ Failed (exit code: $LASTEXITCODE)"
+            Write-Log "   [FAIL] Failed (exit code: $LASTEXITCODE)"
             $Output | Out-File -FilePath "$OutputDir/$(($Description -replace ' ', '_').ToLower()).err" -Encoding UTF8
             return $false
         }
     } catch {
-        Write-Log "   💥 Error: $_"
+        Write-Log "   [U+1F4A5] Error: $_"
         return $false
     }
 }
@@ -358,7 +358,7 @@ $ExecutionSteps = @(
 $SuccessCount = 0
 $TotalSteps = $ExecutionSteps.Count
 
-Write-Log "🚀 Executing $TotalSteps reproducibility steps..."
+Write-Log "[START] Executing $TotalSteps reproducibility steps..."
 
 foreach ($Step in $ExecutionSteps) {
     if (Run-Command -Command $Step.Command -Description $Step.Description) {
@@ -372,7 +372,7 @@ $Duration = $EndTime - $StartTime
 $SuccessRate = [math]::Round(($SuccessCount / $TotalSteps) * 100, 1)
 
 Write-Host "`n" -NoNewline
-Write-Host "📊 EXECUTION SUMMARY" -ForegroundColor Yellow
+Write-Host "[BARS] EXECUTION SUMMARY" -ForegroundColor Yellow
 Write-Host "===================" -ForegroundColor Yellow
 Write-Host "Steps Executed:    $TotalSteps"
 Write-Host "Successful:        $SuccessCount"
@@ -392,10 +392,10 @@ $Summary = @{
 $Summary | ConvertTo-Json -Depth 3 | Out-File -FilePath "$OutputDir/execution_summary.json" -Encoding UTF8
 
 if ($SuccessRate -ge 90) {
-    Write-Host "✅ REPRODUCIBILITY PACK EXECUTION SUCCESSFUL" -ForegroundColor Green
+    Write-Host "[PASS] REPRODUCIBILITY PACK EXECUTION SUCCESSFUL" -ForegroundColor Green
     exit 0
 } else {
-    Write-Host "❌ SOME STEPS FAILED - CHECK LOGS" -ForegroundColor Red
+    Write-Host "[FAIL] SOME STEPS FAILED - CHECK LOGS" -ForegroundColor Red
     exit 1
 }
 '''
@@ -426,7 +426,7 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-echo "🔄 Credits Overdrive v4.0 - Reproducibility Pack"
+echo "[RELOAD] Credits Overdrive v4.0 - Reproducibility Pack"
 echo "==============================================="
 
 # Set deterministic environment
@@ -448,7 +448,7 @@ log() {
 run_command() {
     local cmd="$1"
     local desc="$2"
-    log "🔧 $desc"
+    log "[U+1F527] $desc"
     
     if $DRY_RUN; then
         log "   DRY-RUN: $cmd"
@@ -456,10 +456,10 @@ run_command() {
     fi
     
     if eval "$cmd" &>> "$LOG_FILE"; then
-        log "   ✅ Success"
+        log "   [PASS] Success"
         return 0
     else
-        log "   ❌ Failed"
+        log "   [FAIL] Failed"
         return 1
     fi
 }
@@ -468,7 +468,7 @@ run_command() {
 SUCCESS_COUNT=0
 TOTAL_STEPS=11
 
-log "🚀 Executing $TOTAL_STEPS reproducibility steps..."
+log "[START] Executing $TOTAL_STEPS reproducibility steps..."
 
 run_command "python -m py_compile app.py" "Compile check - main app" && ((SUCCESS_COUNT++)) || true
 run_command "python -m py_compile app_core/*.py" "Compile check - core modules" && ((SUCCESS_COUNT++)) || true
@@ -488,7 +488,7 @@ DURATION=$((END_TIME - START_TIME))
 SUCCESS_RATE=$(awk "BEGIN {printf \\"%.1f\\", ($SUCCESS_COUNT / $TOTAL_STEPS) * 100}")
 
 echo
-echo "📊 EXECUTION SUMMARY"
+echo "[BARS] EXECUTION SUMMARY"
 echo "==================="
 echo "Steps Executed:    $TOTAL_STEPS"
 echo "Successful:        $SUCCESS_COUNT" 
@@ -509,10 +509,10 @@ cat > "$OUTPUT_DIR/execution_summary.json" << EOF
 EOF
 
 if (( $(echo "$SUCCESS_RATE >= 90" | bc -l) )); then
-    echo "✅ REPRODUCIBILITY PACK EXECUTION SUCCESSFUL"
+    echo "[PASS] REPRODUCIBILITY PACK EXECUTION SUCCESSFUL"
     exit 0
 else
-    echo "❌ SOME STEPS FAILED - CHECK LOGS"
+    echo "[FAIL] SOME STEPS FAILED - CHECK LOGS"
     exit 1
 fi
 '''
@@ -524,7 +524,7 @@ fi
         os.chmod(bash_path, 0o755)  # Make executable
         self._add_to_manifest(bash_path, "Bash execution script (Linux/Mac)")
         
-        print(f"   ✅ Created execution scripts")
+        print(f"   [PASS] Created execution scripts")
     
     def _capture_environment_info(self) -> None:
         """Capture environment information"""
@@ -541,7 +541,7 @@ fi
             "python_path": sys.path[:5]  # First 5 entries
         }
         
-        print("🔍 Captured environment info")
+        print("[SEARCH] Captured environment info")
     
     def _add_to_manifest(self, file_path: str, description: str) -> None:
         """Add file to manifest with hash"""
@@ -592,7 +592,7 @@ fi
         with open(manifest_path, 'w', encoding='utf-8') as f:
             json.dump(self.manifest, f, indent=2, ensure_ascii=False)
         
-        print(f"📋 Generated manifest: {manifest_path}")
+        print(f"[PLAN] Generated manifest: {manifest_path}")
         
         # Create README
         self._create_readme()
@@ -663,7 +663,7 @@ repro/
 
 ## Expected Results
 
-- **Success Rate:** ≥90% for passing execution
+- **Success Rate:** >=90% for passing execution
 - **Duration:** ~30-60 seconds typical execution time
 - **Output Files:** Logs, summaries, and test results in `output/` directory
 
@@ -711,7 +711,7 @@ if __name__ == "__main__":
     builder = ReproPackBuilder(repo_root)
     builder.build_complete_pack()
     
-    print("\\n🎉 P16 Complete: Reproducibility Pack v4.0 Ready!")
-    print(f"📁 Location: {builder.repro_dir}")
-    print(f"📋 Manifest: DOCS/report/repro_manifest.json")
-    print("\\n🚀 To test: cd repro && ./run_all.ps1 --dry-run")
+    print("\\n[U+1F389] P16 Complete: Reproducibility Pack v4.0 Ready!")
+    print(f"[U+1F4C1] Location: {builder.repro_dir}")
+    print(f"[PLAN] Manifest: DOCS/report/repro_manifest.json")
+    print("\\n[START] To test: cd repro && ./run_all.ps1 --dry-run")

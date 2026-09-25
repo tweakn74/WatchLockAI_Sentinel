@@ -215,13 +215,13 @@ if __name__ == "__main__":
     generator = PropertyTestGenerator(schema_dir)
     
     # Generate some example data
-    print("🎲 Property Test Data Generator")
-    print(f"📁 Schema directory: {schema_dir}")
-    print(f"📊 Loaded {len(generator.schemas)} schemas")
+    print("[U+1F3B2] Property Test Data Generator")
+    print(f"[U+1F4C1] Schema directory: {schema_dir}")
+    print(f"[BARS] Loaded {len(generator.schemas)} schemas")
     
     # Show examples for first few schemas
     for i, (name, schema) in enumerate(list(generator.schemas.items())[:3]):
-        print(f"\n🔧 Generating data for: {name}")
+        print(f"\n[U+1F527] Generating data for: {name}")
         variants = generator.generate_from_schema(schema, 2)
         for j, variant in enumerate(variants):
             print(f"   Variant {j+1}: {json.dumps(variant, indent=2)}")

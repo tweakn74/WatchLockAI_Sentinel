@@ -651,7 +651,7 @@ class TamperproofingCore:
         if self.config['protection_enabled']['registry_protection']:
             self.registry_protector.start_protection()
             
-        logger.info("✅ WatchLockAI Tamperproofing System active")
+        logger.info("[PASS] WatchLockAI Tamperproofing System active")
         
     def stop_protection(self):
         '''Stop tamperproofing system'''
@@ -664,7 +664,7 @@ class TamperproofingCore:
         self.anti_debugger.running = False
         self.registry_protector.running = False
         
-        logger.info("✅ WatchLockAI Tamperproofing System stopped")
+        logger.info("[PASS] WatchLockAI Tamperproofing System stopped")
         
     def get_protection_status(self) -> Dict[str, Any]:
         '''Get current protection status'''
@@ -682,7 +682,7 @@ class TamperproofingCore:
 
 def main():
     '''Main entry point for tamperproofing system'''
-    print("🛡️ WatchLockAI Tamperproofing System")
+    print("[SHIELD] WatchLockAI Tamperproofing System")
     print("Advanced protection against tampering and disabling")
     print()
     
@@ -691,14 +691,14 @@ def main():
         tamperproof = TamperproofingCore()
         tamperproof.start_protection()
         
-        print("🔒 Protection mechanisms active:")
-        print("   • Process Protection - Prevents process termination")
-        print("   • Service Protection - Monitors service status")
-        print("   • File Integrity - Detects file tampering")
-        print("   • Anti-Debugging - Prevents reverse engineering")
-        print("   • Registry Protection - Monitors critical keys")
+        print("[LOCK] Protection mechanisms active:")
+        print("   * Process Protection - Prevents process termination")
+        print("   * Service Protection - Monitors service status")
+        print("   * File Integrity - Detects file tampering")
+        print("   * Anti-Debugging - Prevents reverse engineering")
+        print("   * Registry Protection - Monitors critical keys")
         print()
-        print("🚨 WatchLockAI is now tamperproof!")
+        print("[ALERT] WatchLockAI is now tamperproof!")
         print("Press Ctrl+C to stop protection")
         
         # Keep protection running
@@ -706,7 +706,7 @@ def main():
             time.sleep(1)
             
     except KeyboardInterrupt:
-        print("\n🛑 Shutting down tamperproofing system...")
+        print("\n[U+1F6D1] Shutting down tamperproofing system...")
         tamperproof.stop_protection()
         
     except Exception as e:

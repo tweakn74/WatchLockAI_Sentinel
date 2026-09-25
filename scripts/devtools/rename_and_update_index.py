@@ -75,7 +75,7 @@ def update_index(folder, old_name, new_name):
         with open(index_path, "w", encoding="utf-8") as f:
             f.writelines(updated_lines)
     else:
-        print(f"[Dry Run] Would update index: {old_name} → {new_name}")
+        print(f"[Dry Run] Would update index: {old_name} -> {new_name}")
 
 
 def rename_files_in_folder(folder):
@@ -99,14 +99,14 @@ def rename_files_in_folder(folder):
     skipped_count = 0
 
     for old, new in proposals:
-        print(f"{old} → {new}")
+        print(f"{old} -> {new}")
         choice = input("Rename this file? (Y/n): ").strip().lower()
         if choice in ["", "y", "yes"]:
             if not DRY_RUN:
                 os.rename(os.path.join(folder, old), os.path.join(folder, new))
                 update_index(folder, old, new)
             else:
-                print(f"[Dry Run] Would rename {old} → {new}")
+                print(f"[Dry Run] Would rename {old} -> {new}")
             renamed_count += 1
         else:
             print(f"Skipped: {old}")

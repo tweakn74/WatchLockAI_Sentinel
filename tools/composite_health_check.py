@@ -43,7 +43,7 @@ def load_rc1_baseline() -> Dict[str, Any]:
                 baseline["proofs"].append(json.loads(line.strip()))
                 
     except Exception as e:
-        print(f"❌ Failed to load RC-1 baseline: {e}")
+        print(f"[FAIL] Failed to load RC-1 baseline: {e}")
         return {}
         
     return baseline
@@ -129,42 +129,42 @@ def run_proof_consistency_check(baseline_proofs: List[Dict[str, Any]]) -> Dict[s
 
 def main():
     """Composite health validation against RC-1 baseline"""
-    print("🏥 Composite Health Check vs RC-1 Baseline")
+    print("[U+1F3E5] Composite Health Check vs RC-1 Baseline")
     print("=" * 50)
     
     # Load RC-1 baseline
     baseline = load_rc1_baseline()
     if not baseline:
-        print("❌ Cannot proceed without RC-1 baseline")
+        print("[FAIL] Cannot proceed without RC-1 baseline")
         return 1
         
-    print(f"✅ RC-1 baseline loaded: {baseline['metadata']['version']} from {baseline['metadata']['timestamp_utc']}")
+    print(f"[PASS] RC-1 baseline loaded: {baseline['metadata']['version']} from {baseline['metadata']['timestamp_utc']}")
     
     # Check file integrity
-    print("\n🔍 File Integrity Check...")
+    print("\n[SEARCH] File Integrity Check...")
     integrity_results = check_file_integrity(baseline["hashes"])
     print(f"   Status: {integrity_results['status']} ({integrity_results['checked']} files verified)")
     if integrity_results['violations']:
         for violation in integrity_results['violations'][:3]:  # Show first 3
-            print(f"   ❌ {violation}")
+            print(f"   [FAIL] {violation}")
         if len(integrity_results['violations']) > 3:
             print(f"   ... and {len(integrity_results['violations']) - 3} more violations")
     
     # Check flag consistency
-    print("\n🏁 Feature Flag Consistency...")
+    print("\n[U+1F3C1] Feature Flag Consistency...")
     flag_results = check_flag_consistency(baseline["flags"])
     print(f"   Status: {flag_results['status']} ({flag_results['checked']} flags verified)")
     if flag_results['violations']:
         for violation in flag_results['violations']:
-            print(f"   ❌ {violation}")
+            print(f"   [FAIL] {violation}")
     
     # Check proof consistency
-    print("\n🔬 Proof Re-execution...")
+    print("\n[U+1F52C] Proof Re-execution...")
     proof_results = run_proof_consistency_check(baseline["proofs"])
     print(f"   Status: {proof_results['status']} ({proof_results['checked']} proofs verified)")
     if proof_results['violations']:
         for violation in proof_results['violations']:
-            print(f"   ❌ {violation}")
+            print(f"   [FAIL] {violation}")
     
     # Overall status
     all_checks = [integrity_results, flag_results, proof_results]
@@ -172,11 +172,11 @@ def main():
     total_violations = sum(len(check["violations"]) for check in all_checks)
     
     print(f"\n" + "=" * 50)
-    print(f"🏥 Composite Health: {overall_status}")
+    print(f"[U+1F3E5] Composite Health: {overall_status}")
     if overall_status == "PASS":
-        print("✅ System maintains RC-1 baseline integrity")
+        print("[PASS] System maintains RC-1 baseline integrity")
     else:
-        print(f"❌ {total_violations} violations detected since RC-1")
+        print(f"[FAIL] {total_violations} violations detected since RC-1")
     
     return 0 if overall_status == "PASS" else 1
 

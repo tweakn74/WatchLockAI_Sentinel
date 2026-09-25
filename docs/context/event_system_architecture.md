@@ -137,19 +137,19 @@ subscription = event_bus.subscribe(
 
 ## Component Integration
 
-### Collectors → Event Bus
+### Collectors -> Event Bus
 - **File System Monitor**: Publishes FileEvent for file operations
 - **Process Monitor**: Publishes ProcessEvent for process lifecycle
 - **Registry Monitor**: Publishes RegistryEvent for registry changes
 - **Network Monitor**: Publishes NetworkEvent for network activity
 - **Health Monitor**: Publishes HealthMetric for system health
 
-### Event Bus → Detection Engines
+### Event Bus -> Detection Engines
 - **Rules Engine**: Subscribes to all event types for rule evaluation
 - **Behavioral Engine**: Subscribes to events for baseline learning
 - **Threat Intel**: Enriches alerts with knowledge base lookups
 
-### Event Bus → Response Systems
+### Event Bus -> Response Systems
 - **Alert Manager**: Subscribes to DetectionAlert for notification/logging
 - **Actions Manager**: Subscribes to alerts for automated response
 - **Web API**: Provides real-time event streaming via SSE

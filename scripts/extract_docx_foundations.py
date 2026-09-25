@@ -49,26 +49,26 @@ def main():
             content = extract_docx_text(doc_path)
             if content:
                 extracted_content[doc] = content
-                print(f"✅ Extracted {len(content)} characters from {doc}")
+                print(f"[PASS] Extracted {len(content)} characters from {doc}")
                 
                 # Save individual file
                 output_file = f"/workspace/foundational_docs/{doc.replace('.docx', '_content.txt')}"
                 os.makedirs(os.path.dirname(output_file), exist_ok=True)
                 with open(output_file, 'w', encoding='utf-8') as f:
                     f.write(content)
-                print(f"✅ Saved to: {output_file}")
+                print(f"[PASS] Saved to: {output_file}")
             else:
-                print(f"❌ Failed to extract content from {doc}")
+                print(f"[FAIL] Failed to extract content from {doc}")
         else:
-            print(f"❌ File not found: {doc_path}")
+            print(f"[FAIL] File not found: {doc_path}")
     
     # Save combined analysis
     combined_file = "/workspace/foundational_docs/combined_analysis.json"
     with open(combined_file, 'w', encoding='utf-8') as f:
         json.dump(extracted_content, f, indent=2, ensure_ascii=False)
     
-    print(f"\n✅ Combined analysis saved to: {combined_file}")
-    print(f"📊 Total documents processed: {len(extracted_content)}")
+    print(f"\n[PASS] Combined analysis saved to: {combined_file}")
+    print(f"[BARS] Total documents processed: {len(extracted_content)}")
     
     return extracted_content
 

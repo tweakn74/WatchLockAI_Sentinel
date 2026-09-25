@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" 
+           Name="WatchLockAI Endpoint Security" 
+           Language="1033" 
+           Version="1.0.0.0" 
+           Manufacturer="MiniMax Agent" 
+           UpgradeCode="12345678-1234-1234-1234-123456789012">
+    
+    <Package InstallerVersion="200" 
+             Compressed="yes" 
+             InstallScope="perMachine"
+             Platform="x64"
+             Manufacturer="MiniMax Agent"
+             Description="WatchLockAI Endpoint Security Agent v1.0"/>
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <!-- System Requirements -->
+    <Condition Message="This application requires Windows 10 or Windows 11 (64-bit).">
+      <![CDATA[Installed OR (VersionNT64 >= 601)]]>
+    </Condition>
+    
+    <Condition Message="This application requires administrator privileges.">
+      <![CDATA[Privileged]]>
+    </Condition>
+
+    <Feature Id="ProductFeature" Title="WatchLockAI Agent" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="INSTALLFOLDER" Name="WatchLockAI">
+          <Directory Id="ConfigFolder" Name="Config" />
+          <Directory Id="LogsFolder" Name="Logs" />
+          <Directory Id="EvidenceFolder" Name="Evidence" />
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="WatchLockAI" />
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <!-- Main Service Executable -->
+      <Component Id="ServiceExecutable" Guid="*">
+        <File Id="WatchLockAIService" 
+              Source="$(var.SourceDir)\WatchLockAI.Service.exe" 
+              KeyPath="yes" />
+        
+        <!-- Windows Service Installation -->
+        <ServiceInstall Id="WatchLockAIServiceInstall"
+                        Type="ownProcess"
+                        Vital="yes"
+                        Name="WatchLockAI"
+                        DisplayName="WatchLockAI Endpoint Security"
+                        Description="Autonomous AI-powered cybersecurity endpoint agent"
+                        Start="auto"
+                        Account="LocalSystem"
+                        ErrorControl="ignore"
+                        Interactive="no">
+          <ServiceDependency Id="EventLog" />
+          <ServiceDependency Id="Winmgmt" />
+        </ServiceInstall>
+        
+        <ServiceControl Id="StartWatchLockAIService"
+                        Start="install"
+                        Stop="both"
+                        Remove="uninstall"
+                        Name="WatchLockAI"
+                        Wait="yes" />
+      </Component>
+
+      <!-- Configuration Files -->
+      <Component Id="ConfigurationFiles" Directory="ConfigFolder" Guid="*">
+        <File Id="AppSettings" Source="$(var.SourceDir)\Config\appsettings.json" />
+        <File Id="AppSettingsProd" Source="$(var.SourceDir)\Config\appsettings.Production.json" />
+        <File Id="MitreConfig" Source="$(var.SourceDir)\Config\mitre-attack.json" />
+      </Component>
+
+      <!-- Create Log Directory -->
+      <Component Id="LogDirectory" Directory="LogsFolder" Guid="*">
+        <CreateFolder />
+      </Component>
+
+      <!-- Create Evidence Directory -->
+      <Component Id="EvidenceDirectory" Directory="EvidenceFolder" Guid="*">
+        <CreateFolder />
+      </Component>
+
+      <!-- Firewall Rules -->
+      <Component Id="FirewallRules" Directory="INSTALLFOLDER" Guid="*">
+        <fire:FirewallException Id="WatchLockAIOut"
+                                Name="WatchLockAI Console Communication"
+                                Port="443"
+                                Protocol="tcp"
+                                Scope="any"
+                                IgnoreFailure="yes"
+                                xmlns:fire="http://schemas.microsoft.com/wix/FirewallExtension" />
+      </Component>
+
+      <!-- Start Menu Shortcut -->
+      <Component Id="ApplicationShortcut" Directory="ApplicationProgramsFolder" Guid="*">
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="WatchLockAI Management"
+                  Description="WatchLockAI Endpoint Security Management"
+                  Target="[INSTALLFOLDER]WatchLockAI.Service.exe"
+                  WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" 
+                       Key="Software\MiniMax Agent\WatchLockAI" 
+                       Name="installed" 
+                       Type="integer" 
+                       Value="1" 
+                       KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+
+  <!-- Custom Actions -->
+  <Fragment>
+    <CustomAction Id="CreateEventSource"
+                  ExeCommand="cmd.exe /c powershell.exe -Command &quot;New-EventLog -LogName Application -Source WatchLockAI -ErrorAction SilentlyContinue&quot;"
+                  Execute="deferred"
+                  Impersonate="no" />
+    
+    <CustomAction Id="ConfigurePermissions"
+                  ExeCommand="cmd.exe /c icacls &quot;[INSTALLFOLDER]&quot; /grant:r &quot;NT AUTHORITY\SYSTEM:(OI)(CI)F&quot; /grant:r &quot;BUILTIN\Administrators:(OI)(CI)F&quot; /inheritance:r"
+                  Execute="deferred"
+                  Impersonate="no" />
+
+    <InstallExecuteSequence>
+      <Custom Action="CreateEventSource" After="InstallFiles">NOT Installed</Custom>
+      <Custom Action="ConfigurePermissions" After="InstallFiles">NOT Installed</Custom>
+    </InstallExecuteSequence>
+  </Fragment>
+</Wix>

@@ -7,13 +7,13 @@ echo ================================================================
 echo.
 echo This installer follows the LOGICAL ORDER you requested:
 echo.
-echo   1. 🧠 Deploy AI Brain first and test it
-echo   2. 📦 Install modules (AI validates each one)
-echo   3. 🔧 Create ACTUAL Windows service 
-echo   4. ✅ VERIFY service is really running
-echo   5. 🚀 Add to startup automatically
-echo   6. 🖥️ Create system tray with FULL functionality
-echo   7. 🔍 Final verification - everything ACTUALLY works
+echo   1. [BRAIN] Deploy AI Brain first and test it
+echo   2. [PKG] Install modules (AI validates each one)
+echo   3. [U+1F527] Create ACTUAL Windows service 
+echo   4. [PASS] VERIFY service is really running
+echo   5. [START] Add to startup automatically
+echo   6. [U+1F5A5] Create system tray with FULL functionality
+echo   7. [SEARCH] Final verification - everything ACTUALLY works
 echo.
 echo The AI Brain will answer questions and validate each module!
 echo.
@@ -29,7 +29,7 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-echo [ADMIN CHECK] Running with administrator privileges... ✓
+echo [ADMIN CHECK] Running with administrator privileges... [x]
 echo.
 
 REM Check for Python (required for AI Brain)
@@ -48,7 +48,7 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-echo [PYTHON CHECK] Python is installed... ✓
+echo [PYTHON CHECK] Python is installed... [x]
 echo.
 
 echo Ready to install WatchLockAI with AI Brain validation!

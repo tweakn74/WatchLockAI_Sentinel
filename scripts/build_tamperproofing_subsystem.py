@@ -11,7 +11,7 @@ from pathlib import Path
 def create_tamperproofing_subsystem():
     """Create the tamperproofing subsystem for WatchLockAI"""
     
-    print("🛡️ Building Tamperproofing Subsystem...")
+    print("[SHIELD] Building Tamperproofing Subsystem...")
     
     # Create Tamperproofing directory
     tamper_dir = Path("/workspace/WatchLockAI_RealPlatform/Tamperproofing")
@@ -671,7 +671,7 @@ class TamperproofingCore:
         if self.config['protection_enabled']['registry_protection']:
             self.registry_protector.start_protection()
             
-        logger.info("✅ WatchLockAI Tamperproofing System active")
+        logger.info("[PASS] WatchLockAI Tamperproofing System active")
         
     def stop_protection(self):
         '''Stop tamperproofing system'''
@@ -684,7 +684,7 @@ class TamperproofingCore:
         self.anti_debugger.running = False
         self.registry_protector.running = False
         
-        logger.info("✅ WatchLockAI Tamperproofing System stopped")
+        logger.info("[PASS] WatchLockAI Tamperproofing System stopped")
         
     def get_protection_status(self) -> Dict[str, Any]:
         '''Get current protection status'''
@@ -702,7 +702,7 @@ class TamperproofingCore:
 
 def main():
     '''Main entry point for tamperproofing system'''
-    print("🛡️ WatchLockAI Tamperproofing System")
+    print("[SHIELD] WatchLockAI Tamperproofing System")
     print("Advanced protection against tampering and disabling")
     print()
     
@@ -711,14 +711,14 @@ def main():
         tamperproof = TamperproofingCore()
         tamperproof.start_protection()
         
-        print("🔒 Protection mechanisms active:")
-        print("   • Process Protection - Prevents process termination")
-        print("   • Service Protection - Monitors service status")
-        print("   • File Integrity - Detects file tampering")
-        print("   • Anti-Debugging - Prevents reverse engineering")
-        print("   • Registry Protection - Monitors critical keys")
+        print("[LOCK] Protection mechanisms active:")
+        print("   * Process Protection - Prevents process termination")
+        print("   * Service Protection - Monitors service status")
+        print("   * File Integrity - Detects file tampering")
+        print("   * Anti-Debugging - Prevents reverse engineering")
+        print("   * Registry Protection - Monitors critical keys")
         print()
-        print("🚨 WatchLockAI is now tamperproof!")
+        print("[ALERT] WatchLockAI is now tamperproof!")
         print("Press Ctrl+C to stop protection")
         
         # Keep protection running
@@ -726,7 +726,7 @@ def main():
             time.sleep(1)
             
     except KeyboardInterrupt:
-        print("\\n🛑 Shutting down tamperproofing system...")
+        print("\\n[U+1F6D1] Shutting down tamperproofing system...")
         tamperproof.stop_protection()
         
     except Exception as e:
@@ -805,7 +805,7 @@ class WatchdogService:
         process_thread.start()
         health_thread.start()
         
-        logger.info("✅ Watchdog Service active - monitoring all components")
+        logger.info("[PASS] Watchdog Service active - monitoring all components")
         
     def _monitor_services(self):
         '''Monitor Windows services'''
@@ -945,7 +945,7 @@ class WatchdogService:
         '''Stop the watchdog service'''
         logger.info("Stopping WatchLockAI Watchdog Service...")
         self.running = False
-        logger.info("✅ Watchdog Service stopped")
+        logger.info("[PASS] Watchdog Service stopped")
         
     def get_status(self) -> Dict[str, Any]:
         '''Get watchdog status'''
@@ -958,7 +958,7 @@ class WatchdogService:
 
 def main():
     '''Main entry point'''
-    print("🐕 WatchLockAI Watchdog Service")
+    print("[U+1F415] WatchLockAI Watchdog Service")
     print("Nested protection against system failures")
     print()
     
@@ -966,20 +966,20 @@ def main():
         watchdog = WatchdogService()
         watchdog.start_watchdog()
         
-        print("🔄 Monitoring components:")
-        print("   • Windows Services - Service status monitoring")
-        print("   • Critical Processes - Process availability checking")
-        print("   • AI Brain Health - Connectivity and responsiveness")
-        print("   • Automatic Restart - Failed component recovery")
+        print("[RELOAD] Monitoring components:")
+        print("   * Windows Services - Service status monitoring")
+        print("   * Critical Processes - Process availability checking")
+        print("   * AI Brain Health - Connectivity and responsiveness")
+        print("   * Automatic Restart - Failed component recovery")
         print()
-        print("🛡️ Watchdog protection active!")
+        print("[SHIELD] Watchdog protection active!")
         print("Press Ctrl+C to stop")
         
         while watchdog.running:
             time.sleep(1)
             
     except KeyboardInterrupt:
-        print("\\n🛑 Stopping watchdog...")
+        print("\\n[U+1F6D1] Stopping watchdog...")
         watchdog.stop_watchdog()
         
     except Exception as e:
@@ -1146,7 +1146,7 @@ class MemoryProtector:
 
 def main():
     '''Test obfuscation techniques'''
-    print("🥷 WatchLockAI Process Obfuscation")
+    print("[U+1F977] WatchLockAI Process Obfuscation")
     print("Advanced process hiding and protection")
     print()
     
@@ -1163,8 +1163,8 @@ def main():
     memory_protector.scramble_memory_layout()
     memory_protector.detect_memory_access()
     
-    print("✅ Process obfuscation active")
-    print("✅ Memory protection enabled")
+    print("[PASS] Process obfuscation active")
+    print("[PASS] Memory protection enabled")
     
 if __name__ == "__main__":
     main()
@@ -1218,7 +1218,7 @@ from watchdog_service import WatchdogService
 
 def test_process_protector():
     '''Test process protection'''
-    print("\\n🔍 Testing Process Protector...")
+    print("\\n[SEARCH] Testing Process Protector...")
     
     protector = ProcessProtector()
     
@@ -1227,16 +1227,16 @@ def test_process_protector():
     assert hasattr(protector, 'process_pids')
     assert hasattr(protector, 'running')
     
-    print("✅ Process protector initialized correctly")
+    print("[PASS] Process protector initialized correctly")
     
     # Test alert generation
     protector._handle_process_termination(12345)
     
-    print("✅ Process protection test completed")
+    print("[PASS] Process protection test completed")
 
 def test_file_integrity_monitor():
     '''Test file integrity monitoring'''
-    print("\\n🔍 Testing File Integrity Monitor...")
+    print("\\n[SEARCH] Testing File Integrity Monitor...")
     
     monitor = FileIntegrityMonitor()
     
@@ -1263,13 +1263,13 @@ def test_file_integrity_monitor():
     # Cleanup
     os.unlink(temp_path)
     
-    print(f"✅ File integrity monitoring test completed")
+    print(f"[PASS] File integrity monitoring test completed")
     print(f"   Original hash: {hash1[:8]}...")
     print(f"   Modified hash: {hash2[:8]}...")
 
 def test_anti_debugger():
     '''Test anti-debugging mechanisms'''
-    print("\\n🔍 Testing Anti-Debugger...")
+    print("\\n[SEARCH] Testing Anti-Debugger...")
     
     debugger = AntiDebugger()
     
@@ -1280,11 +1280,11 @@ def test_anti_debugger():
     # Test debugger handling
     debugger._handle_debugger_detection("test_debugger.exe", 99999)
     
-    print("✅ Anti-debugger test completed")
+    print("[PASS] Anti-debugger test completed")
 
 def test_configuration_loading():
     '''Test configuration loading'''
-    print("\\n🔍 Testing Configuration Loading...")
+    print("\\n[SEARCH] Testing Configuration Loading...")
     
     from tamperproof_core import TamperproofingCore
     
@@ -1310,11 +1310,11 @@ def test_configuration_loading():
     # Cleanup
     os.remove(config_file)
     
-    print("✅ Configuration loading test completed")
+    print("[PASS] Configuration loading test completed")
 
 def test_watchdog_service():
     '''Test watchdog service'''
-    print("\\n🔍 Testing Watchdog Service...")
+    print("\\n[SEARCH] Testing Watchdog Service...")
     
     watchdog = WatchdogService()
     
@@ -1336,11 +1336,11 @@ def test_watchdog_service():
     assert 'running' in status
     assert 'monitored_services' in status
     
-    print("✅ Watchdog service test completed")
+    print("[PASS] Watchdog service test completed")
 
 def test_obfuscation():
     '''Test process obfuscation'''
-    print("\\n🔍 Testing Process Obfuscation...")
+    print("\\n[SEARCH] Testing Process Obfuscation...")
     
     from process_obfuscation import ProcessObfuscator, MemoryProtector
     
@@ -1362,12 +1362,12 @@ def test_obfuscation():
     memory_protector.scramble_memory_layout()
     memory_protector.detect_memory_access()
     
-    print(f"✅ Process obfuscation test completed")
+    print(f"[PASS] Process obfuscation test completed")
     print(f"   Generated fake name: {fake_name}")
 
 def test_integration():
     '''Test full tamperproofing integration'''
-    print("\\n🔧 Testing Integration...")
+    print("\\n[U+1F527] Testing Integration...")
     
     from tamperproof_core import TamperproofingCore
     
@@ -1386,11 +1386,11 @@ def test_integration():
     assert 'status' in status
     assert 'components' in status
     
-    print("✅ Integration test completed")
+    print("[PASS] Integration test completed")
 
 def run_all_tests():
     '''Run all tamperproofing tests'''
-    print("🧪 WatchLockAI Tamperproofing Test Suite")
+    print("[U+1F9EA] WatchLockAI Tamperproofing Test Suite")
     print("=" * 50)
     
     try:
@@ -1403,19 +1403,19 @@ def run_all_tests():
         test_integration()
         
         print("\\n" + "=" * 50)
-        print("✅ All tamperproofing tests completed successfully!")
-        print("\\n🛡️ Tamperproofing System is ready for deployment")
-        print("\\n📋 Test Summary:")
-        print("   • Process Protection - ✅ Working")
-        print("   • File Integrity Monitoring - ✅ Working")
-        print("   • Anti-Debugging - ✅ Working")
-        print("   • Configuration Management - ✅ Working")
-        print("   • Watchdog Service - ✅ Working")
-        print("   • Process Obfuscation - ✅ Working")
-        print("   • System Integration - ✅ Working")
+        print("[PASS] All tamperproofing tests completed successfully!")
+        print("\\n[SHIELD] Tamperproofing System is ready for deployment")
+        print("\\n[PLAN] Test Summary:")
+        print("   * Process Protection - [PASS] Working")
+        print("   * File Integrity Monitoring - [PASS] Working")
+        print("   * Anti-Debugging - [PASS] Working")
+        print("   * Configuration Management - [PASS] Working")
+        print("   * Watchdog Service - [PASS] Working")
+        print("   * Process Obfuscation - [PASS] Working")
+        print("   * System Integration - [PASS] Working")
         
     except Exception as e:
-        print(f"\\n❌ Test failed: {e}")
+        print(f"\\n[FAIL] Test failed: {e}")
         import traceback
         traceback.print_exc()
 
@@ -1448,13 +1448,13 @@ pywin32>=306  # Windows service support and registry access
     
     # 7. Create Startup Script
     startup_bat = """@echo off
-echo 🛡️ Starting WatchLockAI Tamperproofing System...
+echo [SHIELD] Starting WatchLockAI Tamperproofing System...
 echo.
 
 :: Check if Python is available
 python --version >nul 2>&1
 if errorlevel 1 (
-    echo ❌ Python is not installed or not in PATH
+    echo [FAIL] Python is not installed or not in PATH
     echo Please install Python 3.8+ and add to PATH
     pause
     exit /b 1
@@ -1462,13 +1462,13 @@ if errorlevel 1 (
 
 :: Install requirements if needed
 if not exist "watchlockai_tamperproof.log" (
-    echo 📦 Installing Python requirements...
+    echo [PKG] Installing Python requirements...
     pip install -r requirements.txt
 )
 
 :: Start tamperproofing system
-echo ✅ Launching Tamperproofing System...
-echo 🔒 Protection mechanisms will activate...
+echo [PASS] Launching Tamperproofing System...
+echo [LOCK] Protection mechanisms will activate...
 echo.
 
 :: Start main tamperproofing core
@@ -1478,8 +1478,8 @@ start "WatchLockAI-Tamperproof" python tamperproof_core.py
 timeout /t 5 /nobreak >nul
 start "WatchLockAI-Watchdog" python watchdog_service.py
 
-echo ✅ WatchLockAI Tamperproofing System is now active!
-echo 🛡️ All protection mechanisms are running in the background.
+echo [PASS] WatchLockAI Tamperproofing System is now active!
+echo [SHIELD] All protection mechanisms are running in the background.
 echo.
 echo Press any key to exit this window (protection will continue running)...
 pause >nul
@@ -1491,11 +1491,11 @@ pause >nul
     # 8. Create README
     readme = """# WatchLockAI Tamperproofing Subsystem
 
-## 🛡️ Overview
+## [SHIELD] Overview
 
 The WatchLockAI Tamperproofing Subsystem provides advanced protection mechanisms to prevent tampering, disabling, or reverse engineering of the WatchLockAI platform. It implements multiple layers of protection including process protection, file integrity monitoring, anti-debugging, and watchdog services.
 
-## 🎯 Core Protection Mechanisms
+## [TARGET] Core Protection Mechanisms
 
 ### **Process Protection**
 - **Process Kill Prevention** - Monitors and prevents termination of WatchLockAI processes
@@ -1533,7 +1533,7 @@ The WatchLockAI Tamperproofing Subsystem provides advanced protection mechanisms
 - **Automatic Recovery** - Intelligent failure recovery mechanisms
 - **Escalation Handling** - Escalates persistent failures
 
-## 🚀 Quick Start
+## [START] Quick Start
 
 ### **Installation**
 ```bash
@@ -1565,7 +1565,7 @@ python tamperproof_core.py
 python watchdog_service.py
 ```
 
-## 🔧 Components
+## [U+1F527] Components
 
 ### **tamperproof_core.py**
 Main tamperproofing orchestrator that coordinates all protection mechanisms.
@@ -1596,7 +1596,7 @@ Advanced process hiding and obfuscation techniques.
 - PID randomization
 - Anti-analysis protection
 
-## 🔍 Monitoring and Alerts
+## [SEARCH] Monitoring and Alerts
 
 ### **Alert Types**
 - `PROCESS_KILL_ATTEMPT` - Process termination detected
@@ -1619,7 +1619,7 @@ Advanced process hiding and obfuscation techniques.
 - `restore_registry` - Restore registry keys
 - `escalate_alert` - Escalate to human operator
 
-## ⚙️ Configuration Options
+## [U+2699] Configuration Options
 
 ### **Protection Settings**
 ```json
@@ -1661,7 +1661,7 @@ Advanced process hiding and obfuscation techniques.
 }
 ```
 
-## 🧪 Testing
+## [U+1F9EA] Testing
 
 Run the comprehensive test suite:
 ```bash
@@ -1677,7 +1677,7 @@ python test_tamperproofing.py
 - Process obfuscation
 - System integration
 
-## 🔒 Security Features
+## [LOCK] Security Features
 
 ### **Tamper Resistance**
 - **Multi-layer Protection** - Multiple independent protection mechanisms
@@ -1697,7 +1697,7 @@ python test_tamperproofing.py
 - **Service Verification** - Service configuration validation
 - **Component Verification** - Cross-component integrity checking
 
-## 📊 Performance Impact
+## [BARS] Performance Impact
 
 ### **Resource Usage**
 - **CPU Usage:** < 3% average (all components combined)
@@ -1711,22 +1711,22 @@ python test_tamperproofing.py
 - **Registry Monitoring:** < 0.5% CPU impact
 - **Service Monitoring:** Negligible impact
 
-## 🚨 Incident Response
+## [ALERT] Incident Response
 
 ### **Automatic Responses**
-1. **Process Kill Detected** → Immediate restart + alert
-2. **File Tampering** → File restoration + forensic logging
-3. **Debugger Detected** → Debugger termination + lockdown
-4. **Service Stop** → Service restart + investigation
-5. **Registry Change** → Registry restoration + alert
+1. **Process Kill Detected** -> Immediate restart + alert
+2. **File Tampering** -> File restoration + forensic logging
+3. **Debugger Detected** -> Debugger termination + lockdown
+4. **Service Stop** -> Service restart + investigation
+5. **Registry Change** -> Registry restoration + alert
 
 ### **Escalation Procedures**
-1. **Single Incident** → Log and auto-recover
-2. **Repeated Incidents** → Increase monitoring + alert SOC
-3. **Persistent Attacks** → Lockdown mode + human intervention
-4. **System Compromise** → Emergency shutdown + forensic mode
+1. **Single Incident** -> Log and auto-recover
+2. **Repeated Incidents** -> Increase monitoring + alert SOC
+3. **Persistent Attacks** -> Lockdown mode + human intervention
+4. **System Compromise** -> Emergency shutdown + forensic mode
 
-## 🔧 Troubleshooting
+## [U+1F527] Troubleshooting
 
 ### **Common Issues**
 
@@ -1757,7 +1757,7 @@ curl http://localhost:9999/health
 # Reduce monitoring frequency for less critical components
 ```
 
-## 🔗 Integration
+## [LINK] Integration
 
 ### **AI Brain Integration**
 All tamper events are sent to the AI Brain for analysis and correlation with other security events.
@@ -1768,7 +1768,7 @@ Tamper events generate forensic evidence that can be analyzed by WatchSleuth for
 ### **Windows Agent Integration**
 Works alongside the Windows Agent to provide comprehensive system protection.
 
-## 📝 Logging
+## [U+1F4DD] Logging
 
 Protection activities are logged to:
 - `watchlockai_tamperproof.log` - Main protection log
@@ -1789,36 +1789,36 @@ Protection activities are logged to:
     with open(tamper_dir / "README.md", "w", encoding="utf-8") as f:
         f.write(readme)
     
-    print("✅ WatchLockAI Tamperproofing Subsystem created!")
-    print(f"📁 Location: {tamper_dir}")
+    print("[PASS] WatchLockAI Tamperproofing Subsystem created!")
+    print(f"[U+1F4C1] Location: {tamper_dir}")
     print()
-    print("🛡️ Core Components Created:")
-    print("   • tamperproof_core.py - Main protection orchestrator")
-    print("   • watchdog_service.py - Nested watchdog protection")
-    print("   • process_obfuscation.py - Advanced hiding techniques")
-    print("   • test_tamperproofing.py - Comprehensive test suite")
-    print("   • tamperproof_config.json - Protection settings")
-    print("   • start_tamperproofing.bat - Easy startup script")
-    print("   • requirements.txt - Python dependencies")
-    print("   • README.md - Complete documentation")
+    print("[SHIELD] Core Components Created:")
+    print("   * tamperproof_core.py - Main protection orchestrator")
+    print("   * watchdog_service.py - Nested watchdog protection")
+    print("   * process_obfuscation.py - Advanced hiding techniques")
+    print("   * test_tamperproofing.py - Comprehensive test suite")
+    print("   * tamperproof_config.json - Protection settings")
+    print("   * start_tamperproofing.bat - Easy startup script")
+    print("   * requirements.txt - Python dependencies")
+    print("   * README.md - Complete documentation")
     print()
-    print("🔒 Protection Mechanisms:")
-    print("   • Process Protection - Prevent process termination")
-    print("   • Service Protection - Monitor Windows services")
-    print("   • File Integrity - Detect file tampering")
-    print("   • Anti-Debugging - Prevent reverse engineering")
-    print("   • Registry Protection - Monitor critical keys")
-    print("   • Watchdog Service - Multi-layer monitoring")
-    print("   • Process Obfuscation - Hide from detection")
+    print("[LOCK] Protection Mechanisms:")
+    print("   * Process Protection - Prevent process termination")
+    print("   * Service Protection - Monitor Windows services")
+    print("   * File Integrity - Detect file tampering")
+    print("   * Anti-Debugging - Prevent reverse engineering")
+    print("   * Registry Protection - Monitor critical keys")
+    print("   * Watchdog Service - Multi-layer monitoring")
+    print("   * Process Obfuscation - Hide from detection")
     print()
-    print("🎯 Features:")
-    print("   • Real-time tamper detection")
-    print("   • Automatic recovery mechanisms") 
-    print("   • AI Brain integration")
-    print("   • Multi-layer protection")
-    print("   • Stealth operation")
+    print("[TARGET] Features:")
+    print("   * Real-time tamper detection")
+    print("   * Automatic recovery mechanisms") 
+    print("   * AI Brain integration")
+    print("   * Multi-layer protection")
+    print("   * Stealth operation")
     print()
-    print("🚀 Ready for enterprise deployment!")
+    print("[START] Ready for enterprise deployment!")
     
     return str(tamper_dir)
 

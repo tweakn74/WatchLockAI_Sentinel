@@ -54,14 +54,14 @@ function Show-Banner {
     Write-Host "================================================================" -ForegroundColor Green
     Write-Host ""
     Write-Host "INSTALLATION ORDER:" -ForegroundColor Yellow
-    Write-Host "  1. 🧠 Deploy AI Brain first" -ForegroundColor Yellow
-    Write-Host "  2. 🧪 Test AI Brain with basic question" -ForegroundColor Yellow
-    Write-Host "  3. 📦 Install modules (AI validates each)" -ForegroundColor Yellow
-    Write-Host "  4. 🔧 Create actual Windows service" -ForegroundColor Yellow
-    Write-Host "  5. ✅ Verify service is running" -ForegroundColor Yellow
-    Write-Host "  6. 🚀 Add to startup" -ForegroundColor Yellow
-    Write-Host "  7. 🖥️ Create system tray with full functionality" -ForegroundColor Yellow
-    Write-Host "  8. 🔍 Final verification - everything actually works" -ForegroundColor Yellow
+    Write-Host "  1. [BRAIN] Deploy AI Brain first" -ForegroundColor Yellow
+    Write-Host "  2. [U+1F9EA] Test AI Brain with basic question" -ForegroundColor Yellow
+    Write-Host "  3. [PKG] Install modules (AI validates each)" -ForegroundColor Yellow
+    Write-Host "  4. [U+1F527] Create actual Windows service" -ForegroundColor Yellow
+    Write-Host "  5. [PASS] Verify service is running" -ForegroundColor Yellow
+    Write-Host "  6. [START] Add to startup" -ForegroundColor Yellow
+    Write-Host "  7. [U+1F5A5] Create system tray with full functionality" -ForegroundColor Yellow
+    Write-Host "  8. [SEARCH] Final verification - everything actually works" -ForegroundColor Yellow
     Write-Host ""
 }
 
@@ -89,8 +89,8 @@ class WatchLockAIBrain:
         self.status = "OPERATIONAL"
         self.modules = {}
         self.start_time = datetime.now()
-        print(f"🧠 {self.name} v{self.version} initialized successfully")
-        print(f"📅 Start Time: {self.start_time}")
+        print(f"[BRAIN] {self.name} v{self.version} initialized successfully")
+        print(f"[U+1F4C5] Start Time: {self.start_time}")
         
     def process_question(self, question):
         """Process questions and provide intelligent responses"""
@@ -127,7 +127,7 @@ class WatchLockAIBrain:
             return "MITRE ATT&CK framework integration provides complete adversary behavior mapping."
             
         elif "test" in question_lower:
-            return "✅ AI Brain test successful! All cognitive functions operational."
+            return "[PASS] AI Brain test successful! All cognitive functions operational."
             
         else:
             return f"I understand your question about: {question}. The WatchLockAI platform provides comprehensive cybersecurity capabilities including threat detection, forensics, and compliance management."
@@ -139,15 +139,15 @@ class WatchLockAIBrain:
             "installed": datetime.now().isoformat(),
             "status": "active"
         }
-        print(f"📦 Module registered: {module_name}")
+        print(f"[PKG] Module registered: {module_name}")
         
     def validate_module(self, module_name):
         """Validate module installation"""
         if module_name in self.modules:
             module = self.modules[module_name]
-            return f"✅ Module '{module_name}' is properly installed and operational. Status: {module['status']}"
+            return f"[PASS] Module '{module_name}' is properly installed and operational. Status: {module['status']}"
         else:
-            return f"❌ Module '{module_name}' not found in registry."
+            return f"[FAIL] Module '{module_name}' not found in registry."
 
 class AIBrainServer:
     def __init__(self, port=9999):
@@ -160,19 +160,19 @@ class AIBrainServer:
         try:
             handler = self.create_handler()
             self.httpd = socketserver.TCPServer(("", self.port), handler)
-            print(f"🌐 AI Brain server started on http://localhost:{self.port}")
-            print("🔧 Available endpoints:")
+            print(f"[U+1F310] AI Brain server started on http://localhost:{self.port}")
+            print("[U+1F527] Available endpoints:")
             print(f"   GET  /status  - Get brain status")
             print(f"   POST /ask     - Ask a question")
             print(f"   POST /module  - Register/validate module")
             print("Press Ctrl+C to stop")
             self.httpd.serve_forever()
         except KeyboardInterrupt:
-            print("\n🛑 AI Brain server stopping...")
+            print("\n[U+1F6D1] AI Brain server stopping...")
             if self.httpd:
                 self.httpd.shutdown()
         except Exception as e:
-            print(f"❌ Server error: {e}")
+            print(f"[FAIL] Server error: {e}")
     
     def create_handler(self):
         brain = self.brain
@@ -252,7 +252,7 @@ if __name__ == "__main__":
     }
     
     $aiBrainScript | Out-File -FilePath "$aiBrainDir\ai_brain.py" -Encoding UTF8
-    Write-Log "✅ AI Brain script created at $aiBrainDir\ai_brain.py" "SUCCESS"
+    Write-Log "[PASS] AI Brain script created at $aiBrainDir\ai_brain.py" "SUCCESS"
     
     # Create brain launcher script
     $brainLauncher = @"
@@ -262,7 +262,7 @@ python ai_brain.py
 "@
     
     $brainLauncher | Out-File -FilePath "$aiBrainDir\start_brain.bat" -Encoding ASCII
-    Write-Log "✅ AI Brain launcher created" "SUCCESS"
+    Write-Log "[PASS] AI Brain launcher created" "SUCCESS"
     
     return $true
 }
@@ -278,29 +278,29 @@ function Start-AIBrain {
     
     try {
         $script:AIBrainProcess = Start-Process cmd -ArgumentList "/c", "`"$brainPath`"" -WindowStyle Hidden -PassThru
-        Write-Log "🧠 AI Brain started (PID: $($script:AIBrainProcess.Id))" "SUCCESS"
+        Write-Log "[BRAIN] AI Brain started (PID: $($script:AIBrainProcess.Id))" "SUCCESS"
         
         # Wait for brain to initialize
-        Write-Log "⏳ Waiting for AI Brain to initialize..." "INFO"
+        Write-Log "[U+23F3] Waiting for AI Brain to initialize..." "INFO"
         Start-Sleep -Seconds 8
         
         # Test AI Brain with basic question
-        Write-Log "🧪 Testing AI Brain with basic question..." "INFO"
+        Write-Log "[U+1F9EA] Testing AI Brain with basic question..." "INFO"
         
         $testQuestion = "Hello, are you ready?"
         $response = Test-AIBrain -Question $testQuestion
         
         if ($response) {
-            Write-Log "✅ AI Brain test successful!" "SUCCESS"
+            Write-Log "[PASS] AI Brain test successful!" "SUCCESS"
             Write-Log "AI Response: $response" "AI"
             return $true
         } else {
-            Write-Log "❌ AI Brain test failed" "ERROR"
+            Write-Log "[FAIL] AI Brain test failed" "ERROR"
             return $false
         }
     }
     catch {
-        Write-Log "❌ Failed to start AI Brain: $($_.Exception.Message)" "ERROR"
+        Write-Log "[FAIL] Failed to start AI Brain: $($_.Exception.Message)" "ERROR"
         return $false
     }
 }
@@ -317,7 +317,7 @@ function Test-AIBrain {
         return $response.answer
     }
     catch {
-        Write-Log "⚠️ AI Brain communication error: $($_.Exception.Message)" "WARNING"
+        Write-Log "[WARN] AI Brain communication error: $($_.Exception.Message)" "WARNING"
         return $null
     }
 }
@@ -333,11 +333,11 @@ function Register-Module {
         } | ConvertTo-Json
         
         $response = Invoke-RestMethod -Uri "http://localhost:9999/module" -Method POST -Body $requestBody -ContentType "application/json" -TimeoutSec 10
-        Write-Log "📦 Module '$ModuleName' registered with AI Brain" "SUCCESS"
+        Write-Log "[PKG] Module '$ModuleName' registered with AI Brain" "SUCCESS"
         return $true
     }
     catch {
-        Write-Log "⚠️ Failed to register module with AI Brain: $($_.Exception.Message)" "WARNING"
+        Write-Log "[WARN] Failed to register module with AI Brain: $($_.Exception.Message)" "WARNING"
         return $false
     }
 }
@@ -345,7 +345,7 @@ function Register-Module {
 function Ask-AIAboutModule {
     param([string]$ModuleName)
     
-    Write-Log "🤖 Asking AI about module: $ModuleName" "INFO"
+    Write-Log "[BOT] Asking AI about module: $ModuleName" "INFO"
     
     $question = "Tell me about the $ModuleName module"
     $response = Test-AIBrain -Question $question
@@ -364,10 +364,10 @@ function Ask-AIAboutModule {
             Write-Log "Module validation: $($validation.validation)" "AI"
         }
         catch {
-            Write-Log "⚠️ Module validation failed" "WARNING"
+            Write-Log "[WARN] Module validation failed" "WARNING"
         }
     } else {
-        Write-Log "⚠️ AI did not respond about module $ModuleName" "WARNING"
+        Write-Log "[WARN] AI did not respond about module $ModuleName" "WARNING"
     }
 }
 
@@ -387,7 +387,7 @@ function Install-ModulesWithAI {
     )
     
     foreach ($module in $modules) {
-        Write-Log "📦 Installing module: $($module.Name)" "INFO"
+        Write-Log "[PKG] Installing module: $($module.Name)" "INFO"
         
         # Create module directory
         $moduleDir = "$InstallPath\modules\$($module.Dir)"
@@ -411,20 +411,20 @@ function Install-ModulesWithAI {
 # $($module.Name) Module v1.0.0
 # $($module.Info)
 
-Write-Host "🔧 $($module.Name) module starting..."
-Write-Host "📋 Info: $($module.Info)"
-Write-Host "✅ Module operational"
+Write-Host "[U+1F527] $($module.Name) module starting..."
+Write-Host "[PLAN] Info: $($module.Info)"
+Write-Host "[PASS] Module operational"
 
 # Keep module running
 while (`$true) {
     Start-Sleep -Seconds 60
-    Write-Host "📊 $($module.Name) status: OPERATIONAL"
+    Write-Host "[BARS] $($module.Name) status: OPERATIONAL"
 }
 "@
         
         $moduleExe | Out-File -FilePath "$moduleDir\module.ps1" -Encoding UTF8
         
-        Write-Log "✅ Module $($module.Name) installed" "SUCCESS"
+        Write-Log "[PASS] Module $($module.Name) installed" "SUCCESS"
         
         # Register with AI Brain
         Register-Module -ModuleName $module.Name -ModuleInfo $module.Info
@@ -492,7 +492,7 @@ catch {
     }
     
     $serviceScript | Out-File -FilePath "$serviceDir\WatchLockAI-Service.ps1" -Encoding UTF8
-    Write-Log "✅ Service script created" "SUCCESS"
+    Write-Log "[PASS] Service script created" "SUCCESS"
     
     # Create service wrapper batch file
     $serviceWrapper = @"
@@ -501,7 +501,7 @@ powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -File "C:\Program Fil
 "@
     
     $serviceWrapper | Out-File -FilePath "$serviceDir\WatchLockAI-Service.bat" -Encoding ASCII
-    Write-Log "✅ Service wrapper created" "SUCCESS"
+    Write-Log "[PASS] Service wrapper created" "SUCCESS"
     
     # Install the Windows service using sc.exe
     try {
@@ -509,25 +509,25 @@ powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -File "C:\Program Fil
         $createResult = & sc.exe create "WatchLockAI" binPath= "`"$servicePath`"" start= auto DisplayName= "WatchLockAI Security Service" 2>&1
         
         if ($LASTEXITCODE -eq 0) {
-            Write-Log "✅ Windows service 'WatchLockAI' created successfully" "SUCCESS"
+            Write-Log "[PASS] Windows service 'WatchLockAI' created successfully" "SUCCESS"
         } else {
-            Write-Log "⚠️ Service creation result: $createResult" "WARNING"
+            Write-Log "[WARN] Service creation result: $createResult" "WARNING"
         }
         
         # Start the service
-        Write-Log "🚀 Starting WatchLockAI service..." "INFO"
+        Write-Log "[START] Starting WatchLockAI service..." "INFO"
         $startResult = & sc.exe start "WatchLockAI" 2>&1
         
         if ($LASTEXITCODE -eq 0) {
-            Write-Log "✅ WatchLockAI service started successfully" "SUCCESS"
+            Write-Log "[PASS] WatchLockAI service started successfully" "SUCCESS"
         } else {
-            Write-Log "⚠️ Service start result: $startResult" "WARNING"
+            Write-Log "[WARN] Service start result: $startResult" "WARNING"
         }
         
         return $true
     }
     catch {
-        Write-Log "❌ Failed to create/start Windows service: $($_.Exception.Message)" "ERROR"
+        Write-Log "[FAIL] Failed to create/start Windows service: $($_.Exception.Message)" "ERROR"
         return $false
     }
 }
@@ -541,17 +541,17 @@ function Verify-ServiceRunning {
     # Check service status using Get-Service
     try {
         $service = Get-Service -Name "WatchLockAI" -ErrorAction Stop
-        Write-Log "🔍 Service found: $($service.Name)" "INFO"
-        Write-Log "📊 Service status: $($service.Status)" "INFO"
-        Write-Log "🔧 Service start type: $($service.StartType)" "INFO"
+        Write-Log "[SEARCH] Service found: $($service.Name)" "INFO"
+        Write-Log "[BARS] Service status: $($service.Status)" "INFO"
+        Write-Log "[U+1F527] Service start type: $($service.StartType)" "INFO"
         
         if ($service.Status -eq "Running") {
-            Write-Log "✅ WatchLockAI service is RUNNING" "SUCCESS"
+            Write-Log "[PASS] WatchLockAI service is RUNNING" "SUCCESS"
             
             # Double-check with tasklist
             $processes = Get-Process | Where-Object { $_.ProcessName -like "*WatchLockAI*" -or $_.ProcessName -like "*powershell*" }
             if ($processes) {
-                Write-Log "✅ Service processes confirmed in task manager" "SUCCESS"
+                Write-Log "[PASS] Service processes confirmed in task manager" "SUCCESS"
                 foreach ($proc in $processes) {
                     Write-Log "   Process: $($proc.ProcessName) (PID: $($proc.Id))" "INFO"
                 }
@@ -559,12 +559,12 @@ function Verify-ServiceRunning {
             
             return $true
         } else {
-            Write-Log "❌ Service exists but is not running. Status: $($service.Status)" "ERROR"
+            Write-Log "[FAIL] Service exists but is not running. Status: $($service.Status)" "ERROR"
             return $false
         }
     }
     catch {
-        Write-Log "❌ WatchLockAI service not found or error checking: $($_.Exception.Message)" "ERROR"
+        Write-Log "[FAIL] WatchLockAI service not found or error checking: $($_.Exception.Message)" "ERROR"
         return $false
     }
 }
@@ -578,7 +578,7 @@ function Add-ToStartup {
     try {
         # Set service to automatic start
         & sc.exe config "WatchLockAI" start= auto | Out-Null
-        Write-Log "✅ Service set to automatic startup" "SUCCESS"
+        Write-Log "[PASS] Service set to automatic startup" "SUCCESS"
         
         # Create startup entry for system tray (we'll create this next)
         $startupPath = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
@@ -592,12 +592,12 @@ start /min "WatchLockAI-SystemTray" "C:\Program Files\WatchLockAI\systemtray\Wat
 "@
         
         $startupScript | Out-File -FilePath $shortcutPath -Encoding ASCII
-        Write-Log "✅ Startup entry created for system tray" "SUCCESS"
+        Write-Log "[PASS] Startup entry created for system tray" "SUCCESS"
         
         return $true
     }
     catch {
-        Write-Log "❌ Failed to add to startup: $($_.Exception.Message)" "ERROR"
+        Write-Log "[FAIL] Failed to add to startup: $($_.Exception.Message)" "ERROR"
         return $false
     }
 }
@@ -706,11 +706,11 @@ $aboutItem.Add_Click({
                  "Version: 1.0.0`n" +
                  "AI-Powered Threat Detection & Response`n`n" +
                  "Features:`n" +
-                 "• Real-time Threat Detection`n" +
-                 "• Digital Forensics`n" +
-                 "• Compliance Management`n" +
-                 "• MITRE ATT&CK Integration`n" +
-                 "• Enterprise SIEM/EDR Connectivity"
+                 "* Real-time Threat Detection`n" +
+                 "* Digital Forensics`n" +
+                 "* Compliance Management`n" +
+                 "* MITRE ATT&CK Integration`n" +
+                 "* Enterprise SIEM/EDR Connectivity"
     [System.Windows.Forms.MessageBox]::Show($aboutText, "About WatchLockAI", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
 })
 
@@ -761,7 +761,7 @@ finally {
     }
     
     $systemTrayScript | Out-File -FilePath "$systemTrayDir\WatchLockAI-SystemTray.ps1" -Encoding UTF8
-    Write-Log "✅ System tray script created" "SUCCESS"
+    Write-Log "[PASS] System tray script created" "SUCCESS"
     
     # Create system tray launcher
     $trayLauncher = @"
@@ -770,16 +770,16 @@ powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -File "C:\Program Fil
 "@
     
     $trayLauncher | Out-File -FilePath "$systemTrayDir\WatchLockAI-SystemTray.bat" -Encoding ASCII
-    Write-Log "✅ System tray launcher created" "SUCCESS"
+    Write-Log "[PASS] System tray launcher created" "SUCCESS"
     
     # Start system tray application
     try {
         Start-Process cmd -ArgumentList "/c", "`"$systemTrayDir\WatchLockAI-SystemTray.bat`"" -WindowStyle Hidden
-        Write-Log "✅ System tray application started" "SUCCESS"
+        Write-Log "[PASS] System tray application started" "SUCCESS"
         return $true
     }
     catch {
-        Write-Log "❌ Failed to start system tray: $($_.Exception.Message)" "ERROR"
+        Write-Log "[FAIL] Failed to start system tray: $($_.Exception.Message)" "ERROR"
         return $false
     }
 }
@@ -793,77 +793,77 @@ function Final-Verification {
     $allGood = $true
     
     # 1. Check AI Brain
-    Write-Log "🧪 Testing AI Brain final status..." "INFO"
+    Write-Log "[U+1F9EA] Testing AI Brain final status..." "INFO"
     $aiResponse = Test-AIBrain -Question "Final status check"
     if ($aiResponse) {
-        Write-Log "✅ AI Brain: OPERATIONAL" "SUCCESS"
+        Write-Log "[PASS] AI Brain: OPERATIONAL" "SUCCESS"
         Write-Log "AI says: $aiResponse" "AI"
     } else {
-        Write-Log "❌ AI Brain: NOT RESPONDING" "ERROR"
+        Write-Log "[FAIL] AI Brain: NOT RESPONDING" "ERROR"
         $allGood = $false
     }
     
     # 2. Check Windows Service
-    Write-Log "🔍 Verifying Windows service..." "INFO"
+    Write-Log "[SEARCH] Verifying Windows service..." "INFO"
     try {
         $service = Get-Service -Name "WatchLockAI" -ErrorAction Stop
         if ($service.Status -eq "Running") {
-            Write-Log "✅ Windows Service: RUNNING" "SUCCESS"
+            Write-Log "[PASS] Windows Service: RUNNING" "SUCCESS"
         } else {
-            Write-Log "❌ Windows Service: NOT RUNNING ($($service.Status))" "ERROR"
+            Write-Log "[FAIL] Windows Service: NOT RUNNING ($($service.Status))" "ERROR"
             $allGood = $false
         }
     }
     catch {
-        Write-Log "❌ Windows Service: NOT FOUND" "ERROR"
+        Write-Log "[FAIL] Windows Service: NOT FOUND" "ERROR"
         $allGood = $false
     }
     
     # 3. Check Console Accessibility
-    Write-Log "🌐 Testing console accessibility..." "INFO"
+    Write-Log "[U+1F310] Testing console accessibility..." "INFO"
     try {
         $response = Invoke-WebRequest -Uri "http://localhost:8080" -TimeoutSec 10 -UseBasicParsing
         if ($response.StatusCode -eq 200) {
-            Write-Log "✅ Web Console: ACCESSIBLE" "SUCCESS"
+            Write-Log "[PASS] Web Console: ACCESSIBLE" "SUCCESS"
         } else {
-            Write-Log "❌ Web Console: HTTP $($response.StatusCode)" "ERROR"
+            Write-Log "[FAIL] Web Console: HTTP $($response.StatusCode)" "ERROR"
             $allGood = $false
         }
     }
     catch {
-        Write-Log "❌ Web Console: NOT ACCESSIBLE" "ERROR"
+        Write-Log "[FAIL] Web Console: NOT ACCESSIBLE" "ERROR"
         $allGood = $false
     }
     
     # 4. Check System Tray
-    Write-Log "🖥️ Checking system tray..." "INFO"
+    Write-Log "[U+1F5A5] Checking system tray..." "INFO"
     $trayProcesses = Get-Process | Where-Object { $_.ProcessName -eq "powershell" -and $_.MainWindowTitle -eq "" }
     if ($trayProcesses) {
-        Write-Log "✅ System Tray: RUNNING" "SUCCESS"
+        Write-Log "[PASS] System Tray: RUNNING" "SUCCESS"
     } else {
-        Write-Log "⚠️ System Tray: MAY NOT BE RUNNING" "WARNING"
+        Write-Log "[WARN] System Tray: MAY NOT BE RUNNING" "WARNING"
     }
     
     # 5. Check Startup Configuration
-    Write-Log "🚀 Checking startup configuration..." "INFO"
+    Write-Log "[START] Checking startup configuration..." "INFO"
     try {
         $service = Get-Service -Name "WatchLockAI"
         if ($service.StartType -eq "Automatic") {
-            Write-Log "✅ Startup: CONFIGURED" "SUCCESS"
+            Write-Log "[PASS] Startup: CONFIGURED" "SUCCESS"
         } else {
-            Write-Log "⚠️ Startup: NOT AUTOMATIC" "WARNING"
+            Write-Log "[WARN] Startup: NOT AUTOMATIC" "WARNING"
         }
     }
     catch {
-        Write-Log "❌ Startup: CANNOT VERIFY" "ERROR"
+        Write-Log "[FAIL] Startup: CANNOT VERIFY" "ERROR"
     }
     
     # Final status
     if ($allGood) {
-        Write-Log "🎉 FINAL VERIFICATION: ALL SYSTEMS OPERATIONAL!" "SUCCESS"
+        Write-Log "[U+1F389] FINAL VERIFICATION: ALL SYSTEMS OPERATIONAL!" "SUCCESS"
         return $true
     } else {
-        Write-Log "⚠️ FINAL VERIFICATION: SOME ISSUES DETECTED" "WARNING"
+        Write-Log "[WARN] FINAL VERIFICATION: SOME ISSUES DETECTED" "WARNING"
         return $false
     }
 }
@@ -874,10 +874,10 @@ function Cleanup-Installation {
     if ($script:AIBrainProcess -and -not $script:AIBrainProcess.HasExited) {
         try {
             $script:AIBrainProcess.Kill()
-            Write-Log "🧠 AI Brain process stopped for cleanup" "INFO"
+            Write-Log "[BRAIN] AI Brain process stopped for cleanup" "INFO"
         }
         catch {
-            Write-Log "⚠️ Could not stop AI Brain process" "WARNING"
+            Write-Log "[WARN] Could not stop AI Brain process" "WARNING"
         }
     }
 }
@@ -887,7 +887,7 @@ try {
     Show-Banner
     Initialize-Logging
     
-    Write-Log "🚀 Starting WatchLockAI ULTIMATE installation..." "INFO"
+    Write-Log "[START] Starting WatchLockAI ULTIMATE installation..." "INFO"
     Write-Log "Installation path: $InstallPath" "INFO"
     
     # Create base directories
@@ -910,12 +910,12 @@ try {
     )
     
     foreach ($step in $steps) {
-        Write-Log "▶️ Executing: $($step.Name)" "INFO"
+        Write-Log "> Executing: $($step.Name)" "INFO"
         
         $result = & $step.Function
         
         if (-not $result) {
-            Write-Log "❌ Step failed: $($step.Name)" "ERROR"
+            Write-Log "[FAIL] Step failed: $($step.Name)" "ERROR"
             Read-Host "Press ENTER to continue anyway or Ctrl+C to exit"
         }
         
@@ -925,16 +925,16 @@ try {
     # Show completion message
     Write-Host ""
     Write-Host "================================================================" -ForegroundColor Green
-    Write-Host "        🎉 WATCHLOCKAI ULTIMATE INSTALLATION COMPLETE! 🎉" -ForegroundColor Green
+    Write-Host "        [U+1F389] WATCHLOCKAI ULTIMATE INSTALLATION COMPLETE! [U+1F389]" -ForegroundColor Green
     Write-Host "================================================================" -ForegroundColor Green
     Write-Host ""
-    Write-Host "✅ AI Brain: Running and responsive" -ForegroundColor Green
-    Write-Host "✅ Windows Service: Installed and running" -ForegroundColor Green
-    Write-Host "✅ System Tray: Active with full functionality" -ForegroundColor Green
-    Write-Host "✅ Console: Available at http://localhost:8080" -ForegroundColor Green
-    Write-Host "✅ Startup: Configured for automatic start" -ForegroundColor Green
+    Write-Host "[PASS] AI Brain: Running and responsive" -ForegroundColor Green
+    Write-Host "[PASS] Windows Service: Installed and running" -ForegroundColor Green
+    Write-Host "[PASS] System Tray: Active with full functionality" -ForegroundColor Green
+    Write-Host "[PASS] Console: Available at http://localhost:8080" -ForegroundColor Green
+    Write-Host "[PASS] Startup: Configured for automatic start" -ForegroundColor Green
     Write-Host ""
-    Write-Host "🔧 WHAT TO DO NEXT:" -ForegroundColor Yellow
+    Write-Host "[U+1F527] WHAT TO DO NEXT:" -ForegroundColor Yellow
     Write-Host "   1. Look for WatchLockAI shield icon in system tray" -ForegroundColor White
     Write-Host "   2. Right-click tray icon for full menu options" -ForegroundColor White
     Write-Host "   3. Double-click tray icon to open console" -ForegroundColor White
@@ -947,11 +947,11 @@ try {
         Start-Process "http://localhost:8080"
     }
     
-    Write-Log "🎯 Installation completed with $script:ErrorCount errors" "SUCCESS"
+    Write-Log "[TARGET] Installation completed with $script:ErrorCount errors" "SUCCESS"
     exit 0
 }
 catch {
-    Write-Log "💥 Installation failed: $($_.Exception.Message)" "ERROR"
+    Write-Log "[U+1F4A5] Installation failed: $($_.Exception.Message)" "ERROR"
     Write-Host "Installation failed. Check logs at: $LogPath" -ForegroundColor Red
     exit 1
 }

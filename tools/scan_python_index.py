@@ -159,7 +159,7 @@ def analyze_module(path: Path) -> Optional[ModuleInfo]:
 
 def to_markdown(mods: List[ModuleInfo]) -> str:
     lines: List[str] = []
-    lines.append("# Python Modules Index — DevAgentZero.V2")
+    lines.append("# Python Modules Index -- DevAgentZero.V2")
     lines.append("")
     lines.append(f"Modules: {len(mods)}")
     lines.append("")
@@ -172,16 +172,16 @@ def to_markdown(mods: List[ModuleInfo]) -> str:
             for f in sorted(m.top_level_funcs, key=lambda x: x.lineno):
                 sig = ("async " if f.async_fn else "") + f"def {f.name}({f.args})"
                 doc = f.doc or ""
-                lines.append(f"  - {sig} @L{f.lineno} — {doc}")
+                lines.append(f"  - {sig} @L{f.lineno} -- {doc}")
         if m.classes:
             lines.append("- Classes:")
             for c in sorted(m.classes, key=lambda x: x.lineno):
-                lines.append(f"  - class {c.name} @L{c.lineno} — {c.doc or ''}")
+                lines.append(f"  - class {c.name} @L{c.lineno} -- {c.doc or ''}")
                 for meth in sorted(c.methods, key=lambda x: x.lineno):
                     sig = (
                         "async " if meth.async_fn else ""
                     ) + f"def {meth.name}({meth.args})"
-                    lines.append(f"      - {sig} @L{meth.lineno} — {meth.doc or ''}")
+                    lines.append(f"      - {sig} @L{meth.lineno} -- {meth.doc or ''}")
         lines.append("")
     return "\n".join(lines)
 

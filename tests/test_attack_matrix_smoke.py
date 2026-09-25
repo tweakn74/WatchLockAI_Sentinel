@@ -114,7 +114,7 @@ class TestAttackMatrixSmoke(unittest.TestCase):
             alert_count = self.bus.get_published_count("AlertEvent")
             self.assertGreater(alert_count, 0, "AlertEvent should be published after threshold exceeded")
             
-            print(f"✓ Brute force detection test passed - {alert_count} alerts generated")
+            print(f"[x] Brute force detection test passed - {alert_count} alerts generated")
             
         except ImportError as e:
             self.skipTest(f"Required modules not available: {e}")
@@ -169,7 +169,7 @@ class TestAttackMatrixSmoke(unittest.TestCase):
             alert_count = self.bus.get_published_count("AlertEvent")
             self.assertGreater(alert_count, 0, "AlertEvent should be published after threshold exceeded")
             
-            print(f"✓ Baseline ransomware detection test passed - {alert_count} alerts generated")
+            print(f"[x] Baseline ransomware detection test passed - {alert_count} alerts generated")
             
         except ImportError as e:
             self.skipTest(f"Required modules not available: {e}")
@@ -201,7 +201,7 @@ class TestAttackMatrixSmoke(unittest.TestCase):
                     self.assertTrue(hasattr(rule, 'event'), f"{rule_type} rule {rule} should have event field")
                     self.assertTrue(hasattr(rule, 'threshold'), f"{rule_type} rule {rule} should have threshold field")
             
-            print(f"✓ Rule loading test passed - {len(default_rules)} default + {len(baseline_rules)} baseline rules loaded")
+            print(f"[x] Rule loading test passed - {len(default_rules)} default + {len(baseline_rules)} baseline rules loaded")
             
         except ImportError as e:
             self.skipTest(f"Required modules not available: {e}")
@@ -217,7 +217,7 @@ class TestAttackMatrixSmoke(unittest.TestCase):
             # Test response.playbooks import 
             import response.playbooks
             
-            print("✓ Import safety test passed - all modules imported successfully")
+            print("[x] Import safety test passed - all modules imported successfully")
             
         except ImportError as e:
             self.skipTest(f"Modules not available for import test: {e}")
@@ -243,10 +243,10 @@ def main():
         
         # Return appropriate exit code
         if result.wasSuccessful():
-            print("\n✓ All MITRE ATT&CK smoke tests passed!")
+            print("\n[x] All MITRE ATT&CK smoke tests passed!")
             sys.exit(0)
         else:
-            print(f"\n✗ {len(result.failures)} test(s) failed")
+            print(f"\n[FAIL] {len(result.failures)} test(s) failed")
             sys.exit(1)
             
     except Exception as e:

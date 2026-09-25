@@ -257,7 +257,7 @@ export function MitreAttackMatrix({
                   size="sm"
                   onClick={() => setSelectedTechnique(null)}
                 >
-                  ×
+                  x
                 </Button>
               </div>
               

@@ -228,16 +228,16 @@
 ### Enabled Behavior (ADMIN_AUTH_ENABLED=1)
 - All `/api/admin/*` routes require `X-Admin-Token` header
 - Token must match `ADMIN_TOKEN` environment variable
-- Missing header → HTTP 403 Forbidden
-- Wrong token → HTTP 403 Forbidden
-- Correct token → Normal operation
+- Missing header -> HTTP 403 Forbidden
+- Wrong token -> HTTP 403 Forbidden
+- Correct token -> Normal operation
 
 ### Authentication Flow
 
 ```bash
 # Without authentication (default)
 curl -X POST http://localhost:8080/api/admin/config/reload
-# → 200 OK
+# -> 200 OK
 
 # With authentication enabled
 export ADMIN_AUTH_ENABLED=1
@@ -245,12 +245,12 @@ export ADMIN_TOKEN=my-secret-token
 
 # Missing header
 curl -X POST http://localhost:8080/api/admin/config/reload
-# → 403 Forbidden
+# -> 403 Forbidden
 
 # Correct header  
 curl -X POST http://localhost:8080/api/admin/config/reload \
      -H "X-Admin-Token: my-secret-token"
-# → 200 OK
+# -> 200 OK
 ```
 
 ## Rate Limiting - P1-004

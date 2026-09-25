@@ -370,7 +370,7 @@ class IdentityCorrelationEngine:
 
 def main():
     '''Test identity correlation'''
-    print("🔗 WatchLockAI Identity Correlation Engine")
+    print("[LINK] WatchLockAI Identity Correlation Engine")
     print("Correlating user identities across systems")
     
     engine = IdentityCorrelationEngine()
@@ -384,9 +384,9 @@ def main():
     
     for user in test_users:
         identity_id = engine.correlate_identity(user["username"], user)
-        print(f"   User '{user['username']}' → Identity ID: {identity_id}")
+        print(f"   User '{user['username']}' -> Identity ID: {identity_id}")
     
-    print("✅ Identity correlation test completed")
+    print("[PASS] Identity correlation test completed")
 
 if __name__ == "__main__":
     main()

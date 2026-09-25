@@ -3,7 +3,7 @@
 Baseline performance snapshot for chaos probes (Beazley-Mode RC-1+).
 
 Produces a deterministic baseline to compare future chaos results.
-Measures event bus enqueue→deliver performance without external dependencies.
+Measures event bus enqueue->deliver performance without external dependencies.
 """
 
 import asyncio
@@ -88,7 +88,7 @@ async def measure_async_performance(event_bus, n_events: int = 1000) -> Dict[str
     elif hasattr(event_bus, 'subscribe'):
         event_bus.subscribe("perf_test", noop_handler)
     
-    # Measure enqueue→deliver performance
+    # Measure enqueue->deliver performance
     start_time = time.perf_counter()
     
     for i in range(n_events):
@@ -127,7 +127,7 @@ def measure_sync_performance(event_bus, n_events: int = 1000) -> Dict[str, Any]:
     elif hasattr(event_bus, 'subscribe'):
         event_bus.subscribe("perf_test_sync", noop_handler)
     
-    # Measure enqueue→deliver performance
+    # Measure enqueue->deliver performance
     start_time = time.perf_counter()
     
     for i in range(n_events):
@@ -218,7 +218,7 @@ async def run_performance_baseline(n_events: int = 1000) -> Dict[str, Any]:
 
 async def main():
     """Main entry point for performance baseline."""
-    print("🏁 Performance Baseline Measurement Starting...")
+    print("[U+1F3C1] Performance Baseline Measurement Starting...")
     
     try:
         # Run the baseline measurement
@@ -231,16 +231,16 @@ async def main():
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(baseline, f, indent=2, sort_keys=True)
         
-        print(f"✅ Performance baseline completed")
-        print(f"📊 Results: {baseline['performance']['events_per_second']:.1f} events/sec, "
+        print(f"[PASS] Performance baseline completed")
+        print(f"[BARS] Results: {baseline['performance']['events_per_second']:.1f} events/sec, "
               f"{baseline['performance']['mean_latency_ms']:.3f}ms avg latency")
-        print(f"💾 Baseline saved to: {output_path}")
-        print(f"🐍 Python {baseline['python_version']} on {baseline['platform']}")
+        print(f"[U+1F4BE] Baseline saved to: {output_path}")
+        print(f"[U+1F40D] Python {baseline['python_version']} on {baseline['platform']}")
         
         return 0
         
     except Exception as e:
-        print(f"❌ Performance baseline failed: {e}")
+        print(f"[FAIL] Performance baseline failed: {e}")
         return 1
 
 

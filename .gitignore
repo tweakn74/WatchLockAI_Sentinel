@@ -170,6 +170,7 @@ Thumbs.db
 *.tmp
 *.temp
 desktop.ini
+Desktop.ini
 
 # Security and sensitive files
 *.key
@@ -262,3 +263,10 @@ certificates/
 api_tokens.txt
 credentials.txt
 auth_tokens.json
+
+# local data
+.aura/
+.data/
+.playwright-mcp/
+
+nul

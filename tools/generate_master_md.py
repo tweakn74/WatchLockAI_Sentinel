@@ -47,7 +47,7 @@ task_data = {
 # ---- Generate Markdown ---- #
 def generate_markdown(task_data):
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    md = "# DevAgentZero – Master Task Tracker\n"
+    md = "# DevAgentZero - Master Task Tracker\n"
     md += "**Version:** Phase 2.6+ into 2.7  \n"
     md += f"**Last Updated:** {now}  \n"
     md += "**Maintainer:** DevAgentZero Core\n"
@@ -71,4 +71,4 @@ if __name__ == "__main__":
     content = generate_markdown(task_data)
     with open("devagent_master_tasks.md", "w", encoding="utf-8") as f:
         f.write(content)
-    print("✅ devagent_master_tasks.md generated successfully.")
+    print("[PASS] devagent_master_tasks.md generated successfully.")

@@ -612,18 +612,18 @@ class SecurityLinter:
         high_count = severity_counts.get("HIGH", 0)
         
         if critical_count > 0:
-            report.append("🔴 **CRITICAL RISK**: Critical security vulnerabilities detected\n\n")
+            report.append("[U+1F534] **CRITICAL RISK**: Critical security vulnerabilities detected\n\n")
         elif high_count > 5:
-            report.append("🟡 **MODERATE RISK**: Multiple high-severity findings\n\n")
+            report.append("[U+1F7E1] **MODERATE RISK**: Multiple high-severity findings\n\n")
         else:
-            report.append("🟢 **LOW RISK**: No critical vulnerabilities detected\n\n")
+            report.append("[U+1F7E2] **LOW RISK**: No critical vulnerabilities detected\n\n")
         
         # Severity Breakdown
         report.append("## Findings by Severity\n\n")
         for severity in ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO"]:
             count = severity_counts.get(severity, 0)
             if count > 0:
-                emoji = {"CRITICAL": "🔥", "HIGH": "⚠️", "MEDIUM": "⚡", "LOW": "ℹ️", "INFO": "✅"}.get(severity, "")
+                emoji = {"CRITICAL": "[FIRE]", "HIGH": "[WARN]", "MEDIUM": "[SYS]", "LOW": "ℹ", "INFO": "[PASS]"}.get(severity, "")
                 report.append(f"- {emoji} **{severity}**: {count}\n")
         report.append("\n")
         
@@ -642,7 +642,7 @@ class SecurityLinter:
             if not severity_findings:
                 continue
                 
-            emoji = {"CRITICAL": "🔥", "HIGH": "⚠️", "MEDIUM": "⚡", "LOW": "ℹ️", "INFO": "✅"}.get(severity, "")
+            emoji = {"CRITICAL": "[FIRE]", "HIGH": "[WARN]", "MEDIUM": "[SYS]", "LOW": "ℹ", "INFO": "[PASS]"}.get(severity, "")
             report.append(f"### {emoji} {severity} Severity ({len(severity_findings)} findings)\n\n")
             
             for i, finding in enumerate(severity_findings[:20]):  # Limit to first 20 per severity

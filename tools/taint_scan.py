@@ -163,7 +163,7 @@ class TaintFlowAnalyzer:
 
     def scan_all_files(self) -> None:
         """Scan all Python files for taint flows"""
-        print("🔍 Scanning for taint flows...")
+        print("[SEARCH] Scanning for taint flows...")
         
         python_files = []
         for root, dirs, files in os.walk(self.repo_root):
@@ -175,21 +175,21 @@ class TaintFlowAnalyzer:
                 if file.endswith('.py'):
                     python_files.append(os.path.join(root, file))
         
-        print(f"📊 Found {len(python_files)} Python files to analyze")
+        print(f"[BARS] Found {len(python_files)} Python files to analyze")
         
         for file_path in python_files:
             try:
                 self._analyze_file(file_path)
             except Exception as e:
-                print(f"⚠️  Error analyzing {file_path}: {e}")
+                print(f"[WARN]  Error analyzing {file_path}: {e}")
         
         # Analyze flows
         self._analyze_taint_flows()
         
-        print(f"📈 Analysis complete:")
-        print(f"   🎯 Sources: {len(self.sources)}")
-        print(f"   🕳️  Sinks: {len(self.sinks)}")
-        print(f"   🌊 Flows: {len(self.flows)}")
+        print(f"[CHART] Analysis complete:")
+        print(f"   [TARGET] Sources: {len(self.sources)}")
+        print(f"   [U+1F573]  Sinks: {len(self.sinks)}")
+        print(f"   [U+1F30A] Flows: {len(self.flows)}")
 
     def _analyze_file(self, file_path: str) -> None:
         """Analyze a single Python file"""
@@ -344,7 +344,7 @@ class TaintFlowAnalyzer:
 
     def generate_reports(self) -> None:
         """Generate taint flow reports"""
-        print("📄 Generating taint flow reports...")
+        print("[PAGE] Generating taint flow reports...")
         
         # Generate JSON report
         self._generate_json_report()
@@ -352,7 +352,7 @@ class TaintFlowAnalyzer:
         # Generate Markdown report
         self._generate_markdown_report()
         
-        print("✅ Taint flow reports generated")
+        print("[PASS] Taint flow reports generated")
 
     def _generate_json_report(self) -> None:
         """Generate JSON taint map"""
@@ -377,7 +377,7 @@ class TaintFlowAnalyzer:
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(report_data, f, indent=2, ensure_ascii=False)
         
-        print(f"💾 JSON report: {output_path}")
+        print(f"[U+1F4BE] JSON report: {output_path}")
 
     def _generate_markdown_report(self) -> None:
         """Generate Markdown taint analysis report"""
@@ -396,7 +396,7 @@ class TaintFlowAnalyzer:
 |--------|-------|---------|
 | **Taint Sources** | {len(self.sources)} | Entry points for untrusted data |
 | **Taint Sinks** | {len(self.sinks)} | Potentially dangerous operations |
-| **Data Flows** | {len(self.flows)} | Source→sink paths identified |
+| **Data Flows** | {len(self.flows)} | Source->sink paths identified |
 | **Critical Flows** | {risk_dist.get('critical', 0)} | Immediate security risks |
 | **High Risk Flows** | {risk_dist.get('high', 0)} | Significant security concerns |
 | **Mitigation Coverage** | {mitigation_coverage:.1f}% | Flows with detected mitigations |
@@ -417,27 +417,27 @@ Low:      {risk_dist.get('low', 0):3} flows - Monitor
         # Add critical flows
         critical_flows = [f for f in self.flows if f.risk_level == 'critical']
         if critical_flows:
-            report_content += "### 🚨 Critical Risk Flows\n\n"
+            report_content += "### [ALERT] Critical Risk Flows\n\n"
             for i, flow in enumerate(critical_flows, 1):
                 report_content += f"""**{i}. {flow.description}**
 - **Source:** `{flow.source.file_path}:{flow.source.line_number}` ({flow.source.source_type})
 - **Sink:** `{flow.sink.file_path}:{flow.sink.line_number}` ({flow.sink.sink_type})
-- **Mitigation:** {'✅ Present' if flow.mitigation_present else '❌ Missing'}
-- **Path:** {' → '.join(flow.flow_path)}
+- **Mitigation:** {'[PASS] Present' if flow.mitigation_present else '[FAIL] Missing'}
+- **Path:** {' -> '.join(flow.flow_path)}
 
 """
         else:
-            report_content += "### ✅ No Critical Risk Flows Detected\n\n"
+            report_content += "### [PASS] No Critical Risk Flows Detected\n\n"
         
         # Add high risk flows
         high_flows = [f for f in self.flows if f.risk_level == 'high']
         if high_flows:
-            report_content += "### ⚠️ High Risk Flows\n\n"
+            report_content += "### [WARN] High Risk Flows\n\n"
             for i, flow in enumerate(high_flows[:5], 1):  # Top 5
                 report_content += f"""**{i}. {flow.description}**
 - **Source:** `{flow.source.file_path}:{flow.source.line_number}`
 - **Sink:** `{flow.sink.file_path}:{flow.sink.line_number}`
-- **Mitigation:** {'✅' if flow.mitigation_present else '❌'}
+- **Mitigation:** {'[PASS]' if flow.mitigation_present else '[FAIL]'}
 
 """
         
@@ -488,11 +488,11 @@ Low:      {risk_dist.get('low', 0):3} flows - Monitor
             # List non-quarantined flows
             non_quarantined = [f for f in path_flows if not self._is_quarantined_path(f.sink)]
             if non_quarantined:
-                report_content += "### ⚠️ Non-Quarantined File Operations\n\n"
+                report_content += "### [WARN] Non-Quarantined File Operations\n\n"
                 for flow in non_quarantined[:10]:  # Top 10
                     report_content += f"- `{flow.sink.file_path}:{flow.sink.line_number}` - {flow.sink.operation}\n"
         else:
-            report_content += "- ✅ No file path flows detected\n"
+            report_content += "- [PASS] No file path flows detected\n"
         
         # Recommendations
         report_content += """
@@ -506,7 +506,7 @@ Low:      {risk_dist.get('low', 0):3} flows - Monitor
 
 ### Medium Priority
 1. **Implement rate limiting** for file upload endpoints
-2. **Add logging** for all taint source→sink flows
+2. **Add logging** for all taint source->sink flows
 3. **Review token handling** in file operations
 4. **Enhance error handling** to prevent information leakage
 
@@ -524,7 +524,7 @@ Low:      {risk_dist.get('low', 0):3} flows - Monitor
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(report_content)
         
-        print(f"📄 Markdown report: {output_path}")
+        print(f"[PAGE] Markdown report: {output_path}")
 
     def _get_risk_distribution(self) -> Dict[str, int]:
         """Get distribution of flows by risk level"""
@@ -688,15 +688,15 @@ def main():
     """Main execution function"""
     repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     
-    print("🔍 Starting Taint Flow Analysis v4.0...")
-    print(f"📁 Repository: {repo_root}")
+    print("[SEARCH] Starting Taint Flow Analysis v4.0...")
+    print(f"[U+1F4C1] Repository: {repo_root}")
     
     analyzer = TaintFlowAnalyzer(repo_root)
     analyzer.scan_all_files()
     analyzer.generate_reports()
     
-    print("\n🎉 P17 Complete: Taint Flow Analysis Ready!")
-    print("📋 Reports generated:")
+    print("\n[U+1F389] P17 Complete: Taint Flow Analysis Ready!")
+    print("[PLAN] Reports generated:")
     print("   - DOCS/security/taint_map.json")
     print("   - DOCS/security/taint_map.md")
 

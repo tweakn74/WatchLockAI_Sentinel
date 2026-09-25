@@ -463,10 +463,10 @@ def generate_golden_master_report(request):
         for result in summary['results']:
             route = result['route']
             valid = result.get('valid', False)
-            status = "✅ PASS" if valid else "❌ FAIL"
+            status = "[PASS] PASS" if valid else "[FAIL] FAIL"
             
             if result.get('skipped'):
-                status = "⏭️ SKIP"
+                status = "[U+23ED] SKIP"
                 
             f.write(f"### {status} `{route}`\n\n")
             

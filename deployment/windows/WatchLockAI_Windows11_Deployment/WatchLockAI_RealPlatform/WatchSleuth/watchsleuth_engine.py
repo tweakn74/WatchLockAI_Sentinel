@@ -851,7 +851,7 @@ class WatchSleuthForensicEngine:
 
 def main():
     '''Main entry point for WatchSleuth Forensic Engine'''
-    print("🔍 WatchSleuth Forensic Engine")
+    print("[SEARCH] WatchSleuth Forensic Engine")
     print("Advanced Digital Forensics and Incident Investigation")
     print()
     
@@ -865,19 +865,19 @@ def main():
         "Sample forensic investigation for testing"
     )
     
-    print(f"✅ Started investigation: {case_id}")
+    print(f"[PASS] Started investigation: {case_id}")
     print()
-    print("🎯 Available capabilities:")
-    print("   • MFT Analysis - NTFS file system forensics")
-    print("   • Shadow Copy Analysis - VSS snapshot examination")
-    print("   • Deleted File Carving - Recover deleted files")
-    print("   • Registry Analysis - Windows registry forensics")
-    print("   • Email Forensics - PST/EML/MSG analysis")
-    print("   • Browser Forensics - Web activity reconstruction")
-    print("   • Timeline Analysis - Event correlation and sequencing")
-    print("   • Comprehensive Reporting - Detailed investigation reports")
+    print("[TARGET] Available capabilities:")
+    print("   * MFT Analysis - NTFS file system forensics")
+    print("   * Shadow Copy Analysis - VSS snapshot examination")
+    print("   * Deleted File Carving - Recover deleted files")
+    print("   * Registry Analysis - Windows registry forensics")
+    print("   * Email Forensics - PST/EML/MSG analysis")
+    print("   * Browser Forensics - Web activity reconstruction")
+    print("   * Timeline Analysis - Event correlation and sequencing")
+    print("   * Comprehensive Reporting - Detailed investigation reports")
     print()
-    print("📊 To use WatchSleuth:")
+    print("[BARS] To use WatchSleuth:")
     print("   1. engine.add_evidence('file_path', 'description')")
     print("   2. engine.perform_comprehensive_analysis(case_id)")
     print("   3. engine.export_case_report(case_id, 'report.json')")

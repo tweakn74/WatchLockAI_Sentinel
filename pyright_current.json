@@ -5,7 +5,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/health_monitor.py",
             "severity": "error",
-            "message": "Type of \"append\" is partially unknown\n  Type of \"append\" is \"(object: Unknown, /) -> None\"",
+            "message": "Type of \"append\" is partially unknown\n  Type of \"append\" is \"(object: Unknown, /) -> None\"",
             "range": {
                 "start": {
                     "line": 312,
@@ -21,7 +21,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Type of \"connections\" is partially unknown\n  Type of \"connections\" is \"list[dict[Unknown, Unknown]]\"",
+            "message": "Type of \"connections\" is partially unknown\n  Type of \"connections\" is \"list[dict[Unknown, Unknown]]\"",
             "range": {
                 "start": {
                     "line": 112,
@@ -37,7 +37,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Type of \"_get_network_connections\" is partially unknown\n  Type of \"_get_network_connections\" is \"() -> list[dict[Unknown, Unknown]]\"",
+            "message": "Type of \"_get_network_connections\" is partially unknown\n  Type of \"_get_network_connections\" is \"() -> list[dict[Unknown, Unknown]]\"",
             "range": {
                 "start": {
                     "line": 112,
@@ -53,7 +53,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Type of \"conn_info\" is partially unknown\n  Type of \"conn_info\" is \"dict[Unknown, Unknown]\"",
+            "message": "Type of \"conn_info\" is partially unknown\n  Type of \"conn_info\" is \"dict[Unknown, Unknown]\"",
             "range": {
                 "start": {
                     "line": 114,
@@ -69,7 +69,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"pid\" in function \"__init__\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"pid\" in function \"__init__\"",
             "range": {
                 "start": {
                     "line": 115,
@@ -85,7 +85,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"laddr\" in function \"__init__\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"laddr\" in function \"__init__\"",
             "range": {
                 "start": {
                     "line": 115,
@@ -101,7 +101,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"raddr\" in function \"__init__\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"raddr\" in function \"__init__\"",
             "range": {
                 "start": {
                     "line": 115,
@@ -117,7 +117,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"status\" in function \"__init__\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"status\" in function \"__init__\"",
             "range": {
                 "start": {
                     "line": 115,
@@ -133,7 +133,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"proto\" in function \"__init__\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"proto\" in function \"__init__\"",
             "range": {
                 "start": {
                     "line": 115,
@@ -149,7 +149,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument of type \"tuple[int | None, tuple[str, int], tuple[str, int], str]\" cannot be assigned to parameter \"key\" of type \"tuple[int | None, str, int, str, str]\" in function \"__setitem__\"\n  \"tuple[int | None, tuple[str, int], tuple[str, int], str]\" is incompatible with \"tuple[int | None, str, int, str, str]\"\n    Tuple size mismatch; expected 5 but received 4",
+            "message": "Argument of type \"tuple[int | None, tuple[str, int], tuple[str, int], str]\" cannot be assigned to parameter \"key\" of type \"tuple[int | None, str, int, str, str]\" in function \"__setitem__\"\n  \"tuple[int | None, tuple[str, int], tuple[str, int], str]\" is incompatible with \"tuple[int | None, str, int, str, str]\"\n    Tuple size mismatch; expected 5 but received 4",
             "range": {
                 "start": {
                     "line": 116,
@@ -165,7 +165,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Type of \"listener_key\" is partially unknown\n  Type of \"listener_key\" is \"tuple[Unknown, Unknown, Unknown, Unknown]\"",
+            "message": "Type of \"listener_key\" is partially unknown\n  Type of \"listener_key\" is \"tuple[Unknown, Unknown, Unknown, Unknown]\"",
             "range": {
                 "start": {
                     "line": 120,
@@ -181,7 +181,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"element\" in function \"add\"\n  Argument type is \"tuple[Unknown, Unknown, Unknown, Unknown]\"",
+            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"element\" in function \"add\"\n  Argument type is \"tuple[Unknown, Unknown, Unknown, Unknown]\"",
             "range": {
                 "start": {
                     "line": 121,
@@ -229,7 +229,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Type of \"append\" is partially unknown\n  Type of \"append\" is \"(object: Unknown, /) -> None\"",
+            "message": "Type of \"append\" is partially unknown\n  Type of \"append\" is \"(object: Unknown, /) -> None\"",
             "range": {
                 "start": {
                     "line": 182,
@@ -261,7 +261,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Type of \"current_listeners\" is partially unknown\n  Type of \"current_listeners\" is \"set[Unknown]\"",
+            "message": "Type of \"current_listeners\" is partially unknown\n  Type of \"current_listeners\" is \"set[Unknown]\"",
             "range": {
                 "start": {
                     "line": 203,
@@ -277,7 +277,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Type of \"conn_info\" is partially unknown\n  Type of \"conn_info\" is \"dict[Unknown, Unknown]\"",
+            "message": "Type of \"conn_info\" is partially unknown\n  Type of \"conn_info\" is \"dict[Unknown, Unknown]\"",
             "range": {
                 "start": {
                     "line": 206,
@@ -293,7 +293,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Type of \"_get_network_connections\" is partially unknown\n  Type of \"_get_network_connections\" is \"() -> list[dict[Unknown, Unknown]]\"",
+            "message": "Type of \"_get_network_connections\" is partially unknown\n  Type of \"_get_network_connections\" is \"() -> list[dict[Unknown, Unknown]]\"",
             "range": {
                 "start": {
                     "line": 206,
@@ -309,7 +309,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"pid\" in function \"__init__\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"pid\" in function \"__init__\"",
             "range": {
                 "start": {
                     "line": 207,
@@ -325,7 +325,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"laddr\" in function \"__init__\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"laddr\" in function \"__init__\"",
             "range": {
                 "start": {
                     "line": 207,
@@ -341,7 +341,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"raddr\" in function \"__init__\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"raddr\" in function \"__init__\"",
             "range": {
                 "start": {
                     "line": 207,
@@ -357,7 +357,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"status\" in function \"__init__\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"status\" in function \"__init__\"",
             "range": {
                 "start": {
                     "line": 207,
@@ -373,7 +373,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"proto\" in function \"__init__\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"proto\" in function \"__init__\"",
             "range": {
                 "start": {
                     "line": 207,
@@ -389,7 +389,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Type of \"listener_key\" is partially unknown\n  Type of \"listener_key\" is \"tuple[Unknown, Unknown, Unknown, Unknown]\"",
+            "message": "Type of \"listener_key\" is partially unknown\n  Type of \"listener_key\" is \"tuple[Unknown, Unknown, Unknown, Unknown]\"",
             "range": {
                 "start": {
                     "line": 212,
@@ -405,7 +405,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Type of \"add\" is partially unknown\n  Type of \"add\" is \"(element: Unknown, /) -> None\"",
+            "message": "Type of \"add\" is partially unknown\n  Type of \"add\" is \"(element: Unknown, /) -> None\"",
             "range": {
                 "start": {
                     "line": 213,
@@ -421,7 +421,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Type of \"new_connections\" is partially unknown\n  Type of \"new_connections\" is \"set[Unknown]\"",
+            "message": "Type of \"new_connections\" is partially unknown\n  Type of \"new_connections\" is \"set[Unknown]\"",
             "range": {
                 "start": {
                     "line": 216,
@@ -437,7 +437,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"iterable\" in function \"__init__\"\n  Argument type is \"dict_keys[Unknown, Unknown]\"",
+            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"iterable\" in function \"__init__\"\n  Argument type is \"dict_keys[Unknown, Unknown]\"",
             "range": {
                 "start": {
                     "line": 216,
@@ -501,7 +501,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"conn_state\" in function \"_emit_network_event\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"conn_state\" in function \"_emit_network_event\"",
             "range": {
                 "start": {
                     "line": 222,
@@ -517,7 +517,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"conn_state\" in function \"_emit_network_event\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"conn_state\" in function \"_emit_network_event\"",
             "range": {
                 "start": {
                     "line": 224,
@@ -533,7 +533,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"iterable\" in function \"__init__\"\n  Argument type is \"dict_keys[Unknown, Unknown]\"",
+            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"iterable\" in function \"__init__\"\n  Argument type is \"dict_keys[Unknown, Unknown]\"",
             "range": {
                 "start": {
                     "line": 227,
@@ -629,7 +629,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Type of \"get_connection_stats\" is partially unknown\n  Type of \"get_connection_stats\" is \"() -> dict[str, Unknown]\"",
+            "message": "Type of \"get_connection_stats\" is partially unknown\n  Type of \"get_connection_stats\" is \"() -> dict[str, Unknown]\"",
             "range": {
                 "start": {
                     "line": 310,
@@ -645,7 +645,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"m\" in function \"update\"\n  Argument type is \"dict[str, Unknown]\"",
+            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"m\" in function \"update\"\n  Argument type is \"dict[str, Unknown]\"",
             "range": {
                 "start": {
                     "line": 310,
@@ -693,7 +693,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/net_monitor.py",
             "severity": "error",
-            "message": "Type of \"append\" is partially unknown\n  Type of \"append\" is \"(object: Unknown, /) -> None\"",
+            "message": "Type of \"append\" is partially unknown\n  Type of \"append\" is \"(object: Unknown, /) -> None\"",
             "range": {
                 "start": {
                     "line": 327,
@@ -741,7 +741,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"_task\" is partially unknown\n  Type of \"_task\" is \"Task[Unknown] | None\"",
+            "message": "Type of \"_task\" is partially unknown\n  Type of \"_task\" is \"Task[Unknown] | None\"",
             "range": {
                 "start": {
                     "line": 102,
@@ -757,7 +757,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"_task\" is partially unknown\n  Type of \"_task\" is \"Task[Unknown]\"",
+            "message": "Type of \"_task\" is partially unknown\n  Type of \"_task\" is \"Task[Unknown]\"",
             "range": {
                 "start": {
                     "line": 103,
@@ -773,7 +773,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"_task\" is partially unknown\n  Type of \"_task\" is \"Task[Unknown]\"",
+            "message": "Type of \"_task\" is partially unknown\n  Type of \"_task\" is \"Task[Unknown]\"",
             "range": {
                 "start": {
                     "line": 105,
@@ -789,7 +789,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"current_pids\" is partially unknown\n  Type of \"current_pids\" is \"set[Unknown]\"",
+            "message": "Type of \"current_pids\" is partially unknown\n  Type of \"current_pids\" is \"set[Unknown]\"",
             "range": {
                 "start": {
                     "line": 112,
@@ -805,7 +805,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"add\" is partially unknown\n  Type of \"add\" is \"(element: Unknown, /) -> None\"",
+            "message": "Type of \"add\" is partially unknown\n  Type of \"add\" is \"(element: Unknown, /) -> None\"",
             "range": {
                 "start": {
                     "line": 120,
@@ -821,7 +821,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"obj\" in function \"len\"\n  Argument type is \"set[Unknown]\"",
+            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"obj\" in function \"len\"\n  Argument type is \"set[Unknown]\"",
             "range": {
                 "start": {
                     "line": 131,
@@ -837,7 +837,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"current_pids\" is partially unknown\n  Type of \"current_pids\" is \"set[Unknown]\"",
+            "message": "Type of \"current_pids\" is partially unknown\n  Type of \"current_pids\" is \"set[Unknown]\"",
             "range": {
                 "start": {
                     "line": 153,
@@ -853,7 +853,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"add\" is partially unknown\n  Type of \"add\" is \"(element: Unknown, /) -> None\"",
+            "message": "Type of \"add\" is partially unknown\n  Type of \"add\" is \"(element: Unknown, /) -> None\"",
             "range": {
                 "start": {
                     "line": 161,
@@ -869,7 +869,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"append\" is partially unknown\n  Type of \"append\" is \"(object: Unknown, /) -> None\"",
+            "message": "Type of \"append\" is partially unknown\n  Type of \"append\" is \"(object: Unknown, /) -> None\"",
             "range": {
                 "start": {
                     "line": 165,
@@ -917,7 +917,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"_handle_process_start\" is partially unknown\n  Type of \"_handle_process_start\" is \"(proc: Process, info: dict[Unknown, Unknown]) -> Coroutine[Any, Any, None]\"",
+            "message": "Type of \"_handle_process_start\" is partially unknown\n  Type of \"_handle_process_start\" is \"(proc: Process, info: dict[Unknown, Unknown]) -> Coroutine[Any, Any, None]\"",
             "range": {
                 "start": {
                     "line": 180,
@@ -933,7 +933,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"proc\" in function \"_handle_process_start\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"proc\" in function \"_handle_process_start\"",
             "range": {
                 "start": {
                     "line": 180,
@@ -949,7 +949,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"info\" in function \"_handle_process_start\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"info\" in function \"_handle_process_start\"",
             "range": {
                 "start": {
                     "line": 180,
@@ -965,7 +965,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of parameter \"info\" is partially unknown\n  Parameter type is \"dict[Unknown, Unknown]\"",
+            "message": "Type of parameter \"info\" is partially unknown\n  Parameter type is \"dict[Unknown, Unknown]\"",
             "range": {
                 "start": {
                     "line": 193,
@@ -1013,7 +1013,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"ppid\" is partially unknown\n  Type of \"ppid\" is \"Unknown | None\"",
+            "message": "Type of \"ppid\" is partially unknown\n  Type of \"ppid\" is \"Unknown | None\"",
             "range": {
                 "start": {
                     "line": 202,
@@ -1029,7 +1029,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"exe\" is partially unknown\n  Type of \"exe\" is \"Unknown | None\"",
+            "message": "Type of \"exe\" is partially unknown\n  Type of \"exe\" is \"Unknown | None\"",
             "range": {
                 "start": {
                     "line": 203,
@@ -1045,7 +1045,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"get\" is partially unknown\n  Type of \"get\" is \"Overload[(key: Unknown, /) -> (Unknown | None), (key: Unknown, default: Unknown, /) -> Unknown, (key: Unknown, default: _T@get, /) -> (Unknown | _T@get)]\"",
+            "message": "Type of \"get\" is partially unknown\n  Type of \"get\" is \"Overload[(key: Unknown, /) -> (Unknown | None), (key: Unknown, default: Unknown, /) -> Unknown, (key: Unknown, default: _T@get, /) -> (Unknown | _T@get)]\"",
             "range": {
                 "start": {
                     "line": 203,
@@ -1077,7 +1077,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"get\" is partially unknown\n  Type of \"get\" is \"Overload[(key: Unknown, /) -> (Unknown | None), (key: Unknown, default: Unknown, /) -> Unknown, (key: Unknown, default: _T@get, /) -> (Unknown | _T@get)]\"",
+            "message": "Type of \"get\" is partially unknown\n  Type of \"get\" is \"Overload[(key: Unknown, /) -> (Unknown | None), (key: Unknown, default: Unknown, /) -> Unknown, (key: Unknown, default: _T@get, /) -> (Unknown | _T@get)]\"",
             "range": {
                 "start": {
                     "line": 204,
@@ -1093,7 +1093,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"username\" is partially unknown\n  Type of \"username\" is \"Unknown | None\"",
+            "message": "Type of \"username\" is partially unknown\n  Type of \"username\" is \"Unknown | None\"",
             "range": {
                 "start": {
                     "line": 205,
@@ -1109,7 +1109,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"get\" is partially unknown\n  Type of \"get\" is \"Overload[(key: Unknown, /) -> (Unknown | None), (key: Unknown, default: Unknown, /) -> Unknown, (key: Unknown, default: _T@get, /) -> (Unknown | _T@get)]\"",
+            "message": "Type of \"get\" is partially unknown\n  Type of \"get\" is \"Overload[(key: Unknown, /) -> (Unknown | None), (key: Unknown, default: Unknown, /) -> Unknown, (key: Unknown, default: _T@get, /) -> (Unknown | _T@get)]\"",
             "range": {
                 "start": {
                     "line": 205,
@@ -1125,7 +1125,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"iterable\" in function \"join\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"iterable\" in function \"join\"",
             "range": {
                 "start": {
                     "line": 208,
@@ -1141,7 +1141,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"exe_path\" in function \"compute_executable_hash\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"exe_path\" in function \"compute_executable_hash\"",
             "range": {
                 "start": {
                     "line": 213,
@@ -1157,7 +1157,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"key\" in function \"get\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"key\" in function \"get\"",
             "range": {
                 "start": {
                     "line": 216,
@@ -1173,7 +1173,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"pid\" in function \"__init__\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"pid\" in function \"__init__\"",
             "range": {
                 "start": {
                     "line": 221,
@@ -1189,7 +1189,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"ppid\" in function \"__init__\"\n  Argument type is \"Unknown | None\"",
+            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"ppid\" in function \"__init__\"\n  Argument type is \"Unknown | None\"",
             "range": {
                 "start": {
                     "line": 222,
@@ -1205,7 +1205,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"exe\" in function \"__init__\"\n  Argument type is \"Unknown | None\"",
+            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"exe\" in function \"__init__\"\n  Argument type is \"Unknown | None\"",
             "range": {
                 "start": {
                     "line": 223,
@@ -1221,7 +1221,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"username\" in function \"__init__\"\n  Argument type is \"Unknown | None\"",
+            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"username\" in function \"__init__\"\n  Argument type is \"Unknown | None\"",
             "range": {
                 "start": {
                     "line": 225,
@@ -1237,7 +1237,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/proc_monitor.py",
             "severity": "error",
-            "message": "Type of \"get\" is partially unknown\n  Type of \"get\" is \"Overload[(key: Unknown, /) -> (Unknown | None), (key: Unknown, default: Unknown, /) -> Unknown, (key: Unknown, default: _T@get, /) -> (Unknown | _T@get)]\"",
+            "message": "Type of \"get\" is partially unknown\n  Type of \"get\" is \"Overload[(key: Unknown, /) -> (Unknown | None), (key: Unknown, default: Unknown, /) -> Unknown, (key: Unknown, default: _T@get, /) -> (Unknown | _T@get)]\"",
             "range": {
                 "start": {
                     "line": 235,
@@ -1365,7 +1365,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/reg_monitor.py",
             "severity": "error",
-            "message": "Type of \"mapping\" is partially unknown\n  Type of \"mapping\" is \"dict[RegistryHive, Unknown]\"",
+            "message": "Type of \"mapping\" is partially unknown\n  Type of \"mapping\" is \"dict[RegistryHive, Unknown]\"",
             "range": {
                 "start": {
                     "line": 72,
@@ -1781,7 +1781,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/reg_monitor.py",
             "severity": "error",
-            "message": "Type of \"type_mapping\" is partially unknown\n  Type of \"type_mapping\" is \"dict[Unknown, str]\"",
+            "message": "Type of \"type_mapping\" is partially unknown\n  Type of \"type_mapping\" is \"dict[Unknown, str]\"",
             "range": {
                 "start": {
                     "line": 103,
@@ -2133,7 +2133,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/reg_monitor.py",
             "severity": "error",
-            "message": "Type of \"get\" is partially unknown\n  Type of \"get\" is \"Overload[(key: Unknown, /) -> (str | None), (key: Unknown, default: str, /) -> str, (key: Unknown, default: _T@get, /) -> (str | _T@get)]\"",
+            "message": "Type of \"get\" is partially unknown\n  Type of \"get\" is \"Overload[(key: Unknown, /) -> (str | None), (key: Unknown, default: str, /) -> str, (key: Unknown, default: _T@get, /) -> (str | _T@get)]\"",
             "range": {
                 "start": {
                     "line": 113,
@@ -2149,7 +2149,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/reg_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"key\" in function \"get\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"key\" in function \"get\"",
             "range": {
                 "start": {
                     "line": 113,
@@ -2165,7 +2165,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/reg_monitor.py",
             "severity": "error",
-            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"object\" in function \"__new__\"\n  Argument type is \"list[Unknown]\"",
+            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"object\" in function \"__new__\"\n  Argument type is \"list[Unknown]\"",
             "range": {
                 "start": {
                     "line": 121,
@@ -2181,7 +2181,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/reg_monitor.py",
             "severity": "error",
-            "message": "Argument type is unknown\n  Argument corresponds to parameter \"object\" in function \"__new__\"",
+            "message": "Argument type is unknown\n  Argument corresponds to parameter \"object\" in function \"__new__\"",
             "range": {
                 "start": {
                     "line": 123,
@@ -2613,7 +2613,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/reg_monitor.py",
             "severity": "error",
-            "message": "Type of \"new_names\" is partially unknown\n  Type of \"new_names\" is \"set[Unknown]\"",
+            "message": "Type of \"new_names\" is partially unknown\n  Type of \"new_names\" is \"set[Unknown]\"",
             "range": {
                 "start": {
                     "line": 199,
@@ -2629,7 +2629,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/reg_monitor.py",
             "severity": "error",
-            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"iterable\" in function \"__init__\"\n  Argument type is \"dict_keys[Unknown, Unknown]\"",
+            "message": "Argument type is partially unknown\n  Argument corresponds to parameter \"iterable\" in function \"__init__\"\n  Argument type is \"dict_keys[Unknown, Unknown]\"",
             "range": {
                 "start": {
                     "line": 199,
@@ -2645,7 +2645,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/reg_monitor.py",
             "severity": "error",
-            "message": "Type of \"append\" is partially unknown\n  Type of \"append\" is \"(object: Unknown, /) -> None\"",
+            "message": "Type of \"append\" is partially unknown\n  Type of \"append\" is \"(object: Unknown, /) -> None\"",
             "range": {
                 "start": {
                     "line": 203,
@@ -2677,7 +2677,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/reg_monitor.py",
             "severity": "error",
-            "message": "Type of \"append\" is partially unknown\n  Type of \"append\" is \"(object: Unknown, /) -> None\"",
+            "message": "Type of \"append\" is partially unknown\n  Type of \"append\" is \"(object: Unknown, /) -> None\"",
             "range": {
                 "start": {
                     "line": 207,
@@ -2725,7 +2725,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/reg_monitor.py",
             "severity": "error",
-            "message": "Type of \"append\" is partially unknown\n  Type of \"append\" is \"(object: Unknown, /) -> None\"",
+            "message": "Type of \"append\" is partially unknown\n  Type of \"append\" is \"(object: Unknown, /) -> None\"",
             "range": {
                 "start": {
                     "line": 215,
@@ -2773,7 +2773,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/reg_monitor.py",
             "severity": "error",
-            "message": "Type of \"_task\" is partially unknown\n  Type of \"_task\" is \"Task[Unknown] | None\"",
+            "message": "Type of \"_task\" is partially unknown\n  Type of \"_task\" is \"Task[Unknown] | None\"",
             "range": {
                 "start": {
                     "line": 268,
@@ -2789,7 +2789,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/reg_monitor.py",
             "severity": "error",
-            "message": "Type of \"_task\" is partially unknown\n  Type of \"_task\" is \"Task[Unknown]\"",
+            "message": "Type of \"_task\" is partially unknown\n  Type of \"_task\" is \"Task[Unknown]\"",
             "range": {
                 "start": {
                     "line": 269,
@@ -2805,7 +2805,7 @@
         {
             "file": "/workspace/WatchLockAI_Sentinel/collectors/reg_monitor.py",
             "severity": "error",
-            "message": "Type of \"_task\" is partially unknown\n  Type of \"_task\" is \"Task[Unknown]\"",
+            "message": "Type of \"_task\" is partially unknown\n  Type of \"_task\" is \"Task[Unknown]\"",
             "range": {
                 "start": {
                     "line": 271,

@@ -31,13 +31,13 @@ WatchLockAI-Installer.ps1 -InstallPath "D:\\Security\\WatchLockAI"
 # Example: Install to different C: drive location
 WatchLockAI-Installer.ps1 -InstallPath "C:\\MyApps\\WatchLockAI"
 ```
-⚠️ **Important**: Make sure the target drive exists and has at least 2GB free space!'''
+[WARN] **Important**: Make sure the target drive exists and has at least 2GB free space!'''
         )
         
         with open(quick_start_path, 'w') as f:
             f.write(content)
         
-        print("✅ Updated QUICK_START.md")
+        print("[PASS] Updated QUICK_START.md")
     
     # Update INSTALLATION_GUIDE.md
     install_guide_path = base_path / "INSTALLATION_GUIDE.md"
@@ -65,7 +65,7 @@ WatchLockAI-Installer.ps1 -InstallPath "C:\\CustomApps\\WatchLockAI"
         with open(install_guide_path, 'w') as f:
             f.write(content)
         
-        print("✅ Updated INSTALLATION_GUIDE.md")
+        print("[PASS] Updated INSTALLATION_GUIDE.md")
     
     # Update README_INSTALLER.md
     readme_path = base_path / "README_INSTALLER.md"
@@ -86,7 +86,7 @@ WatchLockAI-Installer.ps1 -InstallPath "C:\\CustomApps\\WatchLockAI"
         with open(readme_path, 'w') as f:
             f.write(content)
         
-        print("✅ Updated README_INSTALLER.md")
+        print("[PASS] Updated README_INSTALLER.md")
 
 def create_drive_compatibility_info():
     """Create a specific file explaining drive compatibility"""
@@ -95,20 +95,20 @@ def create_drive_compatibility_info():
     
     drive_info = """# WatchLockAI Drive Installation Guide
 
-## 🎯 **Simple Answer: It Installs to C: Drive by Default**
+## [TARGET] **Simple Answer: It Installs to C: Drive by Default**
 
 ### Default Installation (99% of users)
 - **Path**: `C:\\Program Files\\WatchLockAI\\`
 - **Why C: Drive**: Windows standard location for applications
 - **No Setup Required**: Just run the installer - it handles everything!
 
-## 💾 **Drive Compatibility Explained**
+## [U+1F4BE] **Drive Compatibility Explained**
 
 ### What Happens by Default
 1. Installer checks `C:\\Program Files\\` for space
 2. Creates `C:\\Program Files\\WatchLockAI\\` directory
 3. Installs all files to C: drive
-4. **Result**: WatchLockAI runs from your C: drive ✅
+4. **Result**: WatchLockAI runs from your C: drive [PASS]
 
 ### When Would You Use D: Drive?
 Custom installation is **only needed if**:
@@ -125,7 +125,7 @@ Get-PSDrive C | Select-Object Name, @{Name="Free(GB)";Expression={[math]::Round(
 Get-PSDrive D -ErrorAction SilentlyContinue
 ```
 
-## 🔧 **Installation Options**
+## [U+1F527] **Installation Options**
 
 ### Option 1: Default (Recommended) - C: Drive
 ```batch
@@ -142,27 +142,27 @@ WatchLockAI-Installer.ps1 -InstallPath "D:\\Security\\WatchLockAI"
 WatchLockAI-Installer.ps1 -InstallPath "C:\\MyApps\\WatchLockAI"
 ```
 
-## ⚠️ **Important Notes**
+## [WARN] **Important Notes**
 
 ### Why Default C: Drive is Best
-- ✅ **Always Available**: Every Windows system has C: drive
-- ✅ **Proper Permissions**: Program Files has correct security
-- ✅ **Windows Standard**: Expected location for services
-- ✅ **Automatic Updates**: Windows Update and antivirus expect C: drive
+- [PASS] **Always Available**: Every Windows system has C: drive
+- [PASS] **Proper Permissions**: Program Files has correct security
+- [PASS] **Windows Standard**: Expected location for services
+- [PASS] **Automatic Updates**: Windows Update and antivirus expect C: drive
 
 ### D: Drive Considerations
-- ❓ **May Not Exist**: Not all computers have D: drive
-- ❓ **Different Types**: Could be CD/DVD, USB, or network drive
-- ❓ **Permission Issues**: May not have proper service permissions
-- ⚠️ **Use Only If**: You specifically know you need it
+- [U+2753] **May Not Exist**: Not all computers have D: drive
+- [U+2753] **Different Types**: Could be CD/DVD, USB, or network drive
+- [U+2753] **Permission Issues**: May not have proper service permissions
+- [WARN] **Use Only If**: You specifically know you need it
 
-## 🎯 **Bottom Line**
+## [TARGET] **Bottom Line**
 
 **Just use the default installer!** It will install to `C:\\Program Files\\WatchLockAI\\` which works on every Windows computer.
 
 The D: drive examples in documentation are for advanced scenarios only.
 
-## 🔍 **Quick Check**
+## [SEARCH] **Quick Check**
 
 If you're unsure about your system:
 ```powershell
@@ -181,13 +181,13 @@ Most systems show:
     with open(drive_guide_path, 'w') as f:
         f.write(drive_info)
     
-    print("✅ Created DRIVE_INSTALLATION_GUIDE.md")
+    print("[PASS] Created DRIVE_INSTALLATION_GUIDE.md")
 
 if __name__ == "__main__":
     print("Clarifying installation drive documentation...")
     update_installation_docs()
     create_drive_compatibility_info()
-    print("\n✅ Documentation updated to clarify C: vs D: drive installation!")
+    print("\n[PASS] Documentation updated to clarify C: vs D: drive installation!")
     print("\nKey points:")
     print("- DEFAULT: C: drive (C:\\Program Files\\WatchLockAI)")
     print("- CUSTOM: D: drive examples are for advanced users only")

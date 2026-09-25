@@ -188,14 +188,14 @@ def check_anomaly_routes() -> List[str]:
         def paths(app):
             return {r.path for r in app.routes if isinstance(r, APIRoute)}
 
-        # Test 1: ANOMALY_ENABLED=0 (default) → /api/anomaly/score absent even with METRICS_DEBUG_ENABLED=1
+        # Test 1: ANOMALY_ENABLED=0 (default) -> /api/anomaly/score absent even with METRICS_DEBUG_ENABLED=1
         os.environ["METRICS_DEBUG_ENABLED"] = "1"
         os.environ.pop("ANOMALY_ENABLED", None)  # Default OFF
         app = SentinelWebAPI().app
         if "/api/anomaly/score" in paths(app):
             errs.append("anomaly score route present when ANOMALY_ENABLED=0 (default)")
 
-        # Test 2: ANOMALY_ENABLED=1 + METRICS_DEBUG_ENABLED=1 → route present
+        # Test 2: ANOMALY_ENABLED=1 + METRICS_DEBUG_ENABLED=1 -> route present
         os.environ["ANOMALY_ENABLED"] = "1"
         os.environ["METRICS_DEBUG_ENABLED"] = "1"
         app = SentinelWebAPI().app
@@ -261,7 +261,7 @@ def check_quarantine_routes() -> List[str]:
         def paths(app):
             return {r.path for r in app.routes if isinstance(r, APIRoute)}
 
-        # Test 1: QUARANTINE_ENABLED=0 (default) → routes absent
+        # Test 1: QUARANTINE_ENABLED=0 (default) -> routes absent
         os.environ.pop("QUARANTINE_ENABLED", None)  # Default OFF
         app = SentinelWebAPI().app
         quarantine_routes = ["/api/admin/quarantine", "/api/admin/quarantine/restore"]
@@ -269,7 +269,7 @@ def check_quarantine_routes() -> List[str]:
         if present_routes:
             errs.append(f"quarantine routes present when QUARANTINE_ENABLED=0: {present_routes}")
 
-        # Test 2: QUARANTINE_ENABLED=1 + ADMIN_AUTH → routes present with RBAC
+        # Test 2: QUARANTINE_ENABLED=1 + ADMIN_AUTH -> routes present with RBAC
         os.environ["QUARANTINE_ENABLED"] = "1"
         os.environ["ADMIN_AUTH_ENABLED"] = "1"
         os.environ["ADMIN_TOKEN"] = "test_token_456"
@@ -331,7 +331,7 @@ def check_p2_auth_streaming_routes() -> List[str]:
             return {r.path for r in app.routes if isinstance(r, APIRoute)}
 
         # Test 1: P2-004 Stream auth requirement
-        # STREAM_REQUIRE_AUTH=1 + CONSOLE_AUTH_ENABLED=1 → /api/stream/health requires valid session
+        # STREAM_REQUIRE_AUTH=1 + CONSOLE_AUTH_ENABLED=1 -> /api/stream/health requires valid session
         os.environ["STREAM_ENABLED"] = "1"
         os.environ["STREAM_REQUIRE_AUTH"] = "1"
         os.environ["CONSOLE_AUTH_ENABLED"] = "1"
@@ -350,7 +350,7 @@ def check_p2_auth_streaming_routes() -> List[str]:
             # which is complex in verifier context. The 401/403 test is sufficient.
 
         # Test 2: P2-003 Login rate limiting  
-        # POST /api/auth/login over limit → 429 when RATE_LIMIT_ENABLED=1
+        # POST /api/auth/login over limit -> 429 when RATE_LIMIT_ENABLED=1
         os.environ["RATE_LIMIT_ENABLED"] = "1"
         
         app = SentinelWebAPI().app
@@ -498,7 +498,7 @@ def check_p5_session_hygiene() -> List[str]:
                     
                     # Secure is optional for HTTP in tests, so we won't fail on missing Secure
                     
-                    # Check cookie expiry ≤ 24h (simplified check for Max-Age presence)
+                    # Check cookie expiry <= 24h (simplified check for Max-Age presence)
                     if "Max-Age" in set_cookie:
                         import re
                         max_age_match = re.search(r'Max-Age=(\d+)', set_cookie)
@@ -683,7 +683,7 @@ def check_p5_export_gating() -> List[str]:
         def paths(app):
             return {r.path for r in app.routes if isinstance(r, APIRoute)}
         
-        # EXPORT_ENABLED=0 → /api/admin/export absent
+        # EXPORT_ENABLED=0 -> /api/admin/export absent
         os.environ.pop("EXPORT_ENABLED", None)  # Default OFF
         app = SentinelWebAPI().app
         
@@ -1060,7 +1060,7 @@ def main() -> int:
     if errors:
         print("VERIFICATION FAILED:", *errors, sep="\n - ")
         return 1
-    print("✅ All verifications passed")
+    print("[PASS] All verifications passed")
     return 0
 
 

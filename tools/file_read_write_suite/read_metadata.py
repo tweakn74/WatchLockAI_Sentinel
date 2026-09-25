@@ -4,7 +4,7 @@ from __future__ import annotations
 """Module: tools/read_metadata.py
 Auto-added docstring to aid static analysis and navigation.
 """
-# read_metadata.py — self-installing, PNG/JPEG metadata inspector
+# read_metadata.py -- self-installing, PNG/JPEG metadata inspector
 
 import sys
 import os

@@ -12,13 +12,13 @@ WatchLockAI Sentinel v0.9.0-rc1 represents a major milestone release incorporati
 
 ## Release Candidate Scope
 
-### P2 Suite: Enhanced Security & Monitoring ✅
+### P2 Suite: Enhanced Security & Monitoring [PASS]
 - **P2-001:** Anomaly Detection Engine with ML scoring
 - **P2-002:** Quarantine System with RBAC protection  
 - **P2-003:** Console Authentication with session management
 - **P2-004:** Real-time Server-Sent Events (SSE) streaming
 
-### P3 Suite: Production Readiness ✅
+### P3 Suite: Production Readiness [PASS]
 - **P3-001:** Configuration Schema Management with hot reload
 - **P3-002:** Log Rotation & Secret Redaction
 - **P3-003:** Windows Service Packaging with installer scripts
@@ -26,7 +26,7 @@ WatchLockAI Sentinel v0.9.0-rc1 represents a major milestone release incorporati
 - **P3-005:** Telemetry Export with RBAC gating  
 - **P3-006:** Preflight Checks for deployment validation
 
-### P4 Suite: Ops Polish & Resilience ✅
+### P4 Suite: Ops Polish & Resilience [PASS]
 - **P4-001:** Backup & Restore with timestamped archives
 - **P4-002:** Secret Rotation Toolkit with secure key generation
 - **P4-003:** STRIDE Threat Model & Security Linting
@@ -35,7 +35,7 @@ WatchLockAI Sentinel v0.9.0-rc1 represents a major milestone release incorporati
 - **P4-006:** Minimal Console UI dashboard
 - **P4-007:** Documentation Hardening with operations runbooks
 
-### P5 Suite: Release Candidate Hardening ✅
+### P5 Suite: Release Candidate Hardening [PASS]
 - **P5-001:** Versioning & Changelog Discipline
 - **P5-002:** Data Retention & Prune Jobs  
 - **P5-003:** Safe Config Templates
@@ -183,22 +183,22 @@ The following artifacts have been maintained and updated throughout P5 developme
 ### Work Manifest
 - **Location:** [`DOCS/report/work_manifest.json`](work_manifest.json)
 - **Purpose:** Complete inventory of changed files, endpoints, and feature flags
-- **Status:** ✅ Updated with P5 changes
+- **Status:** [PASS] Updated with P5 changes
 
 ### Repository Inventory  
 - **Location:** [`DOCS/report/repo_inventory.json`](repo_inventory.json)
 - **Purpose:** Complete file and component inventory
-- **Status:** ✅ Updated with P5 additions
+- **Status:** [PASS] Updated with P5 additions
 
 ### API Contract Documentation
 - **Location:** [`DOCS/report/api_contract.md`](api_contract.md)
 - **Purpose:** ON/OFF proof documentation for all endpoints
-- **Status:** ✅ Updated with P5 endpoints
+- **Status:** [PASS] Updated with P5 endpoints
 
 ### Verification Evidence
 - **Location:** [`DOCS/report/verification_evidence.md`](verification_evidence.md)
 - **Purpose:** Complete verification command outputs and results
-- **Status:** ✅ Updated with P5 verification results
+- **Status:** [PASS] Updated with P5 verification results
 
 ## Quality Assurance
 
@@ -222,7 +222,7 @@ python -c "import importlib.util as u; print('app_core.bus:', bool(u.find_spec('
 python -m unittest discover -v
 python .\tools\verify_minimax_claims.py
 
-Result: ✅ ALL VERIFICATIONS PASSED
+Result: [PASS] ALL VERIFICATIONS PASSED
 ```
 
 ## Known Limitations & Considerations
@@ -245,22 +245,22 @@ Result: ✅ ALL VERIFICATIONS PASSED
 ## Release Candidate Approval
 
 ### Technical Approval
-- ✅ **Engineering Lead:** All P2-P5 features implemented and tested
-- ✅ **Security Team:** Threat model updated, security validation passed
-- ✅ **Operations Team:** Deployment procedures validated, runbooks updated
-- ✅ **QA Team:** All verification scripts pass, performance benchmarks met
+- [PASS] **Engineering Lead:** All P2-P5 features implemented and tested
+- [PASS] **Security Team:** Threat model updated, security validation passed
+- [PASS] **Operations Team:** Deployment procedures validated, runbooks updated
+- [PASS] **QA Team:** All verification scripts pass, performance benchmarks met
 
 ### Delivery Verification
-- ✅ **Feature Completeness:** All P2-P5 requirements delivered
-- ✅ **Backward Compatibility:** No breaking changes, all features default OFF
-- ✅ **Documentation:** Complete operations and deployment documentation
-- ✅ **Anti-Skip Compliance:** All artifacts updated and verified
+- [PASS] **Feature Completeness:** All P2-P5 requirements delivered
+- [PASS] **Backward Compatibility:** No breaking changes, all features default OFF
+- [PASS] **Documentation:** Complete operations and deployment documentation
+- [PASS] **Anti-Skip Compliance:** All artifacts updated and verified
 
 ### Production Readiness
-- ✅ **Security Hardening:** Complete STRIDE analysis and mitigation
-- ✅ **Performance Validation:** Load testing and optimization complete
-- ✅ **Operational Procedures:** Backup, recovery, and maintenance documented
-- ✅ **Monitoring:** Health checks, metrics, and alerting validated
+- [PASS] **Security Hardening:** Complete STRIDE analysis and mitigation
+- [PASS] **Performance Validation:** Load testing and optimization complete
+- [PASS] **Operational Procedures:** Backup, recovery, and maintenance documented
+- [PASS] **Monitoring:** Health checks, metrics, and alerting validated
 
 ## Next Steps
 
@@ -280,7 +280,7 @@ Result: ✅ ALL VERIFICATIONS PASSED
 
 ---
 
-**Release Candidate Status:** ✅ APPROVED FOR TESTING  
+**Release Candidate Status:** [PASS] APPROVED FOR TESTING  
 **Production Release Target:** TBD based on RC testing results  
 **Emergency Contact:** Operations Team (ops@watchlockai.com)
 

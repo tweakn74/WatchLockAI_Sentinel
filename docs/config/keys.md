@@ -58,10 +58,10 @@ Stored in `config/operational_mode.json` with atomic updates:
 ## Configuration Access Patterns
 
 ### Loading Hierarchy
-1. **config.yaml** → Primary configuration (all sections)
-2. **config/operational_mode.json** → Runtime operational mode override
-3. **Environment variables** → Prefix-based overrides (SENTINEL_*)
-4. **Defaults** → Pydantic model defaults
+1. **config.yaml** -> Primary configuration (all sections)
+2. **config/operational_mode.json** -> Runtime operational mode override
+3. **Environment variables** -> Prefix-based overrides (SENTINEL_*)
+4. **Defaults** -> Pydantic model defaults
 
 ### Configuration Writers
 - **Web API**: `/api/policies` endpoint updates operational mode

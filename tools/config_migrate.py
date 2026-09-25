@@ -191,7 +191,7 @@ class ConfigMigrator:
         
         print(f"Found {len(migrations_needed)} migrations needed:")
         for old_key, new_key, value in migrations_needed:
-            print(f"  {old_key} → {new_key} (value: {value})")
+            print(f"  {old_key} -> {new_key} (value: {value})")
         
         if dry_run:
             return {
@@ -220,7 +220,7 @@ class ConfigMigrator:
                         del os.environ[old_key]
                     
                     applied_migrations.append((old_key, new_key, value))
-                    print(f"Migrated: {old_key} → {new_key}")
+                    print(f"Migrated: {old_key} -> {new_key}")
                     
                 except Exception as e:
                     errors.append(f"Failed to migrate {old_key}: {e}")
@@ -344,12 +344,12 @@ def main():
     if result.get('migrations_applied'):
         print(f"Applied migrations:")
         for old_key, new_key, value in result['migrations_applied']:
-            print(f"  {old_key} → {new_key}")
+            print(f"  {old_key} -> {new_key}")
     
     if result.get('migrations_planned'):
         print(f"Planned migrations:")
         for old_key, new_key, value in result['migrations_planned']:
-            print(f"  {old_key} → {new_key} (value: {value})")
+            print(f"  {old_key} -> {new_key} (value: {value})")
     
     if result.get('errors'):
         print("Errors:")

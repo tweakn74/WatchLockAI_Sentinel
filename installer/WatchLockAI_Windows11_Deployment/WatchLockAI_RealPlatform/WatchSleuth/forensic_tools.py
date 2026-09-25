@@ -12,20 +12,20 @@ from watchsleuth_engine import WatchSleuthForensicEngine, MFTAnalyzer, RegistryA
 
 def mft_analysis(mft_file: str, output_file: str = None):
     '''Analyze MFT file'''
-    print(f"🔍 Analyzing MFT file: {mft_file}")
+    print(f"[SEARCH] Analyzing MFT file: {mft_file}")
     
     analyzer = MFTAnalyzer()
     records = analyzer.analyze_mft(mft_file)
     
-    print(f"✅ Analyzed {len(records)} MFT records")
+    print(f"[PASS] Analyzed {len(records)} MFT records")
     
     if output_file:
         with open(output_file, 'w') as f:
             json.dump(records, f, indent=2)
-        print(f"📄 Results saved to: {output_file}")
+        print(f"[PAGE] Results saved to: {output_file}")
     else:
         # Print summary
-        print("\n📊 MFT Analysis Summary:")
+        print("\n[BARS] MFT Analysis Summary:")
         print(f"   Total Records: {len(records)}")
         
         # Show recent files
@@ -36,42 +36,42 @@ def mft_analysis(mft_file: str, output_file: str = None):
 
 def registry_analysis(hive_file: str, output_file: str = None):
     '''Analyze Windows registry hive'''
-    print(f"🔍 Analyzing registry hive: {hive_file}")
+    print(f"[SEARCH] Analyzing registry hive: {hive_file}")
     
     analyzer = RegistryAnalyzer()
     analysis = analyzer.analyze_registry_hive(hive_file)
     
-    print(f"✅ Registry analysis complete")
+    print(f"[PASS] Registry analysis complete")
     
     if output_file:
         with open(output_file, 'w') as f:
             json.dump(analysis, f, indent=2)
-        print(f"📄 Results saved to: {output_file}")
+        print(f"[PAGE] Results saved to: {output_file}")
     else:
         # Print summary
-        print("\n📊 Registry Analysis Summary:")
+        print("\n[BARS] Registry Analysis Summary:")
         print(f"   Persistence Mechanisms: {len(analysis['persistence_mechanisms'])}")
         print(f"   Suspicious Entries: {len(analysis['suspicious_entries'])}")
         
         for entry in analysis['suspicious_entries'][:5]:
-            print(f"     ⚠️  {entry['pattern']} - {entry['risk_level']}")
+            print(f"     [WARN]  {entry['pattern']} - {entry['risk_level']}")
 
 def browser_analysis(history_db: str, browser_type: str = 'chrome', output_file: str = None):
     '''Analyze browser history'''
-    print(f"🔍 Analyzing {browser_type} history: {history_db}")
+    print(f"[SEARCH] Analyzing {browser_type} history: {history_db}")
     
     forensics = BrowserForensics()
     analysis = forensics.analyze_browser_history(browser_type, history_db)
     
-    print(f"✅ Browser analysis complete")
+    print(f"[PASS] Browser analysis complete")
     
     if output_file:
         with open(output_file, 'w') as f:
             json.dump(analysis, f, indent=2)
-        print(f"📄 Results saved to: {output_file}")
+        print(f"[PAGE] Results saved to: {output_file}")
     else:
         # Print summary
-        print("\n📊 Browser Analysis Summary:")
+        print("\n[BARS] Browser Analysis Summary:")
         print(f"   Total Visits: {analysis.get('visit_count', 0)}")
         print(f"   Suspicious URLs: {len(analysis.get('suspicious_urls', []))}")
         
@@ -82,7 +82,7 @@ def browser_analysis(history_db: str, browser_type: str = 'chrome', output_file:
 
 def full_investigation(evidence_dir: str, case_name: str, investigator: str):
     '''Perform full forensic investigation'''
-    print(f"🔍 Starting full investigation: {case_name}")
+    print(f"[SEARCH] Starting full investigation: {case_name}")
     print(f"   Investigator: {investigator}")
     print(f"   Evidence Directory: {evidence_dir}")
     
@@ -101,30 +101,30 @@ def full_investigation(evidence_dir: str, case_name: str, investigator: str):
             try:
                 artifact_id = engine.add_evidence(str(file_path), f"Evidence file: {file_path.name}")
                 evidence_count += 1
-                print(f"   📄 Added evidence: {file_path.name}")
+                print(f"   [PAGE] Added evidence: {file_path.name}")
             except Exception as e:
-                print(f"   ❌ Failed to add {file_path.name}: {e}")
+                print(f"   [FAIL] Failed to add {file_path.name}: {e}")
     
-    print(f"\n✅ Added {evidence_count} evidence files")
+    print(f"\n[PASS] Added {evidence_count} evidence files")
     
     # Perform comprehensive analysis
-    print("\n🔬 Performing comprehensive analysis...")
+    print("\n[U+1F52C] Performing comprehensive analysis...")
     results = engine.perform_comprehensive_analysis(case_id)
     
     # Export report
     report_path = f"investigation_report_{case_id}.json"
     if engine.export_case_report(case_id, report_path):
-        print(f"\n📄 Investigation report: {report_path}")
+        print(f"\n[PAGE] Investigation report: {report_path}")
     
     # Print summary
-    print("\n📊 Investigation Summary:")
+    print("\n[BARS] Investigation Summary:")
     print(f"   Case ID: {case_id}")
     print(f"   Evidence Files: {evidence_count}")
     print(f"   Timeline Events: {len(results.get('timeline', []))}")
     print(f"   Key Findings: {len(results.get('findings', []))}")
     
     for finding in results.get('findings', []):
-        print(f"     🔍 {finding}")
+        print(f"     [SEARCH] {finding}")
 
 def main():
     '''Main CLI interface'''

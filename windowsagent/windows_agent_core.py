@@ -700,7 +700,7 @@ class WindowsAgentCore:
         # Start status reporting
         self._start_status_reporting()
         
-        logger.info("✅ WatchLockAI Windows Agent started successfully")
+        logger.info("[PASS] WatchLockAI Windows Agent started successfully")
         
     def _start_status_reporting(self):
         '''Start periodic status reporting'''
@@ -758,7 +758,7 @@ class WindowsAgentCore:
         self.network_monitor.running = False
         self.registry_monitor.running = False
         
-        logger.info("✅ WatchLockAI Windows Agent stopped")
+        logger.info("[PASS] WatchLockAI Windows Agent stopped")
         
     def get_agent_status(self) -> Dict[str, Any]:
         '''Get current agent status'''
@@ -781,7 +781,7 @@ class WindowsAgentCore:
 
 def main():
     '''Main entry point for Windows Agent'''
-    print("🖥️ WatchLockAI Windows Agent Core")
+    print("[U+1F5A5] WatchLockAI Windows Agent Core")
     print("Real-time monitoring and protection for Windows systems")
     print()
     
@@ -790,13 +790,13 @@ def main():
         agent = WindowsAgentCore()
         agent.start_agent()
         
-        print("🔄 Monitoring active:")
-        print("   • File System - Real-time file monitoring")
-        print("   • Processes - Process creation/termination tracking")
-        print("   • Network - Connection monitoring and analysis")
-        print("   • Registry - Registry change detection")
+        print("[RELOAD] Monitoring active:")
+        print("   * File System - Real-time file monitoring")
+        print("   * Processes - Process creation/termination tracking")
+        print("   * Network - Connection monitoring and analysis")
+        print("   * Registry - Registry change detection")
         print()
-        print("📡 Sending events to AI Brain for analysis...")
+        print("[SCOUT] Sending events to AI Brain for analysis...")
         print("Press Ctrl+C to stop the agent")
         
         # Keep agent running
@@ -804,7 +804,7 @@ def main():
             time.sleep(1)
             
     except KeyboardInterrupt:
-        print("\n🛑 Shutting down Windows Agent...")
+        print("\n[U+1F6D1] Shutting down Windows Agent...")
         agent.stop_agent()
         
     except Exception as e:

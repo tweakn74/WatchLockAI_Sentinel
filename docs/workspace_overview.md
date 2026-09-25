@@ -98,11 +98,11 @@ graph LR
 ## Component Interactions
 
 ### Data Flow Pattern
-1. **Collectors** → Generate typed events from system monitoring
-2. **Event Bus** → Routes events to registered subscribers  
-3. **Detection Engines** → Process events and generate alerts
-4. **Response Actions** → Execute containment/remediation actions
-5. **Web Console** → Provides management interface and operational control
+1. **Collectors** -> Generate typed events from system monitoring
+2. **Event Bus** -> Routes events to registered subscribers  
+3. **Detection Engines** -> Process events and generate alerts
+4. **Response Actions** -> Execute containment/remediation actions
+5. **Web Console** -> Provides management interface and operational control
 
 ### Cross-Platform Strategy
 - **Windows-Specific**: Registry monitoring, Windows service integration

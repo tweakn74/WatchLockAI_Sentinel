@@ -46,12 +46,12 @@ class DeadCodePatchGenerator:
             with open(analysis_path, 'r', encoding='utf-8') as f:
                 return json.load(f)
         except FileNotFoundError:
-            print("⚠️  dead_code_analysis.json not found")
+            print("[WARN]  dead_code_analysis.json not found")
             return {"dead_code_items": [], "cleanup_recommendations": []}
 
     def generate_all_patches(self) -> None:
         """Generate patches for all dead code items"""
-        print("🔧 Generating dead code removal patches...")
+        print("[U+1F527] Generating dead code removal patches...")
         
         # Create patch directory
         os.makedirs(self.patch_dir, exist_ok=True)
@@ -64,12 +64,12 @@ class DeadCodePatchGenerator:
                     self.patches.append(patch)
                     self._save_patch_file(patch)
             except Exception as e:
-                print(f"⚠️  Error creating patch for {item.get('name', 'unknown')}: {e}")
+                print(f"[WARN]  Error creating patch for {item.get('name', 'unknown')}: {e}")
         
         # Generate triage report
         self._generate_triage_report()
         
-        print(f"✅ Generated {len(self.patches)} patches")
+        print(f"[PASS] Generated {len(self.patches)} patches")
 
     def _create_patch_for_item(self, item: Dict[str, Any]) -> DeadCodePatch:
         """Create a patch for a single dead code item"""
@@ -341,7 +341,7 @@ If issues occur in production:
 
     def _generate_triage_report(self) -> None:
         """Generate comprehensive triage report"""
-        print("📄 Generating dead code triage report...")
+        print("[PAGE] Generating dead code triage report...")
         
         # Group patches by risk level
         risk_groups = {'low': [], 'medium': [], 'high': []}
@@ -365,7 +365,7 @@ If issues occur in production:
 
 ## Risk Assessment Overview
 
-### ✅ Low Risk (Safe to Remove)
+### [PASS] Low Risk (Safe to Remove)
 These patches have high confidence and minimal risk of causing issues.
 
 """
@@ -382,7 +382,7 @@ These patches have high confidence and minimal risk of causing issues.
             report_content += f"*... and {len(risk_groups['low']) - 10} more low-risk patches*\n"
         
         report_content += """
-### ⚠️ Medium Risk (Review Required)
+### [WARN] Medium Risk (Review Required)
 These patches should be reviewed and tested before application.
 
 """
@@ -396,7 +396,7 @@ These patches should be reviewed and tested before application.
 """
         
         report_content += """
-### 🚨 High Risk (Manual Review)
+### [ALERT] High Risk (Manual Review)
 These patches require careful manual review and extensive testing.
 
 """
@@ -476,11 +476,11 @@ git checkout HEAD -- .
 ## Quality Assurance
 
 Before applying any patch:
-1. ✅ Review patch content manually
-2. ✅ Run specified test requirements  
-3. ✅ Verify no compilation errors
-4. ✅ Check application startup
-5. ✅ Monitor logs for errors
+1. [PASS] Review patch content manually
+2. [PASS] Run specified test requirements  
+3. [PASS] Verify no compilation errors
+4. [PASS] Check application startup
+5. [PASS] Monitor logs for errors
 
 ## Monitoring After Application
 
@@ -500,21 +500,21 @@ Post-removal monitoring checklist:
         with open(report_path, 'w', encoding='utf-8') as f:
             f.write(report_content)
         
-        print(f"📄 Triage report: {report_path}")
+        print(f"[PAGE] Triage report: {report_path}")
 
 
 def main():
     """Main execution function"""
     repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     
-    print("♻️ Starting Dead Code Patch Generation v4.0...")
-    print(f"📁 Repository: {repo_root}")
+    print("[U+267B] Starting Dead Code Patch Generation v4.0...")
+    print(f"[U+1F4C1] Repository: {repo_root}")
     
     generator = DeadCodePatchGenerator(repo_root)
     generator.generate_all_patches()
     
-    print("\n🎉 P19 Complete: Dead Code Removal Plan Ready!")
-    print("📋 Generated:")
+    print("\n[U+1F389] P19 Complete: Dead Code Removal Plan Ready!")
+    print("[PLAN] Generated:")
     print("   - DOCS/report/dead_code_patches/*.patch")
     print("   - DOCS/report/dead_code_triage.md")
 

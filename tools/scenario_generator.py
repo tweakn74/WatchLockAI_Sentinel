@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Scenario Generator v4.0 - Generate ≥5,000 synthetic test cases for API routes
+Scenario Generator v4.0 - Generate >=5,000 synthetic test cases for API routes
 Part of Credits Overdrive v4.0 (Proof-Oriented, Fail-Closed)
 
 Generates comprehensive test scenarios from routing_atlas.json including:
@@ -81,11 +81,11 @@ class ScenarioGenerator:
 
     def generate_all_scenarios(self) -> None:
         """Generate all scenario types and save to JSONL files"""
-        print(f"🎯 Generating ≥{self.target_count} test scenarios...")
+        print(f"[TARGET] Generating >={self.target_count} test scenarios...")
         
         # Extract routes from atlas
         routes = self._extract_routes()
-        print(f"📊 Found {len(routes)} routes in atlas")
+        print(f"[BARS] Found {len(routes)} routes in atlas")
         
         # Generate scenarios by category
         scenario_generators = [
@@ -102,7 +102,7 @@ class ScenarioGenerator:
         scenario_counts = {}
         
         for category, generator_func in scenario_generators:
-            print(f"🔧 Generating {category} scenarios...")
+            print(f"[U+1F527] Generating {category} scenarios...")
             scenarios = list(generator_func(routes))
             scenario_counts[category] = len(scenarios)
             self.scenario_count += len(scenarios)
@@ -110,16 +110,16 @@ class ScenarioGenerator:
             # Save to JSONL file
             output_path = os.path.join(self.output_dir, f"{category}.jsonl")
             self._save_scenarios_jsonl(scenarios, output_path)
-            print(f"   ✅ {len(scenarios)} scenarios → {output_path}")
+            print(f"   [PASS] {len(scenarios)} scenarios -> {output_path}")
         
-        print(f"\n📈 TOTAL SCENARIOS GENERATED: {self.scenario_count}")
+        print(f"\n[CHART] TOTAL SCENARIOS GENERATED: {self.scenario_count}")
         
         # Generate summary
         self._generate_summary_report(scenario_counts)
         
         if self.scenario_count < self.target_count:
-            print(f"⚠️  Generated {self.scenario_count} < target {self.target_count}")
-            print("🔄 Generating additional random scenarios...")
+            print(f"[WARN]  Generated {self.scenario_count} < target {self.target_count}")
+            print("[RELOAD] Generating additional random scenarios...")
             self._generate_additional_scenarios(routes, self.target_count - self.scenario_count)
         
     def _extract_routes(self) -> List[Dict]:
@@ -473,7 +473,7 @@ class ScenarioGenerator:
         output_path = os.path.join(self.output_dir, "additional_random.jsonl")
         self._save_scenarios_jsonl(additional_scenarios, output_path)
         self.scenario_count += len(additional_scenarios)
-        print(f"   ✅ {len(additional_scenarios)} additional scenarios → {output_path}")
+        print(f"   [PASS] {len(additional_scenarios)} additional scenarios -> {output_path}")
 
     def _random_string(self, length: int) -> str:
         """Generate random string of specified length"""
@@ -500,7 +500,7 @@ class ScenarioGenerator:
 
 **Generated:** {self.scenario_count:,} scenarios  
 **Target:** {self.target_count:,} scenarios  
-**Status:** {'✅ TARGET MET' if self.scenario_count >= self.target_count else '⚠️ BELOW TARGET'}
+**Status:** {'[PASS] TARGET MET' if self.scenario_count >= self.target_count else '[WARN] BELOW TARGET'}
 
 ## Summary Statistics
 
@@ -587,7 +587,7 @@ with open('DOCS/scenarios/valid_requests.jsonl', 'r') as f:
         with open(report_path, 'w', encoding='utf-8') as f:
             f.write(report_content)
         
-        print(f"📄 Summary report → {report_path}")
+        print(f"[PAGE] Summary report -> {report_path}")
 
 
 if __name__ == "__main__":
@@ -600,5 +600,5 @@ if __name__ == "__main__":
     generator = ScenarioGenerator(routing_atlas_path, output_dir)
     generator.generate_all_scenarios()
     
-    print(f"\n🎉 P14 Complete: {generator.scenario_count:,} scenarios generated!")
-    print(f"📁 Output directory: {output_dir}")
+    print(f"\n[U+1F389] P14 Complete: {generator.scenario_count:,} scenarios generated!")
+    print(f"[U+1F4C1] Output directory: {output_dir}")

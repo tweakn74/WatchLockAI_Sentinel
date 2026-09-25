@@ -1,4 +1,4 @@
-# E2E Test Scenario — Spec
+# E2E Test Scenario -- Spec
 
 Goal: Prove pipeline wiring without destructive actions.
 

@@ -13,7 +13,7 @@ from pathlib import Path
 
 def test_ai_brain_creation():
     """Test that we can create the AI brain script"""
-    print("🧠 Testing AI Brain Creation...")
+    print("[BRAIN] Testing AI Brain Creation...")
     
     # Create temp directory for testing
     test_dir = Path(tempfile.mkdtemp())
@@ -195,12 +195,12 @@ if __name__ == "__main__":
     with open(ai_brain_path, 'w', encoding='utf-8') as f:
         f.write(ai_brain_code)
     
-    print(f"✅ AI Brain created: {ai_brain_path}")
+    print(f"[PASS] AI Brain created: {ai_brain_path}")
     return ai_brain_path
 
 def test_ai_responsiveness(ai_brain_path):
     """Test AI responsiveness with installation questions"""
-    print("\n🤖 Testing AI Responsiveness...")
+    print("\n[BOT] Testing AI Responsiveness...")
     
     installation_questions = [
         ("detection", "WatchLockAI AI, I'm installing your detection module. Are you ready to detect threats?"),
@@ -216,8 +216,8 @@ def test_ai_responsiveness(ai_brain_path):
     responsive_count = 0
     
     for module, question in installation_questions:
-        print(f"\n🤔 ASKING AI ({module.upper()}): {question}")
-        print("⏳ Waiting for AI response...")
+        print(f"\n[U+1F914] ASKING AI ({module.upper()}): {question}")
+        print("[U+23F3] Waiting for AI response...")
         
         try:
             # Test AI chat functionality
@@ -227,15 +227,15 @@ def test_ai_responsiveness(ai_brain_path):
             
             if result.returncode == 0 and result.stdout and len(result.stdout.strip()) > 10:
                 response = result.stdout.strip()
-                print(f"🤖 AI RESPONDS: {response}")
+                print(f"[BOT] AI RESPONDS: {response}")
                 responsive_count += 1
             else:
-                print("🔇 AI SILENT - NO RESPONSE!")
+                print("[U+1F507] AI SILENT - NO RESPONSE!")
                 print(f"Return code: {result.returncode}")
                 print(f"Stdout: {result.stdout}")
                 print(f"Stderr: {result.stderr}")
         except Exception as e:
-            print(f"💥 AI ERROR: {e}")
+            print(f"[U+1F4A5] AI ERROR: {e}")
     
     print("\n" + "=" * 60)
     print(f"AI RESPONSIVENESS SUMMARY:")
@@ -245,21 +245,21 @@ def test_ai_responsiveness(ai_brain_path):
     print(f"Responsiveness: {responsiveness_ratio:.1f}%")
     
     if responsiveness_ratio == 100:
-        print("🎯 AI RESPONSIVENESS: PERFECT - AI ENGAGED WITH ALL QUESTIONS!")
+        print("[TARGET] AI RESPONSIVENESS: PERFECT - AI ENGAGED WITH ALL QUESTIONS!")
         return True
     elif responsiveness_ratio >= 80:
-        print("👍 AI RESPONSIVENESS: GOOD - AI MOSTLY RESPONSIVE")
+        print("[+1] AI RESPONSIVENESS: GOOD - AI MOSTLY RESPONSIVE")
         return True
     elif responsiveness_ratio > 0:
-        print("⚠️ AI RESPONSIVENESS: POOR - AI BARELY RESPONSIVE")
+        print("[WARN] AI RESPONSIVENESS: POOR - AI BARELY RESPONSIVE")
         return False
     else:
-        print("💀 AI RESPONSIVENESS: FAILED - AI IS COMPLETELY SILENT!")
+        print("[U+1F480] AI RESPONSIVENESS: FAILED - AI IS COMPLETELY SILENT!")
         return False
 
 def test_ai_intelligence(ai_brain_path):
     """Test AI intelligence with complex questions"""
-    print("\n🧠 Testing AI Intelligence...")
+    print("\n[BRAIN] Testing AI Intelligence...")
     
     try:
         result = subprocess.run([
@@ -277,7 +277,7 @@ def test_ai_intelligence(ai_brain_path):
             
             for result_item in ai_results:
                 module = result_item['module'].upper().ljust(15)
-                intelligent = "✓ INTELLIGENT" if result_item['intelligent'] else "✗ NOT INTELLIGENT"
+                intelligent = "[x] INTELLIGENT" if result_item['intelligent'] else "[FAIL] NOT INTELLIGENT"
                 print(f"{module}: {intelligent}")
                 print(f"   Q: {result_item['question']}")
                 answer_preview = result_item['answer'][:80] + "..." if len(result_item['answer']) > 80 else result_item['answer']
@@ -294,20 +294,20 @@ def test_ai_intelligence(ai_brain_path):
             print(f"Intelligent Responses: {intelligent_responses} / {total_questions} ({intelligence_ratio:.1f}%)")
             
             if intelligence_ratio >= 80:
-                print("🧠 AI INTELLIGENCE STATUS: PASSED - AI IS ACTUALLY INTELLIGENT!")
+                print("[BRAIN] AI INTELLIGENCE STATUS: PASSED - AI IS ACTUALLY INTELLIGENT!")
                 return True
             elif intelligence_ratio >= 60:
-                print("🤖 AI INTELLIGENCE STATUS: PARTIALLY INTELLIGENT")
+                print("[BOT] AI INTELLIGENCE STATUS: PARTIALLY INTELLIGENT")
                 return False
             else:
-                print("🤡 AI INTELLIGENCE STATUS: FAILED - AI IS NOT INTELLIGENT")
+                print("[U+1F921] AI INTELLIGENCE STATUS: FAILED - AI IS NOT INTELLIGENT")
                 return False
         else:
-            print("✗ AI intelligence test execution failed")
+            print("[FAIL] AI intelligence test execution failed")
             print(f"Error: {result.stderr}")
             return False
     except Exception as e:
-        print(f"✗ AI Intelligence test failed: {e}")
+        print(f"[FAIL] AI Intelligence test failed: {e}")
         return False
 
 def main():
@@ -331,28 +331,28 @@ def main():
     print("\n" + "=" * 60)
     print("FINAL TEST RESULTS:")
     print("=" * 60)
-    print(f"🤖 AI Responsiveness: {'PASSED' if responsive else 'FAILED'}")
-    print(f"🧠 AI Intelligence: {'PASSED' if intelligent else 'FAILED'}")
+    print(f"[BOT] AI Responsiveness: {'PASSED' if responsive else 'FAILED'}")
+    print(f"[BRAIN] AI Intelligence: {'PASSED' if intelligent else 'FAILED'}")
     
     if responsive and intelligent:
-        print("\n🎉 LOCAL AI BRAIN TEST: COMPLETE SUCCESS!")
-        print("✅ The AI is REAL and will work during installation!")
-        print("✅ It can respond to questions intelligently!")
-        print("✅ Ready for WatchLockAI installation!")
+        print("\n[U+1F389] LOCAL AI BRAIN TEST: COMPLETE SUCCESS!")
+        print("[PASS] The AI is REAL and will work during installation!")
+        print("[PASS] It can respond to questions intelligently!")
+        print("[PASS] Ready for WatchLockAI installation!")
     elif responsive:
-        print("\n⚠️ LOCAL AI BRAIN TEST: PARTIAL SUCCESS")
-        print("✅ AI responds to questions")
-        print("❌ AI intelligence needs improvement")
+        print("\n[WARN] LOCAL AI BRAIN TEST: PARTIAL SUCCESS")
+        print("[PASS] AI responds to questions")
+        print("[FAIL] AI intelligence needs improvement")
     else:
-        print("\n❌ LOCAL AI BRAIN TEST: FAILED")
-        print("❌ AI is not responsive enough")
-        print("❌ Installation would fail")
+        print("\n[FAIL] LOCAL AI BRAIN TEST: FAILED")
+        print("[FAIL] AI is not responsive enough")
+        print("[FAIL] Installation would fail")
     
     # Cleanup
     try:
         ai_brain_path.unlink()
         ai_brain_path.parent.rmdir()
-        print(f"\n🧹 Cleaned up test files")
+        print(f"\n[U+1F9F9] Cleaned up test files")
     except:
         pass
 

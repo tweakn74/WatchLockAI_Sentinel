@@ -561,7 +561,7 @@ def create_handler(brain):
 
 def main():
     '''Main entry point for WatchLockAI AI Brain'''
-    print("🧠 Starting WatchLockAI Agentic AI Brain...")
+    print("[BRAIN] Starting WatchLockAI Agentic AI Brain...")
     
     # Initialize AI Brain
     brain = AgenticAIBrain()
@@ -572,19 +572,19 @@ def main():
     handler = create_handler(brain)
     httpd = HTTPServer(('localhost', port), handler)
     
-    print(f"✅ WatchLockAI AI Brain running on http://localhost:{port}")
-    print("📡 Endpoints:")
+    print(f"[PASS] WatchLockAI AI Brain running on http://localhost:{port}")
+    print("[SCOUT] Endpoints:")
     print("   GET  /status  - Get AI brain status")
     print("   GET  /health  - Health check")
     print("   POST /analyze - Analyze security event")
     print("   POST /feedback - Provide learning feedback")
     print()
-    print("🔍 Ready for threat analysis...")
+    print("[SEARCH] Ready for threat analysis...")
     
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        print("\n🛑 Shutting down WatchLockAI AI Brain...")
+        print("\n[U+1F6D1] Shutting down WatchLockAI AI Brain...")
         httpd.shutdown()
         brain.memory_db.close()
 

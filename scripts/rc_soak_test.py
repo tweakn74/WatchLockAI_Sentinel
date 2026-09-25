@@ -271,11 +271,11 @@ class RCSoakTest:
             with open(output_path, 'w', encoding='utf-8') as f:
                 f.write(report_content)
             
-            print(f"✅ Performance baseline report generated: {output_path}")
+            print(f"[PASS] Performance baseline report generated: {output_path}")
             return True
             
         except Exception as e:
-            print(f"❌ Failed to generate baseline report: {e}")
+            print(f"[FAIL] Failed to generate baseline report: {e}")
             return False
     
     def _assess_ga_readiness(self, rps: float, response_perf: Dict, cpu_perf: Dict, memory_perf: Dict) -> str:
@@ -309,9 +309,9 @@ class RCSoakTest:
             issues.append("Error rate exceeds 1% threshold")
         
         if not issues:
-            return "**✅ GA READY**: All performance metrics meet production readiness criteria."
+            return "**[PASS] GA READY**: All performance metrics meet production readiness criteria."
         else:
-            return f"**⚠️  REVIEW NEEDED**: {len(issues)} performance concerns identified:\n" + "\n".join(f"- {issue}" for issue in issues)
+            return f"**[WARN]  REVIEW NEEDED**: {len(issues)} performance concerns identified:\n" + "\n".join(f"- {issue}" for issue in issues)
 
 
 def main():
@@ -337,11 +337,11 @@ def main():
     success = soak_test.generate_baseline_report(output_path)
     
     if success:
-        print(f"\n✅ RC soak test completed successfully")
-        print(f"📊 Baseline report: {output_path}")
+        print(f"\n[PASS] RC soak test completed successfully")
+        print(f"[BARS] Baseline report: {output_path}")
         return 0
     else:
-        print(f"\n❌ RC soak test failed")
+        print(f"\n[FAIL] RC soak test failed")
         return 1
 
 

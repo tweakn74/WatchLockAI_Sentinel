@@ -574,8 +574,8 @@ def run_preflight_checks(verbose: bool = False) -> PreflightSummary:
         print(f"Overall status: {summary.overall_status.upper()}")
         
         for result in summary.results:
-            status_emoji = {"pass": "✅", "warn": "⚠️", "fail": "❌"}
-            emoji = status_emoji.get(result.status, "❓")
+            status_emoji = {"pass": "[PASS]", "warn": "[WARN]", "fail": "[FAIL]"}
+            emoji = status_emoji.get(result.status, "[U+2753]")
             print(f"\n{emoji} {result.check_name}: {result.message}")
             
             if result.details and verbose:

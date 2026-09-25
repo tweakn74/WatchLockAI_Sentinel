@@ -148,18 +148,18 @@ function Test-CoreImports {
         foreach ($import in $imports) {
             try {
                 python -c "import $import; print('$import imported successfully')"
-                Write-Log "✓ $import" "SUCCESS"
+                Write-Log "[x] $import" "SUCCESS"
             } catch {
-                Write-Log "⚠ Failed to import $import" "WARN"
+                Write-Log "[WARN] Failed to import $import" "WARN"
             }
         }
         
         # Test FastAPI availability (optional)
         try {
             python -c "import fastapi; print('FastAPI available')"
-            Write-Log "✓ FastAPI available" "SUCCESS"
+            Write-Log "[x] FastAPI available" "SUCCESS"
         } catch {
-            Write-Log "⚠ FastAPI not available (optional)" "WARN"
+            Write-Log "[WARN] FastAPI not available (optional)" "WARN"
         }
         
     } finally {
@@ -181,9 +181,9 @@ function Invoke-PreflightChecks {
         if (Test-Path "tools\\verify_minimax_claims.py") {
             try {
                 python -m py_compile tools\\verify_minimax_claims.py
-                Write-Log "✓ Verification script compiled" "SUCCESS"
+                Write-Log "[x] Verification script compiled" "SUCCESS"
             } catch {
-                Write-Log "⚠ Verification script compilation failed" "WARN"
+                Write-Log "[WARN] Verification script compilation failed" "WARN"
             }
         }
         
@@ -191,9 +191,9 @@ function Invoke-PreflightChecks {
         if (Test-Path "tools\\api_contract_check.py") {
             try {
                 python -m py_compile tools\\api_contract_check.py
-                Write-Log "✓ API contract check compiled" "SUCCESS"
+                Write-Log "[x] API contract check compiled" "SUCCESS"
             } catch {
-                Write-Log "⚠ API contract check compilation failed" "WARN"
+                Write-Log "[WARN] API contract check compilation failed" "WARN"
             }
         }
         
@@ -201,9 +201,9 @@ function Invoke-PreflightChecks {
         if (Test-Path "app.py") {
             try {
                 python -m py_compile app.py
-                Write-Log "✓ Main application compiled" "SUCCESS"
+                Write-Log "[x] Main application compiled" "SUCCESS"
             } catch {
-                Write-Log "⚠ Main application compilation failed" "WARN"
+                Write-Log "[WARN] Main application compilation failed" "WARN"
             }
         }
         
@@ -230,9 +230,9 @@ function Invoke-TestSuite {
         # Run unittest discovery
         try {
             python -m unittest discover -v -s tests -p "test_*.py"
-            Write-Log "✓ All tests passed" "SUCCESS"
+            Write-Log "[x] All tests passed" "SUCCESS"
         } catch {
-            Write-Log "⚠ Some tests failed, but installation can continue" "WARN"
+            Write-Log "[WARN] Some tests failed, but installation can continue" "WARN"
             if ($Verbose) {
                 Write-Log "Test output: $_" "WARN"
             }
@@ -259,12 +259,12 @@ function Install-WindowsService {
         if (Test-Path "scripts\\install_service.ps1") {
             try {
                 & "scripts\\install_service.ps1"
-                Write-Log "✓ Service installation completed" "SUCCESS"
+                Write-Log "[x] Service installation completed" "SUCCESS"
             } catch {
-                Write-Log "⚠ Service installation failed: $_" "WARN"
+                Write-Log "[WARN] Service installation failed: $_" "WARN"
             }
         } else {
-            Write-Log "⚠ Service installation script not found" "WARN"
+            Write-Log "[WARN] Service installation script not found" "WARN"
         }
         
     } finally {
@@ -283,7 +283,7 @@ function New-Configuration {
         # Create .env from template if it doesn't exist
         if ((Test-Path "DOCS\\config\\.env.example") -and (-not (Test-Path ".env"))) {
             Copy-Item "DOCS\\config\\.env.example" ".env"
-            Write-Log "✓ Created .env from template" "SUCCESS"
+            Write-Log "[x] Created .env from template" "SUCCESS"
             Write-Log "Please edit .env to configure features as needed"
         }
         
@@ -292,7 +292,7 @@ function New-Configuration {
         foreach ($dir in $dataDirs) {
             if (-not (Test-Path $dir)) {
                 New-Item -ItemType Directory -Path $dir -Force | Out-Null
-                Write-Log "✓ Created directory: $dir" "SUCCESS"
+                Write-Log "[x] Created directory: $dir" "SUCCESS"
             }
         }
         

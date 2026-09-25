@@ -20,7 +20,7 @@ def create_readme_if_needed(session_id):
 
         content = f"""# DevAgent Zero
 
-DevAgent Zero is a fully local, agentic AI software engineer powered by open-source LLMs like Mistral via Ollama. It generates project plans, builds code, executes it, and stores session memory — all without using the cloud.
+DevAgent Zero is a fully local, agentic AI software engineer powered by open-source LLMs like Mistral via Ollama. It generates project plans, builds code, executes it, and stores session memory -- all without using the cloud.
 
 ---
 
@@ -30,7 +30,7 @@ DevAgent Zero is a fully local, agentic AI software engineer powered by open-sou
 - Step-by-step task execution and code generation
 - Memory logging for all prompts, plans, and code output
 - CLI interface (web UI coming soon)
-- Fully offline and free — no API keys, no cloud, no limits
+- Fully offline and free -- no API keys, no cloud, no limits
 
 ---
 

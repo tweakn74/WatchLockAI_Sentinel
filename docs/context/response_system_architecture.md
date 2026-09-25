@@ -300,11 +300,11 @@ def _request_user_consent(self, action_type: ActionType, parameters: dict[str, A
 ## Integration with Detection System
 
 ### Alert Processing Pipeline
-1. **Detection Engine** → Generates DetectionAlert events
-2. **Alert Manager** → Processes alerts through notification handlers
-3. **Playbook System** → Evaluates automated response triggers
-4. **Action Manager** → Executes approved response actions
-5. **Audit System** → Records all actions and decisions
+1. **Detection Engine** -> Generates DetectionAlert events
+2. **Alert Manager** -> Processes alerts through notification handlers
+3. **Playbook System** -> Evaluates automated response triggers
+4. **Action Manager** -> Executes approved response actions
+5. **Audit System** -> Records all actions and decisions
 
 ### Event Bus Integration
 ```python

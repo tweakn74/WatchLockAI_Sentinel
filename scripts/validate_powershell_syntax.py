@@ -37,7 +37,7 @@ class PowerShellSyntaxValidator:
     
     def _check_unicode_characters(self, content, lines):
         """Check for problematic Unicode characters"""
-        problematic_chars = ['✓', '✗', '•', '→', '←', '↑', '↓']
+        problematic_chars = ['[x]', '[FAIL]', '*', '->', '<-', '↑', '↓']
         
         for i, line in enumerate(lines, 1):
             for char in problematic_chars:
@@ -176,21 +176,21 @@ class PowerShellSyntaxValidator:
         print("="*60)
         
         if self.errors:
-            print(f"\n❌ ERRORS ({len(self.errors)}):")
+            print(f"\n[FAIL] ERRORS ({len(self.errors)}):")
             for error in self.errors:
-                print(f"  • {error}")
+                print(f"  * {error}")
         
         if self.warnings:
-            print(f"\n⚠️  WARNINGS ({len(self.warnings)}):")
+            print(f"\n[WARN]  WARNINGS ({len(self.warnings)}):")
             for warning in self.warnings:
-                print(f"  • {warning}")
+                print(f"  * {warning}")
         
         if not self.errors and not self.warnings:
-            print("\n✅ NO SYNTAX ISSUES DETECTED")
+            print("\n[PASS] NO SYNTAX ISSUES DETECTED")
         elif not self.errors:
-            print(f"\n✅ NO CRITICAL ERRORS (only {len(self.warnings)} warnings)")
+            print(f"\n[PASS] NO CRITICAL ERRORS (only {len(self.warnings)} warnings)")
         else:
-            print(f"\n❌ VALIDATION FAILED ({len(self.errors)} errors, {len(self.warnings)} warnings)")
+            print(f"\n[FAIL] VALIDATION FAILED ({len(self.errors)} errors, {len(self.warnings)} warnings)")
         
         print("="*60)
 
@@ -206,15 +206,15 @@ def main():
         validator.print_results()
         
         if is_valid:
-            print("\n🎉 INSTALLER SYNTAX VALIDATION PASSED!")
+            print("\n[U+1F389] INSTALLER SYNTAX VALIDATION PASSED!")
             print("The PowerShell script should now work on real Windows systems.")
         else:
-            print("\n💥 INSTALLER SYNTAX VALIDATION FAILED!")
+            print("\n[U+1F4A5] INSTALLER SYNTAX VALIDATION FAILED!")
             print("The script needs further fixes before deployment.")
             
         return is_valid
     else:
-        print(f"❌ Installer file not found: {installer_path}")
+        print(f"[FAIL] Installer file not found: {installer_path}")
         return False
 
 if __name__ == "__main__":

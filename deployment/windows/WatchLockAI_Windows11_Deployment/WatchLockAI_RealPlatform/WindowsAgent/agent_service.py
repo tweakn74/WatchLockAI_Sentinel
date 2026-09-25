@@ -102,7 +102,7 @@ if WINDOWS_SERVICE_AVAILABLE:
 def install_service():
     '''Install WatchLockAI as Windows service'''
     if not WINDOWS_SERVICE_AVAILABLE:
-        print("❌ Windows service functionality requires pywin32")
+        print("[FAIL] Windows service functionality requires pywin32")
         print("   Install with: pip install pywin32")
         return False
         
@@ -113,52 +113,52 @@ def install_service():
             WatchLockAIWindowsService._svc_display_name_,
             description=WatchLockAIWindowsService._svc_description_
         )
-        print("✅ WatchLockAI service installed successfully")
+        print("[PASS] WatchLockAI service installed successfully")
         return True
     except Exception as e:
-        print(f"❌ Service installation failed: {e}")
+        print(f"[FAIL] Service installation failed: {e}")
         return False
 
 def uninstall_service():
     '''Uninstall WatchLockAI Windows service'''
     if not WINDOWS_SERVICE_AVAILABLE:
-        print("❌ Windows service functionality requires pywin32")
+        print("[FAIL] Windows service functionality requires pywin32")
         return False
         
     try:
         win32serviceutil.RemoveService(WatchLockAIWindowsService._svc_name_)
-        print("✅ WatchLockAI service uninstalled successfully")
+        print("[PASS] WatchLockAI service uninstalled successfully")
         return True
     except Exception as e:
-        print(f"❌ Service uninstallation failed: {e}")
+        print(f"[FAIL] Service uninstallation failed: {e}")
         return False
 
 def start_service():
     '''Start WatchLockAI service'''
     if not WINDOWS_SERVICE_AVAILABLE:
-        print("❌ Windows service functionality requires pywin32")
+        print("[FAIL] Windows service functionality requires pywin32")
         return False
         
     try:
         win32serviceutil.StartService(WatchLockAIWindowsService._svc_name_)
-        print("✅ WatchLockAI service started")
+        print("[PASS] WatchLockAI service started")
         return True
     except Exception as e:
-        print(f"❌ Service start failed: {e}")
+        print(f"[FAIL] Service start failed: {e}")
         return False
 
 def stop_service():
     '''Stop WatchLockAI service'''
     if not WINDOWS_SERVICE_AVAILABLE:
-        print("❌ Windows service functionality requires pywin32")
+        print("[FAIL] Windows service functionality requires pywin32")
         return False
         
     try:
         win32serviceutil.StopService(WatchLockAIWindowsService._svc_name_)
-        print("✅ WatchLockAI service stopped")
+        print("[PASS] WatchLockAI service stopped")
         return True
     except Exception as e:
-        print(f"❌ Service stop failed: {e}")
+        print(f"[FAIL] Service stop failed: {e}")
         return False
 
 def main():
@@ -176,12 +176,12 @@ def main():
             stop_service()
         elif command == 'console':
             # Run as console application
-            print("🖥️ Running WatchLockAI Agent in console mode...")
+            print("[U+1F5A5] Running WatchLockAI Agent in console mode...")
             service = WatchLockAIService()
             try:
                 service.start_service()
             except KeyboardInterrupt:
-                print("\n🛑 Stopping agent...")
+                print("\n[U+1F6D1] Stopping agent...")
                 service.stop_service()
         else:
             print("Usage: agent_service.py [install|uninstall|start|stop|console]")
@@ -190,7 +190,7 @@ def main():
         if WINDOWS_SERVICE_AVAILABLE:
             win32serviceutil.HandleCommandLine(WatchLockAIWindowsService)
         else:
-            print("❌ Windows service functionality requires pywin32")
+            print("[FAIL] Windows service functionality requires pywin32")
             print("   Install with: pip install pywin32")
             print("   Or run with: python agent_service.py console")
 

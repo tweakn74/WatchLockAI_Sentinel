@@ -42,7 +42,7 @@ from watchdog_service import WatchdogService
 
 def test_process_protector():
     '''Test process protection'''
-    print("\n🔍 Testing Process Protector...")
+    print("\n[SEARCH] Testing Process Protector...")
     
     protector = ProcessProtector()
     
@@ -51,16 +51,16 @@ def test_process_protector():
     assert hasattr(protector, 'process_pids')
     assert hasattr(protector, 'running')
     
-    print("✅ Process protector initialized correctly")
+    print("[PASS] Process protector initialized correctly")
     
     # Test alert generation
     protector._handle_process_termination(12345)
     
-    print("✅ Process protection test completed")
+    print("[PASS] Process protection test completed")
 
 def test_file_integrity_monitor():
     '''Test file integrity monitoring'''
-    print("\n🔍 Testing File Integrity Monitor...")
+    print("\n[SEARCH] Testing File Integrity Monitor...")
     
     monitor = FileIntegrityMonitor()
     
@@ -87,13 +87,13 @@ def test_file_integrity_monitor():
     # Cleanup
     os.unlink(temp_path)
     
-    print(f"✅ File integrity monitoring test completed")
+    print(f"[PASS] File integrity monitoring test completed")
     print(f"   Original hash: {hash1[:8]}...")
     print(f"   Modified hash: {hash2[:8]}...")
 
 def test_anti_debugger():
     '''Test anti-debugging mechanisms'''
-    print("\n🔍 Testing Anti-Debugger...")
+    print("\n[SEARCH] Testing Anti-Debugger...")
     
     debugger = AntiDebugger()
     
@@ -104,11 +104,11 @@ def test_anti_debugger():
     # Test debugger handling
     debugger._handle_debugger_detection("test_debugger.exe", 99999)
     
-    print("✅ Anti-debugger test completed")
+    print("[PASS] Anti-debugger test completed")
 
 def test_configuration_loading():
     '''Test configuration loading'''
-    print("\n🔍 Testing Configuration Loading...")
+    print("\n[SEARCH] Testing Configuration Loading...")
     
     from tamperproof_core import TamperproofingCore
     
@@ -134,11 +134,11 @@ def test_configuration_loading():
     # Cleanup
     os.remove(config_file)
     
-    print("✅ Configuration loading test completed")
+    print("[PASS] Configuration loading test completed")
 
 def test_watchdog_service():
     '''Test watchdog service'''
-    print("\n🔍 Testing Watchdog Service...")
+    print("\n[SEARCH] Testing Watchdog Service...")
     
     watchdog = WatchdogService()
     
@@ -160,11 +160,11 @@ def test_watchdog_service():
     assert 'running' in status
     assert 'monitored_services' in status
     
-    print("✅ Watchdog service test completed")
+    print("[PASS] Watchdog service test completed")
 
 def test_obfuscation():
     '''Test process obfuscation'''
-    print("\n🔍 Testing Process Obfuscation...")
+    print("\n[SEARCH] Testing Process Obfuscation...")
     
     from process_obfuscation import ProcessObfuscator, MemoryProtector
     
@@ -188,12 +188,12 @@ def test_obfuscation():
     memory_protector.scramble_memory_layout()
     memory_protector.detect_memory_access()
     
-    print(f"✅ Process obfuscation test completed")
+    print(f"[PASS] Process obfuscation test completed")
     print(f"   Generated fake name: {fake_name}")
 
 def test_integration():
     '''Test full tamperproofing integration'''
-    print("\n🔧 Testing Integration...")
+    print("\n[U+1F527] Testing Integration...")
     
     from tamperproof_core import TamperproofingCore
     
@@ -212,11 +212,11 @@ def test_integration():
     assert 'status' in status
     assert 'components' in status
     
-    print("✅ Integration test completed")
+    print("[PASS] Integration test completed")
 
 def run_all_tests():
     '''Run all tamperproofing tests'''
-    print("🧪 WatchLockAI Tamperproofing Test Suite")
+    print("[U+1F9EA] WatchLockAI Tamperproofing Test Suite")
     print("=" * 50)
     
     try:
@@ -229,19 +229,19 @@ def run_all_tests():
         test_integration()
         
         print("\n" + "=" * 50)
-        print("✅ All tamperproofing tests completed successfully!")
-        print("\n🛡️ Tamperproofing System is ready for deployment")
-        print("\n📋 Test Summary:")
-        print("   • Process Protection - ✅ Working")
-        print("   • File Integrity Monitoring - ✅ Working")
-        print("   • Anti-Debugging - ✅ Working")
-        print("   • Configuration Management - ✅ Working")
-        print("   • Watchdog Service - ✅ Working")
-        print("   • Process Obfuscation - ✅ Working")
-        print("   • System Integration - ✅ Working")
+        print("[PASS] All tamperproofing tests completed successfully!")
+        print("\n[SHIELD] Tamperproofing System is ready for deployment")
+        print("\n[PLAN] Test Summary:")
+        print("   * Process Protection - [PASS] Working")
+        print("   * File Integrity Monitoring - [PASS] Working")
+        print("   * Anti-Debugging - [PASS] Working")
+        print("   * Configuration Management - [PASS] Working")
+        print("   * Watchdog Service - [PASS] Working")
+        print("   * Process Obfuscation - [PASS] Working")
+        print("   * System Integration - [PASS] Working")
         
     except Exception as e:
-        print(f"\n❌ Test failed: {e}")
+        print(f"\n[FAIL] Test failed: {e}")
         import traceback
         traceback.print_exc()
 

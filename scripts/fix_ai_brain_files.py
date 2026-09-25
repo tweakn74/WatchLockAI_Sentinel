@@ -30,7 +30,7 @@ def fix_broken_strings(file_path):
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(fixed_content)
     
-    print(f"✅ Fixed {file_path}")
+    print(f"[PASS] Fixed {file_path}")
 
 def main():
     """Fix all AI Brain files"""
@@ -47,7 +47,7 @@ def main():
         if os.path.exists(file_path):
             fix_broken_strings(file_path)
         else:
-            print(f"❌ File not found: {file_path}")
+            print(f"[FAIL] File not found: {file_path}")
 
 if __name__ == "__main__":
     main()

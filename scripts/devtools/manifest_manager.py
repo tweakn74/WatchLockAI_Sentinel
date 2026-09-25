@@ -41,8 +41,8 @@ def load_canonical_names():
     if MASTER_NAMES_FILE.exists():
         lines = MASTER_NAMES_FILE.read_text(encoding="utf-8").splitlines()
         for line in lines:
-            if "→" in line:
-                parts = line.split("→")
+            if "->" in line:
+                parts = line.split("->")
                 if len(parts) == 2:
                     canonical_name = parts[1].strip()
                     canonical[canonical_name] = canonical_name

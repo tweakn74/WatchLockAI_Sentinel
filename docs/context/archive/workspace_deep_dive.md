@@ -1,4 +1,4 @@
-WatchLockAI Sentinel – Deep‑Dive Workspace Report
+WatchLockAI Sentinel - Deep‑Dive Workspace Report
 
 Overview
 
@@ -59,7 +59,7 @@ Knowledge/RAG
 
 - Index: SQLite DB at `detection/knowledge/index/knowledge.db` with FTS tables and optional embeddings table.
 - Mode: FTS by default; embeddings mode activates lazily if `sentence-transformers` import succeeds (model `all-MiniLM-L6-v2`).
-- Capabilities: Rebuild index, query with provenance (filename/section/lines), parse structured “sentinel:directive” blocks from packs into a directives table.
+- Capabilities: Rebuild index, query with provenance (filename/section/lines), parse structured "sentinel:directive" blocks from packs into a directives table.
 
 Response & Modes
 
@@ -102,7 +102,7 @@ Observations & Potential Gaps
 - Feature flags default to OFF: many admin endpoints are inert until env flags (and optionally admin auth) are enabled.
 - Embeddings model is optional: defaults to FTS; ensure `sentence-transformers` availability only when desired (size/startup cost).
 - Windows‑only paths and behavior: tray, service, and registry monitoring gracefully degrade on non‑Windows; verify expectations per platform.
-- Case sensitivity: Some docs/tests reference `DOCS/…` while repo uses `docs/…`; Windows is case‑insensitive, Linux is not—watch paths in CI.
+- Case sensitivity: Some docs/tests reference `DOCS/...` while repo uses `docs/...`; Windows is case‑insensitive, Linux is not--watch paths in CI.
 
 Key Files
 

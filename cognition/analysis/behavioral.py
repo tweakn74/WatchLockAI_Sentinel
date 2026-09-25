@@ -263,7 +263,7 @@ class CodeAnomalyScanner:
         python_files = list(directory_path.rglob("*.py"))
 
         if not python_files:
-            print(f"⚠️  No Python files found in {directory_path}")
+            print(f"[WARN]  No Python files found in {directory_path}")
             return
 
         # Scan each Python file
@@ -278,13 +278,13 @@ class CodeAnomalyScanner:
             Formatted Markdown report as string
         """
         if not self.anomalies and not self.failed_files:
-            return "✅ Scan complete. No anomalies found."
+            return "[PASS] Scan complete. No anomalies found."
 
-        report_lines = ["# 🔍 Code Anomaly Scanner Report", ""]
+        report_lines = ["# [SEARCH] Code Anomaly Scanner Report", ""]
 
         # Summary section
         report_lines.extend([
-            "## 📊 Scan Summary",
+            "## [BARS] Scan Summary",
             "",
             f"- **Files Scanned**: {self.scanned_files}",
             f"- **Anomalies Found**: {len(self.anomalies)}",
@@ -295,7 +295,7 @@ class CodeAnomalyScanner:
         # Anomalies section
         if self.anomalies:
             report_lines.extend([
-                "## 🚨 Detected Anomalies",
+                "## [ALERT] Detected Anomalies",
                 "",
                 "| File | Line | Col | Character | Unicode | Context |",
                 "|------|------|-----|-----------|---------|---------|"
@@ -316,7 +316,7 @@ class CodeAnomalyScanner:
         # Failed files section
         if self.failed_files:
             report_lines.extend([
-                "## ⚠️ Failed to Scan",
+                "## [WARN] Failed to Scan",
                 ""
             ])
 
@@ -359,7 +359,7 @@ Examples:
         directory_path = Path(args.directory).resolve()
         scanner = CodeAnomalyScanner()
 
-        print(f"🔍 Scanning directory: {directory_path}")
+        print(f"[SEARCH] Scanning directory: {directory_path}")
         scanner.scan_directory(directory_path)
 
         # Generate and print the report
@@ -370,13 +370,13 @@ Examples:
         sys.exit(1 if scanner.anomalies else 0)
 
     except (FileNotFoundError, NotADirectoryError) as e:
-        print(f"❌ Error: {e}", file=sys.stderr)
+        print(f"[FAIL] Error: {e}", file=sys.stderr)
         sys.exit(1)
     except KeyboardInterrupt:
-        print("\n⚠️ Scan interrupted by user", file=sys.stderr)
+        print("\n[WARN] Scan interrupted by user", file=sys.stderr)
         sys.exit(1)
     except Exception as e:
-        print(f"❌ Unexpected error: {e}", file=sys.stderr)
+        print(f"[FAIL] Unexpected error: {e}", file=sys.stderr)
         sys.exit(1)
 
 

@@ -35,7 +35,7 @@ This document outlines the comprehensive Unicode normalization and locale harden
 ### Primary Normalization Pipeline
 
 ```
-Input → UTF-8 Validation → NFC Normalization → Security Filtering → Output
+Input -> UTF-8 Validation -> NFC Normalization -> Security Filtering -> Output
 ```
 
 #### Stage 1: UTF-8 Validation

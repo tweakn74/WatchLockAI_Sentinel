@@ -1,10 +1,10 @@
 # WatchLockAI Windows Agent Core
 
-## 🖥️ Overview
+## [U+1F5A5] Overview
 
 The WatchLockAI Windows Agent Core provides real-time monitoring and protection for Windows systems. It monitors file system activities, process execution, network connections, and registry changes to detect and respond to security threats.
 
-## 🎯 Core Capabilities
+## [TARGET] Core Capabilities
 
 ### **Real-time Monitoring**
 - **File System Monitor** - Track file creation, modification, and deletion
@@ -19,7 +19,7 @@ The WatchLockAI Windows Agent Core provides real-time monitoring and protection 
 - **Behavioral Analysis** - Machine learning-based anomaly detection
 - **Real-time Response** - Automated threat response actions
 
-## 🚀 Quick Start
+## [START] Quick Start
 
 ### **Installation**
 ```bash
@@ -62,7 +62,7 @@ python agent_service.py stop
 python agent_service.py uninstall
 ```
 
-## 🔍 Monitoring Components
+## [SEARCH] Monitoring Components
 
 ### **File System Monitor**
 - Monitors critical system directories
@@ -122,7 +122,7 @@ python agent_service.py uninstall
 - Mozilla Firefox
 - Microsoft Edge
 
-## 🔧 Configuration Options
+## [U+1F527] Configuration Options
 
 ### **Monitoring Settings**
 ```json
@@ -158,7 +158,7 @@ python agent_service.py uninstall
 }
 ```
 
-## 📊 Event Types
+## [BARS] Event Types
 
 ### **File System Events**
 - `file_created` - New file created
@@ -179,7 +179,7 @@ python agent_service.py uninstall
 - `registry_modified` - Registry key/value changed
 - `registry_suspicious` - Suspicious registry activity
 
-## 🔒 Security Features
+## [LOCK] Security Features
 
 ### **Tamper Protection**
 - Self-monitoring capabilities
@@ -193,7 +193,7 @@ python agent_service.py uninstall
 - Background operation
 - Silent monitoring mode
 
-## 🧪 Testing
+## [U+1F9EA] Testing
 
 ```bash
 python test_agent.py
@@ -208,7 +208,7 @@ python test_agent.py
 - Browser monitoring
 - Integration tests
 
-## 📈 Performance
+## [CHART] Performance
 
 ### **Resource Usage**
 - **CPU Usage:** < 5% average
@@ -222,7 +222,7 @@ python test_agent.py
 - Configurable monitoring intensity
 - Optimized for 24/7 operation
 
-## 🔧 Troubleshooting
+## [U+1F527] Troubleshooting
 
 ### **Common Issues**
 
@@ -256,7 +256,7 @@ curl http://localhost:9999/health
 # Verify ai_brain_url in agent_config.json
 ```
 
-## 🔄 Integration with WatchLockAI
+## [RELOAD] Integration with WatchLockAI
 
 The Windows Agent integrates seamlessly with other WatchLockAI components:
 
@@ -265,7 +265,7 @@ The Windows Agent integrates seamlessly with other WatchLockAI components:
 - **Management Console** - Centralized monitoring and control
 - **Tamperproofing** - Protected against disable attempts
 
-## 📝 Logging
+## [U+1F4DD] Logging
 
 Agent activities are logged to:
 - `watchlockai_agent.log` - Main agent log

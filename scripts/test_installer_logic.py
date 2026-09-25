@@ -20,7 +20,7 @@ class WatchLockAIInstallerTester:
         
     def log_test(self, test_name, passed, details=""):
         """Log test results"""
-        status = "✅ PASS" if passed else "❌ FAIL"
+        status = "[PASS] PASS" if passed else "[FAIL] FAIL"
         self.test_results.append({
             "test": test_name,
             "passed": passed,
@@ -285,25 +285,25 @@ class WatchLockAIInstallerTester:
         failed_tests = total_tests - passed_tests
         
         print(f"\nTotal Tests: {total_tests}")
-        print(f"Passed: {passed_tests} ✅") 
-        print(f"Failed: {failed_tests} ❌")
+        print(f"Passed: {passed_tests} [PASS]") 
+        print(f"Failed: {failed_tests} [FAIL]")
         print(f"Success Rate: {(passed_tests/total_tests)*100:.1f}%")
         
         if failed_tests > 0:
-            print(f"\n❌ FAILED TESTS:")
+            print(f"\n[FAIL] FAILED TESTS:")
             for result in self.test_results:
                 if not result['passed']:
-                    print(f"  • {result['test']}")
+                    print(f"  * {result['test']}")
                     if result['details']:
                         print(f"    {result['details']}")
                         
-        print(f"\n🎯 INSTALLER STATUS:")
+        print(f"\n[TARGET] INSTALLER STATUS:")
         if failed_tests == 0:
-            print("✅ ALL TESTS PASSED - Installer should work correctly!")
+            print("[PASS] ALL TESTS PASSED - Installer should work correctly!")
         elif failed_tests <= 2:
-            print("⚠️  MINOR ISSUES - Installer should mostly work")
+            print("[WARN]  MINOR ISSUES - Installer should mostly work")
         else:
-            print("❌ MAJOR ISSUES - Installer needs fixes")
+            print("[FAIL] MAJOR ISSUES - Installer needs fixes")
             
         return failed_tests == 0
         
@@ -329,11 +329,11 @@ def main():
     success = tester.run_all_tests()
     
     if success:
-        print("\n🎉 READY FOR DEPLOYMENT!")
+        print("\n[U+1F389] READY FOR DEPLOYMENT!")
         print("The installer has passed all validation tests.")
         print("You can confidently run it on Windows.")
     else:
-        print("\n🔧 NEEDS ATTENTION")
+        print("\n[U+1F527] NEEDS ATTENTION")
         print("Some tests failed. Review the issues above.")
         
     return 0 if success else 1

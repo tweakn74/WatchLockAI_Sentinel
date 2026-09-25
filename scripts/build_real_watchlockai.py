@@ -21,7 +21,7 @@ class WatchLockAIBuilder:
         
     def setup_build_environment(self):
         """Setup build directories and environment"""
-        print("🔧 Setting up build environment...")
+        print("[U+1F527] Setting up build environment...")
         
         # Create build directories
         self.build_dir.mkdir(exist_ok=True)
@@ -31,29 +31,29 @@ class WatchLockAIBuilder:
         if (self.build_dir / "bin").exists():
             shutil.rmtree(self.build_dir / "bin")
         
-        print("✅ Build environment ready")
+        print("[PASS] Build environment ready")
         
     def check_dotnet_availability(self):
         """Check if .NET 8 SDK is available"""
-        print("🔍 Checking .NET 8 SDK availability...")
+        print("[SEARCH] Checking .NET 8 SDK availability...")
         
         try:
             result = subprocess.run(['dotnet', '--version'], 
                                   capture_output=True, text=True, timeout=10)
             if result.returncode == 0:
                 version = result.stdout.strip()
-                print(f"✅ .NET SDK found: {version}")
+                print(f"[PASS] .NET SDK found: {version}")
                 return True
             else:
-                print("❌ .NET SDK not available")
+                print("[FAIL] .NET SDK not available")
                 return False
         except (subprocess.TimeoutExpired, FileNotFoundError, PermissionError) as e:
-            print(f"❌ .NET SDK not found or not accessible: {e}")
+            print(f"[FAIL] .NET SDK not found or not accessible: {e}")
             return False
     
     def install_dotnet_sdk(self):
         """Install .NET 8 SDK"""
-        print("📦 Installing .NET 8 SDK...")
+        print("[PKG] Installing .NET 8 SDK...")
         
         # Download and install .NET 8 SDK for Linux
         commands = [
@@ -67,23 +67,23 @@ class WatchLockAIBuilder:
             try:
                 result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=300)
                 if result.returncode != 0:
-                    print(f"❌ Failed to execute: {cmd}")
+                    print(f"[FAIL] Failed to execute: {cmd}")
                     print(f"Error: {result.stderr}")
                     return False
             except subprocess.TimeoutExpired:
-                print(f"⏰ Timeout executing: {cmd}")
+                print(f"[U+23F0] Timeout executing: {cmd}")
                 return False
                 
-        print("✅ .NET 8 SDK installed successfully")
+        print("[PASS] .NET 8 SDK installed successfully")
         return True
     
     def build_csharp_solution(self):
         """Build the C# .NET 8 solution"""
-        print("🔨 Building C# .NET 8 solution...")
+        print("[U+1F528] Building C# .NET 8 solution...")
         
         solution_file = self.agent_dir / "WatchLockAI.sln"
         if not solution_file.exists():
-            print(f"❌ Solution file not found: {solution_file}")
+            print(f"[FAIL] Solution file not found: {solution_file}")
             return False
             
         # Build the solution
@@ -96,10 +96,10 @@ class WatchLockAIBuilder:
             ], capture_output=True, text=True, timeout=300)
             
             if restore_result.returncode != 0:
-                print(f"❌ Package restore failed: {restore_result.stderr}")
+                print(f"[FAIL] Package restore failed: {restore_result.stderr}")
                 return False
                 
-            print("✅ NuGet packages restored")
+            print("[PASS] NuGet packages restored")
             
             # Build solution
             build_result = subprocess.run([
@@ -109,26 +109,26 @@ class WatchLockAIBuilder:
             ], capture_output=True, text=True, timeout=600)
             
             if build_result.returncode != 0:
-                print(f"❌ Build failed: {build_result.stderr}")
+                print(f"[FAIL] Build failed: {build_result.stderr}")
                 return False
                 
-            print("✅ C# solution built successfully")
+            print("[PASS] C# solution built successfully")
             return True
             
         except subprocess.TimeoutExpired:
-            print("⏰ Build timeout - solution too complex for current environment")
+            print("[U+23F0] Build timeout - solution too complex for current environment")
             return False
         except Exception as e:
-            print(f"❌ Build error: {e}")
+            print(f"[FAIL] Build error: {e}")
             return False
     
     def prepare_console_files(self):
         """Prepare the React console files"""
-        print("📱 Preparing React console files...")
+        print("[U+1F4F1] Preparing React console files...")
         
         console_dist = self.console_dir / "dist"
         if not console_dist.exists():
-            print(f"❌ Console dist directory not found: {console_dist}")
+            print(f"[FAIL] Console dist directory not found: {console_dist}")
             return False
             
         # Copy console files to build output
@@ -137,12 +137,12 @@ class WatchLockAIBuilder:
             shutil.rmtree(console_output)
             
         shutil.copytree(console_dist, console_output)
-        print("✅ Console files copied")
+        print("[PASS] Console files copied")
         return True
     
     def create_real_installer_powershell(self):
         """Create a real PowerShell installer that deploys the actual platform"""
-        print("📜 Creating real PowerShell installer...")
+        print("[DOC] Creating real PowerShell installer...")
         
         installer_script = f'''#Requires -RunAsAdministrator
 
@@ -317,33 +317,33 @@ function Deploy-Platform {{
 </head>
 <body>
     <div class="console">
-        <div class="logo">🛡️ WatchLockAI</div>
+        <div class="logo">[SHIELD] WatchLockAI</div>
         <div class="status">Enterprise Cybersecurity Platform</div>
         <div class="status">Status: <span style="color: #4CAF50;">OPERATIONAL</span></div>
         
         <div class="features">
             <div class="feature">
-                <h3>🔍 Threat Detection</h3>
+                <h3>[SEARCH] Threat Detection</h3>
                 <p>AI-powered behavioral analysis</p>
             </div>
             <div class="feature">
-                <h3>🚨 Real-time Monitoring</h3>
+                <h3>[ALERT] Real-time Monitoring</h3>
                 <p>Live threat feed & alerts</p>
             </div>
             <div class="feature">
-                <h3>🔬 Digital Forensics</h3>
+                <h3>[U+1F52C] Digital Forensics</h3>
                 <p>Evidence collection & analysis</p>
             </div>
             <div class="feature">
-                <h3>📊 Compliance</h3>
+                <h3>[BARS] Compliance</h3>
                 <p>NIST, SOC 2, ISO 27001</p>
             </div>
             <div class="feature">
-                <h3>🤝 Enterprise Integration</h3>
+                <h3>[SYNC] Enterprise Integration</h3>
                 <p>SIEM, EDR, SOAR platforms</p>
             </div>
             <div class="feature">
-                <h3>🧠 MITRE ATT&CK</h3>
+                <h3>[BRAIN] MITRE ATT&CK</h3>
                 <p>Kill chain analysis</p>
             </div>
         </div>
@@ -511,12 +511,12 @@ catch {{
         with open(installer_file, 'w', encoding='utf-8') as f:
             f.write(installer_script)
             
-        print(f"✅ Real installer created: {installer_file}")
+        print(f"[PASS] Real installer created: {installer_file}")
         return True
     
     def create_installer_batch(self):
         """Create batch file to launch the real installer"""
-        print("📜 Creating installer batch file...")
+        print("[DOC] Creating installer batch file...")
         
         batch_content = f'''@echo off
 echo.
@@ -542,12 +542,12 @@ pause
         with open(batch_file, 'w', encoding='utf-8') as f:
             f.write(batch_content)
             
-        print(f"✅ Installer batch file created: {batch_file}")
+        print(f"[PASS] Installer batch file created: {batch_file}")
         return True
     
     def create_build_summary(self):
         """Create a summary of what was built"""
-        print("📋 Creating build summary...")
+        print("[PLAN] Creating build summary...")
         
         summary = {
             "platform": "WatchLockAI Enterprise Cybersecurity Platform",
@@ -593,12 +593,12 @@ pause
         with open(summary_file, 'w', encoding='utf-8') as f:
             json.dump(summary, f, indent=2)
             
-        print(f"✅ Build summary created: {summary_file}")
+        print(f"[PASS] Build summary created: {summary_file}")
         return True
     
     def run_build(self):
         """Run the complete build process"""
-        print("🚀 Starting WatchLockAI REAL Platform Build Process")
+        print("[START] Starting WatchLockAI REAL Platform Build Process")
         print("=" * 60)
         
         try:
@@ -607,11 +607,11 @@ pause
             
             # Check/install .NET SDK
             if not self.check_dotnet_availability():
-                print("📦 .NET SDK not available - creating installer that handles runtime installation")
+                print("[PKG] .NET SDK not available - creating installer that handles runtime installation")
             
             # For now, skip the complex .NET build and focus on creating a proper installer
             # that can deploy the actual platform structure
-            print("🔧 Creating deployment-ready installer...")
+            print("[U+1F527] Creating deployment-ready installer...")
             
             # Prepare console files
             self.prepare_console_files()
@@ -626,26 +626,26 @@ pause
             self.create_build_summary()
             
             print("=" * 60)
-            print("🎉 WatchLockAI REAL Platform Build COMPLETED!")
+            print("[U+1F389] WatchLockAI REAL Platform Build COMPLETED!")
             print("=" * 60)
             print()
-            print("📦 DELIVERABLES:")
-            print(f"   ✅ Real Platform Installer: WatchLockAI-REAL-Platform-Installer.bat")
-            print(f"   ✅ PowerShell Installer: {self.installer_dir}/WatchLockAI-REAL-Platform-Installer.ps1")
-            print(f"   ✅ Console Files: {self.build_dir}/console")
-            print(f"   ✅ Build Summary: REAL_BUILD_SUMMARY.json")
+            print("[PKG] DELIVERABLES:")
+            print(f"   [PASS] Real Platform Installer: WatchLockAI-REAL-Platform-Installer.bat")
+            print(f"   [PASS] PowerShell Installer: {self.installer_dir}/WatchLockAI-REAL-Platform-Installer.ps1")
+            print(f"   [PASS] Console Files: {self.build_dir}/console")
+            print(f"   [PASS] Build Summary: REAL_BUILD_SUMMARY.json")
             print()
-            print("🏗️  NEXT STEPS:")
+            print("[U+1F3D7]  NEXT STEPS:")
             print("   1. Test the installer in a Windows 11 VM")
             print("   2. Verify complete platform deployment")
             print("   3. Validate enterprise features")
             print()
-            print("🎯 This installer deploys the ACTUAL comprehensive platform!")
+            print("[TARGET] This installer deploys the ACTUAL comprehensive platform!")
             
             return True
             
         except Exception as e:
-            print(f"❌ Build failed: {e}")
+            print(f"[FAIL] Build failed: {e}")
             return False
 
 if __name__ == "__main__":

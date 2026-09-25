@@ -48,16 +48,16 @@ def stream_ollama(prompt):
 
         stderr = process.stderr.read()
         if stderr:
-            console.print(f"[red]⚠️ Ollama stderr:[/red] {stderr.strip()}")
+            console.print(f"[red][WARN] Ollama stderr:[/red] {stderr.strip()}")
 
         return output_lines
 
     except TimeoutError as e:
-        console.print(f"[red]❌ Timeout:[/red] {e}")
+        console.print(f"[red][FAIL] Timeout:[/red] {e}")
         return []
 
     except Exception as e:
-        console.print(f"[red]❌ Unexpected failure:[/red] {e}")
+        console.print(f"[red][FAIL] Unexpected failure:[/red] {e}")
         return []
 
 
@@ -65,7 +65,7 @@ def plan_tasks(goal: str):
     prompt = f"""
 You are an autonomous AI software engineer.
 
-Given this goal: "{goal}", generate a clear, step-by-step dev plan (3–6 items), each as a single sentence.
+Given this goal: "{goal}", generate a clear, step-by-step dev plan (3-6 items), each as a single sentence.
 
 Only output the plan list.
 """
@@ -76,10 +76,10 @@ Only output the plan list.
     )
 
     lines = stream_ollama(prompt)
-    steps = [line.strip("-•1234567890. ").strip() for line in lines if line.strip()]
+    steps = [line.strip("-*1234567890. ").strip() for line in lines if line.strip()]
 
     if not steps:
-        console.print("[yellow]⚠️ Using fallback planning...[/yellow]")
+        console.print("[yellow][WARN] Using fallback planning...[/yellow]")
         return fallback(goal)
 
     return steps

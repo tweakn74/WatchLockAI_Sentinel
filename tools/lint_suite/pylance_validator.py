@@ -113,29 +113,29 @@ def validate_dopamine_files() -> Dict[str, List[str]]:
 
 def main():
     """Main validation function."""
-    print("🛡️  PYLANCE VALIDATOR - SUPERHERO ISSUE DETECTION")
+    print("[SHIELD]  PYLANCE VALIDATOR - SUPERHERO ISSUE DETECTION")
     print("=" * 60)
 
     results = validate_dopamine_files()
 
     total_issues = 0
     for file_name, errors in results.items():
-        print(f"\n📄 {file_name}:")
+        print(f"\n[PAGE] {file_name}:")
         if errors:
             for error in errors:
-                print(f"   ❌ {error}")
+                print(f"   [FAIL] {error}")
                 total_issues += 1
         else:
-            print("   ✅ No issues detected")
+            print("   [PASS] No issues detected")
 
     print("\n" + "=" * 60)
     if total_issues == 0:
-        print("🎉 ALL PYLANCE ISSUES RESOLVED!")
-        print("🦸 SUPERHERO-LEVEL CODE QUALITY ACHIEVED!")
+        print("[U+1F389] ALL PYLANCE ISSUES RESOLVED!")
+        print("[U+1F9B8] SUPERHERO-LEVEL CODE QUALITY ACHIEVED!")
         return True
     else:
-        print(f"💥 {total_issues} PYLANCE ISSUES DETECTED")
-        print("🔧 CONTINUED SUPERHERO INTERVENTION REQUIRED")
+        print(f"[U+1F4A5] {total_issues} PYLANCE ISSUES DETECTED")
+        print("[U+1F527] CONTINUED SUPERHERO INTERVENTION REQUIRED")
         return False
 
 

@@ -1,9 +1,9 @@
 # WatchLockAI - True Architecture Analysis
 
-## 🎯 **CORE VISION**
+## [TARGET] **CORE VISION**
 WatchLockAI is not just another security tool - it's an **autonomous, agentic cybersecurity brain** that thinks, detects, investigates, responds, explains, learns, and resists defeat.
 
-## 🧠 **KEY ARCHITECTURAL COMPONENTS**
+## [BRAIN] **KEY ARCHITECTURAL COMPONENTS**
 
 ### 1. **AGENTIC AI BRAIN (LLM CORE)**
 - **Local LLM** with fog-of-war memory model
@@ -77,7 +77,7 @@ WatchLockAI is not just another security tool - it's an **autonomous, agentic cy
   - Process termination
   - Token revocation
   - Firewall rule injection
-- **Agentic feedback loop:** detect → enrich → validate → act → report
+- **Agentic feedback loop:** detect -> enrich -> validate -> act -> report
 
 ### 6. **AZURE CLOUD INTEGRATION**
 - **Microsoft Sentinel** alert ingestion
@@ -131,7 +131,7 @@ WatchLockAI is not just another security tool - it's an **autonomous, agentic cy
   - Registry corruption detection
   - DLL version mismatch resolution
 
-## 🚀 **PHASED DEPLOYMENT STRATEGY**
+## [START] **PHASED DEPLOYMENT STRATEGY**
 
 ```
 Phase 0: Base Agent Install (local-only operation)
@@ -142,7 +142,7 @@ Phase 4: Command Center Synchronization (cloud integration)
 Phase 5: Third-party Integration (EDR/SIEM connectivity)
 ```
 
-## 🎛️ **MANAGEMENT CONSOLE REQUIREMENTS**
+## [U+1F39B] **MANAGEMENT CONSOLE REQUIREMENTS**
 
 ### **Multi-tenant Web Console Features:**
 - **Live dashboards** with real-time threat visualization
@@ -160,7 +160,7 @@ Phase 5: Third-party Integration (EDR/SIEM connectivity)
 - Splunk, QRadar, ArcSight
 - Custom webhook integrations
 
-## 🔮 **FUTURE ENHANCEMENT MODULES**
+## [U+1F52E] **FUTURE ENHANCEMENT MODULES**
 - On-host deception/honeypot deployment
 - Smart YARA-based signature detection
 - LLM prompt injection/abuse prevention
@@ -170,7 +170,7 @@ Phase 5: Third-party Integration (EDR/SIEM connectivity)
 
 ---
 
-## 📋 **IMPLEMENTATION SCOPE ASSESSMENT**
+## [PLAN] **IMPLEMENTATION SCOPE ASSESSMENT**
 
 This is an **enterprise-grade, agentic cybersecurity platform** that requires:
 

@@ -122,7 +122,7 @@ def summarize_files(files: list[Path]) -> dict:
 
 def to_markdown(report: dict) -> str:
     lines: list[str] = []
-    lines.append("# DevAgentZero Context Documents — Summary Index")
+    lines.append("# DevAgentZero Context Documents -- Summary Index")
     lines.append("")
     lines.append(
         f"Documents: {report['doc_count']}  |  Total words (approx): {report['total_words']}"

@@ -405,7 +405,7 @@ class APIContractAnalyzer:
         
         # Handler changes are potentially breaking
         if old_ep.handler != new_ep.handler:
-            breaking.append(f"Handler changed for {endpoint_desc}: {old_ep.handler} → {new_ep.handler}")
+            breaking.append(f"Handler changed for {endpoint_desc}: {old_ep.handler} -> {new_ep.handler}")
         
         # Parameter changes
         old_params = set(old_ep.parameters)
@@ -442,7 +442,7 @@ class APIContractAnalyzer:
         
         # Feature flag changes
         if old_ep.feature_flag != new_ep.feature_flag:
-            breaking.append(f"Feature flag changed for {endpoint_desc}: {old_ep.feature_flag} → {new_ep.feature_flag}")
+            breaking.append(f"Feature flag changed for {endpoint_desc}: {old_ep.feature_flag} -> {new_ep.feature_flag}")
         
         return {"breaking": breaking, "non_breaking": non_breaking}
 
@@ -501,17 +501,17 @@ def main():
         print(f"Current:  {len(current.get('endpoints', {}))} endpoints")
         
         if diff.breaking_changes:
-            print(f"\n❌ BREAKING CHANGES DETECTED ({len(diff.breaking_changes)}):")
+            print(f"\n[FAIL] BREAKING CHANGES DETECTED ({len(diff.breaking_changes)}):")
             for change in diff.breaking_changes:
-                print(f"  • {change}")
+                print(f"  * {change}")
         
         if diff.non_breaking_changes:
-            print(f"\n✅ Non-breaking changes ({len(diff.non_breaking_changes)}):")
+            print(f"\n[PASS] Non-breaking changes ({len(diff.non_breaking_changes)}):")
             for change in diff.non_breaking_changes:
-                print(f"  • {change}")
+                print(f"  * {change}")
         
         if not diff.breaking_changes and not diff.non_breaking_changes:
-            print("\n✅ No API changes detected")
+            print("\n[PASS] No API changes detected")
         
         # Save updated contract
         if analyzer.save_contract(current, args.output):
@@ -519,7 +519,7 @@ def main():
         
         # Exit code
         if diff.breaking_changes and args.fail_on_breaking:
-            print("\n❌ Failing due to breaking changes")
+            print("\n[FAIL] Failing due to breaking changes")
             return 1
         
         return 0
@@ -529,7 +529,7 @@ if __name__ == "__main__":
     try:
         sys.exit(main())
     except KeyboardInterrupt:
-        print("\n❌ Interrupted by user")
+        print("\n[FAIL] Interrupted by user")
         sys.exit(130)
     except Exception as e:
         logger.error(f"Unexpected error: {e}")

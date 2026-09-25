@@ -1,4 +1,4 @@
-# Health Monitor — Spec
+# Health Monitor -- Spec
 
 Purpose: Report host health and generate HealthAlert@v1 when thresholds crossed.
 

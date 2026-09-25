@@ -48,12 +48,12 @@ class TestRateLimit(unittest.TestCase):
         api = SentinelWebAPI(sentinel_service=None)
         client = TestClient(api.app)
 
-        # Invalid negative → clamped to 0 but response remains reloading
+        # Invalid negative -> clamped to 0 but response remains reloading
         r = client.post("/api/admin/config/reload?debounce_ms=-10")
         self.assertEqual(r.status_code, 200, r.text)
         self.assertEqual(r.json().get("status"), "reloading")
 
-        # Excessively large → clamped to 60000
+        # Excessively large -> clamped to 60000
         r2 = client.post("/api/admin/config/reload?debounce_ms=999999")
         self.assertEqual(r2.status_code, 200, r2.text)
         self.assertEqual(r2.json().get("status"), "reloading")

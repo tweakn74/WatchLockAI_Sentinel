@@ -65,4 +65,4 @@ if (Test-Path $profilePath) {
 
 # Reload profile immediately
 . $PROFILE
-Write-Host "✅ git-commit-all function installed. Try it now!" -ForegroundColor Green
+Write-Host "[PASS] git-commit-all function installed. Try it now!" -ForegroundColor Green

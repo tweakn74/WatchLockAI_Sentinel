@@ -19,7 +19,7 @@ def clean_filename(name):
     cleaned = name.strip("*- ").strip()
     # Normalize multiple spaces and handle special symbols consistently
     cleaned = re.sub(r"\s+", " ", cleaned)  # collapse multiple spaces
-    cleaned = cleaned.replace("–", "-")  # normalize en-dash to hyphen
+    cleaned = cleaned.replace("-", "-")  # normalize en-dash to hyphen
     cleaned = cleaned.replace("+", "+")  # keep plus signs consistent
     return cleaned
 

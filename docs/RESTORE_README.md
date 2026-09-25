@@ -2,7 +2,7 @@
 
 This document provides comprehensive instructions for verifying and restoring the Full Harvest v7.1 packages. The harvest includes both source-only and complete repository archives with deterministic builds and comprehensive verification.
 
-## 📦 Package Overview
+## [PKG] Package Overview
 
 **Full Harvest v7.1** contains two main archive types:
 
@@ -11,7 +11,7 @@ This document provides comprehensive instructions for verifying and restoring th
 
 All packages are built deterministically with `SOURCE_DATE_EPOCH=1700000000` for reproducible builds.
 
-## 🔍 Package Contents
+## [SEARCH] Package Contents
 
 ### Distribution Directory Structure
 ```
@@ -31,7 +31,7 @@ DOCS/report/
 └── verification_evidence.md        # Build verification logs
 ```
 
-## 🚀 Quick Start
+## [START] Quick Start
 
 ### Option 1: PowerShell (Windows/Cross-platform)
 
@@ -65,7 +65,7 @@ bash scripts/restore_full_harvest.sh --target MyRestore
 bash scripts/restore_full_harvest.sh --no-verify
 ```
 
-## 📋 Detailed Instructions
+## [PLAN] Detailed Instructions
 
 ### Step 1: Pre-restoration Verification
 
@@ -146,7 +146,7 @@ find WatchLockAI_Sentinel_Restored_source_only -type f | wc -l  # Should be 467
 find WatchLockAI_Sentinel_Restored_everything -type f | wc -l   # Should be 470
 ```
 
-## 🔧 Advanced Features
+## [U+1F527] Advanced Features
 
 ### Handling Split Archives
 
@@ -188,32 +188,32 @@ For archives exceeding 1GB (automatically split):
    "
    ```
 
-## 🎯 Expected Results
+## [TARGET] Expected Results
 
 ### Successful Restoration Output
 
 **PowerShell:**
 ```
-🔧 Full Harvest v7.1 Restoration Script
+[U+1F527] Full Harvest v7.1 Restoration Script
 =============================================
-🔍 Verifying SHA256SUMS...
-  ✅ source_only_v7_1.zip
-  ✅ everything_v7_1.zip
-  ✅ FULL_HARVEST_MANIFEST.json
-✅ SHA256 verification passed!
-📦 Extracting source-only package...
-  ✅ Extracted 467 files (XX,XXX,XXX bytes)
-📦 Extracting everything package...
-  ✅ Extracted 470 files (XX,XXX,XXX bytes)
+[SEARCH] Verifying SHA256SUMS...
+  [PASS] source_only_v7_1.zip
+  [PASS] everything_v7_1.zip
+  [PASS] FULL_HARVEST_MANIFEST.json
+[PASS] SHA256 verification passed!
+[PKG] Extracting source-only package...
+  [PASS] Extracted 467 files (XX,XXX,XXX bytes)
+[PKG] Extracting everything package...
+  [PASS] Extracted 470 files (XX,XXX,XXX bytes)
 
 =============================================
-✅ RESTORATION COMPLETE
+[PASS] RESTORATION COMPLETE
    Files restored: 937
    Total bytes: XX,XXX,XXX
    Target directories created
      - WatchLockAI_Sentinel_Restored_source_only
      - WatchLockAI_Sentinel_Restored_everything
-🟢 OK - Full Harvest v7.1 restoration successful!
+[U+1F7E2] OK - Full Harvest v7.1 restoration successful!
 =============================================
 ```
 
@@ -241,7 +241,7 @@ WatchLockAI_Sentinel_Restored_everything/
 │   └── ... (470 total files)
 ```
 
-## 🛠️ Troubleshooting
+## [TOOL] Troubleshooting
 
 ### Common Issues
 
@@ -300,7 +300,7 @@ bash scripts/restore_full_harvest.sh --source-only
 bash scripts/restore_full_harvest.sh --everything
 ```
 
-## 🔒 Security Considerations
+## [LOCK] Security Considerations
 
 ### Verification Best Practices
 
@@ -312,11 +312,11 @@ bash scripts/restore_full_harvest.sh --everything
 ### Trust Chain
 
 ```
-Deterministic Build → SHA256SUMS → Merkle Root → Verification Evidence
-SOURCE_DATE_EPOCH=1700000000 → Reproducible Packages → Verified Restoration
+Deterministic Build -> SHA256SUMS -> Merkle Root -> Verification Evidence
+SOURCE_DATE_EPOCH=1700000000 -> Reproducible Packages -> Verified Restoration
 ```
 
-## 📚 Integration with VS Code
+## [U+1F4DA] Integration with VS Code
 
 After successful restoration:
 
@@ -337,7 +337,7 @@ After successful restoration:
    pip install -r requirements-test.txt
    ```
 
-## ✅ Verification Checklist
+## [PASS] Verification Checklist
 
 - [ ] SHA256SUMS verification passed
 - [ ] Source package extracted (467 files expected)
@@ -347,7 +347,7 @@ After successful restoration:
 - [ ] Python files compile without syntax errors
 - [ ] All restoration scripts executed successfully
 
-## 📞 Support Information
+## [U+1F4DE] Support Information
 
 **Restoration Script Issues**: Check script help output with `--help` or `-h`
 **Verification Problems**: Examine `DOCS/report/verification_evidence.md`

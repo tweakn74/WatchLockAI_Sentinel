@@ -100,7 +100,7 @@ export function LoginPage() {
 
           {/* Demo Access */}
           <div className="mt-8 p-4 bg-green-50 rounded-lg border border-green-200">
-            <h3 className="text-sm font-medium text-green-900 mb-2">🚀 Demo Access Available</h3>
+            <h3 className="text-sm font-medium text-green-900 mb-2">[START] Demo Access Available</h3>
             <div className="text-xs text-green-800 space-y-1">
               <p><strong>Email:</strong> demo@demo.com</p>
               <p><strong>Password:</strong> demo123</p>

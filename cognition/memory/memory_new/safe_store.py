@@ -123,7 +123,7 @@ class SafeStore:
             try:
                 payload = json.load(f)
             except Exception:
-                # unreadable → try recover
+                # unreadable -> try recover
                 self._recover(reason="json_decode_error")
                 return self._safe_load_or_empty()
 
@@ -131,7 +131,7 @@ class SafeStore:
         if ok:
             return data
 
-        # checksum mismatch → recover
+        # checksum mismatch -> recover
         self._recover(reason=f"checksum_mismatch:{err}")
         return self._safe_load_or_empty()
 
@@ -266,7 +266,7 @@ class SafeStore:
                     return
             except Exception:
                 continue
-        # If we got here, recovery failed → remove broken file
+        # If we got here, recovery failed -> remove broken file
         try:
             self.memory_path.unlink(missing_ok=True)
         except Exception:

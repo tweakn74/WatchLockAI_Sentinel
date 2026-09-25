@@ -63,7 +63,7 @@ class WatchdogService:
         process_thread.start()
         health_thread.start()
         
-        logger.info("✅ Watchdog Service active - monitoring all components")
+        logger.info("[PASS] Watchdog Service active - monitoring all components")
         
     def _monitor_services(self):
         '''Monitor Windows services'''
@@ -203,7 +203,7 @@ class WatchdogService:
         '''Stop the watchdog service'''
         logger.info("Stopping WatchLockAI Watchdog Service...")
         self.running = False
-        logger.info("✅ Watchdog Service stopped")
+        logger.info("[PASS] Watchdog Service stopped")
         
     def get_status(self) -> Dict[str, Any]:
         '''Get watchdog status'''
@@ -216,7 +216,7 @@ class WatchdogService:
 
 def main():
     '''Main entry point'''
-    print("🐕 WatchLockAI Watchdog Service")
+    print("[U+1F415] WatchLockAI Watchdog Service")
     print("Nested protection against system failures")
     print()
     
@@ -224,20 +224,20 @@ def main():
         watchdog = WatchdogService()
         watchdog.start_watchdog()
         
-        print("🔄 Monitoring components:")
-        print("   • Windows Services - Service status monitoring")
-        print("   • Critical Processes - Process availability checking")
-        print("   • AI Brain Health - Connectivity and responsiveness")
-        print("   • Automatic Restart - Failed component recovery")
+        print("[RELOAD] Monitoring components:")
+        print("   * Windows Services - Service status monitoring")
+        print("   * Critical Processes - Process availability checking")
+        print("   * AI Brain Health - Connectivity and responsiveness")
+        print("   * Automatic Restart - Failed component recovery")
         print()
-        print("🛡️ Watchdog protection active!")
+        print("[SHIELD] Watchdog protection active!")
         print("Press Ctrl+C to stop")
         
         while watchdog.running:
             time.sleep(1)
             
     except KeyboardInterrupt:
-        print("\n🛑 Stopping watchdog...")
+        print("\n[U+1F6D1] Stopping watchdog...")
         watchdog.stop_watchdog()
         
     except Exception as e:

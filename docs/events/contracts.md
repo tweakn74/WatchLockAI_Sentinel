@@ -1,6 +1,6 @@
 # Event Contracts and Message Flow
 
-## Event Producer → Consumer Mapping
+## Event Producer -> Consumer Mapping
 
 | Producer Module | Event Type | Consumer Modules | Routing | Notes |
 |---|---|---|---|---|
@@ -32,22 +32,22 @@
 
 ### Primary Detection Flow
 ```
-Collector → EventBus → RulesEngine → DetectionAlert → AlertManager → UI/Actions
+Collector -> EventBus -> RulesEngine -> DetectionAlert -> AlertManager -> UI/Actions
 ```
 
 ### Health Monitoring Flow  
 ```
-HealthMonitor → EventBus → AlertManager → UI/TrayNotification
+HealthMonitor -> EventBus -> AlertManager -> UI/TrayNotification
 ```
 
 ### Response Action Flow
 ```
-DetectionAlert → EventBus → ActionManager → ActionEvent → EventBus → Logging/UI
+DetectionAlert -> EventBus -> ActionManager -> ActionEvent -> EventBus -> Logging/UI
 ```
 
 ### Configuration Change Flow
 ```
-WebAPI → OperationalMode → ConfigChange → EventBus → AllComponents
+WebAPI -> OperationalMode -> ConfigChange -> EventBus -> AllComponents
 ```
 
 ## Event Schema Contracts

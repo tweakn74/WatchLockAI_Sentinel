@@ -18,7 +18,7 @@ param(
     [switch]$Verify = $true
 )
 
-Write-Host "🔧 Full Harvest v7.1 Restoration Script" -ForegroundColor Cyan
+Write-Host "[U+1F527] Full Harvest v7.1 Restoration Script" -ForegroundColor Cyan
 Write-Host "=============================================" -ForegroundColor Cyan
 
 # Function to calculate SHA256
@@ -34,11 +34,11 @@ function Test-SHA256SUMS {
     
     $sha256sumsFile = Join-Path $DistPath "SHA256SUMS"
     if (-not (Test-Path $sha256sumsFile)) {
-        Write-Host "❌ SHA256SUMS file not found: $sha256sumsFile" -ForegroundColor Red
+        Write-Host "[FAIL] SHA256SUMS file not found: $sha256sumsFile" -ForegroundColor Red
         return $false
     }
     
-    Write-Host "🔍 Verifying SHA256SUMS..." -ForegroundColor Yellow
+    Write-Host "[SEARCH] Verifying SHA256SUMS..." -ForegroundColor Yellow
     $checksums = Get-Content $sha256sumsFile
     $allValid = $true
     
@@ -51,13 +51,13 @@ function Test-SHA256SUMS {
             if (Test-Path $filePath) {
                 $actualHash = Get-FileSHA256 $filePath
                 if ($actualHash -eq $expectedHash) {
-                    Write-Host "  ✅ $fileName" -ForegroundColor Green
+                    Write-Host "  [PASS] $fileName" -ForegroundColor Green
                 } else {
-                    Write-Host "  ❌ $fileName (hash mismatch)" -ForegroundColor Red
+                    Write-Host "  [FAIL] $fileName (hash mismatch)" -ForegroundColor Red
                     $allValid = $false
                 }
             } else {
-                Write-Host "  ❌ $fileName (file not found)" -ForegroundColor Red
+                Write-Host "  [FAIL] $fileName (file not found)" -ForegroundColor Red
                 $allValid = $false
             }
         }
@@ -76,7 +76,7 @@ function Restore-SplitArchive {
         return $true
     }
     
-    Write-Host "🔧 Reassembling split archive: $BaseName" -ForegroundColor Yellow
+    Write-Host "[U+1F527] Reassembling split archive: $BaseName" -ForegroundColor Yellow
     
     $partsInfo = Get-Content $partsIndexFile | ConvertFrom-Json
     $outputFile = Join-Path $DistPath $partsInfo.original_file
@@ -90,14 +90,14 @@ function Restore-SplitArchive {
     foreach ($part in $partsInfo.parts) {
         $partPath = Join-Path $DistPath $part.filename
         if (-not (Test-Path $partPath)) {
-            Write-Host "  ❌ Part not found: $($part.filename)" -ForegroundColor Red
+            Write-Host "  [FAIL] Part not found: $($part.filename)" -ForegroundColor Red
             return $false
         }
         
         # Verify part hash
         $partHash = Get-FileSHA256 $partPath
         if ($partHash -ne $part.sha256) {
-            Write-Host "  ❌ Part hash mismatch: $($part.filename)" -ForegroundColor Red
+            Write-Host "  [FAIL] Part hash mismatch: $($part.filename)" -ForegroundColor Red
             return $false
         }
         
@@ -106,10 +106,10 @@ function Restore-SplitArchive {
         [System.IO.File]::WriteAllBytes($outputFile, $content, $totalSize)
         $totalSize += $content.Length
         
-        Write-Host "  ✅ Part $($part.part_number): $($part.filename)" -ForegroundColor Green
+        Write-Host "  [PASS] Part $($part.part_number): $($part.filename)" -ForegroundColor Green
     }
     
-    Write-Host "  ✅ Reassembled: $BaseName ($totalSize bytes)" -ForegroundColor Green
+    Write-Host "  [PASS] Reassembled: $BaseName ($totalSize bytes)" -ForegroundColor Green
     return $true
 }
 
@@ -117,12 +117,12 @@ function Restore-SplitArchive {
 function Expand-HarvestArchive {
     param([string]$ArchivePath, [string]$DestinationPath, [string]$PackageType)
     
-    Write-Host "📦 Extracting $PackageType package..." -ForegroundColor Yellow
+    Write-Host "[PKG] Extracting $PackageType package..." -ForegroundColor Yellow
     Write-Host "  Source: $ArchivePath" -ForegroundColor Gray
     Write-Host "  Target: $DestinationPath" -ForegroundColor Gray
     
     if (-not (Test-Path $ArchivePath)) {
-        Write-Host "  ❌ Archive not found: $ArchivePath" -ForegroundColor Red
+        Write-Host "  [FAIL] Archive not found: $ArchivePath" -ForegroundColor Red
         return @{Success=$false; FileCount=0; TotalBytes=0}
     }
     
@@ -141,12 +141,12 @@ function Expand-HarvestArchive {
         $fileCount = $extractedFiles.Count
         $totalBytes = ($extractedFiles | Measure-Object -Property Length -Sum).Sum
         
-        Write-Host "  ✅ Extracted $fileCount files ($totalBytes bytes)" -ForegroundColor Green
+        Write-Host "  [PASS] Extracted $fileCount files ($totalBytes bytes)" -ForegroundColor Green
         
         return @{Success=$true; FileCount=$fileCount; TotalBytes=$totalBytes}
     }
     catch {
-        Write-Host "  ❌ Extraction failed: $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "  [FAIL] Extraction failed: $($_.Exception.Message)" -ForegroundColor Red
         return @{Success=$false; FileCount=0; TotalBytes=0}
     }
 }
@@ -155,15 +155,15 @@ function Expand-HarvestArchive {
 try {
     # Resolve paths
     $DistPath = Resolve-Path $DistDir -ErrorAction Stop
-    Write-Host "📁 Distribution directory: $DistPath" -ForegroundColor Gray
+    Write-Host "[U+1F4C1] Distribution directory: $DistPath" -ForegroundColor Gray
     
     # Verify SHA256SUMS if requested
     if ($Verify) {
         if (-not (Test-SHA256SUMS -DistPath $DistPath)) {
-            Write-Host "❌ SHA256 verification failed!" -ForegroundColor Red
+            Write-Host "[FAIL] SHA256 verification failed!" -ForegroundColor Red
             exit 1
         }
-        Write-Host "✅ SHA256 verification passed!" -ForegroundColor Green
+        Write-Host "[PASS] SHA256 verification passed!" -ForegroundColor Green
     }
     
     # Determine which packages to restore
@@ -210,19 +210,19 @@ try {
     # Success summary
     Write-Host ""
     Write-Host "=============================================" -ForegroundColor Cyan
-    Write-Host "✅ RESTORATION COMPLETE" -ForegroundColor Green
+    Write-Host "[PASS] RESTORATION COMPLETE" -ForegroundColor Green
     Write-Host "   Files restored: $totalFileCount" -ForegroundColor White
     Write-Host "   Total bytes: $($totalBytes.ToString('N0'))" -ForegroundColor White
     Write-Host "   Target directories created" -ForegroundColor White
     if ($restoreSource) { Write-Host "     - ${TargetDir}_source_only" -ForegroundColor Gray }
     if ($restoreEverything) { Write-Host "     - ${TargetDir}_everything" -ForegroundColor Gray }
-    Write-Host "🟢 OK - Full Harvest v7.1 restoration successful!" -ForegroundColor Green
+    Write-Host "[U+1F7E2] OK - Full Harvest v7.1 restoration successful!" -ForegroundColor Green
     Write-Host "=============================================" -ForegroundColor Cyan
     
     exit 0
 }
 catch {
     Write-Host ""
-    Write-Host "❌ RESTORATION FAILED: $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host "[FAIL] RESTORATION FAILED: $($_.Exception.Message)" -ForegroundColor Red
     exit 1
 }

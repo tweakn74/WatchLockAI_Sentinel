@@ -44,17 +44,17 @@ PRIORITY 1 TASKS - HIGH IMPORTANCE IMPROVEMENTS
     Add comprehensive error handling and recovery for event delivery failures.
     Improves system reliability by gracefully handling subscriber errors and cleanup.
     Files: app_core/bus.py | Risk: low | Est: 90min
-    — Completed by exposing counters via get_observability_metrics() and opt-in /api/metrics/event_bus (default OFF).
+    -- Completed by exposing counters via get_observability_metrics() and opt-in /api/metrics/event_bus (default OFF).
 
 [x] P1-002: Implement Configuration Hot Reload
     Add CONFIG_HOT_RELOAD_ENABLED (default OFF) and POST /api/admin/config/reload. Non-blocking, debounced service reload; returns {"status":"reloading"}.
     Files: service/service_wrapper.py, console/web_api.py | Risk: medium | Est: 180min
-    — Completed by adding trigger_config_reload() with debounced timer and /api/admin/config/reload route (default OFF).
+    -- Completed by adding trigger_config_reload() with debounced timer and /api/admin/config/reload route (default OFF).
 
 [x] P1-003: Composite Health Metrics (default ON, non-breaking)
     Composite health metrics at /api/metrics/health, default ON via HEALTH_ENDPOINT_ENABLED=1. Conservative defaults; import-safe; non-breaking.
     Files: console/web_api.py, tests/test_bus_metrics.py | Risk: low | Est: 90min
-    — Completed by adding /api/metrics/health endpoint with composite stats from event_bus and service components.
+    -- Completed by adding /api/metrics/health endpoint with composite stats from event_bus and service components.
 
 [ ] P1-003: Add Comprehensive API Input Validation
     Add comprehensive input validation, rate limiting, and error response formatting.
@@ -66,19 +66,19 @@ PRIORITY 1 TASKS - HIGH IMPORTANCE IMPROVEMENTS
     Implemented standard-library token-bucket rate limiting (console/rate_limit.py). Default OFF via RATE_LIMIT_ENABLED.
     Applied limits: admin_config_reload=5/min, metrics_health=60/min. Import-safe; no new dependencies.
     Files: console/rate_limit.py, console/web_api.py, tests/test_rate_limit.py | Risk: low | Est: 120min
-    — Completed with bounded input validation and per-route, per-client rate limiting using token bucket algorithm.
+    -- Completed with bounded input validation and per-route, per-client rate limiting using token bucket algorithm.
 
 [x] P1-005: RBAC for Admin Routes (default OFF)
     Added ADMIN_AUTH_ENABLED (default OFF) and ADMIN_TOKEN environment variables. 
     Requires X-Admin-Token header for /api/admin/* routes when enabled. No new deps; 403 on missing/wrong token.
     Files: console/web_api.py, tests/test_rbac.py | Risk: low | Est: 90min
-    — Completed with import-safe header-based authentication for admin endpoints.
+    -- Completed with import-safe header-based authentication for admin endpoints.
 
 [x] P1-006: Structured Logging for Observability (no new deps)
     Uses existing logger (loguru) or stdlib logging fallback. Emits structured logs on metrics calls.
     Added gated /api/metrics/snapshot (debug-only, METRICS_DEBUG_ENABLED=1) for timestamped rollup.
     Files: console/web_api.py, tests/test_structured_logging.py | Risk: low | Est: 60min
-    — Completed with structured JSON logging for all metrics endpoints and new snapshot endpoint.
+    -- Completed with structured JSON logging for all metrics endpoints and new snapshot endpoint.
 
 [ ] P1-004: Optimize Event Bus Performance for High Load
     Implement event batching and optimize queue performance for high throughput.
@@ -96,20 +96,20 @@ PRIORITY 2 TASKS - FUTURE ENHANCEMENTS
 
 [x] P2-001: Behavioral Anomaly Detection (two-tier, default no-deps)
     Tier A: stdlib-only z-score/MAD-based scoring with rolling windows, persist minimal state in data/anomaly/state.json.
-    Endpoint (debug-only, gated by METRICS_DEBUG_ENABLED=1): GET /api/anomaly/score?window=... → { "ok": true, "score": float, "n": int }
+    Endpoint (debug-only, gated by METRICS_DEBUG_ENABLED=1): GET /api/anomaly/score?window=... -> { "ok": true, "score": float, "n": int }
     Tier B: optional sklearn IsolationForest when ANOMALY_SKLEARN_ENABLED=1, train model, persist to models/anomaly_iforest.pkl.
-    Admin endpoint: POST /api/admin/anomaly/train (RBAC-gated, default OFF via ADMIN_AUTH_ENABLED=0) → { "status":"training" }.
+    Admin endpoint: POST /api/admin/anomaly/train (RBAC-gated, default OFF via ADMIN_AUTH_ENABLED=0) -> { "status":"training" }.
     Files: console/anomaly.py, console/web_api.py, tests/test_anomaly.py | Risk: medium | Est: 360min
-    — Completed with two-tier anomaly detection system, import-safe unittest coverage, and structured logging integration.
+    -- Completed with two-tier anomaly detection system, import-safe unittest coverage, and structured logging integration.
 
 [x] P2-002: File Quarantine + Restore (default OFF, RBAC + rate-limit)
     POST /api/admin/quarantine (RBAC-gated, rate-limited; default OFF)
-    Input: path query/body param. Steps: compute SHA256 → move to QUARANTINE_DIR via os.replace → attempt Windows ACL tighten via icacls (subprocess) if available; swallow errors.
+    Input: path query/body param. Steps: compute SHA256 -> move to QUARANTINE_DIR via os.replace -> attempt Windows ACL tighten via icacls (subprocess) if available; swallow errors.
     Log JSON line to data/quarantine/audit_log.jsonl with {ts, action, path_src, path_dst, sha256}.
     Return { "status":"quarantined", "sha256": "...", "dst": "..." }.
     POST /api/admin/quarantine/restore (RBAC + rate-limit) - validate hash and source mapping; os.replace back; audit log.
     Files: console/quarantine.py, console/web_api.py, tests/test_quarantine.py | Risk: medium | Est: 240min
-    — Completed with secure file quarantine system, Windows ACL hardening, comprehensive audit logging, and RBAC protection.
+    -- Completed with secure file quarantine system, Windows ACL hardening, comprehensive audit logging, and RBAC protection.
 
 [ ] P2-003: Add Web Console Authentication
     Implement session-based authentication for web console access.
@@ -123,7 +123,7 @@ PRIORITY 2 TASKS - FUTURE ENHANCEMENTS
 
 [ ] P2-005: Add Comprehensive Integration Tests
     Build comprehensive integration test suite covering major workflows.
-    Provides E2E testing for event generation → detection → response workflows.
+    Provides E2E testing for event generation -> detection -> response workflows.
     Files: tests/ | Risk: low | Est: 400min
 
 [ ] P2-006: Implement Configuration Schema Validation
@@ -236,7 +236,7 @@ PENDING: 11 tasks (0 P1 + 4 P2 + 7 Feature Backlog)
 TOTAL: 31 tasks
 
 Priority Focus Areas:
-• Platform Compatibility: ✅ COMPLETE (All P0 and Interop tasks done)
-• Core Functionality: 🔄 IN PROGRESS (P1 tasks ready to start)  
-• Advanced Features: ⏳ PLANNED (P2 and Feature Backlog)
-• System Reliability: ⏳ PLANNED (Error handling, validation, monitoring)
+* Platform Compatibility: [PASS] COMPLETE (All P0 and Interop tasks done)
+* Core Functionality: [RELOAD] IN PROGRESS (P1 tasks ready to start)  
+* Advanced Features: [U+23F3] PLANNED (P2 and Feature Backlog)
+* System Reliability: [U+23F3] PLANNED (Error handling, validation, monitoring)

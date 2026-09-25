@@ -73,12 +73,12 @@ class ThreatMapper:
             with open(atlas_path, 'r', encoding='utf-8') as f:
                 return json.load(f)
         except FileNotFoundError:
-            print("⚠️  routing_atlas.json not found, using empty atlas")
+            print("[WARN]  routing_atlas.json not found, using empty atlas")
             return {"route_groups": {}}
 
     def _discover_security_artifacts(self) -> None:
         """Discover existing security test artifacts"""
-        print("🔍 Discovering security artifacts...")
+        print("[SEARCH] Discovering security artifacts...")
         
         # Security test files
         test_patterns = [
@@ -129,7 +129,7 @@ class ThreatMapper:
                 )
                 self.test_artifacts.append(artifact)
         
-        print(f"   📊 Found {len(self.test_artifacts)} security artifacts")
+        print(f"   [BARS] Found {len(self.test_artifacts)} security artifacts")
 
     def _initialize_threat_vectors(self) -> None:
         """Initialize threat vector definitions"""
@@ -357,7 +357,7 @@ class ThreatMapper:
 
     def generate_threat_map(self) -> None:
         """Generate comprehensive threat mapping"""
-        print("🗺️  Generating threat mapping...")
+        print("[U+1F5FA]  Generating threat mapping...")
         
         # Map test artifacts to threat coverage
         self._map_test_coverage()
@@ -365,7 +365,7 @@ class ThreatMapper:
         # Generate threat matrix
         self._generate_threat_matrix()
         
-        print("✅ Threat mapping complete")
+        print("[PASS] Threat mapping complete")
 
     def _map_test_coverage(self) -> None:
         """Map test artifacts to threat vector coverage"""
@@ -391,7 +391,7 @@ class ThreatMapper:
 
     def _generate_threat_matrix(self) -> None:
         """Generate the main threat mapping document"""
-        print("📄 Generating threat matrix document...")
+        print("[PAGE] Generating threat matrix document...")
         
         # Calculate coverage statistics
         coverage_stats = self._calculate_coverage_stats()
@@ -410,10 +410,10 @@ This document maps application features and endpoints to potential threat vector
 
 | Risk Level | Threat Count | Coverage | Status |
 |------------|--------------|----------|--------|
-| **Critical** | {coverage_stats['critical']['count']} | {coverage_stats['critical']['coverage']:.1f}% | {'✅ Covered' if coverage_stats['critical']['coverage'] >= 80 else '⚠️ Needs Attention'} |
-| **High** | {coverage_stats['high']['count']} | {coverage_stats['high']['coverage']:.1f}% | {'✅ Covered' if coverage_stats['high']['coverage'] >= 80 else '⚠️ Needs Attention'} |
-| **Medium** | {coverage_stats['medium']['count']} | {coverage_stats['medium']['coverage']:.1f}% | {'✅ Covered' if coverage_stats['medium']['coverage'] >= 70 else '⚠️ Needs Attention'} |
-| **Low** | {coverage_stats['low']['count']} | {coverage_stats['low']['coverage']:.1f}% | ✅ Acceptable |
+| **Critical** | {coverage_stats['critical']['count']} | {coverage_stats['critical']['coverage']:.1f}% | {'[PASS] Covered' if coverage_stats['critical']['coverage'] >= 80 else '[WARN] Needs Attention'} |
+| **High** | {coverage_stats['high']['count']} | {coverage_stats['high']['coverage']:.1f}% | {'[PASS] Covered' if coverage_stats['high']['coverage'] >= 80 else '[WARN] Needs Attention'} |
+| **Medium** | {coverage_stats['medium']['count']} | {coverage_stats['medium']['coverage']:.1f}% | {'[PASS] Covered' if coverage_stats['medium']['coverage'] >= 70 else '[WARN] Needs Attention'} |
+| **Low** | {coverage_stats['low']['count']} | {coverage_stats['low']['coverage']:.1f}% | [PASS] Acceptable |
 
 ### Mitigation Effectiveness
 
@@ -451,25 +451,25 @@ This document maps application features and endpoints to potential threat vector
 """
                     for mitigation in mitigations:
                         status_icon = {
-                            'implemented': '✅',
-                            'partial': '🔶',
-                            'planned': '📋',
-                            'missing': '❌'
-                        }.get(mitigation.implementation_status, '❓')
+                            'implemented': '[PASS]',
+                            'partial': '[U+1F536]',
+                            'planned': '[PLAN]',
+                            'missing': '[FAIL]'
+                        }.get(mitigation.implementation_status, '[U+2753]')
                         
                         report_content += f"- {status_icon} **{mitigation.name}** ({mitigation.effectiveness} effectiveness)\n"
                     
                     if not mitigations:
-                        report_content += "- ⚠️ No specific mitigations identified\n"
+                        report_content += "- [WARN] No specific mitigations identified\n"
                     
                     report_content += f"""
 **Test Coverage:**
 """
                     for test in tests:
-                        report_content += f"- 🧪 `{test.file_path}` - {test.description}\n"
+                        report_content += f"- [U+1F9EA] `{test.file_path}` - {test.description}\n"
                     
                     if not tests:
-                        report_content += "- ⚠️ No specific test coverage identified\n"
+                        report_content += "- [WARN] No specific test coverage identified\n"
                     
                     report_content += "\n---\n\n"
         
@@ -521,7 +521,7 @@ This document maps application features and endpoints to potential threat vector
             for threat in uncovered_threats[:5]:  # Top 5
                 report_content += f"1. **{threat.name} ({threat.id})** - {threat.likelihood} likelihood, needs immediate attention\n"
         else:
-            report_content += "✅ All critical and high-risk threats have adequate coverage\n"
+            report_content += "[PASS] All critical and high-risk threats have adequate coverage\n"
         
         report_content += """
 ### Medium-Term Improvements
@@ -565,7 +565,7 @@ This document maps application features and endpoints to potential threat vector
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(report_content)
         
-        print(f"📄 Threat map: {output_path}")
+        print(f"[PAGE] Threat map: {output_path}")
 
     def _calculate_coverage_stats(self) -> Dict[str, Dict[str, Any]]:
         """Calculate coverage statistics by risk level"""
@@ -656,14 +656,14 @@ def main():
     """Main execution function"""
     repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     
-    print("🗺️  Starting Threat Mapping v4.0...")
-    print(f"📁 Repository: {repo_root}")
+    print("[U+1F5FA]  Starting Threat Mapping v4.0...")
+    print(f"[U+1F4C1] Repository: {repo_root}")
     
     mapper = ThreatMapper(repo_root)
     mapper.generate_threat_map()
     
-    print("\n🎉 P18 Complete: Threat Mapping Ready!")
-    print("📋 Report generated:")
+    print("\n[U+1F389] P18 Complete: Threat Mapping Ready!")
+    print("[PLAN] Report generated:")
     print("   - DOCS/security/threat_map.md")
 
 

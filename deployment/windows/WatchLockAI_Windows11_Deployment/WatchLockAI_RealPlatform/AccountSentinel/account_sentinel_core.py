@@ -886,7 +886,7 @@ class AccountSentinelCore:
         self.monitoring_thread.daemon = True
         self.monitoring_thread.start()
         
-        logger.info("✅ Account Sentinel monitoring active")
+        logger.info("[PASS] Account Sentinel monitoring active")
         
     def _monitoring_loop(self):
         '''Main monitoring loop'''
@@ -1010,7 +1010,7 @@ class AccountSentinelCore:
         if self.monitoring_thread:
             self.monitoring_thread.join(timeout=5)
             
-        logger.info("✅ Account Sentinel stopped")
+        logger.info("[PASS] Account Sentinel stopped")
         
     def get_status(self) -> Dict[str, Any]:
         '''Get Account Sentinel status'''
@@ -1025,7 +1025,7 @@ class AccountSentinelCore:
 
 def main():
     '''Main entry point for Account Sentinel'''
-    print("👥 WatchLockAI Account Sentinel")
+    print("[U+1F465] WatchLockAI Account Sentinel")
     print("Advanced user account monitoring and behavioral analysis")
     print()
     
@@ -1034,13 +1034,13 @@ def main():
         sentinel = AccountSentinelCore()
         sentinel.start_monitoring()
         
-        print("🔍 Monitoring capabilities active:")
-        print("   • Account Discovery - Hidden account detection")
-        print("   • Behavior Analysis - User behavior baselining")
-        print("   • Privilege Monitoring - Escalation detection")
-        print("   • Login Analysis - Anomalous login detection")
+        print("[SEARCH] Monitoring capabilities active:")
+        print("   * Account Discovery - Hidden account detection")
+        print("   * Behavior Analysis - User behavior baselining")
+        print("   * Privilege Monitoring - Escalation detection")
+        print("   * Login Analysis - Anomalous login detection")
         print()
-        print("👤 Account Sentinel is now monitoring!")
+        print("[U+1F464] Account Sentinel is now monitoring!")
         print("Press Ctrl+C to stop monitoring")
         
         # Keep sentinel running
@@ -1048,7 +1048,7 @@ def main():
             time.sleep(1)
             
     except KeyboardInterrupt:
-        print("\n🛑 Shutting down Account Sentinel...")
+        print("\n[U+1F6D1] Shutting down Account Sentinel...")
         sentinel.stop_monitoring()
         
     except Exception as e:

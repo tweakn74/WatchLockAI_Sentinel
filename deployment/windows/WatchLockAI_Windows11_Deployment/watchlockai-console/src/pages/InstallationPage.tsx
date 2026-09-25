@@ -55,7 +55,7 @@ const InstallationPage: React.FC = () => {
   const askAI = async () => {
     if (!currentQuestion.trim()) return;
     
-    setChatResponse('🤔 Asking AI...');
+    setChatResponse('[U+1F914] Asking AI...');
     
     try {
       const response = await fetch('/api/chat', {
@@ -73,10 +73,10 @@ const InstallationPage: React.FC = () => {
         const data = await response.json();
         setChatResponse(data.response);
       } else {
-        setChatResponse('❌ AI failed to respond');
+        setChatResponse('[FAIL] AI failed to respond');
       }
     } catch (err) {
-      setChatResponse('💥 Error communicating with AI');
+      setChatResponse('[U+1F4A5] Error communicating with AI');
     }
   };
 
@@ -114,14 +114,14 @@ const InstallationPage: React.FC = () => {
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold text-gray-900">WatchLockAI Installation Dashboard</h1>
         <Button onClick={loadInstallationData} variant="outline">
-          🔄 Refresh
+          [RELOAD] Refresh
         </Button>
       </div>
 
       {error && (
         <Alert>
           <div className="flex items-center">
-            <span className="text-yellow-600 mr-2">⚠️</span>
+            <span className="text-yellow-600 mr-2">[WARN]</span>
             <div>
               <p className="font-medium">Installation Data Not Available</p>
               <p className="text-sm text-gray-600">
@@ -164,7 +164,7 @@ const InstallationPage: React.FC = () => {
 
             <Alert>
               <div className="flex items-center">
-                <span className="text-blue-600 mr-2">🤖</span>
+                <span className="text-blue-600 mr-2">[BOT]</span>
                 <div>
                   <p className="font-medium">AI Responsiveness Test Results</p>
                   <p className="text-sm text-gray-600">
@@ -188,24 +188,24 @@ const InstallationPage: React.FC = () => {
                       <span className="text-sm text-gray-500">{entry.timestamp}</span>
                     </div>
                     <Badge className={entry.responsive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
-                      {entry.responsive ? '✓ RESPONDED' : '✗ SILENT'}
+                      {entry.responsive ? '[x] RESPONDED' : '[FAIL] SILENT'}
                     </Badge>
                   </div>
                   
                   <div className="space-y-3">
                     <div className="bg-gray-50 p-3 rounded">
-                      <p className="font-medium text-gray-800">🤔 Installer Question:</p>
+                      <p className="font-medium text-gray-800">[U+1F914] Installer Question:</p>
                       <p className="text-gray-700">{entry.question}</p>
                     </div>
                     
                     {entry.ai_response ? (
                       <div className="bg-blue-50 p-3 rounded">
-                        <p className="font-medium text-blue-800">🤖 AI Response:</p>
+                        <p className="font-medium text-blue-800">[BOT] AI Response:</p>
                         <p className="text-blue-700">{entry.ai_response}</p>
                       </div>
                     ) : (
                       <div className="bg-red-50 p-3 rounded">
-                        <p className="font-medium text-red-800">🔇 AI was completely silent!</p>
+                        <p className="font-medium text-red-800">[U+1F507] AI was completely silent!</p>
                       </div>
                     )}
                   </div>
@@ -216,7 +216,7 @@ const InstallationPage: React.FC = () => {
 
           <TabsContent value="chat" className="space-y-4">
             <Card className="p-6">
-              <h3 className="text-lg font-semibold mb-4">🤖 Chat with WatchLockAI AI</h3>
+              <h3 className="text-lg font-semibold mb-4">[BOT] Chat with WatchLockAI AI</h3>
               
               <div className="space-y-4">
                 <div>
@@ -228,13 +228,13 @@ const InstallationPage: React.FC = () => {
                     onChange={(e) => setCurrentModule(e.target.value)}
                     className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
-                    <option value="detection">🔍 Detection</option>
-                    <option value="response">⚡ Response</option>
-                    <option value="forensics">🔬 Forensics</option>
-                    <option value="integration">🔗 Integration</option>
-                    <option value="security">🛡️ Security</option>
-                    <option value="core">🧠 Core</option>
-                    <option value="ai">🤖 AI Brain</option>
+                    <option value="detection">[SEARCH] Detection</option>
+                    <option value="response">[SYS] Response</option>
+                    <option value="forensics">[U+1F52C] Forensics</option>
+                    <option value="integration">[LINK] Integration</option>
+                    <option value="security">[SHIELD] Security</option>
+                    <option value="core">[BRAIN] Core</option>
+                    <option value="ai">[BOT] AI Brain</option>
                   </select>
                 </div>
 
@@ -252,12 +252,12 @@ const InstallationPage: React.FC = () => {
                 </div>
 
                 <Button onClick={askAI} className="w-full">
-                  💬 Ask AI
+                  [MSG] Ask AI
                 </Button>
 
                 {chatResponse && (
                   <div className="bg-blue-50 p-4 rounded-lg">
-                    <p className="font-medium text-blue-800 mb-2">🤖 AI Response:</p>
+                    <p className="font-medium text-blue-800 mb-2">[BOT] AI Response:</p>
                     <p className="text-blue-700 whitespace-pre-wrap">{chatResponse}</p>
                   </div>
                 )}
@@ -266,7 +266,7 @@ const InstallationPage: React.FC = () => {
 
             <Alert>
               <div className="flex items-center">
-                <span className="text-green-600 mr-2">✅</span>
+                <span className="text-green-600 mr-2">[PASS]</span>
                 <div>
                   <p className="font-medium">Live AI Interaction</p>
                   <p className="text-sm text-gray-600">

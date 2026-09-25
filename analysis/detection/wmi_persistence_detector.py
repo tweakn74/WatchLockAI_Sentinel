@@ -67,11 +67,11 @@ class WMIPersistenceDetector:
         for category, items in self.findings.items():
             header = category.replace("_", " ").title()
             if items:
-                print(f"⚠️  {header} Findings:")
+                print(f"[WARN]  {header} Findings:")
                 for item in items:
                     print(f"  - {item}")
             else:
-                print(f"✅ No {header} issues found.")
+                print(f"[PASS] No {header} issues found.")
         print("\n--- Detection Complete ---")
 
 

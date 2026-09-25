@@ -431,7 +431,7 @@ echo "=== Daily Sentinel Maintenance ==="
 
 # Check service health
 echo "1. Service health check:"
-systemctl is-active sentinel_service_runner && echo "✓ Service running" || echo "✗ Service down"
+systemctl is-active sentinel_service_runner && echo "[x] Service running" || echo "[FAIL] Service down"
 
 # Check disk space
 echo "2. Disk space check:"

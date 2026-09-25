@@ -1,4 +1,4 @@
-AGENTS.md — Agent Operating Guide for WatchLockAI Sentinel
+AGENTS.md -- Agent Operating Guide for WatchLockAI Sentinel
 
 Purpose
 
@@ -30,7 +30,7 @@ Planning & Execution
 - Use the plan tool for multi‑step or complex work; keep it live and updated.
 - Plans may include: design, backend, API, UI, tests, perf, docs, rollout.
 - One step in progress at a time; mark completed as you move.
-- For large efforts, structure work into sprints: Research → Implementation → Validation → Hardening.
+- For large efforts, structure work into sprints: Research -> Implementation -> Validation -> Hardening.
 
 Proof‑of‑Work & Deliverables
 
@@ -43,14 +43,14 @@ Proof‑of‑Work & Deliverables
 Patches & File Editing
 
 - Apply changes via the patch tool only; avoid raw writes.
-- Prefer cohesive diffs—even if larger—when they improve clarity and integrity.
+- Prefer cohesive diffs--even if larger--when they improve clarity and integrity.
 - Keep names and public contracts stable, or document breaking changes + migrations.
 - Update docs alongside code; link files in `docs/context/index.json` when relevant.
 
 Reading & Searching
 
 - Prefer ripgrep: `rg -n -S --hidden --glob !**/.git/** PATTERN`.
-- Read files in ≤250‑line chunks to avoid truncation.
+- Read files in <=250‑line chunks to avoid truncation.
 - On Windows, `Get-Content -TotalCount/-Tail` for targeted reads.
 
 Response Style (chat)

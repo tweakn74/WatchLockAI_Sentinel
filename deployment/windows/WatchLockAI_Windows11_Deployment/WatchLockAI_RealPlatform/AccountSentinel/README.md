@@ -1,10 +1,10 @@
 # WatchLockAI Account Sentinel Module
 
-## 👥 Overview
+## [U+1F465] Overview
 
 The WatchLockAI Account Sentinel Module provides comprehensive user account monitoring, behavioral analysis, and identity correlation capabilities. It detects hidden accounts, monitors user behavior patterns, identifies privilege escalation attempts, and correlates user identities across multiple systems and contexts.
 
-## 🎯 Core Capabilities
+## [TARGET] Core Capabilities
 
 ### **Account Discovery & Monitoring**
 - **Hidden Account Detection** - Discovers accounts not visible through normal enumeration
@@ -36,7 +36,7 @@ The WatchLockAI Account Sentinel Module provides comprehensive user account moni
 - **Account Change Detection** - Monitors account modification events
 - **Real-time Event Processing** - Immediate event analysis and correlation
 
-## 🚀 Quick Start
+## [START] Quick Start
 
 ### **Installation**
 ```bash
@@ -66,7 +66,7 @@ start_account_sentinel.bat
 python account_sentinel_core.py
 ```
 
-## 🔧 Components
+## [U+1F527] Components
 
 ### **account_sentinel_core.py**
 Main orchestrator that coordinates all account monitoring functions.
@@ -95,7 +95,7 @@ Windows Event Log monitoring for account-related activities.
 - 4728 - Added to security group
 - And many more...
 
-## 🔍 Discovery Methods
+## [SEARCH] Discovery Methods
 
 ### **Account Enumeration**
 ```python
@@ -119,7 +119,7 @@ HKLM\SAM\SAM\Domains\Account\Users
 - Suspicious username patterns
 - Disabled but active accounts
 
-## 📊 Behavioral Analysis
+## [BARS] Behavioral Analysis
 
 ### **Login Behavior Baselines**
 - **Typical Login Times** - Hour-of-day patterns
@@ -148,7 +148,7 @@ if process not in common_processes:
     anomaly_score += 0.2
 ```
 
-## 🚨 Privilege Escalation Detection
+## [ALERT] Privilege Escalation Detection
 
 ### **High-Value Privileges**
 - `SeDebugPrivilege` - Debug programs
@@ -173,7 +173,7 @@ for privilege in added_privileges:
         trigger_escalation_alert()
 ```
 
-## 💾 Database Schema
+## [U+1F4BE] Database Schema
 
 ### **Accounts Table**
 ```sql
@@ -213,7 +213,7 @@ CREATE TABLE identities (
 );
 ```
 
-## ⚙️ Configuration Options
+## [U+2699] Configuration Options
 
 ### **Monitoring Intervals**
 ```json
@@ -250,7 +250,7 @@ CREATE TABLE identities (
 }
 ```
 
-## 🧪 Testing
+## [U+1F9EA] Testing
 
 Run the comprehensive test suite:
 ```bash
@@ -266,7 +266,7 @@ python test_account_sentinel.py
 - Configuration management
 - System integration
 
-## 📈 Performance Metrics
+## [CHART] Performance Metrics
 
 ### **Resource Usage**
 - **CPU Usage:** < 2% average
@@ -280,7 +280,7 @@ python test_account_sentinel.py
 - **Behavioral Anomalies:** 85%+ accuracy
 - **Identity Correlation:** 92%+ accuracy
 
-## 🔒 Security Features
+## [LOCK] Security Features
 
 ### **Data Protection**
 - **Encrypted Storage** - Sensitive data encryption
@@ -294,7 +294,7 @@ python test_account_sentinel.py
 - **Anonymization** - PII anonymization options
 - **Compliance** - GDPR/SOX compliance features
 
-## 🔗 Integration
+## [LINK] Integration
 
 ### **AI Brain Integration**
 All account events and anomalies are sent to the AI Brain for intelligent analysis and correlation with other security events.
@@ -305,7 +305,7 @@ Account events generate forensic evidence that can be analyzed for incident reco
 ### **SIEM Integration**
 Account alerts can be forwarded to external SIEM systems for enterprise-wide correlation.
 
-## 📊 Reporting
+## [BARS] Reporting
 
 ### **Account Discovery Reports**
 - Complete account inventory
@@ -325,7 +325,7 @@ Account alerts can be forwarded to external SIEM systems for enterprise-wide cor
 - Group membership changes
 - Risk assessments
 
-## 🔧 Troubleshooting
+## [U+1F527] Troubleshooting
 
 ### **Common Issues**
 
@@ -361,7 +361,7 @@ wevtutil el
 # Check security permissions
 ```
 
-## 📝 Logging
+## [U+1F4DD] Logging
 
 Account Sentinel activities are logged to:
 - `watchlockai_accounts.log` - Main account monitoring log

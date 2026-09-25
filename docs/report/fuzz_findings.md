@@ -37,10 +37,10 @@ Comprehensive fuzz testing suite implemented for all WatchLockAI Sentinel API en
 - **Conditional Testing:** Graceful handling of unavailable routes
 
 **Critical Endpoints Validated:**
-- `/health` → `health_response.json`
-- `/api/metrics/event_bus` → `event_bus_response.json` 
-- `/api/metrics/snapshot` → `metrics_snapshot_response.json`
-- `/api/anomaly/score` → `anomaly_score_response.json`
+- `/health` -> `health_response.json`
+- `/api/metrics/event_bus` -> `event_bus_response.json` 
+- `/api/metrics/snapshot` -> `metrics_snapshot_response.json`
+- `/api/anomaly/score` -> `anomaly_score_response.json`
 
 ## Fuzzing Attack Categories
 

@@ -22,34 +22,34 @@
 **One-liner status:** RC-2 Full ATT&CK Matrix Coverage COMPLETE - 20 baseline rules implemented with DSL, profile loading, graceful degradation confirmed
 
 **Next 2 actions:**
-1. "RC-3: add per-stage rules for each scenario (Initial→Exfil, + sequence rules)"
+1. "RC-3: add per-stage rules for each scenario (Initial->Exfil, + sequence rules)"
 2. "Add YAML overrides per tenant & ship coverage heatmap in /api/mitre/coverage"
 
 ## Implementation Summary
 
-✅ **Task A - Rule DSL + Enhanced Attack Matrix:** 
+[PASS] **Task A - Rule DSL + Enhanced Attack Matrix:** 
 - Created `detection/rule_dsl.py` with comprehensive DSL supporting where clauses, operators, sliding window counters
 - Enhanced `detection/attack_matrix.py` with profile-based rule loading, graceful degradation, DSL integration
 
-✅ **Task B - Profiles & Rules:** 
+[PASS] **Task B - Profiles & Rules:** 
 - Created `DOCS/mitre/rules/baseline.yaml` with 20 comprehensive rules covering full attack matrix
 - Implemented all specified attack scenarios: brute force, phishing, drive-by, insider threats, ransomware, supply chain, cloud takeover, API abuse, IoT anomalies, BEC, injection, password spray, watering hole, vishing, keylogger, DDoS, MITM, rogue USB, AI/deepfake, zero-day
 
-✅ **Task C - API:** 
+[PASS] **Task C - API:** 
 - `/api/mitre/coverage` endpoint already implemented in `console/web_api.py` 
 - Returns enabled status, active profile, rule counts, tactic breakdown, full rule details
 - Protected by MITRE_API_ENABLED flag (default OFF)
 
-✅ **Task D - Wiring:** 
+[PASS] **Task D - Wiring:** 
 - `service/service_wrapper.py` properly wires attack matrix with profile support
 - Respects MITRE_MATRIX_ENABLED, MITRE_PROFILE, MITRE_RULES_PATH environment variables
 - Graceful degradation when dependencies missing
 
-✅ **Task E - Tests:** 
+[PASS] **Task E - Tests:** 
 - Updated `tests/test_attack_matrix_smoke.py` with synthetic events for ATTK-BRUTE-LOGIN and ATTK-RANSOM-PREENC
 - All tests pass: 6 ransomware alerts + 3 brute force alerts + import safety + rule loading (20 baseline rules)
 
-✅ **Task F - Verification & Evidence:**
+[PASS] **Task F - Verification & Evidence:**
 - Compile: PASS for all files
 - Import booleans: detection modules=PASS, FastAPI=SKIPPED (expected graceful degradation)
 - Evidence artifacts updated with new file hashes and verification proofs

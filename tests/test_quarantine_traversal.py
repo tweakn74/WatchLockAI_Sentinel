@@ -671,18 +671,18 @@ def generate_traversal_report(request):
         # Risk Assessment
         critical_count = severity_counts.get('CRITICAL', 0)
         if critical_count > 0:
-            f.write("🔴 **CRITICAL RISK**: Path traversal vulnerabilities detected\\n\\n")
+            f.write("[U+1F534] **CRITICAL RISK**: Path traversal vulnerabilities detected\\n\\n")
         elif severity_counts.get('HIGH', 0) > 3:
-            f.write("🟡 **MODERATE RISK**: Multiple high-severity findings\\n\\n")
+            f.write("[U+1F7E1] **MODERATE RISK**: Multiple high-severity findings\\n\\n")
         else:
-            f.write("🟢 **LOW RISK**: No critical traversal bypasses detected\\n\\n")
+            f.write("[U+1F7E2] **LOW RISK**: No critical traversal bypasses detected\\n\\n")
         
         # Findings by Severity
         f.write("## Findings by Severity\\n\\n")
         for severity in ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO"]:
             count = severity_counts.get(severity, 0)
             if count > 0:
-                emoji = {"CRITICAL": "🔥", "HIGH": "⚠️", "MEDIUM": "⚡", "LOW": "ℹ️", "INFO": "✅"}.get(severity, "")
+                emoji = {"CRITICAL": "[FIRE]", "HIGH": "[WARN]", "MEDIUM": "[SYS]", "LOW": "ℹ", "INFO": "[PASS]"}.get(severity, "")
                 f.write(f"### {emoji} {severity} Severity ({count} findings)\\n\\n")
                 
                 severity_findings = [f for f in traversal_findings if f['severity'] == severity]

@@ -66,7 +66,7 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-echo -e "${CYAN}🔧 Full Harvest v7.1 Restoration Script${NC}"
+echo -e "${CYAN}[U+1F527] Full Harvest v7.1 Restoration Script${NC}"
 echo -e "${CYAN}=============================================${NC}"
 
 # Function to calculate SHA256
@@ -77,7 +77,7 @@ calculate_sha256() {
     elif command -v shasum >/dev/null 2>&1; then
         shasum -a 256 "$file" | cut -d' ' -f1
     else
-        echo "❌ No SHA256 utility found (sha256sum or shasum required)" >&2
+        echo "[FAIL] No SHA256 utility found (sha256sum or shasum required)" >&2
         return 1
     fi
 }
@@ -88,11 +88,11 @@ verify_sha256sums() {
     local sha256sums_file="$dist_path/SHA256SUMS"
     
     if [[ ! -f "$sha256sums_file" ]]; then
-        echo -e "${RED}❌ SHA256SUMS file not found: $sha256sums_file${NC}"
+        echo -e "${RED}[FAIL] SHA256SUMS file not found: $sha256sums_file${NC}"
         return 1
     fi
     
-    echo -e "${YELLOW}🔍 Verifying SHA256SUMS...${NC}"
+    echo -e "${YELLOW}[SEARCH] Verifying SHA256SUMS...${NC}"
     local all_valid=true
     
     while IFS= read -r line; do
@@ -105,13 +105,13 @@ verify_sha256sums() {
                 local actual_hash
                 actual_hash=$(calculate_sha256 "$file_path")
                 if [[ "$actual_hash" == "$expected_hash" ]]; then
-                    echo -e "  ${GREEN}✅ $file_name${NC}"
+                    echo -e "  ${GREEN}[PASS] $file_name${NC}"
                 else
-                    echo -e "  ${RED}❌ $file_name (hash mismatch)${NC}"
+                    echo -e "  ${RED}[FAIL] $file_name (hash mismatch)${NC}"
                     all_valid=false
                 fi
             else
-                echo -e "  ${RED}❌ $file_name (file not found)${NC}"
+                echo -e "  ${RED}[FAIL] $file_name (file not found)${NC}"
                 all_valid=false
             fi
         fi
@@ -131,7 +131,7 @@ reassemble_split_archive() {
         return 0
     fi
     
-    echo -e "${YELLOW}🔧 Reassembling split archive: $base_name${NC}"
+    echo -e "${YELLOW}[U+1F527] Reassembling split archive: $base_name${NC}"
     
     # Extract original filename from JSON (simple parsing)
     local original_file
@@ -149,19 +149,19 @@ reassemble_split_archive() {
     for part_file in $part_files; do
         local part_path="$dist_path/$part_file"
         if [[ ! -f "$part_path" ]]; then
-            echo -e "  ${RED}❌ Part not found: $part_file${NC}"
+            echo -e "  ${RED}[FAIL] Part not found: $part_file${NC}"
             return 1
         fi
         
         # Append to output file
         cat "$part_path" >> "$output_file"
-        echo -e "  ${GREEN}✅ Part $part_num: $part_file${NC}"
+        echo -e "  ${GREEN}[PASS] Part $part_num: $part_file${NC}"
         ((part_num++))
     done
     
     local total_size
     total_size=$(stat -f%z "$output_file" 2>/dev/null || stat -c%s "$output_file" 2>/dev/null)
-    echo -e "  ${GREEN}✅ Reassembled: $base_name ($total_size bytes)${NC}"
+    echo -e "  ${GREEN}[PASS] Reassembled: $base_name ($total_size bytes)${NC}"
     return 0
 }
 
@@ -171,12 +171,12 @@ extract_harvest_archive() {
     local destination_path="$2"
     local package_type="$3"
     
-    echo -e "${YELLOW}📦 Extracting $package_type package...${NC}"
+    echo -e "${YELLOW}[PKG] Extracting $package_type package...${NC}"
     echo -e "  ${GRAY}Source: $archive_path${NC}"
     echo -e "  ${GRAY}Target: $destination_path${NC}"
     
     if [[ ! -f "$archive_path" ]]; then
-        echo -e "  ${RED}❌ Archive not found: $archive_path${NC}"
+        echo -e "  ${RED}[FAIL] Archive not found: $archive_path${NC}"
         return 1
     fi
     
@@ -193,11 +193,11 @@ extract_harvest_archive() {
         total_bytes=$(find "$destination_path" -type f -exec stat -f%z {} + 2>/dev/null | awk '{sum+=$1} END {print sum}' || \
                      find "$destination_path" -type f -exec stat -c%s {} + 2>/dev/null | awk '{sum+=$1} END {print sum}')
         
-        echo -e "  ${GREEN}✅ Extracted $file_count files ($total_bytes bytes)${NC}"
+        echo -e "  ${GREEN}[PASS] Extracted $file_count files ($total_bytes bytes)${NC}"
         echo "$file_count:$total_bytes"
         return 0
     else
-        echo -e "  ${RED}❌ Extraction failed${NC}"
+        echo -e "  ${RED}[FAIL] Extraction failed${NC}"
         return 1
     fi
 }
@@ -206,20 +206,20 @@ extract_harvest_archive() {
 main() {
     # Resolve paths
     DIST_DIR=$(realpath "$DIST_DIR")
-    echo -e "${GRAY}📁 Distribution directory: $DIST_DIR${NC}"
+    echo -e "${GRAY}[U+1F4C1] Distribution directory: $DIST_DIR${NC}"
     
     if [[ ! -d "$DIST_DIR" ]]; then
-        echo -e "${RED}❌ Distribution directory not found: $DIST_DIR${NC}"
+        echo -e "${RED}[FAIL] Distribution directory not found: $DIST_DIR${NC}"
         exit 1
     fi
     
     # Verify SHA256SUMS if requested
     if [[ "$VERIFY" == true ]]; then
         if ! verify_sha256sums "$DIST_DIR"; then
-            echo -e "${RED}❌ SHA256 verification failed!${NC}"
+            echo -e "${RED}[FAIL] SHA256 verification failed!${NC}"
             exit 1
         fi
-        echo -e "${GREEN}✅ SHA256 verification passed!${NC}"
+        echo -e "${GREEN}[PASS] SHA256 verification passed!${NC}"
     fi
     
     # Determine which packages to restore
@@ -255,7 +255,7 @@ main() {
             total_file_count=$((total_file_count + file_count))
             total_bytes=$((total_bytes + bytes))
         else
-            echo -e "${RED}❌ Source-only extraction failed${NC}"
+            echo -e "${RED}[FAIL] Source-only extraction failed${NC}"
             exit 1
         fi
     fi
@@ -276,7 +276,7 @@ main() {
             total_file_count=$((total_file_count + file_count))
             total_bytes=$((total_bytes + bytes))
         else
-            echo -e "${RED}❌ Everything extraction failed${NC}"
+            echo -e "${RED}[FAIL] Everything extraction failed${NC}"
             exit 1
         fi
     fi
@@ -284,13 +284,13 @@ main() {
     # Success summary
     echo ""
     echo -e "${CYAN}=============================================${NC}"
-    echo -e "${GREEN}✅ RESTORATION COMPLETE${NC}"
+    echo -e "${GREEN}[PASS] RESTORATION COMPLETE${NC}"
     printf "   Files restored: %'d\n" "$total_file_count"
     printf "   Total bytes: %'d\n" "$total_bytes"
     echo -e "   Target directories created"
     [[ "$restore_source" == true ]] && echo -e "     ${GRAY}- ${TARGET_DIR}_source_only${NC}"
     [[ "$restore_everything" == true ]] && echo -e "     ${GRAY}- ${TARGET_DIR}_everything${NC}"
-    echo -e "${GREEN}🟢 OK - Full Harvest v7.1 restoration successful!${NC}"
+    echo -e "${GREEN}[U+1F7E2] OK - Full Harvest v7.1 restoration successful!${NC}"
     echo -e "${CYAN}=============================================${NC}"
     
     exit 0

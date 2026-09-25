@@ -1,4 +1,4 @@
-# Network Monitor — Spec
+# Network Monitor -- Spec
 
 Purpose: Observe new outbound connections and listening sockets.
 

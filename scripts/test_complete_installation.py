@@ -59,14 +59,14 @@ class CompleteInstallationTest:
         try:
             for directory in directories:
                 directory.mkdir(parents=True, exist_ok=True)
-                self.log_install(f"✓ Created directory: {directory}", "SUCCESS")
+                self.log_install(f"[x] Created directory: {directory}", "SUCCESS")
             
-            self.test_results["Directories"] = "✓ CREATED"
+            self.test_results["Directories"] = "[x] CREATED"
             return True
             
         except Exception as e:
-            self.log_install(f"✗ Failed to create directories: {e}", "ERROR")
-            self.test_results["Directories"] = f"✗ FAILED: {str(e)}"
+            self.log_install(f"[FAIL] Failed to create directories: {e}", "ERROR")
+            self.test_results["Directories"] = f"[FAIL] FAILED: {str(e)}"
             return False
     
     def create_ai_brain(self):
@@ -150,13 +150,13 @@ if __name__ == "__main__":
             with open(ai_brain_path, 'w', encoding='utf-8') as f:
                 f.write(ai_brain_code)
             
-            self.log_install(f"✓ AI Brain created: {ai_brain_path}", "SUCCESS")
-            self.test_results["AIBrain"] = "✓ CREATED"
+            self.log_install(f"[x] AI Brain created: {ai_brain_path}", "SUCCESS")
+            self.test_results["AIBrain"] = "[x] CREATED"
             return True
             
         except Exception as e:
-            self.log_install(f"✗ Failed to create AI Brain: {e}", "ERROR")
-            self.test_results["AIBrain"] = f"✗ FAILED: {str(e)}"
+            self.log_install(f"[FAIL] Failed to create AI Brain: {e}", "ERROR")
+            self.test_results["AIBrain"] = f"[FAIL] FAILED: {str(e)}"
             return False
     
     def create_web_server(self):
@@ -294,13 +294,13 @@ if __name__ == "__main__":
             with open(web_server_path, 'w', encoding='utf-8') as f:
                 f.write(web_server_code)
             
-            self.log_install(f"✓ Web server created: {web_server_path}", "SUCCESS")
-            self.test_results["WebServer"] = "✓ CREATED"
+            self.log_install(f"[x] Web server created: {web_server_path}", "SUCCESS")
+            self.test_results["WebServer"] = "[x] CREATED"
             return True
             
         except Exception as e:
-            self.log_install(f"✗ Failed to create web server: {e}", "ERROR")
-            self.test_results["WebServer"] = f"✗ FAILED: {str(e)}"
+            self.log_install(f"[FAIL] Failed to create web server: {e}", "ERROR")
+            self.test_results["WebServer"] = f"[FAIL] FAILED: {str(e)}"
             return False
     
     def copy_console_files(self):
@@ -313,17 +313,17 @@ if __name__ == "__main__":
         try:
             if console_src.exists():
                 shutil.copytree(console_src, console_dst, dirs_exist_ok=True)
-                self.log_install("✓ Console files copied successfully", "SUCCESS")
-                self.test_results["Console"] = "✓ INSTALLED"
+                self.log_install("[x] Console files copied successfully", "SUCCESS")
+                self.test_results["Console"] = "[x] INSTALLED"
                 return True
             else:
-                self.log_install(f"✗ Console source not found: {console_src}", "ERROR")
-                self.test_results["Console"] = "✗ SOURCE MISSING"
+                self.log_install(f"[FAIL] Console source not found: {console_src}", "ERROR")
+                self.test_results["Console"] = "[FAIL] SOURCE MISSING"
                 return False
                 
         except Exception as e:
-            self.log_install(f"✗ Failed to copy console files: {e}", "ERROR")
-            self.test_results["Console"] = f"✗ COPY FAILED: {str(e)}"
+            self.log_install(f"[FAIL] Failed to copy console files: {e}", "ERROR")
+            self.test_results["Console"] = f"[FAIL] COPY FAILED: {str(e)}"
             return False
     
     def test_ai_responsiveness(self):
@@ -335,8 +335,8 @@ if __name__ == "__main__":
         ai_brain_path = self.test_install_path / "bin" / "ai_brain.py"
         
         if not ai_brain_path.exists():
-            self.log_install("✗ AI Brain not found - CANNOT TEST", "ERROR")
-            self.test_results["AIResponsiveness"] = "✗ AI BRAIN MISSING"
+            self.log_install("[FAIL] AI Brain not found - CANNOT TEST", "ERROR")
+            self.test_results["AIResponsiveness"] = "[FAIL] AI BRAIN MISSING"
             return False
         
         installation_questions = [
@@ -351,8 +351,8 @@ if __name__ == "__main__":
         responsive_count = 0
         
         for module, question in installation_questions:
-            self.log_install(f"🤔 ASKING AI: {question}", "INFO")
-            self.log_install("⏳ Waiting for AI response...", "INFO")
+            self.log_install(f"[U+1F914] ASKING AI: {question}", "INFO")
+            self.log_install("[U+23F3] Waiting for AI response...", "INFO")
             
             try:
                 result = subprocess.run([
@@ -361,7 +361,7 @@ if __name__ == "__main__":
                 
                 if result.returncode == 0 and result.stdout.strip() and len(result.stdout.strip()) > 10:
                     response = result.stdout.strip()
-                    self.log_install(f"🤖 AI RESPONDS: {response}", "SUCCESS")
+                    self.log_install(f"[BOT] AI RESPONDS: {response}", "SUCCESS")
                     conversation.append({
                         "timestamp": datetime.now().isoformat(),
                         "question": question,
@@ -371,7 +371,7 @@ if __name__ == "__main__":
                     })
                     responsive_count += 1
                 else:
-                    self.log_install("🔇 AI SILENT - NO RESPONSE!", "ERROR")
+                    self.log_install("[U+1F507] AI SILENT - NO RESPONSE!", "ERROR")
                     conversation.append({
                         "timestamp": datetime.now().isoformat(),
                         "question": question,
@@ -383,7 +383,7 @@ if __name__ == "__main__":
                 time.sleep(1)  # Brief pause
                 
             except Exception as e:
-                self.log_install(f"💥 AI ERROR: {e}", "ERROR")
+                self.log_install(f"[U+1F4A5] AI ERROR: {e}", "ERROR")
                 conversation.append({
                     "timestamp": datetime.now().isoformat(),
                     "question": question,
@@ -406,9 +406,9 @@ if __name__ == "__main__":
             conversation_file.parent.mkdir(exist_ok=True)
             with open(conversation_file, 'w', encoding='utf-8') as f:
                 json.dump(conversation_data, f, indent=2)
-            self.log_install(f"✓ Conversation log saved: {conversation_file}", "SUCCESS")
+            self.log_install(f"[x] Conversation log saved: {conversation_file}", "SUCCESS")
         except Exception as e:
-            self.log_install(f"✗ Failed to save conversation: {e}", "ERROR")
+            self.log_install(f"[FAIL] Failed to save conversation: {e}", "ERROR")
         
         responsiveness = conversation_data["responsiveness_ratio"]
         
@@ -419,20 +419,20 @@ if __name__ == "__main__":
         self.log_install(f"Responsiveness: {responsiveness}%", "INFO")
         
         if responsiveness == 100:
-            self.log_install("🎯 AI RESPONSIVENESS: PERFECT - AI ENGAGED WITH ALL QUESTIONS!", "SUCCESS")
-            self.test_results["AIResponsiveness"] = "✓ FULLY RESPONSIVE (100%)"
+            self.log_install("[TARGET] AI RESPONSIVENESS: PERFECT - AI ENGAGED WITH ALL QUESTIONS!", "SUCCESS")
+            self.test_results["AIResponsiveness"] = "[x] FULLY RESPONSIVE (100%)"
             return True
         elif responsiveness >= 80:
-            self.log_install("👍 AI RESPONSIVENESS: GOOD - AI MOSTLY RESPONSIVE", "SUCCESS")
-            self.test_results["AIResponsiveness"] = f"✓ MOSTLY RESPONSIVE ({responsiveness}%)"
+            self.log_install("[+1] AI RESPONSIVENESS: GOOD - AI MOSTLY RESPONSIVE", "SUCCESS")
+            self.test_results["AIResponsiveness"] = f"[x] MOSTLY RESPONSIVE ({responsiveness}%)"
             return True
         elif responsiveness > 0:
-            self.log_install("⚠️ AI RESPONSIVENESS: POOR - AI BARELY RESPONSIVE", "WARNING")
-            self.test_results["AIResponsiveness"] = f"⚠ PARTIALLY RESPONSIVE ({responsiveness}%)"
+            self.log_install("[WARN] AI RESPONSIVENESS: POOR - AI BARELY RESPONSIVE", "WARNING")
+            self.test_results["AIResponsiveness"] = f"[WARN] PARTIALLY RESPONSIVE ({responsiveness}%)"
             return False
         else:
-            self.log_install("💀 AI RESPONSIVENESS: FAILED - AI IS COMPLETELY SILENT!", "ERROR")
-            self.test_results["AIResponsiveness"] = "✗ COMPLETELY UNRESPONSIVE (0%)"
+            self.log_install("[U+1F480] AI RESPONSIVENESS: FAILED - AI IS COMPLETELY SILENT!", "ERROR")
+            self.test_results["AIResponsiveness"] = "[FAIL] COMPLETELY UNRESPONSIVE (0%)"
             return False
     
     def start_services(self):
@@ -445,7 +445,7 @@ if __name__ == "__main__":
         web_server_path = self.test_install_path / "bin" / "webserver.py"
         
         if web_server_path.exists():
-            self.log_install("✓ Web server script is ready", "SUCCESS")
+            self.log_install("[x] Web server script is ready", "SUCCESS")
             # Test if we can import the server (validates syntax)
             try:
                 result = subprocess.run([
@@ -453,20 +453,20 @@ if __name__ == "__main__":
                 ], capture_output=True, text=True, timeout=10)
                 
                 if result.returncode == 0:
-                    self.log_install("✓ Web server syntax validation passed", "SUCCESS")
-                    self.test_results["ServiceStart"] = "✓ READY"
+                    self.log_install("[x] Web server syntax validation passed", "SUCCESS")
+                    self.test_results["ServiceStart"] = "[x] READY"
                     return True
                 else:
-                    self.log_install(f"✗ Web server syntax error: {result.stderr}", "ERROR")
-                    self.test_results["ServiceStart"] = "✗ SYNTAX ERROR"
+                    self.log_install(f"[FAIL] Web server syntax error: {result.stderr}", "ERROR")
+                    self.test_results["ServiceStart"] = "[FAIL] SYNTAX ERROR"
                     return False
             except Exception as e:
-                self.log_install(f"✗ Service validation error: {e}", "ERROR")
-                self.test_results["ServiceStart"] = f"✗ VALIDATION ERROR: {str(e)}"
+                self.log_install(f"[FAIL] Service validation error: {e}", "ERROR")
+                self.test_results["ServiceStart"] = f"[FAIL] VALIDATION ERROR: {str(e)}"
                 return False
         else:
-            self.log_install("✗ Web server script not found", "ERROR")
-            self.test_results["ServiceStart"] = "✗ SCRIPT MISSING"
+            self.log_install("[FAIL] Web server script not found", "ERROR")
+            self.test_results["ServiceStart"] = "[FAIL] SCRIPT MISSING"
             return False
     
     def verify_installation(self):
@@ -486,20 +486,20 @@ if __name__ == "__main__":
         passed_checks = 0
         for check_name, result in verification_checks:
             if result:
-                self.log_install(f"✓ {check_name}: PRESENT", "SUCCESS")
+                self.log_install(f"[x] {check_name}: PRESENT", "SUCCESS")
                 passed_checks += 1
             else:
-                self.log_install(f"✗ {check_name}: MISSING", "ERROR")
+                self.log_install(f"[FAIL] {check_name}: MISSING", "ERROR")
         
         success_rate = (passed_checks / len(verification_checks)) * 100
         
         if success_rate == 100:
-            self.log_install("🎉 VERIFICATION: ALL COMPONENTS PRESENT!", "SUCCESS")
-            self.test_results["Verification"] = "✓ ALL PRESENT"
+            self.log_install("[U+1F389] VERIFICATION: ALL COMPONENTS PRESENT!", "SUCCESS")
+            self.test_results["Verification"] = "[x] ALL PRESENT"
             return True
         else:
-            self.log_install(f"⚠️ VERIFICATION: {success_rate}% COMPLETE", "WARNING")
-            self.test_results["Verification"] = f"⚠ {success_rate}% COMPLETE"
+            self.log_install(f"[WARN] VERIFICATION: {success_rate}% COMPLETE", "WARNING")
+            self.test_results["Verification"] = f"[WARN] {success_rate}% COMPLETE"
             return success_rate >= 80
     
     def run_complete_installation(self):
@@ -532,11 +532,11 @@ if __name__ == "__main__":
             try:
                 if step_function():
                     successful_steps += 1
-                    self.log_install(f"✓ {step_name} COMPLETED", "SUCCESS")
+                    self.log_install(f"[x] {step_name} COMPLETED", "SUCCESS")
                 else:
-                    self.log_install(f"✗ {step_name} FAILED", "ERROR")
+                    self.log_install(f"[FAIL] {step_name} FAILED", "ERROR")
             except Exception as e:
-                self.log_install(f"💥 {step_name} CRASHED: {e}", "ERROR")
+                self.log_install(f"[U+1F4A5] {step_name} CRASHED: {e}", "ERROR")
             
             self.log_install("", "INFO")  # Empty line
         
@@ -546,7 +546,7 @@ if __name__ == "__main__":
         self.log_install("═══════════════════════════════════════════════════════════════════", "INFO")
         
         for component, status in self.test_results.items():
-            level = "SUCCESS" if status.startswith("✓") else "WARNING" if status.startswith("⚠") else "ERROR"
+            level = "SUCCESS" if status.startswith("[x]") else "WARNING" if status.startswith("[WARN]") else "ERROR"
             self.log_install(f"{component.ljust(20)}: {status}", level)
         
         self.log_install("═══════════════════════════════════════════════════════════════════", "INFO")
@@ -554,15 +554,15 @@ if __name__ == "__main__":
         success_rate = (successful_steps / total_steps) * 100
         
         if success_rate == 100:
-            self.log_install(f"🎉 INSTALLATION TEST: COMPLETE SUCCESS ({successful_steps}/{total_steps})", "SUCCESS")
-            self.log_install("   ✓ All components installed and verified!", "SUCCESS")
-            self.log_install("   ✓ AI is responsive and intelligent!", "SUCCESS")
-            self.log_install("   ✓ Ready for Windows 11 deployment!", "SUCCESS")
+            self.log_install(f"[U+1F389] INSTALLATION TEST: COMPLETE SUCCESS ({successful_steps}/{total_steps})", "SUCCESS")
+            self.log_install("   [x] All components installed and verified!", "SUCCESS")
+            self.log_install("   [x] AI is responsive and intelligent!", "SUCCESS")
+            self.log_install("   [x] Ready for Windows 11 deployment!", "SUCCESS")
         elif success_rate >= 80:
-            self.log_install(f"👍 INSTALLATION TEST: MOSTLY SUCCESSFUL ({successful_steps}/{total_steps})", "SUCCESS")
+            self.log_install(f"[+1] INSTALLATION TEST: MOSTLY SUCCESSFUL ({successful_steps}/{total_steps})", "SUCCESS")
             self.log_install(f"   {success_rate:.1f}% of components working", "SUCCESS")
         else:
-            self.log_install(f"❌ INSTALLATION TEST: FAILED ({successful_steps}/{total_steps})", "ERROR")
+            self.log_install(f"[FAIL] INSTALLATION TEST: FAILED ({successful_steps}/{total_steps})", "ERROR")
             self.log_install(f"   Only {success_rate:.1f}% success rate", "ERROR")
         
         # Save installation log

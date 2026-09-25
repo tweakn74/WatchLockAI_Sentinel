@@ -200,20 +200,20 @@ class WindowsEventMonitor:
 
 def main():
     '''Test Windows event monitoring'''
-    print("📝 WatchLockAI Windows Event Monitor")
+    print("[U+1F4DD] WatchLockAI Windows Event Monitor")
     print("Monitoring Windows Event Log for account activities")
     
     monitor = WindowsEventMonitor()
     monitor.start_monitoring()
     
-    print("✅ Event monitoring started")
-    print("🔍 Monitoring event IDs: 4624, 4625, 4720, 4722, etc.")
+    print("[PASS] Event monitoring started")
+    print("[SEARCH] Monitoring event IDs: 4624, 4625, 4720, 4722, etc.")
     
     try:
         while True:
             time.sleep(10)
     except KeyboardInterrupt:
-        print("\n🛑 Stopping event monitor...")
+        print("\n[U+1F6D1] Stopping event monitor...")
         monitor.running = False
 
 if __name__ == "__main__":

@@ -13,7 +13,7 @@ This threat model analyzes the security posture of WatchLockAI Sentinel using a 
 
 ```
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   Collectors    │───▶│  Event Bus       │───▶│ Rules Engine    │
+│   Collectors    │───>│  Event Bus       │───>│ Rules Engine    │
 │ (File, Net,     │    │  (In-Memory)     │    │ (Detection)     │
 │  Proc, Reg)     │    │                  │    │                 │
 └─────────────────┘    └──────────────────┘    └─────────────────┘
@@ -44,7 +44,7 @@ This threat model analyzes the security posture of WatchLockAI Sentinel using a 
 - Session key rotation capability
 - Admin token environment variable isolation
 - Secure session cookie flags (HttpOnly, Secure, SameSite)
-- **P5 Enhancement:** Session cookie expiry ≤24h with Max-Age validation
+- **P5 Enhancement:** Session cookie expiry <=24h with Max-Age validation
 - **P5 Enhancement:** Dual authentication support (session + token fallback)
 
 **Residual Risk:** LOW
@@ -241,7 +241,7 @@ This threat model analyzes the security posture of WatchLockAI Sentinel using a 
 - Cross-domain cookie injection
 
 **P5 Mitigations Implemented:**
-- Cookie expiry validation (≤24h enforcement)
+- Cookie expiry validation (<=24h enforcement)
 - SameSite=Lax/Strict enforcement
 - Logout cookie clearing (Max-Age=0)
 - Enhanced session hygiene checks
@@ -280,7 +280,7 @@ This threat model analyzes the security posture of WatchLockAI Sentinel using a 
 
 **P5 Mitigations Implemented:**
 - RBAC protection on performance endpoints
-- Parameter validation (clients ≤50, duration ≤60s)
+- Parameter validation (clients <=50, duration <=60s)
 - Rate limiting on admin endpoints
 - Performance probe resource controls
 
@@ -309,19 +309,19 @@ This threat model analyzes the security posture of WatchLockAI Sentinel using a 
 
 | Control Category | Implementation | Status | P4 Enhancement | P5 Enhancement |
 |------------------|----------------|--------|----------------|-----------------| 
-| **Authentication** | Token-based, Session-based | ✅ Implemented | Secret rotation | Session hygiene, dual auth |
-| **Authorization** | RBAC, Feature flags | ✅ Implemented | Enhanced logging | Performance endpoint protection |
-| **Input Validation** | Schema validation | ✅ Implemented | Security linting | Enhanced verifier checks |
-| **Output Sanitization** | Log redaction | ✅ Implemented | Enhanced filters | SSE content validation |
-| **Cryptography** | Secure tokens, Hashing | ✅ Implemented | Key rotation | Enhanced session security |
-| **Logging** | Structured, Rotation | ✅ Implemented | Security events | Retention audit trails |
-| **Monitoring** | Health checks, Metrics | ✅ Implemented | Threat detection | Performance monitoring |
-| **Backup/Recovery** | Configuration backup | 🆕 P4-001 | Automated restore | Retention management |
-| **Testing** | Unit, Integration | ✅ Implemented | Chaos testing | Performance probes |
-| **Data Lifecycle** | Basic file management | ✅ Implemented | N/A | 🆕 P5-002 Retention policies |
-| **Session Management** | Basic sessions | ✅ Implemented | N/A | 🆕 P5 Cookie security |
-| **Stream Security** | Basic SSE | ✅ Implemented | N/A | 🆕 P5 SSE authentication |
-| **Offline Security** | N/A | N/A | N/A | 🆕 P5-004 Bundle integrity |
+| **Authentication** | Token-based, Session-based | [PASS] Implemented | Secret rotation | Session hygiene, dual auth |
+| **Authorization** | RBAC, Feature flags | [PASS] Implemented | Enhanced logging | Performance endpoint protection |
+| **Input Validation** | Schema validation | [PASS] Implemented | Security linting | Enhanced verifier checks |
+| **Output Sanitization** | Log redaction | [PASS] Implemented | Enhanced filters | SSE content validation |
+| **Cryptography** | Secure tokens, Hashing | [PASS] Implemented | Key rotation | Enhanced session security |
+| **Logging** | Structured, Rotation | [PASS] Implemented | Security events | Retention audit trails |
+| **Monitoring** | Health checks, Metrics | [PASS] Implemented | Threat detection | Performance monitoring |
+| **Backup/Recovery** | Configuration backup | [U+1F195] P4-001 | Automated restore | Retention management |
+| **Testing** | Unit, Integration | [PASS] Implemented | Chaos testing | Performance probes |
+| **Data Lifecycle** | Basic file management | [PASS] Implemented | N/A | [U+1F195] P5-002 Retention policies |
+| **Session Management** | Basic sessions | [PASS] Implemented | N/A | [U+1F195] P5 Cookie security |
+| **Stream Security** | Basic SSE | [PASS] Implemented | N/A | [U+1F195] P5 SSE authentication |
+| **Offline Security** | N/A | N/A | N/A | [U+1F195] P5-004 Bundle integrity |
 
 ## Risk Assessment Summary
 
@@ -335,11 +335,11 @@ This threat model analyzes the security posture of WatchLockAI Sentinel using a 
 ## Recommendations
 
 ### Completed Actions (P5 Implementation)
-1. ✅ **Enhanced Session Security** - Implemented cookie hygiene and dual authentication
-2. ✅ **SSE Stream Protection** - Authentication gating and content validation  
-3. ✅ **Performance Security** - RBAC protection for performance testing endpoints
-4. ✅ **Data Retention Security** - Secure cleanup with audit trails and secret redaction
-5. ✅ **Offline Security** - Bundle integrity verification and air-gapped deployment
+1. [PASS] **Enhanced Session Security** - Implemented cookie hygiene and dual authentication
+2. [PASS] **SSE Stream Protection** - Authentication gating and content validation  
+3. [PASS] **Performance Security** - RBAC protection for performance testing endpoints
+4. [PASS] **Data Retention Security** - Secure cleanup with audit trails and secret redaction
+5. [PASS] **Offline Security** - Bundle integrity verification and air-gapped deployment
 
 ### P5 Security Improvements
 1. **Session Cookie Hardening**

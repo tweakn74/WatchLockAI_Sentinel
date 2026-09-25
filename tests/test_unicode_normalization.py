@@ -143,7 +143,7 @@ class UnicodeNormalizationTests(unittest.TestCase):
             web_api_spec = importlib.util.find_spec("console.web_api")
             
             if not fastapi_spec or not web_api_spec:
-                print("⚠️  FastAPI or console.web_api not available - Unicode tests will be limited")
+                print("[WARN]  FastAPI or console.web_api not available - Unicode tests will be limited")
                 return
             
             from fastapi.testclient import TestClient
@@ -153,10 +153,10 @@ class UnicodeNormalizationTests(unittest.TestCase):
             cls.app = api.app
             cls.test_client = TestClient(api.app)
             
-            print("✅ FastAPI TestClient initialized for Unicode testing")
+            print("[PASS] FastAPI TestClient initialized for Unicode testing")
             
         except Exception as e:
-            print(f"⚠️  Failed to initialize TestClient: {e}")
+            print(f"[WARN]  Failed to initialize TestClient: {e}")
     
     def test_auth_header_normalization(self):
         """Test Authorization header Unicode normalization"""
@@ -476,7 +476,7 @@ def run_unicode_tests():
     result = runner.run(suite)
     
     print("\n" + "="*60)
-    print("📊 UNICODE NORMALIZATION TEST SUMMARY")
+    print("[BARS] UNICODE NORMALIZATION TEST SUMMARY")
     print("="*60)
     print(f"Tests Run:      {result.testsRun}")
     print(f"Failures:       {len(result.failures)}")
@@ -484,17 +484,17 @@ def run_unicode_tests():
     print(f"Skipped:        {len(result.skipped) if hasattr(result, 'skipped') else 0}")
     
     if result.failures:
-        print("\n❌ FAILURES:")
+        print("\n[FAIL] FAILURES:")
         for test, traceback in result.failures:
             print(f"  - {test}")
     
     if result.errors:
-        print("\n💥 ERRORS:")
+        print("\n[U+1F4A5] ERRORS:")
         for test, traceback in result.errors:
             print(f"  - {test}")
     
     success = len(result.failures) == 0 and len(result.errors) == 0
-    print(f"\n{'✅ ALL TESTS PASSED' if success else '❌ SOME TESTS FAILED'}")
+    print(f"\n{'[PASS] ALL TESTS PASSED' if success else '[FAIL] SOME TESTS FAILED'}")
     print("="*60)
     
     return result

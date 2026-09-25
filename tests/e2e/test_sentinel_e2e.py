@@ -189,11 +189,11 @@ async def test_e2e_scenario_per_spec(test_environment):
 
         # Check file events count (should be >= 15: 10 creates + 5 modifies)
         assert stats["file_events"] >= 15, f"Expected >= 15 file events, got {stats['file_events']}"
-        print(f"✓ File events count: {stats['file_events']} >= 15")
+        print(f"[x] File events count: {stats['file_events']} >= 15")
 
         # Check health metrics (should have at least 1)
         assert stats["health_metrics"] >= 1, f"Expected >= 1 health metric, got {stats['health_metrics']}"
-        print(f"✓ Health metrics count: {stats['health_metrics']} >= 1")
+        print(f"[x] Health metrics count: {stats['health_metrics']} >= 1")
 
         # Check no ransomware alert (threshold is 120 events in 10 seconds)
         ransomware_alerts = [
@@ -201,7 +201,7 @@ async def test_e2e_scenario_per_spec(test_environment):
             if alert.tag == "ransomware-io-burst"
         ]
         assert len(ransomware_alerts) == 0, f"Unexpected ransomware alert: {ransomware_alerts}"
-        print("✓ No ransomware alert triggered (as expected)")
+        print("[x] No ransomware alert triggered (as expected)")
 
         # Step 4: Test health alert by setting cpu_warn=0
         print("Testing health alert with cpu_warn=0...")
@@ -229,7 +229,7 @@ async def test_e2e_scenario_per_spec(test_environment):
         ]
 
         assert len(health_alerts) >= 1, f"Expected health alert with cpu_warn=0, got {len(health_alerts)} alerts"
-        print(f"✓ Health alert triggered: {health_alerts[0].rationale}")
+        print(f"[x] Health alert triggered: {health_alerts[0].rationale}")
 
         await health_monitor_strict.stop()
 
@@ -270,7 +270,7 @@ async def test_e2e_scenario_per_spec(test_environment):
     with open(docs_dir / "E2E_Test_Results.json", "w") as f:
         json.dump(results, f, indent=2)
 
-    print("✓ E2E test completed successfully!")
+    print("[x] E2E test completed successfully!")
     print(f"Results saved to {docs_dir / 'E2E_Test_Results.json'}")
 
     return results
@@ -329,7 +329,7 @@ async def test_alert_manager_integration(test_environment):
         assert found_alert is not None, "Test alert not found in tray buffer"
         assert found_alert.rationale == "Test alert for integration testing"
 
-        print("✓ Alert manager integration test passed")
+        print("[x] Alert manager integration test passed")
 
     finally:
         await alert_manager.stop()
@@ -368,7 +368,7 @@ async def test_rules_engine_integration(test_environment):
 
         assert len(ransomware_alerts) == 0, "Should not trigger ransomware alert with low file count"
 
-        print("✓ Rules engine integration test passed (no false positives)")
+        print("[x] Rules engine integration test passed (no false positives)")
 
     finally:
         await rules_engine.stop()

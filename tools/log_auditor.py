@@ -75,7 +75,7 @@ def repair_session_file(path: Path):
 
                 console.print(f"[log_auditor] Repaired: {path.name}")
                 log_fix(
-                    f"Repaired session: {path.name} — Fields fixed: {', '.join(missing)}"
+                    f"Repaired session: {path.name} -- Fields fixed: {', '.join(missing)}"
                 )
                 repaired = True
             except Exception as e:

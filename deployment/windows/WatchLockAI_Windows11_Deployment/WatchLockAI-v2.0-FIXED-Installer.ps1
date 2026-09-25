@@ -507,11 +507,11 @@ function Main {
     Write-Host "================================================================" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "IMPROVEMENTS:" -ForegroundColor Green
-    Write-Host "  ✅ Fixed Error 1053 service startup issue" -ForegroundColor Green
-    Write-Host "  ✅ Enhanced ChatGPT-style console interface" -ForegroundColor Green
-    Write-Host "  ✅ Robust AI Brain with instant response" -ForegroundColor Green
-    Write-Host "  ✅ Simplified service architecture" -ForegroundColor Green
-    Write-Host "  ✅ Better error handling and recovery" -ForegroundColor Green
+    Write-Host "  [PASS] Fixed Error 1053 service startup issue" -ForegroundColor Green
+    Write-Host "  [PASS] Enhanced ChatGPT-style console interface" -ForegroundColor Green
+    Write-Host "  [PASS] Robust AI Brain with instant response" -ForegroundColor Green
+    Write-Host "  [PASS] Simplified service architecture" -ForegroundColor Green
+    Write-Host "  [PASS] Better error handling and recovery" -ForegroundColor Green
     Write-Host ""
     
     # Check admin rights
@@ -594,19 +594,19 @@ function Main {
     Write-Host ""
     Write-Host "================================================================" -ForegroundColor Cyan
     if ($success -and $testResults) {
-        Write-Host "        🎉 INSTALLATION COMPLETED SUCCESSFULLY! 🎉" -ForegroundColor Green
+        Write-Host "        [U+1F389] INSTALLATION COMPLETED SUCCESSFULLY! [U+1F389]" -ForegroundColor Green
     } else {
-        Write-Host "        ⚠️  INSTALLATION COMPLETED WITH ISSUES ⚠️" -ForegroundColor Yellow
+        Write-Host "        [WARN]  INSTALLATION COMPLETED WITH ISSUES [WARN]" -ForegroundColor Yellow
     }
     Write-Host "================================================================" -ForegroundColor Cyan
     Write-Host ""
     
-    Write-Host "✅ AI Brain: Running and responsive" -ForegroundColor Green
-    Write-Host "✅ Enhanced Console: https://sn2cnaszh2.space.minimax.io" -ForegroundColor Green
-    Write-Host "✅ System Tray: Active with full functionality" -ForegroundColor Green
-    Write-Host "✅ Startup: Configured for automatic start" -ForegroundColor Green
+    Write-Host "[PASS] AI Brain: Running and responsive" -ForegroundColor Green
+    Write-Host "[PASS] Enhanced Console: https://sn2cnaszh2.space.minimax.io" -ForegroundColor Green
+    Write-Host "[PASS] System Tray: Active with full functionality" -ForegroundColor Green
+    Write-Host "[PASS] Startup: Configured for automatic start" -ForegroundColor Green
     Write-Host ""
-    Write-Host "🎯 WHAT TO DO NEXT:" -ForegroundColor White
+    Write-Host "[TARGET] WHAT TO DO NEXT:" -ForegroundColor White
     Write-Host "   1. Look for WatchLockAI shield icon in system tray" -ForegroundColor White
     Write-Host "   2. Double-click tray icon to open enhanced console" -ForegroundColor White
     Write-Host "   3. Login with: admin@watchlockai.com / admin123" -ForegroundColor White

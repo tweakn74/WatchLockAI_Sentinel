@@ -237,7 +237,7 @@
       "evidence": "Limited integration tests for end-to-end workflows",
       "proposed_fix": "Build comprehensive integration test suite covering major workflows",
       "acceptance": [
-        "E2E tests for event generation → detection → response",
+        "E2E tests for event generation -> detection -> response",
         "API integration tests with real HTTP calls",
         "Cross-platform test coverage"
       ],

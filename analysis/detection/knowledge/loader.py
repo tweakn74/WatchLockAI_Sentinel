@@ -231,7 +231,7 @@ class KnowledgeLoader:
                         sections.append((current_section, section_text, line_range))
 
                 # Start new section
-                current_section = line.strip("# ").lower().replace(" ", "").replace("—", "").replace("-", "")
+                current_section = line.strip("# ").lower().replace(" ", "").replace("--", "").replace("-", "")
                 current_content = []
                 start_line = line_num
             else:

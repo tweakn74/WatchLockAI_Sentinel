@@ -9,7 +9,7 @@
 | **GET** | `/api/detections` | `get_detections()` | `limit`, `severity`, `tag` params | `DetectionResponse` | Detection events with filtering | Requires rules engine availability |
 | **POST** | `/api/actions/pause` | `pause_monitoring()` | `duration_minutes` (default: 5) | `ActionResponse` | Pause monitoring temporarily | Requires actions manager |
 | **POST** | `/api/actions/resume` | `resume_monitoring()` | None | `ActionResponse` | Resume paused monitoring | Requires actions manager |
-| **GET** | `/api/ti/search` | `search_threat_intelligence()` | `query`, `limit` params | `ThreatIntelResponse` | Search threat intelligence DB | Query must be ≥2 chars, limit 1-50 |
+| **GET** | `/api/ti/search` | `search_threat_intelligence()` | `query`, `limit` params | `ThreatIntelResponse` | Search threat intelligence DB | Query must be >=2 chars, limit 1-50 |
 | **GET** | `/api/policies` | `get_policies()` | None | `PolicyResponse` | Current operational policies | Returns mode and destructive actions setting |
 | **POST** | `/api/policies` | `set_policies()` | `operational_mode` in JSON | `PolicyUpdateResponse` | Update operational policies | Only accepts 'monitor' or 'proactive' modes |
 | **GET** | `/api/operational_mode` | `get_operational_mode()` | None | `OperationalModeResponse` | Current operational mode | From `console.api.operational_mode` router |

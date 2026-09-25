@@ -188,7 +188,7 @@ class ContractTests(unittest.TestCase):
         schemas = {}
         
         if not os.path.exists(cls.schema_dir):
-            print(f"⚠️  Schema directory not found: {cls.schema_dir}")
+            print(f"[WARN]  Schema directory not found: {cls.schema_dir}")
             return schemas
         
         for filename in os.listdir(cls.schema_dir):
@@ -205,7 +205,7 @@ class ContractTests(unittest.TestCase):
                                 "title": title
                             }
                 except Exception as e:
-                    print(f"⚠️  Failed to load schema {filename}: {e}")
+                    print(f"[WARN]  Failed to load schema {filename}: {e}")
         
         return schemas
     
@@ -218,7 +218,7 @@ class ContractTests(unittest.TestCase):
             web_api_spec = importlib.util.find_spec("console.web_api")
             
             if not fastapi_spec or not web_api_spec:
-                print("⚠️  FastAPI or console.web_api not available - contract tests will be skipped")
+                print("[WARN]  FastAPI or console.web_api not available - contract tests will be skipped")
                 return
             
             from fastapi.testclient import TestClient
@@ -228,10 +228,10 @@ class ContractTests(unittest.TestCase):
             cls.app = api.app
             cls.test_client = TestClient(api.app)
             
-            print("✅ FastAPI TestClient initialized for contract testing")
+            print("[PASS] FastAPI TestClient initialized for contract testing")
             
         except Exception as e:
-            print(f"⚠️  Failed to initialize TestClient: {e}")
+            print(f"[WARN]  Failed to initialize TestClient: {e}")
     
     def setUp(self):
         """Set up each test"""
@@ -444,7 +444,7 @@ def run_contract_tests():
     
     # Print summary
     print("\n" + "="*60)
-    print("📊 CONTRACT TEST SUMMARY")
+    print("[BARS] CONTRACT TEST SUMMARY")
     print("="*60)
     print(f"Tests Run:      {result.testsRun}")
     print(f"Failures:       {len(result.failures)}")
@@ -452,17 +452,17 @@ def run_contract_tests():
     print(f"Skipped:        {len(result.skipped) if hasattr(result, 'skipped') else 0}")
     
     if result.failures:
-        print("\n❌ FAILURES:")
+        print("\n[FAIL] FAILURES:")
         for test, traceback in result.failures:
             print(f"  - {test}: {traceback.split(chr(10))[-2]}")
     
     if result.errors:
-        print("\n💥 ERRORS:")
+        print("\n[U+1F4A5] ERRORS:")
         for test, traceback in result.errors:
             print(f"  - {test}: {traceback.split(chr(10))[-2]}")
     
     success = len(result.failures) == 0 and len(result.errors) == 0
-    print(f"\n{'✅ ALL TESTS PASSED' if success else '❌ SOME TESTS FAILED'}")
+    print(f"\n{'[PASS] ALL TESTS PASSED' if success else '[FAIL] SOME TESTS FAILED'}")
     print("="*60)
     
     return result

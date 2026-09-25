@@ -86,7 +86,7 @@ graph TB
 
 ## Data Flows
 
-### Primary Data Flow: Monitoring → Detection → Response
+### Primary Data Flow: Monitoring -> Detection -> Response
 
 ```mermaid
 sequenceDiagram
@@ -143,52 +143,52 @@ sequenceDiagram
 
 ### Top 10 High-Coupling Dependencies
 
-1. **app_core.* → All Components** (10+ imports)
+1. **app_core.* -> All Components** (10+ imports)
    - Every component depends on bus, config, and schemas
    - **Pressure**: Changes to core schemas affect entire system
    - **Risk**: Schema changes break multiple components simultaneously
 
-2. **Event Bus → pydantic** (validation critical path)
+2. **Event Bus -> pydantic** (validation critical path)
    - All event validation flows through Pydantic models
    - **Pressure**: Performance bottleneck for high event volumes
    - **Risk**: Validation errors cascade to all subscribers
 
-3. **collectors.* → psutil** (system monitoring)
+3. **collectors.* -> psutil** (system monitoring)
    - File, process, and network monitoring depend heavily on psutil
    - **Pressure**: psutil API changes affect multiple collectors
    - **Risk**: Cross-platform inconsistencies in psutil behavior
 
-4. **console.web_api → FastAPI** (optional web interface)
+4. **console.web_api -> FastAPI** (optional web interface)
    - Web console tightly coupled to FastAPI framework
    - **Pressure**: FastAPI version upgrades require careful testing
    - **Risk**: FastAPI unavailable breaks web console entirely
 
-5. **detection.* → app_core.schemas** (event type coupling)
+5. **detection.* -> app_core.schemas** (event type coupling)
    - All detection engines must understand event schema changes
    - **Pressure**: Schema evolution requires detection engine updates
    - **Risk**: Type mismatches cause detection failures
 
-6. **Platform Guards → Windows APIs** (winreg, win32service)
+6. **Platform Guards -> Windows APIs** (winreg, win32service)
    - Registry monitoring and service installation Windows-only
    - **Pressure**: Windows API changes affect core functionality
    - **Risk**: Linux development can't test Windows-specific code
 
-7. **service.service_wrapper → Multiple Subsystems**
+7. **service.service_wrapper -> Multiple Subsystems**
    - Service wrapper orchestrates all major components
    - **Pressure**: Changes affect startup/shutdown of entire system
    - **Risk**: Service wrapper failures bring down everything
 
-8. **response.actions → psutil + platform APIs**
+8. **response.actions -> psutil + platform APIs**
    - Process termination and system actions cross-platform complexity
    - **Pressure**: Platform-specific behaviors require careful handling
    - **Risk**: Incorrect actions could damage target system
 
-9. **detection.knowledge → File I/O + JSON parsing**
+9. **detection.knowledge -> File I/O + JSON parsing**
    - Knowledge loading from vendor research and local packs
    - **Pressure**: Large knowledge files impact startup performance
    - **Risk**: Malformed knowledge packs break detection capabilities
 
-10. **All Components → Logging (loguru)**
+10. **All Components -> Logging (loguru)**
     - Universal dependency on structured logging
     - **Pressure**: Log format changes affect monitoring and debugging
     - **Risk**: Logging failures obscure real system issues
@@ -204,7 +204,7 @@ sequenceDiagram
 ## Security Architecture
 
 ### Trust Boundaries
-- **Kernel → User Space**: System monitors run in user space only
+- **Kernel -> User Space**: System monitors run in user space only
 - **Network Boundary**: No external network communication by default
 - **Process Boundary**: Components communicate via event bus, not direct calls
 - **File System Boundary**: Configuration and logs written to controlled locations

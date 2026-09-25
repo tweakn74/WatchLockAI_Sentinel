@@ -572,8 +572,8 @@ Start-Service -Name "WatchLockAI_Sentinel"
 ```powershell
 # Verify bundle integrity
 cd C:\WatchLockAI_Offline\source
-python -c "import app_core.bus; print('✓ Core modules available')"
-python -c "import console.web_api; print('✓ Web API available')"
+python -c "import app_core.bus; print('[x] Core modules available')"
+python -c "import console.web_api; print('[x] Web API available')"
 
 # Check virtual environment
 cd ..\venv\Scripts

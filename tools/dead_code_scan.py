@@ -515,7 +515,7 @@ def generate_markdown_report(report: Dict[str, Any], output_path: Path):
         md_content += f"### {file_path}\n\n"
         
         for item in sorted(items, key=lambda x: x['confidence'], reverse=True)[:10]:
-            confidence_emoji = "🔴" if item['confidence'] >= 0.8 else "🟡" if item['confidence'] >= 0.5 else "🟢"
+            confidence_emoji = "[U+1F534]" if item['confidence'] >= 0.8 else "[U+1F7E1]" if item['confidence'] >= 0.5 else "[U+1F7E2]"
             md_content += f"- **{item['name']}** ({item['item_type']}) {confidence_emoji}\n"
             md_content += f"  - Line {item['line_number']}, confidence: {item['confidence']:.2f}\n"
             md_content += f"  - Usages: {item['usage_count']}\n"
@@ -527,9 +527,9 @@ def generate_markdown_report(report: Dict[str, Any], output_path: Path):
 ## Analysis Notes
 
 ### Confidence Levels
-- **High (🔴)**: Very likely dead code, safe to remove after testing
-- **Medium (🟡)**: Potentially dead code, requires manual review
-- **Low (🟢)**: Uncertain, may have dynamic usage or be framework code
+- **High ([U+1F534])**: Very likely dead code, safe to remove after testing
+- **Medium ([U+1F7E1])**: Potentially dead code, requires manual review
+- **Low ([U+1F7E2])**: Uncertain, may have dynamic usage or be framework code
 
 ### Limitations
 This analysis uses static analysis and may miss:

@@ -82,10 +82,10 @@ OK (skipped=2)
 ## Master To-Do Hygiene
 
 **File:** `DOCS/master_todo.txt`
-**Status:** P1-001 → `[x]` with completion note
+**Status:** P1-001 -> `[x]` with completion note
 **Completion Note:** 
 ```
-— Completed by exposing counters via get_observability_metrics() and opt-in /api/metrics/event_bus (default OFF).
+-- Completed by exposing counters via get_observability_metrics() and opt-in /api/metrics/event_bus (default OFF).
 ```
 
 ## Public API Stability Analysis

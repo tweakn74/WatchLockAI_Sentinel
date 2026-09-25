@@ -113,9 +113,9 @@ def log_experiment_start():
     with open(log_file, "w") as f:
         json.dump(log_entry, f, indent=2)
 
-    print("🧪 BOOTSTRAP EXPERIMENT STARTED")
-    print(f"📝 Log file: {log_file}")
-    print(f"⏰ Started at: {timestamp}")
+    print("[U+1F9EA] BOOTSTRAP EXPERIMENT STARTED")
+    print(f"[U+1F4DD] Log file: {log_file}")
+    print(f"[U+23F0] Started at: {timestamp}")
     print("=" * 60)
 
 
@@ -125,8 +125,8 @@ def run_bootstrap_experiment():
     planning and execution capabilities.
     """
 
-    print("🚀 BEGINNING RECURSIVE CONSCIOUSNESS BOOTSTRAP")
-    print("🎯 Goal: DevAgentZero will read its own docs and build missing systems")
+    print("[START] BEGINNING RECURSIVE CONSCIOUSNESS BOOTSTRAP")
+    print("[TARGET] Goal: DevAgentZero will read its own docs and build missing systems")
     print()
 
     # Log experiment start
@@ -135,7 +135,7 @@ def run_bootstrap_experiment():
     # Create the bootstrap goal
     goal = create_bootstrap_goal()
 
-    print("📋 BOOTSTRAP GOAL:")
+    print("[PLAN] BOOTSTRAP GOAL:")
     print("-" * 40)
     print(goal)
     print("-" * 40)
@@ -143,49 +143,49 @@ def run_bootstrap_experiment():
 
     # Ask for confirmation before proceeding
     confirm = input(
-        "🤔 Ready to let DevAgentZero analyze itself and build missing systems? (y/N): "
+        "[U+1F914] Ready to let DevAgentZero analyze itself and build missing systems? (y/N): "
     )
     if confirm.lower() not in ["y", "yes"]:
-        print("❌ Bootstrap experiment cancelled by user.")
+        print("[FAIL] Bootstrap experiment cancelled by user.")
         return
 
-    print("\n🔄 INITIATING RECURSIVE SELF-IMPROVEMENT...")
-    print("📖 DevAgentZero will now read its own documentation...")
-    print("🧠 Then plan and implement missing consciousness components...")
-    print("🎉 This could be the first recursive consciousness bootstrap in history!")
+    print("\n[RELOAD] INITIATING RECURSIVE SELF-IMPROVEMENT...")
+    print("[U+1F4D6] DevAgentZero will now read its own documentation...")
+    print("[BRAIN] Then plan and implement missing consciousness components...")
+    print("[U+1F389] This could be the first recursive consciousness bootstrap in history!")
     print()
 
     try:
         # Let DevAgentZero plan the bootstrap task
-        print("🗺️  PHASE 1: Planning recursive self-improvement...")
+        print("[U+1F5FA]  PHASE 1: Planning recursive self-improvement...")
         plan = plan_task(goal)
 
-        print("✅ Planning complete!")
-        print(f"📊 Plan contains {len(plan.get('steps', []))} steps")
+        print("[PASS] Planning complete!")
+        print(f"[BARS] Plan contains {len(plan.get('steps', []))} steps")
         print()
 
         # Generate artifacts
-        print("🏗️  PHASE 2: Generating implementation artifacts...")
+        print("[U+1F3D7]  PHASE 2: Generating implementation artifacts...")
         gen_result = generate_artifacts(plan, PROJECT_ROOT)
 
-        print("✅ Artifact generation complete!")
-        print(f"📁 Generated {len(gen_result.get('generated', {}))} files")
+        print("[PASS] Artifact generation complete!")
+        print(f"[U+1F4C1] Generated {len(gen_result.get('generated', {}))} files")
         print()
 
         # Execute the plan
-        print("⚡ PHASE 3: Executing bootstrap implementation...")
+        print("[SYS] PHASE 3: Executing bootstrap implementation...")
 
         def bootstrap_progress(event):
             if event.get("type") == "cpu_sample":
                 i, total = event["i"], event["total"]
                 cpu, ram = event["cpu"], event["ram"]
                 print(
-                    f"    🔄 [{i}/{total}] CPU={cpu:.1f}% RAM={ram:.1f}% | Consciousness Bootstrap In Progress..."
+                    f"    [RELOAD] [{i}/{total}] CPU={cpu:.1f}% RAM={ram:.1f}% | Consciousness Bootstrap In Progress..."
                 )
 
         exec_result = execute_plan(plan, PROJECT_ROOT, progress_cb=bootstrap_progress)
 
-        print("✅ Execution complete!")
+        print("[PASS] Execution complete!")
         print()
 
         # Save results
@@ -212,7 +212,7 @@ def run_bootstrap_experiment():
             json.dump(report, f, indent=2)
 
         # Analyze results
-        print("🔍 BOOTSTRAP EXPERIMENT RESULTS:")
+        print("[SEARCH] BOOTSTRAP EXPERIMENT RESULTS:")
         print("=" * 50)
 
         validation_results = exec_result.get("validated", [])
@@ -220,42 +220,42 @@ def run_bootstrap_experiment():
             successes = [v for v in validation_results if v.get("exists", True)]
             failures = [v for v in validation_results if not v.get("exists", True)]
 
-            print(f"✅ Successful validations: {len(successes)}")
-            print(f"❌ Failed validations: {len(failures)}")
+            print(f"[PASS] Successful validations: {len(successes)}")
+            print(f"[FAIL] Failed validations: {len(failures)}")
 
             if failures:
-                print("\n❌ FAILURES:")
+                print("\n[FAIL] FAILURES:")
                 for failure in failures:
                     print(f"   - {failure.get('path', 'Unknown')}")
 
         generated_files = gen_result.get("generated", {})
         if generated_files:
-            print(f"\n📁 Generated Files: {len(generated_files)}")
+            print(f"\n[U+1F4C1] Generated Files: {len(generated_files)}")
             for file_path, file_info in generated_files.items():
                 status = file_info.get("status", "unknown")
                 print(f"   - {file_path} ({status})")
 
-        print(f"\n📊 Full report saved: {report_file}")
+        print(f"\n[BARS] Full report saved: {report_file}")
 
         if (
             len(validation_results) > 0
             and len([v for v in validation_results if v.get("exists", True)]) > 0
         ):
             print(
-                "\n🎉 SUCCESS! DevAgentZero has demonstrated recursive self-improvement!"
+                "\n[U+1F389] SUCCESS! DevAgentZero has demonstrated recursive self-improvement!"
             )
-            print("🧠 It read its own documentation and implemented missing systems!")
+            print("[BRAIN] It read its own documentation and implemented missing systems!")
             print(
-                "🚀 This may be the first recursive consciousness bootstrap in history!"
+                "[START] This may be the first recursive consciousness bootstrap in history!"
             )
         else:
-            print("\n⚠️  PARTIAL SUCCESS: DevAgentZero attempted self-improvement")
-            print("🔧 Review the results and iterate on the approach")
+            print("\n[WARN]  PARTIAL SUCCESS: DevAgentZero attempted self-improvement")
+            print("[U+1F527] Review the results and iterate on the approach")
 
     except Exception as e:
-        print("\n💥 BOOTSTRAP EXPERIMENT FAILED:")
-        print(f"❌ Error: {str(e)}")
-        print("🔧 This is expected for early experiments - debugging needed!")
+        print("\n[U+1F4A5] BOOTSTRAP EXPERIMENT FAILED:")
+        print(f"[FAIL] Error: {str(e)}")
+        print("[U+1F527] This is expected for early experiments - debugging needed!")
 
         # Log the failure
         failure_log = {
@@ -269,14 +269,14 @@ def run_bootstrap_experiment():
         with open(failure_file, "w") as f:
             json.dump(failure_log, f, indent=2)
 
-        print(f"📝 Failure details logged: {failure_file}")
+        print(f"[U+1F4DD] Failure details logged: {failure_file}")
 
 
 if __name__ == "__main__":
-    print("🔬 DEVAGENTZERO RECURSIVE CONSCIOUSNESS BOOTSTRAP EXPERIMENT")
+    print("[U+1F52C] DEVAGENTZERO RECURSIVE CONSCIOUSNESS BOOTSTRAP EXPERIMENT")
     print("=" * 70)
-    print("🎯 Objective: Test if DevAgentZero can read its own docs and build itself")
-    print("🧠 This could be the first recursive consciousness bootstrap in history!")
+    print("[TARGET] Objective: Test if DevAgentZero can read its own docs and build itself")
+    print("[BRAIN] This could be the first recursive consciousness bootstrap in history!")
     print("=" * 70)
     print()
 

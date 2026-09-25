@@ -217,10 +217,10 @@ class JSONSchemaGenerator:
 
     def generate_schemas_for_all_routes(self) -> None:
         """Generate JSON schemas for all routes in the atlas"""
-        print("🎯 Generating JSON schemas for all API routes...")
+        print("[TARGET] Generating JSON schemas for all API routes...")
         
         routes = self._extract_routes()
-        print(f"📊 Found {len(routes)} routes to process")
+        print(f"[BARS] Found {len(routes)} routes to process")
         
         os.makedirs(self.schema_output_dir, exist_ok=True)
         
@@ -252,9 +252,9 @@ class JSONSchemaGenerator:
                 "schema_file": output_path
             })
             
-            print(f"   ✅ {method} {path} → {filename}")
+            print(f"   [PASS] {method} {path} -> {filename}")
         
-        print(f"\n📈 Generated {len(self.generated_schemas)} JSON schemas")
+        print(f"\n[CHART] Generated {len(self.generated_schemas)} JSON schemas")
         
         # Generate index file
         self._generate_schema_index()
@@ -281,7 +281,7 @@ class JSONSchemaGenerator:
         with open(index_path, 'w', encoding='utf-8') as f:
             json.dump(index_data, f, indent=2, ensure_ascii=False)
         
-        print(f"📋 Schema index → {index_path}")
+        print(f"[PLAN] Schema index -> {index_path}")
 
     def generate_property_test_data_generator(self) -> str:
         """Generate Python code for property test data generator"""
@@ -502,13 +502,13 @@ if __name__ == "__main__":
     generator = PropertyTestGenerator(schema_dir)
     
     # Generate some example data
-    print("🎲 Property Test Data Generator")
-    print(f"📁 Schema directory: {schema_dir}")
-    print(f"📊 Loaded {len(generator.schemas)} schemas")
+    print("[U+1F3B2] Property Test Data Generator")
+    print(f"[U+1F4C1] Schema directory: {schema_dir}")
+    print(f"[BARS] Loaded {len(generator.schemas)} schemas")
     
     # Show examples for first few schemas
     for i, (name, schema) in enumerate(list(generator.schemas.items())[:3]):
-        print(f"\\n🔧 Generating data for: {name}")
+        print(f"\\n[U+1F527] Generating data for: {name}")
         variants = generator.generate_from_schema(schema, 2)
         for j, variant in enumerate(variants):
             print(f"   Variant {j+1}: {json.dumps(variant, indent=2)}")
@@ -532,7 +532,7 @@ if __name__ == "__main__":
     with open(property_generator_path, 'w', encoding='utf-8') as f:
         f.write(property_generator_code)
     
-    print(f"🧪 Property test generator → {property_generator_path}")
-    print(f"\n🎉 P15 Schema Generation Complete!")
-    print(f"📊 Generated {len(generator.generated_schemas)} JSON schemas")
-    print(f"📁 Schema directory: {schema_output_dir}")
+    print(f"[U+1F9EA] Property test generator -> {property_generator_path}")
+    print(f"\n[U+1F389] P15 Schema Generation Complete!")
+    print(f"[BARS] Generated {len(generator.generated_schemas)} JSON schemas")
+    print(f"[U+1F4C1] Schema directory: {schema_output_dir}")

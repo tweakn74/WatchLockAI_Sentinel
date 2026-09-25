@@ -5,14 +5,14 @@
 **Scan Duration:** 43.80 seconds
 **Total Findings:** 591
 
-🔴 **CRITICAL RISK**: Critical security vulnerabilities detected
+[U+1F534] **CRITICAL RISK**: Critical security vulnerabilities detected
 
 ## Findings by Severity
 
-- 🔥 **CRITICAL**: 2
-- ⚠️ **HIGH**: 142
-- ⚡ **MEDIUM**: 10
-- ℹ️ **LOW**: 437
+- [FIRE] **CRITICAL**: 2
+- [WARN] **HIGH**: 142
+- [SYS] **MEDIUM**: 10
+- ℹ **LOW**: 437
 
 ## Findings by Category
 
@@ -26,7 +26,7 @@
 
 ## Detailed Findings
 
-### 🔥 CRITICAL Severity (2 findings)
+### [FIRE] CRITICAL Severity (2 findings)
 
 #### 1. Hardcoded Token
 
@@ -50,7 +50,7 @@
 - **Evidence:** `-----BEGIN PRIVATE KEY-----...`
 - **Remediation:** Move secret to environment variables or secure configuration
 
-### ⚠️ HIGH Severity (142 findings)
+### [WARN] HIGH Severity (142 findings)
 
 #### 1. Potential Command Injection - Dangerous Imports
 
@@ -274,7 +274,7 @@
 
 *... and 122 more HIGH findings*
 
-### ⚡ MEDIUM Severity (10 findings)
+### [SYS] MEDIUM Severity (10 findings)
 
 #### 1. Potential Command Injection - Sql Injection
 
@@ -382,7 +382,7 @@
 - **Evidence:** `md5(...`
 - **Remediation:** Use strong cryptographic algorithms and secure random number generators
 
-### ℹ️ LOW Severity (437 findings)
+### ℹ LOW Severity (437 findings)
 
 #### 1. Potential encoded secret in string literal
 
